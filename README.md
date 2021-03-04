@@ -1,4 +1,5 @@
-# This is the GitHub page of our AYUproject
+# Covid Project
+## Spatial evolution of Covid19 cases in France
 
 ### Members
 
