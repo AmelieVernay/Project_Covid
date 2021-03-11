@@ -1,5 +1,10 @@
 # This is the GitHub page of our AYUproject
 
+As part of our course [HMMA238](https://github.com/bcharlier/HMMA238) 'Software Development', we are working on a team project.
+
+
+The goal of our project is to analyze the spreading of the covid19 disease in France.
+
 ### Members
 
 - Foux Quentin, quentin.foux@etu.umontpellier.fr
