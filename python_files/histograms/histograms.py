@@ -33,10 +33,14 @@ data_reg
 # %%
 covid_today = data_reg.groupby(by='Maille nom').sum()
 covid_today
-# %%
-plt.hist(covid_today.index, bins=255)
-plt.show()
-# %%
-covid_today['Cas confirmés'].hist()
 
+# %%
+#Cas confirmés par région
+def case():
+       plt.bar(covid_today.index, covid_today['Cas confirmés'])
+# %%
+#Cas confirmés par région
+def death():
+       plt.bar(covid_today.index, covid_today['Deces'])
+death()
 # %%
