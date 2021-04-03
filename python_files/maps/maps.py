@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import geopandas as gpd
 import pandas as pd
-
+import load_covid_data
 # ---------- NOTE ----------
 # Maybe we should add this in the function
 # so that the data always stay up to date.
@@ -29,7 +29,7 @@ def vizmap_death(granularity):
     # load the dataframes
     dpt = gpd.read_file('departements-version-simplifiee.geojson')
     rgn = gpd.read_file('regions-version-simplifiee.geojson')
-    df_covid = pd.read_csv("chiffres-cles.csv")
+    df_covid = tryit.load_covid_data().save_as_df()
     # choose the dataframe containing geographic
     # informations according to the granularity
     # (plus english precision)
