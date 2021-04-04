@@ -4,3 +4,4 @@ __pycache__
 *.vscode
 *egg-info*
 *dist*
+covproj_venv/
