@@ -11,7 +11,7 @@ url_fr="https://static.data.gouv.fr/resources/donnees-relatives-a-lepidemie-de-c
 path_target = "./chiffres-cles.csv"
 class Load_covid:
     def __init__(self, url=url_db, target_name=path_target):
-        download(url, target_name, replace=False)
+        download(url, target_name, replace=True)
 
     @staticmethod
     def save_as_df():
@@ -45,7 +45,7 @@ def keyseries(nom,chiffre,evo=True):
         print("données pour la France entière")
 
     if fr:
-        download(url_fr,"./chiffres-fr.csv",replace=False)
+        download(url_fr,"./chiffres-fr.csv",replace=True)
         df_covid=pd.read_csv("./chiffres-fr.csv")
         date = df_covid['date']
         a = list((date[:]))
