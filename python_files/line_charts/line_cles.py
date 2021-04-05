@@ -8,7 +8,7 @@ import seaborn as sns
 #url_db = "https://www.data.gouv.fr/en/datasets/r/0b66ca39-1623-4d9c-83ad-5434b7f9e2a4"
 url_db="https://raw.githubusercontent.com/opencovid19-fr/data/master/dist/chiffres-cles.csv"
 url_fr="https://www.data.gouv.fr/fr/datasets/r/d3a98a30-893f-47f7-96c5-2f4bcaaa0d71"
-path_target = "./chiffres-cles.csv"
+path_target = "../data/chiffres-cles.csv"
 class Load_covid:
     """
     A class that allows you to download and format the dataset 
@@ -69,7 +69,7 @@ def keyseries(nom,chiffre,evo=True):
         print("données pour la France entière")
 
     if fr:
-        download(url_fr,"./chiffres-fr.csv",replace=True)
+        download(url_fr,"../data/chiffres-fr.csv",replace=True)
         df_covid=pd.read_csv("./chiffres-fr.csv")
         date = df_covid['date']
         a = list((date[:]))
