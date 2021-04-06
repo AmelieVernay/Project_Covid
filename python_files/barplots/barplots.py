@@ -107,4 +107,24 @@ dfincfrheb=pd.read_csv(pathtarget,sep=";")
 dfincfrheb
 
 # %%
+urlincregrea="https://www.data.gouv.fr/fr/datasets/r/a1466f7f-4ece-4158-a373-f5d4db167eb0"
+pathtarget="../data/increareg.csv"
+download(urlincregrea,pathtarget,replace=True)
+dfincregrea=pd.read_csv(pathtarget,sep=";",encoding="latin-1")
+dfincregrea
 
+
+# %%
+urlhopdep="https://www.data.gouv.fr/fr/datasets/r/6fadff46-9efd-4c53-942a-54aca783c30c"
+pathtarget="../data/hopdep.csv"
+download(urlhopdep,pathtarget,replace=True)
+dfhopdep=pd.read_csv(pathtarget,sep=";",encoding="latin-1")
+dfhopdep
+#%%
+urlhopage="https://www.data.gouv.fr/fr/datasets/r/08c18e08-6780-452d-9b8c-ae244ad529b3"
+pathtarget="../data/hopage.csv"
+download(urlhopage,pathtarget,replace=True)
+dfhopage=pd.read_csv(pathtarget,sep=";",encoding="latin-1")
+dfhopage
+
+# %%
