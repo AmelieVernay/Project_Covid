@@ -24,12 +24,16 @@ urlposreg="https://www.data.gouv.fr/fr/datasets/r/001aca18-df6a-45c8-89e6-f82d68
 pathtarget="../data/posquotreg.csv"
 download(urlposreg,pathtarget,replace=True)
 dfposreg=pd.read_csv(pathtarget,sep=";")
+dfposreg.head()
 dfposreg.groupby(["reg","jour"]).sum()
 dfposreg.loc[dfposreg["reg"]==1,:]
 def posireg(df,number):
     return df.loc[df["reg"]==number,:].groupby(['jour']).sum()
 
 posireg(dfposreg,1)
+dfposreg.head()
+dfposreg.groupby(["reg","jour"]).sum()
+dfposreg["reg"].unique()
 #%%
 urlposdep="https://www.data.gouv.fr/fr/datasets/r/406c6a23-e283-4300-9484-54e78c8ae675"
 pathtarget="../data/posquotdep.csv"
