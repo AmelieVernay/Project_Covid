@@ -106,6 +106,38 @@ def keyseries(nom,chiffre,evo=True):
         if evo:
             return df_covid[chiffre].diff()
         return df_covid[chiffre]
+    elif chiffre in ["cas_confirmes"]:
+        urlposreg="https://www.data.gouv.fr/fr/datasets/r/001aca18-df6a-45c8-89e6-f82d689e6c01"
+        pathtarget="../data/posquotreg.csv"
+        download(urlposreg,pathtarget,replace=True)
+        dfposreg=pd.read_csv(pathtarget,sep=";")
+        REGIONS = {
+    'Auvergne-Rhône-Alpes': 84,
+    'Bourgogne-Franche-Comté': 27,
+    'Bretagne': 53,
+    'Centre-Val de Loire': 24,
+    'Corse': 94,
+    'Grand Est':44 ,
+    'Guadeloupe': 1,
+    'Guyane': 3,
+    'Hauts-de-France': 32,
+    'Île-de-France': 11,
+    'La Réunion': 4,
+    'Martinique': 2,
+    'Normandie': 28,
+    'Nouvelle-Aquitaine': 75,
+    'Occitanie': 76,
+    'Pays de la Loire': 52,
+    'Provence-Alpes-Côte d\'Azur': 93,}
+        number=REGIONS[nom]
+
+        df= dfposreg.loc[dfposreg["reg"]==number,:].groupby(['jour']).sum()
+        df.index = pd.to_datetime(df.index)
+
+        if evo:
+            return df['P']
+        else: return df['P'].cumsum()
+
     if evo:
         return keysubtablename(nom)[chiffre].dropna().diff()
     return keysubtablename(nom)[chiffre].dropna()
@@ -185,5 +217,11 @@ def keyplot(nom,chiffre,evo=True,average=True):
 
 keyplot("France","cas",evo=True)
     
-
+print('a')
 keyseries("France","hôpital",evo=False)
+print("b")
+keyseries('Île-de-France','cas')
+print("c")
+keyplot('Île-de-France','cas')
+
+
