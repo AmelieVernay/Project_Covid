@@ -18,7 +18,40 @@ T_f=dfposfr.groupby(['jour']).sum()["T_f"]
 T_h=dfposfr.groupby(['jour']).sum()["T_h"]
 
 P_f
-dfposfr
+dfposfr.groupby(['jour']).sum().loc["2020-05-13",]
+#%%
+def compareHF(jour,chiffre,df):
+    return [df.loc[jour,][chiffre+"_h"],df.loc[jour,][chiffre+"_f"]]
+
+def comparativebarplot(jour,chiffre,df,cumulative=False):
+    import matplotlib.pyplot as plt
+    fig = plt.figure()
+    ax = fig.add_axes([0,0,1,1])
+    sex = ['male','female']
+    if cumulative:
+        df=df.cumsum()
+    if chiffre=="positiverate":
+        positif=positiverate(jour,df,True)
+        print(positif)
+    else:
+        positif = compareHF(jour,chiffre,df)
+
+    ax.bar(sex,positif)
+    plt.show()
+
+comparativebarplot("2020-05-14","P",dfposfr.groupby(['jour']).sum())
+comparativebarplot("2020-05-15","P",dfposfr.groupby(['jour']).sum(),True)
+
+dfposfr.groupby(['jour']).sum().cumsum()
+def positiverate(jour,df,sex=False,rate=True):
+    if not sex:
+        if rate:
+            return df.loc[jour,]["P"]/df.loc[jour,"T"]
+        else: 
+            return df.loc[jour,]["P"]
+    else: return [df.loc[jour,]["P_h"]/df.loc[jour,]["T_h"],df.loc[jour,]["P_f"]/df.loc[jour,]["T_f"]]
+comparativebarplot("2020-06-15","positiverate",dfposfr.groupby(['jour']).sum())
+
 #%%
 urlposreg="https://www.data.gouv.fr/fr/datasets/r/001aca18-df6a-45c8-89e6-f82d689e6c01"
 pathtarget="../data/posquotreg.csv"
@@ -27,13 +60,16 @@ dfposreg=pd.read_csv(pathtarget,sep=";")
 dfposreg.head()
 dfposreg.groupby(["reg","jour"]).sum()
 dfposreg.loc[dfposreg["reg"]==1,:]
-def posireg(df,number):
+def subtablepos(df,number):
     return df.loc[df["reg"]==number,:].groupby(['jour']).sum()
+
 
 posireg(dfposreg,1)
 dfposreg.head()
 dfposreg.groupby(["reg","jour"]).sum()
-dfposreg["reg"].unique()
+dfposreg.loc[dfposreg["reg"]==1,:].groupby(['jour']).sum()
+subtablepos(dfposreg,2)
+comparativebarplot("2020-06-15","P",subtablepos(dfposreg,2),True)
 #%%
 urlposdep="https://www.data.gouv.fr/fr/datasets/r/406c6a23-e283-4300-9484-54e78c8ae675"
 pathtarget="../data/posquotdep.csv"
