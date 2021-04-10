@@ -60,16 +60,15 @@ dfposreg=pd.read_csv(pathtarget,sep=";")
 dfposreg.head()
 dfposreg.groupby(["reg","jour"]).sum()
 dfposreg.loc[dfposreg["reg"]==1,:]
-def subtablepos(df,number):
-    return df.loc[df["reg"]==number,:].groupby(['jour']).sum()
+def subtablepos(df,granularite,number,weekday="jour"):
+    return df.loc[df[granularite]==number,:].groupby([weekday]).sum()
 
 
-posireg(dfposreg,1)
 dfposreg.head()
 dfposreg.groupby(["reg","jour"]).sum()
 dfposreg.loc[dfposreg["reg"]==1,:].groupby(['jour']).sum()
-subtablepos(dfposreg,2)
-comparativebarplot("2020-06-15","P",subtablepos(dfposreg,2),True)
+subtablepos(dfposreg,"reg",2)
+comparativebarplot("2020-06-15","P",subtablepos(dfposreg,"reg",2),True)
 #%%
 urlposdep="https://www.data.gouv.fr/fr/datasets/r/406c6a23-e283-4300-9484-54e78c8ae675"
 pathtarget="../data/posquotdep.csv"
@@ -77,25 +76,28 @@ download(urlposdep,pathtarget,replace=True)
 dfposdep=pd.read_csv(pathtarget,sep=";")
 dfposdep.head()
 dfposdep.groupby(["dep","jour"]).sum()
-dfposdep.loc[dfposdep["dep"]==1,:]
-def posidep(df,number):
-   return df.loc[df["dep"]==number,:].groupby(['jour']).sum()
-
-posidep(dfposdep,"05")
 dfposdep
+positiverate("2020-06-13",dfposdep.loc[dfposdep["dep"]=="03",:].groupby(["jour"]).sum())
+#dfposdep.loc[dfposdep["dep"]=="03",:].groupby(["jour"]).sum()
 #%%
 urlposfrheb="https://www.data.gouv.fr/fr/datasets/r/dd3ac13c-e87f-4b33-8897-07baff4e1783"
-pathtarget="../data/poshebdep.csv"
+pathtarget="../data/poshebfr.csv"
 download(urlposfrheb,pathtarget,replace=True)
 dfposfrheb=pd.read_csv(pathtarget,sep=";")
 dfposfrheb
+dfposfrheb.loc[dfposfrheb["dep"]=="03",:].groupby(["week"]).sum()
+positiverate("2020-S21",dfposfrheb.loc[dfposdep["dep"]=="03",:].groupby(["week"]).sum())
+
 #%%
 urlposregheb="https://www.data.gouv.fr/fr/datasets/r/1ff7af5f-88d6-44bd-b8b6-16308b046afc"
 pathtarget="../data/poshebreg.csv"
 download(urlposregheb,pathtarget,replace=True)
 dfposregheb=pd.read_csv(pathtarget,sep=";")
 dfposregheb
-
+subtablepos(dfposregheb,"reg",2,"week")
+comparativebarplot("2020-S22","P",subtablepos(dfposregheb,"reg",2,"week"),True)
+dfposregheb
+dfposregheb["P"]/dfposregheb["T"]
 #%%
 urlposdepheb="https://www.data.gouv.fr/fr/datasets/r/1ff7af5f-88d6-44bd-b8b6-16308b046afc"
 pathtarget="../data/poshebpdep.csv"
