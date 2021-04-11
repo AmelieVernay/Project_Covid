@@ -32,7 +32,8 @@ def comparativebarplot(jour,chiffre,df,cumulative=False):
         df=df.cumsum()
     if chiffre=="positiverate":
         positif=positiverate(jour,df,True)
-        print(positif)
+    elif chiffre=="incidence":
+        positif=incidencerate(jour,df,True)
     else:
         positif = compareHF(jour,chiffre,df)
 
@@ -80,13 +81,14 @@ dfposdep
 positiverate("2020-06-13",dfposdep.loc[dfposdep["dep"]=="03",:].groupby(["jour"]).sum())
 #dfposdep.loc[dfposdep["dep"]=="03",:].groupby(["jour"]).sum()
 #%%
-urlposfrheb="https://www.data.gouv.fr/fr/datasets/r/dd3ac13c-e87f-4b33-8897-07baff4e1783"
-pathtarget="../data/poshebfr.csv"
-download(urlposfrheb,pathtarget,replace=True)
-dfposfrheb=pd.read_csv(pathtarget,sep=";")
-dfposfrheb
-dfposfrheb.loc[dfposfrheb["dep"]=="03",:].groupby(["week"]).sum()
-positiverate("2020-S21",dfposfrheb.loc[dfposdep["dep"]=="03",:].groupby(["week"]).sum())
+urlposdepheb="https://www.data.gouv.fr/fr/datasets/r/dd3ac13c-e87f-4b33-8897-07baff4e1783"
+pathtarget="../data/poshebdep.csv"
+download(urlposdepheb,pathtarget,replace=True)
+dfposdepheb=pd.read_csv(pathtarget,sep=";")
+dfposdepheb
+dfposdepheb.loc[dfposdepheb["dep"]=="03",:].groupby(["week"]).sum()
+positiverate("2020-S21",dfposdepheb.loc[dfposdepheb["dep"]=="03",:].groupby(["week"]).sum())
+dfposdepheb
 
 #%%
 urlposregheb="https://www.data.gouv.fr/fr/datasets/r/1ff7af5f-88d6-44bd-b8b6-16308b046afc"
@@ -97,27 +99,34 @@ dfposregheb
 subtablepos(dfposregheb,"reg",2,"week")
 comparativebarplot("2020-S22","P",subtablepos(dfposregheb,"reg",2,"week"),True)
 dfposregheb
-dfposregheb["P"]/dfposregheb["T"]
 #%%
-urlposdepheb="https://www.data.gouv.fr/fr/datasets/r/1ff7af5f-88d6-44bd-b8b6-16308b046afc"
-pathtarget="../data/poshebpdep.csv"
-download(urlposdepheb,pathtarget,replace=True)
-dfposdepheb=pd.read_csv(pathtarget,sep=";")
-dfposdepheb
+urlposfrheb="https://www.data.gouv.fr/fr/datasets/r/2f0f720d-fbd2-41a7-95b4-3a70ff5a9253"
+pathtarget="../data/poshebfr.csv"
+download(urlposfrheb,pathtarget,replace=True)
+dfposfrheb=pd.read_csv(pathtarget,sep=";")
+dfposfrheb
+comparativebarplot("2020-S23","T",dfposfrheb.groupby(['week']).sum())
 
 #%%
 urlincdep="https://www.data.gouv.fr/fr/datasets/r/19a91d64-3cd3-42fc-9943-d635491a4d76"
 pathtarget="../data/incquotdep.csv"
 download(urlincdep,pathtarget,replace=True)
 dfincdep=pd.read_csv(pathtarget,sep=";")
-dfincdep
-
+subtablepos(dfincdep,"dep","01")["P"]*100000/subtablepos(dfincdep,"dep","01")["pop"]
 #%%
 urlincreg="https://www.data.gouv.fr/fr/datasets/r/ad09241e-52fa-4be8-8298-e5760b43cae2"
 pathtarget="../data/incquotreg.csv"
 download(urlincreg,pathtarget,replace=True)
 dfincreg=pd.read_csv(pathtarget,sep=";")
 dfincreg
+def incidencerate(jour,df,sex=False):
+    if not sex:
+        return df.loc[jour,]["P"]*100000/df.loc[jour,"pop"]
+    else: return [df.loc[jour,]["P_h"]*100000/df.loc[jour,]["pop_h"],df.loc[jour,]["P_f"]*100000/df.loc[jour,]["pop_f"]]
+comparativebarplot("2021-01-15","incidence",subtablepos(dfincreg,"reg",2))
+incidencerate("2021-01-15",subtablepos(dfincreg,"reg",3),sex=True)
+subtablepos(dfincreg,"reg",2)
+
 
 #%%
 urlincfr="https://www.data.gouv.fr/fr/datasets/r/57d44bd6-c9fd-424f-9a72-7834454f9e3c"
@@ -125,6 +134,7 @@ pathtarget="../data/incquotfr.csv"
 download(urlincfr,pathtarget,replace=True)
 dfincfr=pd.read_csv(pathtarget,sep=";")
 dfincfr
+incidencerate("2021-01-15",dfincfr.groupby(['jour']).sum(),sex=True)
 
 #%%
 urlincdepheb="https://www.data.gouv.fr/fr/datasets/r/bb2a18f3-bdd5-4101-8687-945d6e4e435f"
@@ -132,6 +142,8 @@ pathtarget="../data/inchebdep.csv"
 download(urlincdepheb,pathtarget,replace=True)
 dfincdepheb=pd.read_csv(pathtarget,sep=";")
 dfincdepheb
+subtablepos(dfincdepheb,"dep","01","week")["P"]*100000/subtablepos(dfincdepheb,"dep","01","week")["pop"]
+
 
 #%%
 urlincregheb="https://www.data.gouv.fr/fr/datasets/r/2360f82e-4fa4-475a-bc07-9caa206d9e32"
@@ -139,6 +151,9 @@ pathtarget="../data/inchebreg.csv"
 download(urlincregheb,pathtarget,replace=True)
 dfincregheb=pd.read_csv(pathtarget,sep=";")
 dfincregheb
+comparativebarplot("2020-S50","incidence",subtablepos(dfincregheb,"reg",2,"week"))
+incidencerate("2021-S50",subtablepos(dfincregheb,"reg",3,"week"),sex=True)
+subtablepos(dfincregheb,"reg",2,"week")
 
 #%%
 
@@ -147,6 +162,9 @@ pathtarget="../data/inchebfr.csv"
 download(urlincfrheb,pathtarget,replace=True)
 dfincfrheb=pd.read_csv(pathtarget,sep=";")
 dfincfrheb
+incidencerate("2021-S01",dfincfrheb.groupby(['week']).sum(),sex=True)
+comparativebarplot("2021-S01","incidence",dfincfrheb.groupby(['week']).sum())
+
 
 # %%
 urlincregrea="https://www.data.gouv.fr/fr/datasets/r/a1466f7f-4ece-4158-a373-f5d4db167eb0"
@@ -154,19 +172,18 @@ pathtarget="../data/increareg.csv"
 download(urlincregrea,pathtarget,replace=True)
 dfincregrea=pd.read_csv(pathtarget,sep=";",encoding="latin-1")
 dfincregrea
-
-
+dfincregrea.loc[dfincregrea["numReg"]==84,:]
 # %%
 urlhopdep="https://www.data.gouv.fr/fr/datasets/r/6fadff46-9efd-4c53-942a-54aca783c30c"
 pathtarget="../data/hopdep.csv"
 download(urlhopdep,pathtarget,replace=True)
 dfhopdep=pd.read_csv(pathtarget,sep=";",encoding="latin-1")
-dfhopdep
+dfhopdep.loc[dfhopdep["dep"]=="03",:]
 #%%
 urlhopage="https://www.data.gouv.fr/fr/datasets/r/08c18e08-6780-452d-9b8c-ae244ad529b3"
 pathtarget="../data/hopage.csv"
 download(urlhopage,pathtarget,replace=True)
 dfhopage=pd.read_csv(pathtarget,sep=";",encoding="latin-1")
-dfhopage
+dfhopage.loc[dfhopage["reg"]==1,:].groupby(["jour"]).sum()
 
 # %%
