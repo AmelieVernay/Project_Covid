@@ -2,18 +2,8 @@
 import matplotlib.pyplot as plt
 import geopandas as gpd
 import pandas as pd
-import load_covid_data
-# ---------- NOTE ----------
-# Maybe we should add this in the function
-# so that the data always stay up to date.
-# Or better: call in the function another
-# one in an other file that expressly loads
-# data every time it is called.
-# The code should look something like this:
-# url = "https://www.data.gouv.fr/en/datasets/r/0b66ca39-1623-4d9c-83ad-5434b7f9e2a4"
-# path_target = "./chiffres-cles.csv"
-# download(url, path_target, replace=True)
-# df_covid = pd.read_csv("chiffres-cles.csv")
+
+from vizcovidfr.loads import load_datasets
 
 
 # ---------- main function ----------
@@ -29,7 +19,7 @@ def vizmap_death(granularity):
     # load the dataframes
     dpt = gpd.read_file('departements-version-simplifiee.geojson')
     rgn = gpd.read_file('regions-version-simplifiee.geojson')
-    df_covid = tryit.load_covid_data().save_as_df()
+    df_covid = load_datasets.Load_chiffres_cles().save_as_df()
     # choose the dataframe containing geographic
     # informations according to the granularity
     # (plus english precision)
