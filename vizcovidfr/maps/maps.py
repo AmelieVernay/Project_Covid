@@ -4,6 +4,15 @@ import geopandas as gpd
 import pandas as pd
 
 from vizcovidfr.loads import load_datasets
+from vizcovidfr.preprocesses import preprocess_chiffres_cles
+
+df_covid = load_datasets.Load_chiffres_cles().save_as_df()
+
+# functions in preprocess_chiffres_cles should be used as follow:
+# A = preprocess_chiffres_cles.drop_some_columns(df_covid)
+# B = preprocess_chiffres_cles.reg_depts(A)
+# C = preprocess_chiffres_cles.reg_depts_code_format(B)
+# print(C.head())
 
 
 # ---------- main function ----------
