@@ -19,6 +19,19 @@ from vizcovidfr.preprocesses import preprocess_chiffres_cles
 
 
 def make_3D_map(granularity):
+    '''Make a 3D map out of France Covid-19 data.
+    Layers elevation represent the amount of death for the given place at a
+    given day, which can be view by passing the mouse on it.
+
+    :param granularity: the granularity we want the map to be based on.
+        Should be either 'region' or 'departement'. On the latter case,
+        columns layers will be raised from the centroid of each department,
+        while on the former, these will be raides from each region's centroid.
+    :type granularity: string
+    :return: 3D map openable from your favorite browser. The file is
+        saved on your Desktop under the name '3Dmap_covid.html'
+    :rtype: html file
+    '''
     # ---------- file imports ----------
     # geo files
     reg_path = os.path.join(
@@ -71,20 +84,25 @@ def make_3D_map(granularity):
                                    get_fill_color=[255, 165, 0, 80],
                                    pickable=True,
                                    auto_highlight=True)
+    tooltip = {
+        "html": "<b>Place:</b> {nom} <br /><b>Date:</b> {date} <br /><b>Number of death:</b> {deces}"}
     # render map
     covid_amount_layer_map = pdk.Deck(layers=covid_amount_layer,
-                                      initial_view_state=view)
+                                      initial_view_state=view,
+                                      tooltip=tooltip)
     # save map
-    covid_amount_layer_map.to_html('3Dmap_covid.html')
+    path_to_desktop = os.path.expanduser("~/Desktop")
+    save_path = os.path.join(path_to_desktop, '3Dmap_covid.html')
+    covid_amount_layer_map.to_html(save_path)
 
 
 # To try:
-# make_3D_map('region')
+# make_3D_map('departement')
 
 # TODO:
-# ADD DOCSTRING !!
+# IMPROVE DOCSTRING !!
 # add possibility to change 'deces'
-# change save path
+# add possibility to change save_path
 # try to make polygon layers instead of ColumnLayer
 # change markers aspect
 # change color ?
