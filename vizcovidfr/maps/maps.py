@@ -2,8 +2,18 @@
 import matplotlib.pyplot as plt
 import geopandas as gpd
 import pandas as pd
+import os
 
 from vizcovidfr.loads import load_datasets
+from vizcovidfr.preprocesses import preprocess_chiffres_cles
+
+#df_covid = load_datasets.Load_chiffres_cles().save_as_df()
+
+# functions in preprocess_chiffres_cles should be used as follow:
+# A = preprocess_chiffres_cles.drop_some_columns(df_covid)
+# B = preprocess_chiffres_cles.reg_depts(A)
+# C = preprocess_chiffres_cles.reg_depts_code_format(B)
+# print(C.head())
 
 
 # ---------- main function ----------
@@ -17,8 +27,17 @@ def vizmap_death(granularity):
         region or department (according to the granularity chosen)
     '''
     # load the dataframes
-    dpt = gpd.read_file('departements-version-simplifiee.geojson')
-    rgn = gpd.read_file('regions-version-simplifiee.geojson')
+    # geo files
+    reg_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "regions.geojson")
+    dep_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "departements.geojson")
+    rgn = gpd.read_file(reg_path)
+    dpt = gpd.read_file(dep_path)
     df_covid = load_datasets.Load_chiffres_cles().save_as_df()
     # choose the dataframe containing geographic
     # informations according to the granularity
@@ -65,7 +84,7 @@ def vizmap_death(granularity):
     ax.axis('off')
     # add a title
     # make it correspond to the granularity!
-    ax.set_title('Actual number of death per {}'.format(gra),
+    ax.set_title(f'Actual number of death per {gra}',
                  fontdict={'fontsize': '25',
                            'fontweight': '4'})
     # create colorbar as a legend
@@ -74,7 +93,19 @@ def vizmap_death(granularity):
         norm=plt.Normalize(vmin=vmin, vmax=vmax))
     sm._A = []
     cbar = fig.colorbar(sm)
-    fig.savefig('toto.svg')
+    # save map
+    path_to_desktop = os.path.expanduser("~/Desktop")
+    save_path = os.path.join(path_to_desktop, '2Dmap_covid.svg')
+    fig.savefig(save_path)
 
+# exemple:
+# vizmap_death('departement')
 
-# vizmap('departement')
+# TODO:
+# Convert docstring to sphinx
+# make it interactive !!
+# call preprocess functions !!
+# change color...
+# add possibility to change 'deces'
+# add possibility to change save_path
+# NOTE: it worked without importing df_covid...

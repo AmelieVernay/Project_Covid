@@ -10,6 +10,7 @@ setup(
   author_email='quentin.foux@etu.umontpellier.fr ; laurent.llinares@etu.umontpellier.fr ; alexandre.nicolas@etu.umontpellier.fr ; amelie.vernay@etu.umontpellier.fr',
   packages=find_packages(include=['vizcovidfr',
                                   'vizcovidfr.loads',
+                                  'vizcovidfr.preprocesses',
                                   'vizcovidfr.barplots',
                                   'vizcovidfr.histograms',
                                   'vizcovidfr.line_charts',
