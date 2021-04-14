@@ -70,7 +70,7 @@ def keyseries(nom,chiffre,evo=True):
 
     if fr:
         download(url_fr,"../data/chiffres-fr.csv",replace=True)
-        df_covid=pd.read_csv("./chiffres-fr.csv")
+        df_covid=pd.read_csv("../data/chiffres-fr.csv")
         date = df_covid['date']
         a = list((date[:]))
         b = list(map(lambda x: datetime.date(int(x[:4]),int(x[5:7]),\
@@ -332,14 +332,14 @@ def keyplot(nom,chiffre,evo=True,average=True):
         ax.set(title="Daily number of people \
             cured from Covid-19 "+nom,ylabel="people")
 
+#%%
+keyplot("Hérault","deces",evo=False)
 
-keyplot("France","cas",evo=True)
-    
 print('a')
 keyseries("France","hôpital",evo=False)
 print("b")
 keyseries('Île-de-France','cas')
 print("c")
-keyplot('Île-de-France','cas')
+#keyplot('Île-de-France','cas')
 
 
