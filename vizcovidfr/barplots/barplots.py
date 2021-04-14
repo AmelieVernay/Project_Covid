@@ -9,16 +9,18 @@ download(urlposfr,pathtarget,replace=True)
 dfposfr=pd.read_csv(pathtarget,sep=";")
 dfposfr.groupby(['jour']).sum()
 
-P_f=dfposfr.groupby(['jour']).sum()["P_f"]
+P_f=dfposfr.loc[dfposfr["cl_age90"]==0]["P_f"]
 
-P_h=dfposfr.groupby(['jour']).sum()["P_h"]
+P_h=dfposfr.loc[dfposfr["cl_age90"]==0]["P_h"]
 
-T_f=dfposfr.groupby(['jour']).sum()["T_f"]
+T_f=dfposfr.loc[dfposfr["cl_age90"]==0]["T_f"]
 
-T_h=dfposfr.groupby(['jour']).sum()["T_h"]
+T_h=dfposfr.loc[dfposfr["cl_age90"]==0]["T_h"]
 
 P_f
-dfposfr.groupby(['jour']).sum().loc["2020-05-13",]
+dfposfr.loc[dfposfr["cl_age90"]==0].groupby(["jour"]).sum().loc["2020-05-13",]
+def ignoreage(df,weekday="jour"):
+    return df.loc[df['cl_age90']==0].groupby([weekday]).sum()
 #%%
 def compareHF(jour,chiffre,df):
     return [df.loc[jour,][chiffre+"_h"],df.loc[jour,][chiffre+"_f"]]
@@ -40,10 +42,9 @@ def comparativebarplot(jour,chiffre,df,cumulative=False):
     ax.bar(sex,positif)
     plt.show()
 
-comparativebarplot("2020-05-14","P",dfposfr.groupby(['jour']).sum())
-comparativebarplot("2020-05-15","P",dfposfr.groupby(['jour']).sum(),True)
+comparativebarplot("2020-05-14","P",ignoreage(dfposfr))
+comparativebarplot("2020-05-15","P",ignoreage(dfposfr),True)
 
-dfposfr.groupby(['jour']).sum().cumsum()
 def positiverate(jour,df,sex=False,rate=True):
     if not sex:
         if rate:
@@ -51,7 +52,7 @@ def positiverate(jour,df,sex=False,rate=True):
         else: 
             return df.loc[jour,]["P"]
     else: return [df.loc[jour,]["P_h"]/df.loc[jour,]["T_h"],df.loc[jour,]["P_f"]/df.loc[jour,]["T_f"]]
-comparativebarplot("2020-06-15","positiverate",dfposfr.groupby(['jour']).sum())
+comparativebarplot("2020-06-15","positiverate",ignoreage(dfposfr))
 
 #%%
 urlposreg="https://www.data.gouv.fr/fr/datasets/r/001aca18-df6a-45c8-89e6-f82d689e6c01"
@@ -59,10 +60,9 @@ pathtarget="../data/posquotreg.csv"
 download(urlposreg,pathtarget,replace=True)
 dfposreg=pd.read_csv(pathtarget,sep=";")
 dfposreg.head()
-dfposreg.groupby(["reg","jour"]).sum()
 dfposreg.loc[dfposreg["reg"]==1,:]
 def subtablepos(df,granularite,number,weekday="jour"):
-    return df.loc[df[granularite]==number,:].groupby([weekday]).sum()
+    return ignoreage(df.loc[df[granularite]==number,:],weekday)
 
 
 dfposreg.head()
@@ -70,25 +70,23 @@ dfposreg.groupby(["reg","jour"]).sum()
 dfposreg.loc[dfposreg["reg"]==1,:].groupby(['jour']).sum()
 subtablepos(dfposreg,"reg",2)
 comparativebarplot("2020-06-15","P",subtablepos(dfposreg,"reg",2),True)
+dfposreg
 #%%
 urlposdep="https://www.data.gouv.fr/fr/datasets/r/406c6a23-e283-4300-9484-54e78c8ae675"
 pathtarget="../data/posquotdep.csv"
 download(urlposdep,pathtarget,replace=True)
 dfposdep=pd.read_csv(pathtarget,sep=";")
 dfposdep.head()
-dfposdep.groupby(["dep","jour"]).sum()
 dfposdep
-positiverate("2020-06-13",dfposdep.loc[dfposdep["dep"]=="03",:].groupby(["jour"]).sum())
-#dfposdep.loc[dfposdep["dep"]=="03",:].groupby(["jour"]).sum()
+positiverate("2020-11-13",ignoreage(dfposdep.loc[dfposdep["dep"]=="03",:]))
 #%%
 urlposdepheb="https://www.data.gouv.fr/fr/datasets/r/dd3ac13c-e87f-4b33-8897-07baff4e1783"
 pathtarget="../data/poshebdep.csv"
 download(urlposdepheb,pathtarget,replace=True)
 dfposdepheb=pd.read_csv(pathtarget,sep=";")
 dfposdepheb
-dfposdepheb.loc[dfposdepheb["dep"]=="03",:].groupby(["week"]).sum()
-positiverate("2020-S21",dfposdepheb.loc[dfposdepheb["dep"]=="03",:].groupby(["week"]).sum())
-dfposdepheb
+positiverate("2020-S21",ignoreage(dfposdepheb.loc[dfposdepheb["dep"]=="03",:],"week"))
+
 
 #%%
 urlposregheb="https://www.data.gouv.fr/fr/datasets/r/1ff7af5f-88d6-44bd-b8b6-16308b046afc"
@@ -105,7 +103,7 @@ pathtarget="../data/poshebfr.csv"
 download(urlposfrheb,pathtarget,replace=True)
 dfposfrheb=pd.read_csv(pathtarget,sep=";")
 dfposfrheb
-comparativebarplot("2020-S23","T",dfposfrheb.groupby(['week']).sum())
+comparativebarplot("2020-S23","T",ignoreage(dfposfrheb,"week"))
 
 #%%
 urlincdep="https://www.data.gouv.fr/fr/datasets/r/19a91d64-3cd3-42fc-9943-d635491a4d76"
@@ -125,7 +123,6 @@ def incidencerate(jour,df,sex=False):
     else: return [df.loc[jour,]["P_h"]*100000/df.loc[jour,]["pop_h"],df.loc[jour,]["P_f"]*100000/df.loc[jour,]["pop_f"]]
 comparativebarplot("2021-01-15","incidence",subtablepos(dfincreg,"reg",2))
 incidencerate("2021-01-15",subtablepos(dfincreg,"reg",3),sex=True)
-subtablepos(dfincreg,"reg",2)
 
 
 #%%
@@ -134,7 +131,7 @@ pathtarget="../data/incquotfr.csv"
 download(urlincfr,pathtarget,replace=True)
 dfincfr=pd.read_csv(pathtarget,sep=";")
 dfincfr
-incidencerate("2021-01-15",dfincfr.groupby(['jour']).sum(),sex=True)
+incidencerate("2021-01-15",ignoreage(dfincfr),sex=True)
 
 #%%
 urlincdepheb="https://www.data.gouv.fr/fr/datasets/r/bb2a18f3-bdd5-4101-8687-945d6e4e435f"
@@ -146,18 +143,18 @@ subtablepos(dfincdepheb,"dep","01","week")["P"]*100000/subtablepos(dfincdepheb,"
 
 
 #%%
-urlincregheb="https://www.data.gouv.fr/fr/datasets/r/2360f82e-4fa4-475a-bc07-9caa206d9e32"
+urlincregheb="https://www.data.gouv.fr/fr/datasets/r/66b09e9a-41b5-4ed6-b03c-9aef93a4b559"
 pathtarget="../data/inchebreg.csv"
 download(urlincregheb,pathtarget,replace=True)
 dfincregheb=pd.read_csv(pathtarget,sep=";")
 dfincregheb
 comparativebarplot("2020-S50","incidence",subtablepos(dfincregheb,"reg",2,"week"))
-incidencerate("2021-S50",subtablepos(dfincregheb,"reg",3,"week"),sex=True)
+incidencerate("2020-S50",subtablepos(dfincregheb,"reg",3,"week"),sex=True)
 subtablepos(dfincregheb,"reg",2,"week")
 
 #%%
 
-urlincfrheb="https://www.data.gouv.fr/fr/datasets/r/66b09e9a-41b5-4ed6-b03c-9aef93a4b559"
+urlincfrheb="https://www.data.gouv.fr/fr/datasets/r/2360f82e-4fa4-475a-bc07-9caa206d9e32"
 pathtarget="../data/inchebfr.csv"
 download(urlincfrheb,pathtarget,replace=True)
 dfincfrheb=pd.read_csv(pathtarget,sep=";")
@@ -184,6 +181,6 @@ urlhopage="https://www.data.gouv.fr/fr/datasets/r/08c18e08-6780-452d-9b8c-ae244a
 pathtarget="../data/hopage.csv"
 download(urlhopage,pathtarget,replace=True)
 dfhopage=pd.read_csv(pathtarget,sep=";",encoding="latin-1")
-dfhopage.loc[dfhopage["reg"]==1,:].groupby(["jour"]).sum()
+ignoreage(dfhopage.loc[dfhopage["reg"]==1,:])
 
 # %%
