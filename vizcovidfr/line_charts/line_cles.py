@@ -1,71 +1,21 @@
+#%%
 import pandas as pd
 import matplotlib.pyplot as plt
 from download import download
-import datetime
+from datetime import date
 import matplotlib.pyplot as plt
 import seaborn as sns
+from vizcovidfr.loads import load_datasets
+from vizcovidfr.preprocesses import preprocess_chiffres_cles
 
 #url_db = "https://www.data.gouv.fr/en/datasets/r/0b66ca39-1623-4d9c-83ad-5434b7f9e2a4"
-url_db="https://raw.githubusercontent.com/opencovid19-fr/data/master/dist/chiffres-cles.csv"
+#url_db="https://raw.githubusercontent.com/opencovid19-fr/data/master/dist/chiffres-cles.csv"
 url_fr="https://www.data.gouv.fr/fr/datasets/r/d3a98a30-893f-47f7-96c5-2f4bcaaa0d71"
 
 path_target = "../data/chiffres-cles.csv"
 
-class Load_covid:
-    """
-    A class that allows you to download and format the dataset
-    containing the counts of diverse figures describing the
-    spread of the pandemic in France.
-
-    """
-    def __init__(self, url=url_db, target_name=path_target):
-
-        download(url, target_name, replace=True)
-
-    @staticmethod
-    def save_as_df():
-
-        """
-        Nicely formatted dataframe with time indexation.
-        """
-
-        df_covid = pd.read_csv(path_target)
-
-        date = df_covid['date']
-        a = list((date[:]))
-        b = list(map(lambda x: datetime.date(int(x[:4]),\
-        int(x[5:7]), int(x[8:])).\
-        isoformat(),a))
-        b = pd.DatetimeIndex(b) #put a correct way to view date
-        df_covid.loc[:, 'date'] = b
-        df_covid = df_covid.set_index('date')
-        df_covid
-
-        return df_covid['2020-01-24':] #not have wrong data
 
 
-def keysubtablename(nom):
-
-    """
-    nom: A part of France or a partition
-
-    Function that extract the data for a certain
-    granularity or territory and remove repetitions.
-    """
-
-    df_covid=Load_covid().save_as_df()
-
-    if nom in ["departements","pays","region"]:
-
-        dfsub = df_covid.loc[df_covid['granularite']==nom]
-
-    else:
-        dfsub = df_covid.loc[df_covid['maille_nom']==nom]
-
-    dfsub = dfsub[~dfsub.index.duplicated(keep='first')] #have an 
-    #inforamtion once
-
-    return dfsub
 
 def keyseries(nom,chiffre,evo=True):
 
@@ -88,17 +38,8 @@ def keyseries(nom,chiffre,evo=True):
 
     if fr:
 
-        download(url_fr,"../data/chiffres-fr.csv",replace=True)
-        df_covid=pd.read_csv("../data/chiffres-fr.csv")
-
-        date = df_covid['date']
-        a = list((date[:]))
-        b = list(map(lambda x: datetime.date(int(x[:4]),int(x[5:7]),\
-         int(x[8:])).\
-        isoformat(),a))
-        b = pd.DatetimeIndex(b)
-        df_covid.loc[:, 'date'] = b
-        df_covid = df_covid.set_index('date')
+        
+        df_covid=gooddates(load_datasets.Load_chiffres_fr.save_as_df())
 
     if chiffre in ["cas","nombre_de_cas","cas_confirmes"]:
 
@@ -279,10 +220,7 @@ def keyseries(nom,chiffre,evo=True):
 }
         if nom in REGIONS.keys():
 
-            urlposreg="https://www.data.gouv.fr/fr/datasets/r/001aca18-df6a-45c8-89e6-f82d689e6c01"
-            pathtarget="../data/posquotreg.csv"
-            download(urlposreg,pathtarget,replace=True)
-            dfposreg=pd.read_csv(pathtarget,sep=";")
+            dfposreg=Load_posquotreg.save_as_df()
             number=REGIONS[nom]
 
             df= dfposreg.loc[dfposreg["reg"]==number,:]
@@ -441,3 +379,5 @@ keyseries('Île-de-France','cas')
 #keyplot('Île-de-France','cas')
 
 
+
+# %%
