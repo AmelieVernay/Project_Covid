@@ -1,7 +1,8 @@
 import maps
 # Or: from maps import vizmap_death
 
-maps.vizmap_death('region')
+#maps.vizmap_death('region')
+maps.viz3Dmaps('region')
 # it works!
 # --- TODO ---
 # I removed the geojson file from the maps folder

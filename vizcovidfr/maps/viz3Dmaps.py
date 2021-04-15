@@ -98,6 +98,8 @@ def make_3D_map(granularity):
 
 # To try:
 make_3D_map('departement')
+make_3D_map('region')
+
 
 # TODO:
 # IMPROVE DOCSTRING !!
