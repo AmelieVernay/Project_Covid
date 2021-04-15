@@ -1,3 +1,5 @@
+# ---------- requirements ----------
+
 import pandas as pd
 from download import download
 pd.options.display.max_rows = 25
@@ -16,7 +18,7 @@ import numpy as np
 
 url = "https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/#_"
 path_target = "C:/Users/quenf/vizcovidfr/vizcovidfr/data/stocks-es-national.csv"
-
+download(url, path_target, replace = True)
 
 def vactypedoses(vaccine_type):
     '''
