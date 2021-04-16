@@ -124,7 +124,8 @@ def vacmap(granularity, age_range):
                                    data = df_merged,
                                    get_position = ['lon', 'lat'],
                                    get_elevation = 'Nombre cumulé de doses n°1',
-                                   elevation_scale = 100,
+                                   elevation_scale = 50,
+                                   extruded = True,
                                    radius = 7000,
                                    get_fill_color = [255, 165, 0, 80],
                                    pickable = True,
@@ -132,3 +133,9 @@ def vacmap(granularity, age_range):
     #save the map into a html file
     r = pdk.Deck(layers=[covid_amount_layer], initial_view_state=view)
     r.to_html('vacmaps.html')
+
+#Test
+vacmap('departement', 'all ages')
+
+
+# %%
