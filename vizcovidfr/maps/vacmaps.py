@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pydeck as pdk
 
+#from vizcovidfr.loads import load_datasets
+
 url = "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/export/?disjunctive.variable_label&sort=date&refine.date=2021&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge"
 path_target = "C:/Users/quenf/vizcovidfr/vizcovidfr/data/covid-19-france-vaccinations-age-dep.csv"
 
@@ -16,10 +18,24 @@ path_target = "C:/Users/quenf/vizcovidfr/vizcovidfr/data/covid-19-france-vaccina
 
 def vacmap(granularity, age_range):
     '''
+    Make an interactive map of France vaccine data.
 
-
+    :param granularity: the granularity we want the map to be based on.
+        Should be either 'region' or 'department'. On the latter case,
+        columns layers will be raised from the centroid of each department,
+        while on the former, these will be raides from each region's centroid.
+    :type granularity: string
+    :param age_range: the age range we want to have information about vaccination.
+        It can be '18-24', '25-29', '30-39', '40-49', '50-59', '60-64', '65-69', 
+        '70-74', '75-79', '80 and +', 'all ages'. This last one representing the 
+        cumulation of all the age ranges.
+        :type age_range: string
+    :return: an interactive map representing the actual amount of both first
+    and second doses, per granularity and per age range, according to chosen 
+    options.
     '''
-    df_Vac = pd.read_csv(path_target, ";")
+    df_Vac = pd.read_csv(path_target, sep = ';')
+    #df_Vac = load_datasets.Load_vaccination().save_as_df()
     df_Vac.sort_values(by=['Date', 'Valeur de la variable'], inplace=True)
     reg_path = os.path.join(
                     os.path.dirname(
@@ -79,11 +95,11 @@ def vacmap(granularity, age_range):
         df = all_ages.copy()
         age = 'all ages'
     # choose dataframe according to granularity argument
-    if (granularity == 'departement'):
+    if (granularity == 'department'):
         df2 = dpt.copy()
         gra = 'department'
         df['code'] = df['Code Officiel Département']
-        df3 = df.groupby(['Date', 'code'])['Nombre cumulé de doses n°1'].agg('sum').reset_index()
+        df3 = df.groupby(['Date', 'code'])['Nombre cumulé de doses n°1', 'n_cum_dose2'].agg('sum').reset_index()
         df3 = df3.groupby(['code']).agg('max')#pick the latest cumule per granularity
         df3['code'] = df3.index
         df3.reset_index(drop=True, inplace=True)
@@ -94,7 +110,7 @@ def vacmap(granularity, age_range):
         df2 = rgn.copy()
         gra = 'region'
         df['code'] = df['Code Officiel Région']
-        df3 = df.groupby(['Date', 'code'])['Nombre cumulé de doses n°1'].agg('sum').reset_index()
+        df3 = df.groupby(['Date', 'code'])['Nombre cumulé de doses n°1', 'n_cum_dose2'].agg('sum').reset_index()
         df3 = df3.groupby(['code']).agg('max')#pick the latest cumule per granularity
         df3['code'] = df3.index
         df3.reset_index(drop=True, inplace=True)
@@ -114,6 +130,10 @@ def vacmap(granularity, age_range):
     df_merged = pd.merge(df3, df_points, on='code')
     df_merged['lon'] = df_merged.geometry.apply(lambda p: p.x)
     df_merged['lat'] = df_merged.geometry.apply(lambda p: p.y)
+    if (granularity == 'department'):
+        df_merged.rename(columns = {'Nombre cumulé de doses n°1': 'Nmb of first doses', 'code': 'department_code', 'nom': 'department_name', 'n_cum_dose2': 'Nmb of second doses'}, inplace = True)
+    else:
+        df_merged.rename(columns = {'Nombre cumulé de doses n°1': 'Nmb of first doses', 'code': 'region_code', 'nom': 'region_name', 'n_cum_dose2': 'Nmb of second doses'}, inplace =True)
     # ---------- make map! ----------
     # initialize view (centered on Paris!)
     view = pdk.ViewState(latitude = 46.232192999999995,
@@ -123,19 +143,30 @@ def vacmap(granularity, age_range):
     covid_amount_layer = pdk.Layer('ColumnLayer',
                                    data = df_merged,
                                    get_position = ['lon', 'lat'],
-                                   get_elevation = 'Nombre cumulé de doses n°1',
+                                   get_elevation = "Nmb of first doses",
                                    elevation_scale = 50,
-                                   extruded = True,
-                                   radius = 7000,
-                                   get_fill_color = [255, 165, 0, 80],
+                                   radius = 10000,
+                                   get_fill_color = [255,69,0,150],
                                    pickable = True,
                                    auto_highlight = True)
     #save the map into a html file
-    r = pdk.Deck(layers=[covid_amount_layer], initial_view_state=view)
+    tooltip = {
+    "html": "<b>{Nmb of first doses}</b> first doses and <b>{Nmb of second doses}</b> second doses, in <b>{department_code}</b> department",
+    "style": {"background": "grey", "color": "white", "font-family": '"Helvetica Neue", Arial', "z-index": "10000"},
+    }
+    r = pdk.Deck(
+    covid_amount_layer,
+    initial_view_state=view,
+    tooltip=tooltip,
+    map_provider="mapbox",
+    )
+    #r = pdk.Deck(layers=[covid_amount_layer], initial_view_state=view)
     r.to_html('vacmaps.html')
 
 #Test
-vacmap('departement', 'all ages')
+vacmap('department', 'all ages')
+
+
 
 
 # %%
