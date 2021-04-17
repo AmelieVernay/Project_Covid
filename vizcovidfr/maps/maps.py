@@ -80,6 +80,13 @@ def viz2Dmap(granularity, date, criterion, color_pal, file_path, file_name):
     ...          criterion='reanimation', color_pal='Greys',
     ...          file_path=W_path, file_name='funkymap')
 
+    Notes
+    -----
+
+    **Manipulation tips:**
+
+    - pass mouse on map to get local informations
+    - use 'clic + mouse move' to move map
     '''
     # ---------- file imports ----------
     # load geojson file containing geographic informations
