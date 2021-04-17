@@ -8,19 +8,31 @@ import numpy as np
 import folium
 import os
 
-from python_files.loads import tryit
-from python_files.preprocess import preprocess_data
+import pydeck as pdk
+import ipywidgets
+from palettable.cartocolors.sequential import BrwnYl_3
+import json
+
+# local reqs
+from vizcovidfr.loads import load_datasets
+from vizcovidfr.preprocesses import preprocess_chiffres_cles
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
 
-# ---------- get user's path to Desktop ----------
+# ---------- format some default arguments ----------
+
+# get user's path to Desktop
 A = os.path.expanduser("~")
 B = "Desktop"
 path_to_Desktop = os.path.join(A, B)
 
+# format today's date
+dt_today = date.today()
+today = dt_today.strftime('%Y-%m-%d')
+
 
 # ---------- define viz2Dmap ----------
-def viz2Dmap(granularity='departement', date,
+def viz2Dmap(granularity='departement', date=today,
              criterion='hospitalises', color_pal='YlGnBu',
              file_path=path_to_Desktop, file_name='Covid2Dmap'):
     '''
@@ -30,12 +42,12 @@ def viz2Dmap(granularity='departement', date,
 
     Parameters
     ----------
-
     :param granularity: the granularity we want the map to be based on.
         Should be either 'region' or 'departement', defaults to 'departement'.
     :type granularity: str
     :param date: the date on which we want to get Covid-19 informations.
-        Should be of the form 'YYYY-MM-DD', defaults to today.
+        Should be of the form 'YYYY-MM-DD', and from 2020-01-24 to today,
+        defaults to today.
     :type date: str
     :param criterion: the Covid-19 indicator we want to see on the map.
         Should be either 'hospitalises', 'reanimation', or 'deces':
@@ -66,14 +78,12 @@ def viz2Dmap(granularity='departement', date,
 
     Returns
     -------
-
     :return: An interactive choropleth map saved on a html file openable on
         your favorite web browser
     :rtype: '.html' file
 
     Examples
     --------
-
     **example using Linux path**
 
     >>> import os
@@ -95,7 +105,6 @@ def viz2Dmap(granularity='departement', date,
 
     Notes
     -----
-
     **Manipulation tips:**
 
     - pass mouse on map to get local informations
@@ -103,15 +112,23 @@ def viz2Dmap(granularity='departement', date,
     '''
     # ---------- file imports ----------
     # load geojson file containing geographic informations
-    departments = gpd.read_file('departements.geojson')
-    regions = gpd.read_file('regions.geojson')
+    reg_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "regions.geojson")
+    dep_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "departements.geojson")
+    regions = gpd.read_file(reg_path)
+    departments = gpd.read_file(dep_path)
     # load covid data
-    df_covid = tryit.Load_covid_data().save_as_df()
+    df_covid = load_datasets.Load_chiffres_cles().save_as_df()
     # ---------- preprocesses ----------
     # use preprocess to clean df_covid
-    df_covid = preprocess_data.preprocess_chiffres_clefs(df_covid)
-    df_covid = preprocess_data.reg_depts(df_covid)
-    df_covid = preprocess_data.reg_depts_code_format(df_covid)
+    df_covid = preprocess_chiffres_cles.drop_some_columns(df_covid)
+    df_covid = preprocess_chiffres_cles.reg_depts(df_covid)
+    df_covid = preprocess_chiffres_cles.reg_depts_code_format(df_covid)
     # keep only data corresponding to the given granularity
     df_local = df_covid.loc[df_covid['granularite'] == granularity]
     # choose the dataframe containing geographic
@@ -207,9 +224,6 @@ def viz2Dmap(granularity='departement', date,
 
 
 # TODO:
-# set default parameters
-# td = date.today()
-# add interval for date ("should be from ... to ...")
 # NOTE: it worked without importing df_covid...
 
 
@@ -222,7 +236,6 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
 
     Parameters
     ----------
-
     :param file_path: the path on which to save the file, can be either Linux,
         MAC-OS, or Windows path, defaults to user's Desktop.
         **Warning:** only works if the user's OS default language is english.
@@ -244,14 +257,12 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
 
     Returns
     -------
-
     :return: An interactive 3D-arc-map saved on a html file openable on
         your favorite web browser
     :rtype: '.html' file
 
     Examples
     --------
-
     **example using Linux path**
     >>> import os
     >>> path_to_desktop = os.path.expanduser("~/Desktop")
@@ -269,7 +280,6 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
 
     Notes
     -----
-
     **Manipulation tips:**
 
     - pass mouse on arc to see tooltip
@@ -286,7 +296,11 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     transfer['order'] = transfer_order
     # ---------- geo files ----------
     # only need regions here
-    regions = gpd.read_file('regions.geojson')
+    reg_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "regions.geojson")
+    regions = gpd.read_file(reg_path)
     # grab region's centroids (lat and lon)
     region_points = regions.copy()
     # set Europe Coordinate Reference System for geographic accuracy purpose
