@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from vizcovidfr.loads.load_datasets import Load_posquotdep,Load_posquotreg,Load_chiffres_fr
 from vizcovidfr.preprocesses import preprocess_chiffres_cles,preprocess_positivity
-from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
+from vizcovidfr.preprocesses import preprocess_positivity
 
 def keyseries(nom,chiffre,evo=True):
 
@@ -213,9 +213,9 @@ def keyseries(nom,chiffre,evo=True):
 
         DEPARTMENTS=dict(zip(DEPARTMENTS.values(),DEPARTMENTS.keys()))
         if nom in REGIONS.keys():
-            df=granupositivity(nom,Load_posquotreg().save_as_df())
+            df=preprocess_positivity.granupositivity(nom,Load_posquotreg().save_as_df())
         elif nom in DEPARTMENTS.keys():
-            df=granupositivity(nom,Load_posquotdep().save_as_df())
+            df=preprocess_positivity.granupositivity(nom,Load_posquotdep().save_as_df())
 
         
         if evo:
