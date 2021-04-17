@@ -57,7 +57,7 @@ def viz2Dmap(granularity, date, criterion, color_pal, file_path, file_name):
     Returns
     -------
 
-    :return: An interactive choropleth map save on a html file openable on
+    :return: An interactive choropleth map saved on a html file openable on
         your favorite web browser
     :rtype: '.html' file
 
@@ -75,7 +75,7 @@ def viz2Dmap(granularity, date, criterion, color_pal, file_path, file_name):
     **example using Windows path**
 
     >>> import os
-    >>> W_path = 'c:\Users\username\Documents'
+    >>> W_path = 'c:\\Users\\username\\Documents'
     >>> viz2Dmap(granularity='department', date='2021-01-17',
     ...          criterion='reanimation', color_pal='Greys',
     ...          file_path=W_path, file_name='funkymap')
