@@ -72,6 +72,25 @@ class Load_Vaccine_storage:
         df = pd.read_csv(path_target_sen)
         return df
 
+# ---------- covid-19-france-vaccinations-age-dep ----------
+url_vac = "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/export/?disjunctive.variable_label&sort=date&refine.date=2021&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge"
+path_target_vac = os.path.join(
+                    path_target, "./covid-19-france-vaccinations-age-dep.csv")
+
+
+class Load_vaccination:
+    """
+    Download and save 'covid-19-france-vaccinations-age-dep.csv',
+    a dataset containing Covid-19 vaccination informations
+    """
+    def __init__(self, url=url_vac, target_name=path_target_vac):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_vac)
+        return df
+
 
 # ---------- chiffres-fr ----------
 url_cfr = "https://www.data.gouv.fr/fr/datasets/r/d3a98a30-893f-47f7-96c5-2f4bcaaa0d71"
