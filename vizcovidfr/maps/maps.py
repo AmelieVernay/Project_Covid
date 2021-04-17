@@ -19,6 +19,7 @@ from vizcovidfr.preprocesses import preprocess_chiffres_cles
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
 
+
 # ---------- format some default arguments ----------
 
 # get user's path to Desktop
@@ -287,7 +288,7 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     - use 'clic + mouse move' to move map
     """
     # ---------- covid file ----------
-    transfer = pd.read_csv('transferts_patients.csv')
+    transfer = load_datasets.Load_transfer().save_as_df()
     # Keep trace of transfer order
     # because rows get mixed up when merging.
     # number transfer from first to last
@@ -333,7 +334,7 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     # (on order so that we have our chronology back!)
     DA = pd.merge(A, D, on='order')
     # save for sparse matrix purpose ?
-    DA.to_csv('departure_arrival.csv')
+    # DA.to_csv('departure_arrival.csv')
     # ---------- map time! ----------
     # initialize view (centered on Paris!)
     view = pdk.ViewState(latitude=46.2322, longitude=2.20967, pitch=50, zoom=5)
