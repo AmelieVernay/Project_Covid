@@ -5,17 +5,9 @@ from download import download
 from datetime import date
 import matplotlib.pyplot as plt
 import seaborn as sns
-from vizcovidfr.loads import load_datasets
-from vizcovidfr.preprocesses import preprocess_chiffres_cles
-
-#url_db = "https://www.data.gouv.fr/en/datasets/r/0b66ca39-1623-4d9c-83ad-5434b7f9e2a4"
-#url_db="https://raw.githubusercontent.com/opencovid19-fr/data/master/dist/chiffres-cles.csv"
-url_fr="https://www.data.gouv.fr/fr/datasets/r/d3a98a30-893f-47f7-96c5-2f4bcaaa0d71"
-
-path_target = "../data/chiffres-cles.csv"
-
-
-
+from vizcovidfr.loads.load_datasets import Load_posquotdep,Load_posquotreg,Load_chiffres_fr
+from vizcovidfr.preprocesses import preprocess_chiffres_cles,preprocess_positivity
+from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
 
 def keyseries(nom,chiffre,evo=True):
 
@@ -39,7 +31,7 @@ def keyseries(nom,chiffre,evo=True):
     if fr:
 
         
-        df_covid=gooddates(load_datasets.Load_chiffres_fr.save_as_df())
+        df_covid=preprocess_chiffres_cles.gooddates(Load_chiffres_fr().save_as_df())
 
     if chiffre in ["cas","nombre_de_cas","cas_confirmes"]:
 
@@ -95,25 +87,6 @@ def keyseries(nom,chiffre,evo=True):
         return df_covid[chiffre]
 
     elif chiffre in ["cas_confirmes"]: #need specific datasets
-
-        REGIONS = {
-    'Auvergne-Rhône-Alpes': 84,
-    'Bourgogne-Franche-Comté': 27,
-    'Bretagne': 53,
-    'Centre-Val de Loire': 24,
-    'Corse': 94,
-    'Grand Est':44 ,
-    'Guadeloupe': 1,
-    'Guyane': 3,
-    'Hauts-de-France': 32,
-    'Île-de-France': 11,
-    'La Réunion': 4,
-    'Martinique': 2,
-    'Normandie': 28,
-    'Nouvelle-Aquitaine': 75,
-    'Occitanie': 76,
-    'Pays de la Loire': 52,
-    'Provence-Alpes-Côte d\'Azur': 93,}
 
         DEPARTMENTS = { #match between number and territory
     '01': 'Ain',
@@ -218,51 +191,50 @@ def keyseries(nom,chiffre,evo=True):
     '974': 'La Réunion',
     '976': 'Mayotte',
 }
+
+        REGIONS = {
+    'Auvergne-Rhône-Alpes': 84,
+    'Bourgogne-Franche-Comté': 27,
+    'Bretagne': 53,
+    'Centre-Val de Loire': 24,
+    'Corse': 94,
+    'Grand Est':44 ,
+    'Guadeloupe': 1,
+    'Guyane': 3,
+    'Hauts-de-France': 32,
+    'Île-de-France': 11,
+    'La Réunion': 4,
+    'Martinique': 2,
+    'Normandie': 28,
+    'Nouvelle-Aquitaine': 75,
+    'Occitanie': 76,
+    'Pays de la Loire': 52,
+    'Provence-Alpes-Côte d\'Azur': 93,}
+
+        DEPARTMENTS=dict(zip(DEPARTMENTS.values(),DEPARTMENTS.keys()))
         if nom in REGIONS.keys():
+            df=granupositivity(nom,Load_posquotreg().save_as_df())
+        elif nom in DEPARTMENTS.keys():
+            df=granupositivity(nom,Load_posquotdep().save_as_df())
 
-            dfposreg=Load_posquotreg.save_as_df()
-            number=REGIONS[nom]
+        
+        if evo:
 
-            df= dfposreg.loc[dfposreg["reg"]==number,:]
-            df=df.loc[df["cl_age90"]==0]
-            df.index = pd.to_datetime(df.index)
+            return df['P']
 
-            if evo:
-
-                return df['P']
-
-            else: 
+        else: 
                 
-                return df['P'].cumsum()
-
-        if nom in DEPARTMENTS.keys():
-
-            urlposdep="https://www.data.gouv.fr/fr/datasets/r/406c6a23-e283-4300-9484-54e78c8ae675"
-            pathtarget="../data/posquotdep.csv"
-            download(urlposdep,pathtarget,replace=True)
-            dfposdep=pd.read_csv(pathtarget,sep=";")
-            number=DEPARTMENTS[nom]
-
-            df= dfposdep.loc[dfposdep["dep"]==number,:]
-            df=df.loc[df["cl_age90"]==0]
+            return df['P'].cumsum()
 
 
-            df.index = pd.to_datetime(df.index)
 
-            if evo:
-
-                return df['P']
-
-            else: 
-                
-                return df['P'].cumsum()
 
 
     if evo:
 
-        return keysubtablename(nom)[chiffre].dropna().diff()
+        return preprocess_chiffres_cles.keysubtablename(nom)[chiffre].dropna().diff()
 
-    return keysubtablename(nom)[chiffre].dropna()
+    return preprocess_chiffres_cles.keysubtablename(nom)[chiffre].dropna()
 
 
 def plotseries(series,average=True):
@@ -372,12 +344,16 @@ def keyplot(nom,chiffre,evo=True,average=True):
             cured from Covid-19 "+nom,ylabel="people")
 
 #%%
-keyplot("Hérault","deces",evo=False)
+keyplot("Hérault","cas",evo=False)
 
-keyseries("France","hôpital",evo=False)
-keyseries('Île-de-France','cas')
+#keyseries("France","hôpital",evo=False)
+#keyseries('Île-de-France','cas')
 #keyplot('Île-de-France','cas')
 
 
+
+# %%
+keyseries("France","cas")
+# %%
 
 # %%
