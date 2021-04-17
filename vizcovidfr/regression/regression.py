@@ -6,7 +6,10 @@ import pandas as pd
 import plotly.express as px
 from sklearn.linear_model import LinearRegression
 model = LinearRegression()
-
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
 #Importation du CSV
 url =  "https://www.data.gouv.fr/fr/datasets/r/08c18e08-6780-452d-9b8c-ae244ad529b3"
 path_target = "./classe_age.csv"
@@ -83,11 +86,13 @@ for i in np.arange(0,covid_jour.shape[0]):
     dico_jour[i] = covid_jour.iloc[i,9]
 covid_jour = covid_jour.reset_index(drop=True)
 #%%
+x = np.arange(0,covid_jour.shape[0])
+x = x[:, np.newaxis]
 import operator
 #Function which list the mean squared error and predict y
 def degreeChoice (x,y,degree):
     #Generate a new feature matrix consisting of all polynomial combinations of the features with degree less than or equal to the specified degree. 
-    polynomial_features= PolynomialFeatures(degree=degree)
+    polynomial_features = PolynomialFeatures(degree=degree)
     #Scaling and fitting
     x_poly = polynomial_features.fit_transform(x)
     model = LinearRegression()
@@ -100,15 +105,7 @@ def degreeChoice (x,y,degree):
     sorted_zip = sorted(zip(x,y_poly_pred), key=sort_axis)
     x_p, y_poly_pred_P = zip(*sorted_zip)
     return rmse, x_p, y_poly_pred_P
-#%%
-def test(a,b):
-    rmselist = np.zeros(100)
-    x_p_list = [None]*100
-    y_poly_pred_P_list=[None]*100
-    for i in np.arange(1, 101):
-        rmselist[i-1] ,x_p_list[i-1],y_poly_pred_P_list[i-1] = degreeChoice(a,b,i)
-        return rmselist
-test(x,y)
+
 #%%
 list(rmselist).index(rmselist.min())
 #%%
@@ -117,7 +114,7 @@ def poly_fit(num_var, num_reg):
     R = date_time(R)
     covid_jour = R.groupby(by=['jour']).sum()
     covid_jour['jour'] = covid_jour.index
-    x = covid_jour.index
+    x = np.arange(0,covid_jour.shape[0])
     y = covid_jour[dico_col[num_var]]
     x = x[:, np.newaxis]
     y = y[:, np.newaxis]
@@ -125,7 +122,6 @@ def poly_fit(num_var, num_reg):
     for i in np.arange(0,covid_jour.shape[0]):
         dico_jour[i] = covid_jour.iloc[i,9]
     covid_jour = covid_jour.reset_index(drop=True)
-#%%
     #Listing RMSE
     rmselist = np.zeros(100)
     x_p_list = [None]*100
@@ -134,21 +130,18 @@ def poly_fit(num_var, num_reg):
         rmselist[i-1] ,x_p_list[i-1],y_poly_pred_P_list[i-1] = degreeChoice(x,y,i)
     #Degree of polynomial regression
     deg = list(rmselist).index(rmselist.min())
-    return deg
-poly_fit(1,1)
-#%%
     fig = plt.scatter(dico_jour.values(), y)
     plt.plot(dico_jour.values(),y_poly_pred_P_list[deg],color='r')
-    plt.title("Polynomial regression of" + " " + dico[dico_col[num_var]]).set_fontsize(20)
+    plt.suptitle("Polynomial regression of" + " " + dico[dico_col[num_var]]).set_fontsize(15)
     blue_line = mlines.Line2D([], [], color='blue',
                           markersize=15,
                           marker='.', label=dico[dico_col[num_var]])
     red_line = mlines.Line2D([], [], color='red',
                           markersize=15, label='Regression curve')
     plt.legend(handles=[blue_line, red_line])
-    plt.figtext(0.15, 0.85, f'Degree of polynomial regression : {deg}', fontsize=16)
+    plt.title(f'Degree of polynomial regression : {deg+1}', fontsize=10)
     plt.show()
-poly_fit(1,1)
+poly_fit(1,2)
 #%%
 R = reg(1)
 R = date_time(R)
