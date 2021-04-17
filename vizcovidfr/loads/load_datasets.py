@@ -3,7 +3,6 @@ import pandas as pd
 import os
 from datetime import date
 
-
 urlcc = "https://www.data.gouv.fr/en/datasets/r/0b66ca39-1623-4d9c-83ad-5434b7f9e2a4"
 path_target = os.path.join(
                 os.path.dirname(
@@ -26,7 +25,8 @@ class Load_chiffres_cles:
         converters = {'source_nom': str, 'source_url': str,
                       'source_archive': str, 'source_type': str}
         df_covid = pd.read_csv(path_target, converters=converters)
-        return df_covid  # not have wrong data
+        return df_covid  
+
 
 url2 = "https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/#_"
 path_target2 = os.path.join(
@@ -37,13 +37,12 @@ path_target2 = os.path.join(
 
 class Load_Vaccine_storage:
     def __init__(self, url=url2, target_name=path_target2):
-        download(url2, path_target2, replace = True)
+        download(url, target_name, replace=True)
 
     @staticmethod
     def save_as_df():
         df = pd.read_csv(path_target2)
         return df
-
 
 
 url_cfr = "https://www.data.gouv.fr/fr/datasets/r/d3a98a30-893f-47f7-96c5-2f4bcaaa0d71"
@@ -65,31 +64,32 @@ class Load_chiffres_fr:
         return df_covid
 
 
+
+
 urlposreg = "https://www.data.gouv.fr/fr/datasets/r/001aca18-df6a-45c8-89e6-f82d689e6c01"
 path_target4 = os.path.join(
                 os.path.dirname(
                     os.path.realpath(__file__)),
                 "..", "data", "./posquotreg.csv")
 
-
 class Load_posquotreg:
-    def __init__(self, url=urlposreg, target_name=path_target):
-        wget.download(url, target_name, replace=True)
+    def __init__(self, url=urlposreg, target_name=path_target4):
+        download(url, target_name, replace=True)
 
     @staticmethod
     def save_as_df():
-        df = pd.read_csv(path_target2, sep=";")
+        df = pd.read_csv(path_target4, sep=";")
         return df
 
-url_vac = "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/export/?disjunctive.variable_label&sort=date&refine.date=2021&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge"
+urlposdep="https://www.data.gouv.fr/fr/datasets/r/406c6a23-e283-4300-9484-54e78c8ae675"
 path_target5 = os.path.join(
                 os.path.dirname(
                     os.path.realpath(__file__)),
-                "..", "data", "./covid-19-france-vaccinations-age-dep.csv")
+                "..", "data", "./posquotdep.csv")
 
-class Load_vaccination:
-    def __init__(self, url=url_vac, target_name=path_target5):
-        download(url_vac, path_target5, replace=True)
+class Load_posquotdep:
+    def __init__(self, url=urlposdep, target_name=path_target5):
+        download(url, target_name, replace=True)
 
     @staticmethod
     def save_as_df():
