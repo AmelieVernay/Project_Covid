@@ -213,9 +213,9 @@ def keyseries(nom,chiffre,evo=True):
 
         DEPARTMENTS=dict(zip(DEPARTMENTS.values(),DEPARTMENTS.keys()))
         if nom in REGIONS.keys():
-            df=preprocess_positivity.granupositivity(nom,Load_posquotreg().save_as_df())
+            df=preprocess_positivity.granupositivity(Load_posquotreg().save_as_df(),nom)
         elif nom in DEPARTMENTS.keys():
-            df=preprocess_positivity.granupositivity(nom,Load_posquotdep().save_as_df())
+            df=preprocess_positivity.granupositivity(Load_posquotdep().save_as_df(),nom)
 
         
         if evo:
