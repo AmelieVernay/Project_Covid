@@ -9,6 +9,7 @@ path_target = os.path.join(
                     os.path.realpath(__file__)),
                 "..", "data", "chiffres-cles.csv")
 
+
 class Load_chiffres_cles:
     def __init__(self, url=urlcc, target_name=path_target):
         download(url, target_name, replace=True)
@@ -20,16 +21,19 @@ class Load_chiffres_cles:
         """
         Nicely formatted dataframe with time indexation.
         """
-        df_covid = pd.read_csv(path_target)
+        # convert last lines type to str to avoid DtypeWarning
+        converters = {'source_nom': str, 'source_url': str,
+                      'source_archive': str, 'source_type': str}
+        df_covid = pd.read_csv(path_target, converters=converters)
+        return df_covid  # not have wrong data
 
-
-        return df_covid #not have wrong data
 
 url2 = "https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/#_"
 path_target2 = os.path.join(
                 os.path.dirname(
                     os.path.realpath(__file__)),
                 "..", "data", "./stocks-es-national.csv")
+
 
 class Load_Vaccine_storage:
     def __init__(self, url=url2, target_name=path_target2):
@@ -40,11 +44,13 @@ class Load_Vaccine_storage:
         df = pd.read_csv(path_target2)
         return df
 
-url_cfr="https://www.data.gouv.fr/fr/datasets/r/d3a98a30-893f-47f7-96c5-2f4bcaaa0d71"
+
+url_cfr = "https://www.data.gouv.fr/fr/datasets/r/d3a98a30-893f-47f7-96c5-2f4bcaaa0d71"
 path_target3 = os.path.join(
                 os.path.dirname(
                     os.path.realpath(__file__)),
                 "..", "data", "./chiffres-fr.csv")
+
 
 class Load_chiffres_fr:
     def __init__(self, url=url_cfr, target_name=path_target3):
@@ -57,11 +63,13 @@ class Load_chiffres_fr:
 
         return df_covid
 
-urlposreg="https://www.data.gouv.fr/fr/datasets/r/001aca18-df6a-45c8-89e6-f82d689e6c01"
+
+urlposreg = "https://www.data.gouv.fr/fr/datasets/r/001aca18-df6a-45c8-89e6-f82d689e6c01"
 path_target4 = os.path.join(
                 os.path.dirname(
                     os.path.realpath(__file__)),
                 "..", "data", "./posquotreg.csv")
+
 
 class Load_posquotreg:
     def __init__(self, url=urlposreg, target_name=path_target):
@@ -69,9 +77,5 @@ class Load_posquotreg:
 
     @staticmethod
     def save_as_df():
-        df = pd.read_csv(path_target2,sep=";")
+        df = pd.read_csv(path_target2, sep=";")
         return df
-
-
-
-
