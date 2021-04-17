@@ -4,6 +4,7 @@ import pandas as pd
 import geopandas as gpd
 import matplotlib.pyplot as plt
 from datetime import date, datetime
+import numpy as np
 import folium
 import os
 
@@ -12,9 +13,16 @@ from python_files.preprocess import preprocess_data
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
 
+# ---------- get user's path to Desktop ----------
+A = os.path.expanduser("~")
+B = "Desktop"
+path_to_Desktop = os.path.join(A, B)
+
 
 # ---------- define viz2Dmap ----------
-def viz2Dmap(granularity, date, criterion, color_pal, file_path, file_name):
+def viz2Dmap(granularity='departement', date,
+             criterion='hospitalises', color_pal='YlGnBu',
+             file_path=path_to_Desktop, file_name='Covid2Dmap'):
     '''
     Make interactive choropleth map to visualize different aspects of the
     Covid-19 pandemic in France. The map is saved on an html file at a given
@@ -48,7 +56,9 @@ def viz2Dmap(granularity, date, criterion, color_pal, file_path, file_name):
         defaults to 'YlGnBu' (for color-blind people purpose)
     :type color_pal: str
     :param file_path: the path on which to save the file, can be either Linux,
-        MAC-OS, or Windows path, defaults to user's Desktop
+        MAC-OS, or Windows path, defaults to user's Desktop.
+        **Warning:** only works if the user's OS default language is english.
+        Otherwise, path is not optional.
     :type file_path: str
     :param file_name: the name under which to save the file,
         defaults to 'Covid2Dmap'
@@ -79,6 +89,9 @@ def viz2Dmap(granularity, date, criterion, color_pal, file_path, file_name):
     >>> viz2Dmap(granularity='department', date='2021-01-17',
     ...          criterion='reanimation', color_pal='Greys',
     ...          file_path=W_path, file_name='funkymap')
+
+    **easy example**
+    >>>viz2Dmap()
 
     Notes
     -----
@@ -149,7 +162,7 @@ def viz2Dmap(granularity, date, criterion, color_pal, file_path, file_name):
             data=gpd_at_date,
             columns=['code', criterion],
             key_on="feature.properties.code",
-            fill_color=color_palette,
+            fill_color=color_pal,
             fill_opacity=1,
             line_opacity=0.2,
             legend_name=legend,
@@ -198,3 +211,148 @@ def viz2Dmap(granularity, date, criterion, color_pal, file_path, file_name):
 # td = date.today()
 # add interval for date ("should be from ... to ...")
 # NOTE: it worked without importing df_covid...
+
+
+# ---------- define transfer_map ----------
+def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
+                 color_d=[243, 31, 44, 80], color_a=[230, 190, 37, 80]):
+    """
+    Make interactive 3D-arc-map to visualize the transfer of Covid-19
+    patient in France from regions to others.
+
+    Parameters
+    ----------
+
+    :param file_path: the path on which to save the file, can be either Linux,
+        MAC-OS, or Windows path, defaults to user's Desktop.
+        **Warning:** only works if the user's OS default language is english.
+        Otherwise, path is not optional.
+    :type file_path: str
+    :param file_name: the name under which to save the file,
+        defaults to 'Covid_transfer_map'
+    :type file_name: str
+    :param color_d: color for departure point on arcs. Should be a list
+        containing RGBA colors (red, green, blue, alpha).
+        For example, see here https://rgbacolorpicker.com/,
+        defaults to red (sort of)
+    :type color_d: list
+    :param color_a: color for arrival point on arcs. Should be a list
+        containing RGBA colors (red, green, blue, alpha).
+        For example, see here https://rgbacolorpicker.com/,
+        defaults to yellow (sort of)
+    :type color_a: list
+
+    Returns
+    -------
+
+    :return: An interactive 3D-arc-map saved on a html file openable on
+        your favorite web browser
+    :rtype: '.html' file
+
+    Examples
+    --------
+
+    **example using Linux path**
+    >>> import os
+    >>> path_to_desktop = os.path.expanduser("~/Desktop")
+    >>> transfer_map(file_path=path_to_desktop, file_name='pinky_arc_map',
+    ...          color_d=[255, 165, 0, 80], color_a=[128, 0, 128, 80])
+
+    **example using Windows path**
+    >>> import os
+    >>> W_path = 'c:\\Users\\username\\Documents'
+    >>> transfer_map(file_path=W_path, file_name='counter_intuitive_arc_map',
+    ...          color_d=[61, 230, 37, 80], color_a=[230, 37, 37, 80])
+
+    **easy example**
+    >>>transfer_map()
+
+    Notes
+    -----
+
+    **Manipulation tips:**
+
+    - pass mouse on arc to see tooltip
+    - use 'ctrl + mouse move' to change view angle
+    - use 'clic + mouse move' to move map
+    """
+    # ---------- covid file ----------
+    transfer = pd.read_csv('transferts_patients.csv')
+    # Keep trace of transfer order
+    # because rows get mixed up when merging.
+    # number transfer from first to last
+    transfer_order = np.arange(0, len(transfer), 1)
+    # add transfer_order column
+    transfer['order'] = transfer_order
+    # ---------- geo files ----------
+    # only need regions here
+    regions = gpd.read_file('regions.geojson')
+    # grab region's centroids (lat and lon)
+    region_points = regions.copy()
+    # set Europe Coordinate Reference System for geographic accuracy purpose
+    region_points = region_points.set_crs(epsg=3035, allow_override=True)
+    region_points['geometry'] = region_points['geometry'].centroid
+    # extract departure informations
+    departure = transfer[['region_depart', 'order', 'debut_transfert']]
+    departure['nom'] = departure['region_depart']
+    # extract departure informations
+    arrival = transfer[['region_arrivee',
+                        'nombre_patients_transferes',
+                        'order']]
+    arrival['nom'] = arrival['region_arrivee']
+    # get departure and arrival geographic coordinates
+    D = pd.merge(departure, region_points, on="nom")
+    A = pd.merge(arrival, region_points, on="nom")
+    # extract latitude and longitude
+    # for departure
+    D['lon_d'] = D.geometry.apply(lambda p: p.x)
+    D['lat_d'] = D.geometry.apply(lambda p: p.y)
+    # for arrival
+    A['lon_a'] = A.geometry.apply(lambda p: p.x)
+    A['lat_a'] = A.geometry.apply(lambda p: p.y)
+    # delete not-useful-anymore columns for clarity purpose
+    del D['nom']
+    del D['geometry']
+    del A['nom']
+    del A['geometry']
+    # merge these new dataframes together
+    # (on order so that we have our chronology back!)
+    DA = pd.merge(A, D, on='order')
+    # save for sparse matrix purpose ?
+    DA.to_csv('departure_arrival.csv')
+    # ---------- map time! ----------
+    # initialize view (centered on Paris!)
+    view = pdk.ViewState(latitude=46.2322, longitude=2.20967, pitch=50, zoom=5)
+    # make arc layers from departure to arrival points
+    arc_layer = pdk.Layer('ArcLayer',
+                          data=DA,
+                          get_source_position=['lon_d', 'lat_d'],
+                          get_target_position=['lon_a', 'lat_a'],
+                          get_width=5,
+                          get_tilt=15,
+                          get_source_color=color_d,
+                          get_target_color=color_a,
+                          # interactivity
+                          pickable=True,
+                          auto_highlight=True)
+    # add tooltip
+    tooltip = {
+            "html": "<b>Date:\
+            </b> {debut_transfert} <br />\
+            <b>Number of transfered patient:\
+            </b> {nombre_patients_transferes} <br />\
+            <b>Departure region:</b> {region_depart} <br />\
+            <b>Arrival region:</b> {region_arrivee}\
+            "}
+    # add view and layer to map
+    arc_layer_map = pdk.Deck(layers=arc_layer,
+                             initial_view_state=view,
+                             tooltip=tooltip)
+    # save map
+    suffix = '.html'
+    save_path = os.path.join(file_path, file_name + suffix)
+    arc_layer_map.to_html(save_path)
+
+
+# TODO:
+# remove # save for sparse matrix purpose ? if not needed
