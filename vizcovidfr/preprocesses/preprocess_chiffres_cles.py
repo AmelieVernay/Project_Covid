@@ -71,7 +71,7 @@ def keysubtablename(nom):
     granularity or territory and remove repetitions.
     """
 
-    df_covid=Load_chiffres_cles().save_as_df()
+    df_covid=load_datasets.Load_chiffres_cles().save_as_df()
 
     if nom in ["departements","pays","region"]:
 
@@ -93,7 +93,7 @@ def gooddates(df_covid):
     b = pd.DatetimeIndex(b) #put a correct way to view date
     df_covid.loc[:, 'date'] = b
     df_covid = df_covid.set_index('date')
-    return df_covid
+    return df_covid["2020-01-18":]
 
 # to be used as follow:
 # A = drop_some_columns(df_covid)
