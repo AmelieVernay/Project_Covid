@@ -126,13 +126,12 @@ def granupositivity(df,nom):
     'Provence-Alpes-Côte d\'Azur': 93,}
 
     DEPARTMENTS=dict(zip(DEPARTMENTS.values(),DEPARTMENTS.keys()))
-    print(DEPARTMENTS)
 
     if nom in  REGIONS.keys():
 
         number=REGIONS[nom]
 
-        df= dfposreg.loc[dfposreg["reg"]==number,:]
+        df= df.loc[df["reg"]==number,:]
         df=df.loc[df["cl_age90"]==0]
             
         df.index = pd.to_datetime(df['jour'])
@@ -141,7 +140,7 @@ def granupositivity(df,nom):
     if nom in DEPARTMENTS.keys():
         number=DEPARTMENTS[nom]
 
-        df= dfposreg.loc[dfposdep["dep"]==number,:]
+        df= dfp.loc[df["dep"]==number,:]
         df=df.loc[df["cl_age90"]==0]
             
         df.index = pd.to_datetime(df['jour'])
