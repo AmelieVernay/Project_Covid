@@ -3,8 +3,7 @@
 ## A python package to visualize spatial evolution of Covid19 cases in France
 
 <p align="center">
-  <strong> Vizcovidfr </strong> <br>
-<img src="./doc/source/_static/vizcovidfr_transfer_map.png" style="vertical-align:middle" width="500" height='200' class='center' alt='logo'>
+<img src="./doc/source/_static/vizcovidfr_transfer_map.png" style="vertical-align:middle" width="400" height='400' class='center' alt='logo'>
 </p>
 
 
