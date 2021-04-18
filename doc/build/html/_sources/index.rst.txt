@@ -9,10 +9,6 @@ Welcome to vizcovidfr's documentation!
 A python package to visualize spatial evolution of the Covid-19 pandemic in France
 
 
-.. image:: https://github.com/AmelieVernay/vizcovidfr/blob/main/doc/vizcovidfr_transfer_map.png
-   :width: 400
-   :alt: Transfers of Covid-19 patients
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
