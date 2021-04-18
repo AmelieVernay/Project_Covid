@@ -281,9 +281,11 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     Examples
     --------
     **easy example**
+
     >>> viz3Dmap()
 
     **example using Linux path**
+
     >>> import os
     >>> path_to_desktop = os.path.expanduser("~/Desktop")
     >>> viz3Dmap(file_path=path_to_desktop, file_name='pinky_3D_map',
@@ -291,6 +293,7 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     ...          color=[245, 92, 245, 80])
 
     **example using Windows path**
+
     >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> viz3Dmap(file_path=W_path, color=[230, 37, 37, 80],
@@ -423,15 +426,18 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     Examples
     --------
     **easy example**
+
     >>>transfer_map()
 
     **example using Linux path**
+
     >>> import os
     >>> path_to_desktop = os.path.expanduser("~/Desktop")
     >>> transfer_map(file_path=path_to_desktop, file_name='pinky_arc_map',
     ...          color_d=[255, 165, 0, 80], color_a=[128, 0, 128, 80])
 
     **example using Windows path**
+    
     >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> transfer_map(file_path=W_path, file_name='counter_intuitive_arc_map',
