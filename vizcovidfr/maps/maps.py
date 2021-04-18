@@ -3,7 +3,7 @@ import pandas as pd
 
 import geopandas as gpd
 import matplotlib.pyplot as plt
-from datetime import date, datetime
+from datetime import datetime, timedalta
 import numpy as np
 import folium
 import os
@@ -27,13 +27,14 @@ A = os.path.expanduser("~")
 B = "Desktop"
 path_to_Desktop = os.path.join(A, B)
 
-# format today's date
-dt_today = date.today()
-today = dt_today.strftime('%Y-%m-%d')
+# format yesterday's date
+dt_today = datetime.now()
+dt_yesterday = (dt_today - timedelta(1))
+yesterday = dt_yesterday.strftime('%Y-%m-%d')
 
 
 # ---------- define viz2Dmap ----------
-def viz2Dmap(granularity='departement', date=today,
+def viz2Dmap(granularity='departement', date=yesterday,
              criterion='hospitalises', color_pal='YlGnBu',
              file_path=path_to_Desktop, file_name='Covid2Dmap'):
     '''
@@ -47,8 +48,11 @@ def viz2Dmap(granularity='departement', date=today,
         Should be either 'region' or 'departement', defaults to 'departement'.
     :type granularity: str
     :param date: the date on which we want to get Covid-19 informations.
-        Should be of the form 'YYYY-MM-DD', and from 2020-01-24 to today,
-        defaults to today.
+        Should be of the form 'YYYY-MM-DD', and from 2020-01-24 to yesterday,
+        (because the database is updated on the end of every day, so depending
+        on the hour you want to use the function,
+        today's data might not exist yet),
+        defaults to yesterday.
     :type date: str
     :param criterion: the Covid-19 indicator we want to see on the map.
         Should be either 'hospitalises', 'reanimation', or 'deces':
@@ -437,7 +441,7 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     ...          color_d=[255, 165, 0, 80], color_a=[128, 0, 128, 80])
 
     **example using Windows path**
-    
+
     >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> transfer_map(file_path=W_path, file_name='counter_intuitive_arc_map',
