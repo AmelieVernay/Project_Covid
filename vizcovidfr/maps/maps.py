@@ -3,7 +3,7 @@ import pandas as pd
 
 import geopandas as gpd
 import matplotlib.pyplot as plt
-from datetime import datetime, timedalta
+from datetime import datetime, timedelta
 import numpy as np
 import folium
 import os
