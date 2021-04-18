@@ -1,29 +1,30 @@
 #%%
 from download import download
 import pandas as pd
+from vizcovidfr.loads.load_datasets import Load_posquotfr,Load_posquotreg,Load_posquotdep
+from vizcovidfr.loads.load_datasets import Load_poshebdep,Load_poshebreg,Load_poshebfr
+from vizcovidfr.preprocesses.preprocess_positivity import ignoreage,granupositivity
 #%%
 
-urlposfr="https://www.data.gouv.fr/fr/datasets/r/dd0de5d9-b5a5-4503-930a-7b08dc0adc7c"
-pathtarget="../data/posquotfr.csv"
-download(urlposfr,pathtarget,replace=True)
-dfposfr=pd.read_csv(pathtarget,sep=";")
-dfposfr.groupby(['jour']).sum()
+dfposfr=ignoreage(Load_posquotfr().save_as_df())
 
-P_f=dfposfr.loc[dfposfr["cl_age90"]==0]["P_f"]
+dfposfr["P_f"]
+dfposfr.loc["2020-05-13"]
+#dfposfr['P']/dfposfr["T"]
+dfposfr
 
-P_h=dfposfr.loc[dfposfr["cl_age90"]==0]["P_h"]
-
-T_f=dfposfr.loc[dfposfr["cl_age90"]==0]["T_f"]
-
-T_h=dfposfr.loc[dfposfr["cl_age90"]==0]["T_h"]
-
-P_f
-dfposfr.loc[dfposfr["cl_age90"]==0].groupby(["jour"]).sum().loc["2020-05-13",]
-def ignoreage(df,weekday="jour"):
-    return df.loc[df['cl_age90']==0].groupby([weekday]).sum()
 #%%
 def compareHF(jour,chiffre,df):
     return [df.loc[jour,][chiffre+"_h"],df.loc[jour,][chiffre+"_f"]]
+
+def positiverate(jour,df,sex=False,rate=True):
+    if not sex:
+        if rate:
+            return df.loc[jour,]["P"]/df.loc[jour,"T"]
+        else: 
+            return df.loc[jour,]["P"]
+    else: return [df.loc[jour,]["P_h"]/df.loc[jour,]["T_h"],df.loc[jour,]["P_f"]/df.loc[jour,]["T_f"]]
+
 
 def comparativebarplot(jour,chiffre,df,cumulative=False):
     import matplotlib.pyplot as plt
@@ -42,68 +43,40 @@ def comparativebarplot(jour,chiffre,df,cumulative=False):
     ax.bar(sex,positif)
     plt.show()
 
-comparativebarplot("2020-05-14","P",ignoreage(dfposfr))
-comparativebarplot("2020-05-15","P",ignoreage(dfposfr),True)
+comparativebarplot("2020-05-14","P",dfposfr)
+comparativebarplot("2020-05-15","P",dfposfr,True)
 
-def positiverate(jour,df,sex=False,rate=True):
-    if not sex:
-        if rate:
-            return df.loc[jour,]["P"]/df.loc[jour,"T"]
-        else: 
-            return df.loc[jour,]["P"]
-    else: return [df.loc[jour,]["P_h"]/df.loc[jour,]["T_h"],df.loc[jour,]["P_f"]/df.loc[jour,]["T_f"]]
-comparativebarplot("2020-06-15","positiverate",ignoreage(dfposfr))
+comparativebarplot("2020-06-15","positiverate",dfposfr)
 
 #%%
-urlposreg="https://www.data.gouv.fr/fr/datasets/r/001aca18-df6a-45c8-89e6-f82d689e6c01"
-pathtarget="../data/posquotreg.csv"
-download(urlposreg,pathtarget,replace=True)
-dfposreg=pd.read_csv(pathtarget,sep=";")
-dfposreg.head()
-dfposreg.loc[dfposreg["reg"]==1,:]
-def subtablepos(df,granularite,number,weekday="jour"):
-    return ignoreage(df.loc[df[granularite]==number,:],weekday)
+dfposreg=ignoreage(Load_posquotreg().save_as_df())
 
 
-dfposreg.head()
-dfposreg.groupby(["reg","jour"]).sum()
-dfposreg.loc[dfposreg["reg"]==1,:].groupby(['jour']).sum()
-subtablepos(dfposreg,"reg",2)
-comparativebarplot("2020-06-15","P",subtablepos(dfposreg,"reg",2),True)
-dfposreg
+granupositivity(dfposreg,2,"reg")
+comparativebarplot("2020-06-15","P",granupositivity(dfposreg,2,"reg"),True)
+granupositivity(dfposreg,2,"reg")
+#dfposreg
 #%%
-urlposdep="https://www.data.gouv.fr/fr/datasets/r/406c6a23-e283-4300-9484-54e78c8ae675"
-pathtarget="../data/posquotdep.csv"
-download(urlposdep,pathtarget,replace=True)
-dfposdep=pd.read_csv(pathtarget,sep=";")
+dfposdep=ignoreage(Load_posquotdep().save_as_df())
 dfposdep.head()
 dfposdep
-positiverate("2020-11-13",ignoreage(dfposdep.loc[dfposdep["dep"]=="03",:]))
+positiverate("2020-11-13",granupositivity(dfposdep,"03","dep"))
+#granupositivity(dfposdep,"03","dep")
 #%%
-urlposdepheb="https://www.data.gouv.fr/fr/datasets/r/dd3ac13c-e87f-4b33-8897-07baff4e1783"
-pathtarget="../data/poshebdep.csv"
-download(urlposdepheb,pathtarget,replace=True)
-dfposdepheb=pd.read_csv(pathtarget,sep=";")
+dfposdepheb=ignoreage(Load_poshebdep().save_as_df(),"week")
 dfposdepheb
-positiverate("2020-S21",ignoreage(dfposdepheb.loc[dfposdepheb["dep"]=="03",:],"week"))
+positiverate("2020-S21",granupositivity(dfposdepheb,"03","dep"))
 
 
 #%%
-urlposregheb="https://www.data.gouv.fr/fr/datasets/r/1ff7af5f-88d6-44bd-b8b6-16308b046afc"
-pathtarget="../data/poshebreg.csv"
-download(urlposregheb,pathtarget,replace=True)
-dfposregheb=pd.read_csv(pathtarget,sep=";")
+dfposregheb=ignoreage(Load_poshebreg().save_as_df(),"week")
 dfposregheb
-subtablepos(dfposregheb,"reg",2,"week")
-comparativebarplot("2020-S22","P",subtablepos(dfposregheb,"reg",2,"week"),True)
+comparativebarplot("2020-S22","P",granupositivity(dfposregheb,2,"reg"),True)
 dfposregheb
 #%%
-urlposfrheb="https://www.data.gouv.fr/fr/datasets/r/2f0f720d-fbd2-41a7-95b4-3a70ff5a9253"
-pathtarget="../data/poshebfr.csv"
-download(urlposfrheb,pathtarget,replace=True)
-dfposfrheb=pd.read_csv(pathtarget,sep=";")
+dfposfrheb=ignoreage(Load_poshebfr().save_as_df(),"week")
 dfposfrheb
-comparativebarplot("2020-S23","T",ignoreage(dfposfrheb,"week"))
+comparativebarplot("2020-S23","T",dfposfrheb)
 
 #%%
 urlincdep="https://www.data.gouv.fr/fr/datasets/r/19a91d64-3cd3-42fc-9943-d635491a4d76"

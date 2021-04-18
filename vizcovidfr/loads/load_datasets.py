@@ -100,7 +100,7 @@ path_target_cfr = os.path.join(path_target, "./chiffres-fr.csv")
 class Load_chiffres_fr:
     """
     Download and save 'chiffres-fr.csv',
-    a dataset containing ???
+    a dataset containing global information for France as a whole
     """
     def __init__(self, url=url_cfr, target_name=path_target_cfr):
         download(url, target_name, replace=True)
@@ -119,7 +119,7 @@ path_target_posreg = os.path.join(path_target, "./posquotreg.csv")
 class Load_posquotreg:
     """
     Download and save 'posquotreg.csv',
-    a dataset containing ???
+    a dataset containing positivity informations by region.
     """
     def __init__(self, url=url_posreg, target_name=path_target_posreg):
         download(url, target_name, replace=True)
@@ -138,12 +138,86 @@ path_target_posdep = os.path.join(path_target, "./posquotdep.csv")
 class Load_posquotdep:
     """
     Download and save 'posquotdep.csv',
-    a dataset containing ???
+    a dataset containing positive informations by departments
     """
     def __init__(self, url=url_posdep, target_name=path_target_posdep):
         download(url, target_name, replace=True)
 
     @staticmethod
     def save_as_df():
-        df = pd.read_csv(path_target5, sep=";")
+        df = pd.read_csv(path_target_posdep, sep=";")
+        return df
+
+# ---------- posquotfr ----------
+url_posfr = "https://www.data.gouv.fr/fr/datasets/r/dd0de5d9-b5a5-4503-930a-7b08dc0adc7c"
+path_target_posfr = os.path.join(path_target, "./posquotfr.csv")
+
+
+
+class Load_posquotfr:
+    """
+    Download and save 'posquotfr.csv',
+    a dataset containing positive information for France
+    """
+    def __init__(self, url=url_posfr, target_name=path_target_posfr):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_posfr, sep=";")
+        return df
+    
+   
+# ---------- poshebdep ----------
+url_poshebdep = "https://www.data.gouv.fr/fr/datasets/r/dd3ac13c-e87f-4b33-8897-07baff4e1783"
+path_target_poshebdep = os.path.join(path_target, "./poshebdep.csv")
+
+
+class Load_poshebdep:
+    """
+    Download and save 'poshebdep.csv',
+    a dataset containing positive informations by departments weekly
+    """
+    def __init__(self, url=url_poshebdep, target_name=path_target_poshebdep):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_poshebdep, sep=";")
+        return df
+
+# ---------- poshebreg ----------
+url_poshebreg = "https://www.data.gouv.fr/fr/datasets/r/1ff7af5f-88d6-44bd-b8b6-16308b046afc"
+path_target_poshebreg = os.path.join(path_target, "./poshebreg.csv")
+
+
+class Load_poshebreg:
+    """
+    Download and save 'poshebreg.csv',
+    a dataset containing positive informations by regions weekly
+    """
+    def __init__(self, url=url_poshebreg, target_name=path_target_poshebreg):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_poshebreg, sep=";")
+        return df
+
+# ---------- poshebfr ----------
+url_poshebfr = "https://www.data.gouv.fr/fr/datasets/r/2f0f720d-fbd2-41a7-95b4-3a70ff5a9253"
+path_target_poshebfr = os.path.join(path_target, "./poshebfr.csv")
+
+
+class Load_poshebfr:
+    """
+    Download and save 'poshebfr.csv',
+    a dataset containing positive informations in France weekly
+    """
+    def __init__(self, url=url_poshebfr, target_name=path_target_poshebfr):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_poshebfr, sep=";")
         return df

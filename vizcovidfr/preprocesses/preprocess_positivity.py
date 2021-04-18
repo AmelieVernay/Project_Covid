@@ -1,8 +1,6 @@
 import pandas as pd
 
-def granupositivity(df,nom):
-
-    DEPARTMENTS = { #match between number and territory
+DEPARTMENTS = { #match between number and territory
     '01': 'Ain',
     '02': 'Aisne',
     '03': 'Allier',
@@ -106,7 +104,7 @@ def granupositivity(df,nom):
     '976': 'Mayotte',
 }
 
-    REGIONS = {
+REGIONS = {
     'Auvergne-Rhône-Alpes': 84,
     'Bourgogne-Franche-Comté': 27,
     'Bretagne': 53,
@@ -124,29 +122,33 @@ def granupositivity(df,nom):
     'Occitanie': 76,
     'Pays de la Loire': 52,
     'Provence-Alpes-Côte d\'Azur': 93,}
+DEPARTMENTS=dict(zip(DEPARTMENTS.values(),DEPARTMENTS.keys()))
+REGIONS=dict(REGIONS)
 
-    DEPARTMENTS=dict(zip(DEPARTMENTS.values(),DEPARTMENTS.keys()))
-    REGIONS=dict(REGIONS)
 
 
+def ignoreage(df,weekday="jour"):
+    df.index=df[weekday]
+    del df[weekday]
+    return df.loc[df['cl_age90']==0]
+
+
+def granupositivity(df,nom,granularite=None):
+
+    if granularite is not None:
+        return df.loc[df[granularite]==nom,:]
 
     if nom in  REGIONS.keys():
 
         number=REGIONS[nom]
 
         df= df.loc[df["reg"]==number,:]
-        df=df.loc[df["cl_age90"]==0]
-            
-        df.index = pd.to_datetime(df['jour'])
-        del df['jour']
         return df
     if nom in DEPARTMENTS.keys():
         number=DEPARTMENTS[nom]
-
         df= df.loc[df["dep"]==number,:]
-        df=df.loc[df["cl_age90"]==0]
-            
-        df.index = pd.to_datetime(df['jour'])
-        del df['jour']
+
         return df
+
+
 
