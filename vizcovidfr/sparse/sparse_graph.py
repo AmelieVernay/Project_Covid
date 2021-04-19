@@ -9,7 +9,7 @@ from scipy.sparse import isspmatrix
 from vizcovidfr.loads import load_datasets
 
 
-def sparse_graph(directed=False):
+def sparse_graph(directed=False, show=True):
     """
     Plot and return the graph of the transfer of patient with Covid-19,
     inside or outside France.
@@ -25,11 +25,13 @@ def sparse_graph(directed=False):
 
     :param directed: whether we want the graph to be directed or not
     :type directed: bool, optional (default=False)
+    :param show: whether or not to show the graph
+    :type show: bool, optional (default=True)
 
     Returns
     -------
 
-    :return: plot the graph representation and return the graph object
+    :return: the transfer graph and a plot of its representation
     :rtype:
         networkx.classes.graph.Graph (if directed=False)
         networkx.classes.digraph.DiGraph (if directed=True)
@@ -96,56 +98,74 @@ def sparse_graph(directed=False):
     plt.axis('off')
     plt.figtext(.5, .9, f'{word} graph of patient transfers',
                 fontsize=17, ha='center')
-    plt.show()
+    if (show):
+        plt.show()
     return G
 
 
-Ga = sparse_graph()
+Ga = sparse_graph(show=False)
 
-Ga
-
-
-G["Bretagne"]["Grand Est"]["nombre_patients_transferes"]
+print(Ga["Bretagne"]["Grand Est"]["nombre_patients_transferes"])
 
 
-# get adjacency matrix
-A = nx.adjacency_matrix(G)
-# is it sparse ? ...of course it is..it's an adjacency matrix!
-print(isspmatrix(A))
-# plot sparse adjacency matrix
-plt.figure(figsize=(7, 7))
-plt.spy(A, color='#971b8599')
-plt.title('adjacency matrix of transfer graph')
-# graph properties
-G.number_of_edges()
-G.number_of_nodes()
-# percentage of matrix occupation
-print((G.number_of_edges() / G.number_of_nodes()**2) * 100)
-# 9.47%
+# Now let's see it's adjacency matrix.
+
+#G["Bretagne"]["Grand Est"]["nombre_patients_transferes"]
 
 
-B = A.todense()
-print(isspmatrix(B))
-A
-B
-start = time.time()
-v = A.T
-end = time.time()
+def sparse_matrix(show=True):
+    """
+    Return and plot the adjacency matrix of the graph of the transfer of patient
+    with Covid-19, inside or outside France. This, by definition, is
+    a sparse matrix.
 
-print("Time to execute: {0:.5f} s.".format(end - start))
+    Parameters
+    ----------
+
+    :param show: whether or not to show the matrix
+    :type show: bool, optional (default=True)
+
+    :return: the adjacency matrix of transfer graph and a plot of its
+        representation
+    :rtype: scipy.sparse.csr.csr_matrix
+
+    :Examples:
+
+    >>> sparse_matrix(show=True)
+
+    >>> from scipy.sparse import isspmatrix
+    >>> A = sparse_matrix(show=False)
+    >>> print(isspmatrix(A))
+    True
+
+    """
+    # take only the graph object
+    G = sparse_graph(show=False)
+    # get adjacency matrix
+    A = nx.adjacency_matrix(G)
+    # is it sparse ? ...of course it is..it's an adjacency matrix!
+    if (isspmatrix(A)):
+        verb = 'is'
+    else:
+        verb = "isn't"
+    # graph properties
+    e = G.number_of_edges()
+    v = G.number_of_nodes()
+    # percentage of matrix occupation
+    percent_occ = (e / v**2) * 100
+    rounded_percent_occ = round(percent_occ, 4)
+    # plot sparse adjacency matrix
+    plt.figure(figsize=(11, 11))
+    plt.spy(A, color='#971b8599')
+    plt.figtext(.5, 0.96, 'Here is the adjacency matrix of the transfer graph',
+                fontsize=17, ha='center')
+    plt.figtext(.5, 0.94, f'This {verb} a sparse matrix',
+                fontsize=14, ha='center')
+    plt.figtext(.5, 0.92, f'percentage of occupation: {rounded_percent_occ}',
+                fontsize=11, ha='center')
+    if (show):
+        plt.show()
+    return A
 
 
-start = time.time()
-v = B.T
-end = time.time()
-
-print("Time to execute: {0:.5f} s.".format(end - start))
-
-# def an_addition(source, target):
-#     # Check input
-#     if type(source) == str or type(target) == str:
-#         raise TypeError('We can only add numbers, not strings!')
-#     if type(source) != type(target):
-#         raise TypeError('We can only add numbers of the same type!')
-#     # OK, go
-#     return G[source][target]["nombre_patients_transferes"]
+# print(isspmatrix(sparse_matrix(show=False)))
