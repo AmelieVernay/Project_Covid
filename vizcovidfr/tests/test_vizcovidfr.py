@@ -3,7 +3,7 @@ from scipy.sparse import isspmatrix
 
 # local reqs
 from vizcovidfr.maps import maps
-from vizcovidfr.sparse import sparse_graph
+from vizcovidfr.sparse import sparse
 
 
 # ---------- maps ----------

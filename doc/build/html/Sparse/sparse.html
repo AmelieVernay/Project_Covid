@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The sparse_graph function &mdash; vizcovidfr 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/explore.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/nbsphinx.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Functions to generate maps" href="../Maps/maps.html" />
+  <link rel="shortcut icon" href="../_static/images/favicon.ico"/>
+  
+  <meta name="Description" content="The sparse_graph function">
+  <meta property="og:description" content="The sparse_graph function">
+  <meta name="twitter:description" content="The sparse_graph function" />
+  <meta property="og:title" content="vizcovidfr 0.0.1 documentation - The sparse_graph function">
+  <meta property="og:image" content="https://github.com/dask.png">
+  <meta property="og:image:secure_url" content="https://github.com/dask.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="380" />
+  <meta property="og:image:height" content="380" />
+  <meta property="og:url" content="Sparse/sparse.html">
+  <meta property="og:site_name" content="vizcovidfr 0.0.1 documentation">
+
+  <meta name="twitter:site" content="https://dask.org" />
+  <meta name="twitter:creator" content="@dask_dev" />
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://github.com/dask.png" />
+  <meta name="twitter:image:alt" content="vizcovidfr 0.0.1 documentation">
+  
+
+</head>
+
+<body class="wy-body-for-nav">
+
+  
+    <nav id="explore-links">
+        <a href="https://docs.dask.org/">
+        <img class="caption" src="../_static/images/dask-horizontal-white.svg"/>
+        </a>
+
+        <ul>
+        <li>
+            <a>Get Started</a>
+            <ul>
+            <li><a href="https://docs.dask.org/en/latest/install.html"> Install </a></li>
+            <li><a href="https://examples.dask.org"> Examples </a></li>
+            <li><a href="https://github.com/dask/dask-tutorial"> Tutorial </a></li>
+            <li><a href="https://docs.dask.org/en/latest/why.html"> Why Dask? </a></li>
+            <li><a href="https://stories.dask.org/en/latest"> Use Cases </a></li>
+            <li><a href="https://www.youtube.com/watch?v=RA_2qdipVng&list=PLRtz5iA93T4PQvWuoMnIyEIz1fXiJ5Pri"> Talks </a></li>
+            <li><a href="https://mybinder.org/v2/gh/dask/dask-examples/master?urlpath=lab"> Try Online </a></li>
+            <li><a href="https://dask.org/slides"> Slides </a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="">Algorithms</a>
+            <ul>
+            <li><a href="https://docs.dask.org/en/latest/array.html">Arrays</a></li>
+            <li><a href="https://docs.dask.org/en/latest/dataframe.html">Dataframes</a></li>
+            <li><a href="https://docs.dask.org/en/latest/bag.html">Bags</a></li>
+            <li><a href="https://docs.dask.org/en/latest/delayed.html">Delayed (custom)</a></li>
+            <li><a href="https://docs.dask.org/en/latest/futures.html">Futures (real-time)</a></li>
+            <li><a href="http://ml.dask.org">Machine Learning</a></li>
+            <li><a href="https://xarray.pydata.org/en/latest/">XArray</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="https://docs.dask.org/en/latest/setup.html">Setup</a>
+            <ul>
+            <li><a href="https://docs.dask.org/en/latest/setup/single-machine.html"> Local </a></li>
+            <li><a href="https://docs.dask.org/en/latest/setup/cloud.html"> Cloud </a></li>
+            <li><a href="https://docs.dask.org/en/latest/setup/hpc.html"> HPC </a></li>
+            <li><a href="https://kubernetes.dask.org/en/latest/"> Kubernetes </a></li>
+            <li><a href="https://yarn.dask.org/en/latest/"> Hadoop / Yarn </a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a>Community</a>
+            <ul>
+            <li><a href="http://docs.dask.org/en/latest/support.html">Ask for Help</a></li>
+            <li><a href="https://github.com/dask">Github</a></li>
+            <li><a href="https://stackoverflow.com/questions/tagged/dask">Stack Overflow</a></li>
+            <li><a href="https://twitter.com/dask_dev">Twitter</a></li>
+            <li><a href="https://blog.dask.org/"> Developer Blog </a></li>
+            <li><a href="https://youtube.com/c/dask-dev"> YouTube Channel </a></li>
+            </ul>
+        </li>
+        </ul>
+
+    </nav>
+  
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/vizcovidfr_transfer_map.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Installation/install.html">Installation guide</a></li>
+</ul>
+<p><span class="caption-text">Maps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">Functions to generate maps</a></li>
+</ul>
+<p><span class="caption-text">Sparse</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The sparse_graph function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#the-sparse-matrix-function">The sparse_matrix function</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vizcovidfr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>The sparse_graph function</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Sparse/sparse.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="the-sparse-graph-function">
+<h1>The sparse_graph function<a class="headerlink" href="#the-sparse-graph-function" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="vizcovidfr.sparse.sparse.sparse_graph">
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.sparse.sparse.</span></code><code class="sig-name descname"><span class="pre">sparse_graph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.sparse.sparse.sparse_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot and return the graph of the transfer of patient with Covid-19,
+inside or outside France.</p>
+<p><strong>Note</strong>
+Try to first plot the undirected graph to see if you can guess the
+direction of the arrows, then check by calling the function with
+directed=True !</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directed</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=False</em><em>)</em>) – whether we want the graph to be directed or not</p></li>
+<li><p><strong>show</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=True</em>) – whether or not to show the graph</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the transfer graph and a plot of its representation</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>networkx.classes.graph.Graph (if directed=False)</p></li>
+<li><p>networkx.classes.digraph.DiGraph (if directed=True)</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Examples</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sparse_graph</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sparse_graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="the-sparse-matrix-function">
+<h1>The sparse_matrix function<a class="headerlink" href="#the-sparse-matrix-function" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="vizcovidfr.sparse.sparse.sparse_matrix">
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.sparse.sparse.</span></code><code class="sig-name descname"><span class="pre">sparse_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.sparse.sparse.sparse_matrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return and plot the adjacency matrix of the graph of the transfer of
+patient with Covid-19, inside or outside France. This, by definition, is
+a sparse matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>show</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=True</em>) – whether or not to show the matrix</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the adjacency matrix of transfer graph and a plot of its
+representation</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>scipy.sparse.csr.csr_matrix</p>
+</dd>
+<dt class="field-even">Examples</dt>
+<dd class="field-even"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sparse_matrix</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">isspmatrix</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">sparse_matrix</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">isspmatrix</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../Maps/maps.html" class="btn btn-neutral float-left" title="Functions to generate maps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Foux Quentin ; Llinares Laurent ; Nicolas Alexandre ; Vernay Amelie
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -45,44 +45,44 @@ def viz2Dmap(granularity='departement', date=yesterday,
     Parameters
     ----------
     :param granularity: the granularity we want the map to be based on.
-        Should be either 'region' or 'departement', defaults to 'departement'.
-    :type granularity: str
+        Should be either 'region' or 'departement'.
+    :type granularity: str, optional, default='departement'
     :param date: the date on which we want to get Covid-19 information.
         Should be of the form 'YYYY-MM-DD', and from 2020-01-24 to yesterday,
         (because the database is updated on the end of every day, so depending
         on the hour you want to use the function,
-        today's data might not exist yet),
-        defaults to yesterday.
-    :type date: str
+        today's data might not exist yet)
+    :type date: str, optional, default=yesterday
     :param criterion: the Covid-19 indicator we want to see on the map.
         Should be either 'hospitalises', 'reanimation', or 'deces':
 
         - 'hospitalises':
-            will display the number of persons hospitalized
+            display the number of persons hospitalized
             on the given date due to Covid-19
         - 'reanimation':
-            will display the number of persons in resuscitation
+            display the number of persons in resuscitation
             on the given date due to Covid-19
         - 'deces':
-            will display the cumulated number of death due to
+            display the cumulated number of death due to
             the Covid-19 in France from the beginning of the pandemic, up to
             the given date
 
-        defaults to 'hospitalises'.
-    :type criterion: str
+    :type criterion: str, optional, default='hospitalises'
     :param color_pal: the color palette we want for the map.
+
         For reference,
         see https://colorbrewer2.org/#type=sequential&scheme=YlGnBu&n=3,
         defaults to 'YlGnBu' (for color-blind people purpose)
-    :type color_pal: str
+    :type color_pal: str, optional, default='YlGnBu'
     :param file_path: the path on which to save the file, can be either Linux,
-        MAC-OS, or Windows path, defaults to user's Desktop.
-        **Warning:** only works if the user's OS default language is english.
-        Otherwise, path is not optional.
-    :type file_path: str
-    :param file_name: the name under which to save the file,
-        defaults to 'Covid2Dmap'
-    :type file_name: str
+        MAC-OS, or Windows path.
+
+            (*) **Warning:** the default parameter only works if the user's
+            OS default language is english. Otherwise,
+            path is **not optional**.
+    :type file_path: str, optional*, default to user's Desktop
+    :param file_name: the name under which to save the file
+    :type file_name: str, optional, default='Covid2Dmap'
 
     Returns
     -------
@@ -238,7 +238,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
 
 # ---------- define viz3Dmap ----------
 def viz3Dmap(granularity='departement', criterion='hospitalises',
-             file_path=path_to_Desktop, file_name='3Dmap_Covid',
+             file_path=path_to_Desktop, file_name='Covid3Dmap',
              color=[255, 165, 0, 80]):
     '''
     Make a 3D map out of France Covid-19 data.
@@ -251,37 +251,36 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
         Should be either 'region' or 'departement'. On the latter case,
         columns layers will be raised from the centroid of each department,
         while on the former, these will be raides from each region's centroid.
-        Defaults to 'department'.
-    :type granularity: string
+    :type granularity: str, optional, default='departement'
     :param criterion: the Covid-19 indicator we want to see on the map.
         Should be either 'hospitalises', 'reanimation', or 'deces':
 
         - 'hospitalises':
-            will display the number of persons hospitalized
+            display the number of persons hospitalized
             on a given date due to Covid-19
         - 'reanimation':
-            will display the number of persons in resuscitation
+            display the number of persons in resuscitation
             on a given date due to Covid-19
         - 'deces':
-            will display the cumulated number of death due to
+            display the cumulated number of death due to
             the Covid-19 in France from the beginning of the pandemic, up to
             a given date
 
-        defaults to 'hospitalises'.
-    :type criterion: str
+    :type criterion: str, optional, default='hospitalises'
     :param color: color for columns. Should be a list
         containing RGBA colors (red, green, blue, alpha).
-        For example, see here https://rgbacolorpicker.com/,
-        defaults to yellow (sort of)
-    :type color: str
+
+        Need inspiration? see here https://rgbacolorpicker.com/
+    :type color: list, optional, default=[255, 165, 0, 80] ~yellow
     :param file_path: the path on which to save the file, can be either Linux,
-        MAC-OS, or Windows path, defaults to user's Desktop.
-        **Warning:** only works if the user's OS default language is english.
-        Otherwise, path is not optional.
-    :type file_path: str
-    :param file_name: the name under which to save the file,
-        defaults to '3Dmap_Covid'
-    :type file_name: str
+        MAC-OS, or Windows path.
+
+            (*) **Warning:** the default parameter only works if the user's
+            OS default language is english. Otherwise,
+            path is **not optional**.
+    :type file_path: str, optional*, default to user's Desktop
+    :param file_name: the name under which to save the file
+    :type file_name: str, optional, default='Covid3Dmap'
 
     Returns
     -------
@@ -408,24 +407,26 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
 
     Parameters
     ----------
-    :param file_path: the path on which to save the file, can be either Linux,
-        MAC-OS, or Windows path, defaults to user's Desktop.
-        **Warning:** only works if the user's OS default language is english.
-        Otherwise, path is not optional.
-    :type file_path: str
-    :param file_name: the name under which to save the file,
-        defaults to 'Covid_transfer_map'
-    :type file_name: str
+
     :param color_d: color for departure point on arcs. Should be a list
         containing RGBA colors (red, green, blue, alpha).
-        For example, see here https://rgbacolorpicker.com/,
-        defaults to red (sort of)
-    :type color_d: list
+
+        Need inspiration? see here https://rgbacolorpicker.com/
+    :type color_d: list, optional, default=[243, 31, 44, 80] ~red
     :param color_a: color for arrival point on arcs. Should be a list
         containing RGBA colors (red, green, blue, alpha).
-        For example, see here https://rgbacolorpicker.com/,
-        defaults to yellow (sort of)
-    :type color_a: list
+
+        Need inspiration? see here https://rgbacolorpicker.com/
+    :type color_a: list, optional, default=[230, 190, 37, 80] ~yellow
+    :param file_path: the path on which to save the file, can be either Linux,
+        MAC-OS, or Windows path.
+
+            (*) **Warning:** the default parameter only works if the user's
+            OS default language is english. Otherwise,
+            path is **not optional**.
+    :type file_path: str, optional*, default to user's Desktop
+    :param file_name: the name under which to save the file
+    :type file_name: str, optional, default='Covid_transfer_map'
 
     Returns
     -------
