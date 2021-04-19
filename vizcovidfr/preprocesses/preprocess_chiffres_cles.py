@@ -62,8 +62,8 @@ def reg_depts_code_format(df):
     del df['maille_code']
     return df
 
-def keysubtablename(nom):
 
+def keysubtablename(nom):
     """
     nom: A part of France or a partition
 
@@ -71,26 +71,21 @@ def keysubtablename(nom):
     granularity or territory and remove repetitions.
     """
 
-    df_covid=load_datasets.Load_chiffres_cles().save_as_df()
-
-    if nom in ["departements","pays","region"]:
-
-        dfsub = df_covid.loc[df_covid['granularite']==nom]
-
+    df_covid = load_datasets.Load_chiffres_cles().save_as_df()
+    if nom in ["departements", "pays", "region"]:
+        dfsub = df_covid.loc[df_covid['granularite'] == nom]
     else:
-        dfsub = df_covid.loc[df_covid['maille_nom']==nom]
-
-    dfsub = dfsub[~dfsub.index.duplicated(keep='first')] #have an 
-    #inforamtion once
-
+        dfsub = df_covid.loc[df_covid['maille_nom'] == nom]
+    dfsub = dfsub[~dfsub.index.duplicated(keep='first')]  # have an
+    # information once
     return dfsub
 
-def gooddates(df_covid):
 
+def gooddates(df_covid):
     dat = df_covid['date']
     a = list((dat[:]))
-    b = list(map(lambda x: x[:4]+"-"+x[5:7]+"-"+ x[8:],a))
-    b = pd.DatetimeIndex(b) #put a correct way to view date
+    b = list(map(lambda x: x[:4] + "-" + x[5:7] + "-" + x[8:], a))
+    b = pd.DatetimeIndex(b)  # put a correct way to view date
     df_covid.loc[:, 'date'] = b
     df_covid = df_covid.set_index('date')
     return df_covid["2020-01-18":]

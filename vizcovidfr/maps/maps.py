@@ -3,24 +3,38 @@ import pandas as pd
 
 import geopandas as gpd
 import matplotlib.pyplot as plt
-from datetime import date, datetime
+from datetime import datetime, timedelta
 import numpy as np
 import folium
 import os
 
-from python_files.loads import tryit
-from python_files.preprocess import preprocess_data
+import pydeck as pdk
+import ipywidgets
+from palettable.cartocolors.sequential import BrwnYl_3
+import json
+
+# local reqs
+from vizcovidfr.loads import load_datasets
+from vizcovidfr.preprocesses import preprocess_chiffres_cles
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
 
-# ---------- get user's path to Desktop ----------
+
+# ---------- format some default arguments ----------
+
+# get user's path to Desktop
 A = os.path.expanduser("~")
 B = "Desktop"
 path_to_Desktop = os.path.join(A, B)
 
+# format yesterday's date
+dt_today = datetime.now()
+dt_yesterday = (dt_today - timedelta(1))
+yesterday = dt_yesterday.strftime('%Y-%m-%d')
+
 
 # ---------- define viz2Dmap ----------
-def viz2Dmap(granularity='departement', date,
+def viz2Dmap(granularity='departement', date=yesterday,
              criterion='hospitalises', color_pal='YlGnBu',
              file_path=path_to_Desktop, file_name='Covid2Dmap'):
     '''
@@ -30,21 +44,27 @@ def viz2Dmap(granularity='departement', date,
 
     Parameters
     ----------
-
     :param granularity: the granularity we want the map to be based on.
         Should be either 'region' or 'departement', defaults to 'departement'.
     :type granularity: str
-    :param date: the date on which we want to get Covid-19 informations.
-        Should be of the form 'YYYY-MM-DD', defaults to today.
+    :param date: the date on which we want to get Covid-19 information.
+        Should be of the form 'YYYY-MM-DD', and from 2020-01-24 to yesterday,
+        (because the database is updated on the end of every day, so depending
+        on the hour you want to use the function,
+        today's data might not exist yet),
+        defaults to yesterday.
     :type date: str
     :param criterion: the Covid-19 indicator we want to see on the map.
         Should be either 'hospitalises', 'reanimation', or 'deces':
 
-        - 'hospitalises': will display to number of persons hospitalized
+        - 'hospitalises':
+            will display the number of persons hospitalized
             on the given date due to Covid-19
-        - 'reanimation': will display to number of persons in resuscitation
+        - 'reanimation':
+            will display the number of persons in resuscitation
             on the given date due to Covid-19
-        - 'deces': will display to cumulated number of death due to
+        - 'deces':
+            will display the cumulated number of death due to
             the Covid-19 in France from the beginning of the pandemic, up to
             the given date
 
@@ -66,13 +86,15 @@ def viz2Dmap(granularity='departement', date,
 
     Returns
     -------
-
     :return: An interactive choropleth map saved on a html file openable on
         your favorite web browser
     :rtype: '.html' file
 
-    Examples
-    --------
+    :Examples:
+
+    **easy example**
+
+    >>> viz2Dmap()
 
     **example using Linux path**
 
@@ -90,32 +112,36 @@ def viz2Dmap(granularity='departement', date,
     ...          criterion='reanimation', color_pal='Greys',
     ...          file_path=W_path, file_name='funkymap')
 
-    **easy example**
-    >>>viz2Dmap()
-
-    Notes
-    -----
+    :Notes:
 
     **Manipulation tips:**
 
-    - pass mouse on map to get local informations
+    - pass mouse on map to get local information
     - use 'clic + mouse move' to move map
     '''
     # ---------- file imports ----------
-    # load geojson file containing geographic informations
-    departments = gpd.read_file('departements.geojson')
-    regions = gpd.read_file('regions.geojson')
+    # load geojson file containing geographic information
+    reg_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "regions.geojson")
+    dep_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "departements.geojson")
+    regions = gpd.read_file(reg_path)
+    departments = gpd.read_file(dep_path)
     # load covid data
-    df_covid = tryit.Load_covid_data().save_as_df()
+    df_covid = load_datasets.Load_chiffres_cles().save_as_df()
     # ---------- preprocesses ----------
     # use preprocess to clean df_covid
-    df_covid = preprocess_data.preprocess_chiffres_clefs(df_covid)
-    df_covid = preprocess_data.reg_depts(df_covid)
-    df_covid = preprocess_data.reg_depts_code_format(df_covid)
+    df_covid = preprocess_chiffres_cles.drop_some_columns(df_covid)
+    df_covid = preprocess_chiffres_cles.reg_depts(df_covid)
+    df_covid = preprocess_chiffres_cles.reg_depts_code_format(df_covid)
     # keep only data corresponding to the given granularity
     df_local = df_covid.loc[df_covid['granularite'] == granularity]
     # choose the dataframe containing geographic
-    # informations according to the granularity
+    # information according to the granularity
     # (plus english precision)
     if (granularity == 'departement'):
         df = departments.copy()
@@ -207,10 +233,170 @@ def viz2Dmap(granularity='departement', date,
 
 
 # TODO:
-# set default parameters
-# td = date.today()
-# add interval for date ("should be from ... to ...")
 # NOTE: it worked without importing df_covid...
+
+
+# ---------- define viz3Dmap ----------
+def viz3Dmap(granularity='departement', criterion='hospitalises',
+             file_path=path_to_Desktop, file_name='3Dmap_Covid',
+             color=[255, 165, 0, 80]):
+    '''
+    Make a 3D map out of France Covid-19 data.
+    Layers elevation represent the amount of death for the given place at a
+    given day, which can be view by passing the mouse on it.
+
+    Parameters
+    ----------
+    :param granularity: the granularity we want the map to be based on.
+        Should be either 'region' or 'departement'. On the latter case,
+        columns layers will be raised from the centroid of each department,
+        while on the former, these will be raides from each region's centroid.
+        Defaults to 'department'.
+    :type granularity: string
+    :param criterion: the Covid-19 indicator we want to see on the map.
+        Should be either 'hospitalises', 'reanimation', or 'deces':
+
+        - 'hospitalises':
+            will display the number of persons hospitalized
+            on a given date due to Covid-19
+        - 'reanimation':
+            will display the number of persons in resuscitation
+            on a given date due to Covid-19
+        - 'deces':
+            will display the cumulated number of death due to
+            the Covid-19 in France from the beginning of the pandemic, up to
+            a given date
+
+        defaults to 'hospitalises'.
+    :type criterion: str
+    :param color: color for columns. Should be a list
+        containing RGBA colors (red, green, blue, alpha).
+        For example, see here https://rgbacolorpicker.com/,
+        defaults to yellow (sort of)
+    :type color: str
+    :param file_path: the path on which to save the file, can be either Linux,
+        MAC-OS, or Windows path, defaults to user's Desktop.
+        **Warning:** only works if the user's OS default language is english.
+        Otherwise, path is not optional.
+    :type file_path: str
+    :param file_name: the name under which to save the file,
+        defaults to '3Dmap_Covid'
+    :type file_name: str
+
+    Returns
+    -------
+    :return: An interactive 3D map saved on a html file openable on
+        your favorite web browser
+    :rtype: '.html' file
+
+    :Examples:
+
+    **easy example**
+
+    >>> viz3Dmap()
+
+    **example using Linux path**
+
+    >>> import os
+    >>> path_to_desktop = os.path.expanduser("~/Desktop")
+    >>> viz3Dmap(file_path=path_to_desktop, file_name='pinky_3D_map',
+    ...          granularity='departement', criterion='reanimation',
+    ...          color=[245, 92, 245, 80])
+
+    **example using Windows path**
+
+    >>> import os
+    >>> W_path = 'c:\\Users\\username\\Documents'
+    >>> viz3Dmap(file_path=W_path, color=[230, 37, 37, 80],
+    ...          criterion='deces')
+
+    :Notes:
+
+    The bottom of the map corresponds to the beginning of the Covid-19
+    pandemic in France, specifically here, data start on 2020-01-24. The top
+    of the columns corresponds to now.
+
+    **Manipulation tips:**
+
+    - pass mouse on columns to see time evolution
+    - use 'ctrl + mouse move' to change view angle
+    - use 'clic + mouse move' to move map
+    '''
+    # ---------- file imports ----------
+    # geo files
+    reg_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "regions.geojson")
+    dep_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "departements.geojson")
+    reg = gpd.read_file(reg_path)
+    dep = gpd.read_file(dep_path)
+    # covid files
+    df_covid = load_datasets.Load_chiffres_cles().save_as_df()
+    # ---------- preprocesses ----------
+    df_covid = preprocess_chiffres_cles.drop_some_columns(df_covid)
+    df_covid = preprocess_chiffres_cles.reg_depts(df_covid)
+    df_covid = preprocess_chiffres_cles.reg_depts_code_format(df_covid)
+    # choose dataframe according to granularity argument
+    if (granularity == 'departement'):
+        df = dep.copy()
+        gra = 'department'
+    else:
+        df = reg.copy()
+        gra = 'region'
+    # format crierion for markers purpose
+    if (criterion == 'hospitalises'):
+        tooltip = {
+            "html": "<b>Place:</b> {nom} <br /><b>Date:</b> {date}\
+            <br /><b>Number of hospitalization:</b> {hospitalises}"}
+    elif (criterion == 'reanimation'):
+        tooltip = {
+            "html": "<b>Place:</b> {nom} <br /><b>Date:</b> {date}\
+            <br /><b>Number of persons in resuscitation:</b> {reanimation}"}
+    else:
+        tooltip = {
+            "html": "<b>Place:</b> {nom} <br /><b>Date:</b> {date}\
+            <br /><b>Cumulated number of death:</b> {deces}"}
+    # for covid data
+    df_local = df_covid.loc[df_covid['granularite'] == granularity]
+    # for geo data
+    # grab department's centroids (lat and lon)
+    df_points = df.copy()
+    # set Europe Coordinate Reference System for geographic accuracy purpose
+    df_points = df_points.set_crs(epsg=3035, allow_override=True)
+    df_points['geometry'] = df_points['geometry'].centroid
+    # merging on 'code'
+    A = pd.merge(df_local, df_points, on='code')
+    # separate latitude and longitude
+    A['lon'] = A.geometry.apply(lambda p: p.x)
+    A['lat'] = A.geometry.apply(lambda p: p.y)
+    # ---------- make map! ----------
+    # initialize view (centered on Paris!)
+    view = pdk.ViewState(latitude=46.232192999999995,
+                         longitude=2.209666999999996,
+                         pitch=50,
+                         zoom=5.5)
+    # add pydeck layers
+    covid_amount_layer = pdk.Layer('ColumnLayer',
+                                   data=A,
+                                   get_position=['lon', 'lat'],
+                                   get_elevation=criterion,
+                                   elevation_scale=100,
+                                   radius=7000,
+                                   get_fill_color=color,
+                                   pickable=True,
+                                   auto_highlight=True)
+    # render map
+    covid_amount_layer_map = pdk.Deck(layers=covid_amount_layer,
+                                      initial_view_state=view,
+                                      tooltip=tooltip)
+    # save map
+    suffix = '.html'
+    save_path = os.path.join(file_path, file_name + suffix)
+    covid_amount_layer_map.to_html(save_path)
 
 
 # ---------- define transfer_map ----------
@@ -222,7 +408,6 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
 
     Parameters
     ----------
-
     :param file_path: the path on which to save the file, can be either Linux,
         MAC-OS, or Windows path, defaults to user's Desktop.
         **Warning:** only works if the user's OS default language is english.
@@ -244,31 +429,31 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
 
     Returns
     -------
-
     :return: An interactive 3D-arc-map saved on a html file openable on
         your favorite web browser
     :rtype: '.html' file
 
-    Examples
-    --------
+    :Examples:
+
+    **easy example**
+
+    >>> transfer_map()
 
     **example using Linux path**
+
     >>> import os
     >>> path_to_desktop = os.path.expanduser("~/Desktop")
     >>> transfer_map(file_path=path_to_desktop, file_name='pinky_arc_map',
     ...          color_d=[255, 165, 0, 80], color_a=[128, 0, 128, 80])
 
     **example using Windows path**
+
     >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> transfer_map(file_path=W_path, file_name='counter_intuitive_arc_map',
     ...          color_d=[61, 230, 37, 80], color_a=[230, 37, 37, 80])
 
-    **easy example**
-    >>>transfer_map()
-
-    Notes
-    -----
+    :Notes:
 
     **Manipulation tips:**
 
@@ -277,7 +462,7 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     - use 'clic + mouse move' to move map
     """
     # ---------- covid file ----------
-    transfer = pd.read_csv('transferts_patients.csv')
+    transfer = load_datasets.Load_transfer().save_as_df()
     # Keep trace of transfer order
     # because rows get mixed up when merging.
     # number transfer from first to last
@@ -286,16 +471,20 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     transfer['order'] = transfer_order
     # ---------- geo files ----------
     # only need regions here
-    regions = gpd.read_file('regions.geojson')
+    reg_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "regions.geojson")
+    regions = gpd.read_file(reg_path)
     # grab region's centroids (lat and lon)
     region_points = regions.copy()
     # set Europe Coordinate Reference System for geographic accuracy purpose
     region_points = region_points.set_crs(epsg=3035, allow_override=True)
     region_points['geometry'] = region_points['geometry'].centroid
-    # extract departure informations
+    # extract departure information
     departure = transfer[['region_depart', 'order', 'debut_transfert']]
     departure['nom'] = departure['region_depart']
-    # extract departure informations
+    # extract departure information
     arrival = transfer[['region_arrivee',
                         'nombre_patients_transferes',
                         'order']]
@@ -319,7 +508,7 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     # (on order so that we have our chronology back!)
     DA = pd.merge(A, D, on='order')
     # save for sparse matrix purpose ?
-    DA.to_csv('departure_arrival.csv')
+    # DA.to_csv('departure_arrival.csv')
     # ---------- map time! ----------
     # initialize view (centered on Paris!)
     view = pdk.ViewState(latitude=46.2322, longitude=2.20967, pitch=50, zoom=5)

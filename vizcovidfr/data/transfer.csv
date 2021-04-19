@@ -1,0 +1,27 @@
+debut_transfert,fin_transfert,type_vecteur,region_depart,region_arrivee,pays_arrivee,nombre_patients_transferes
+2020-03-18,2020-03-18,avion,Grand Est,Provence-Alpes-Côte-d'Azur,,6
+2020-03-21,2020-03-21,avion,Grand Est,Nouvelle-Aquitaine,,6
+2020-03-22,2020-03-22,bateau militaire,Corse,Provence-Alpes-Côte-d'Azur,,12
+2020-03-23,2020-03-23,avion,Grand Est,Bretagne,,6
+2020-03-26,2020-03-26,train,Grand Est,Pays-de-la-Loire,,20
+2020-03-27,2020-03-27,avion,Grand Est,Nouvelle-Aquitaine,,6
+2020-03-27,2020-03-28,avion,Grand Est,Nouvelle-Aquitaine,,12
+2020-03-28,2020-03-30,avion,Île-de-France,Centre-Val de Loire,,12
+2020-03-27,2020-03-30,avion;train,Bourgogne-Franche-Comté,Auvergne-Rhône-Alpes,,41
+2020-03-28,2020-03-30,avion,Bourgogne-Franche-Comté,Provence-Alpes-Côte-d'Azur,,10
+2020-03-29,2020-03-29,train,Grand Est,Nouvelle-Aquitaine,,12
+2020-03-29,2020-03-29,train,Grand Est,Nouvelle-Aquitaine,,24
+2020-03-31,2020-03-31,avion,Grand Est,,Allemagne,6
+2020-04-01,2020-04-01,train,Île-de-France,Bretagne,,32
+2020-04-01,2020-04-02,avion,Grand Est,Occitanie,,12
+2020-04-01,2020-04-03,avion,Île-de-France,Pays-de-la-Loire,,47
+2020-04-01,2020-04-03,avion;train,Île-de-France,Normandie,,44
+2020-04-01,2020-04-03,avion,Île-de-France,Centre-Val de Loire,,11
+2020-04-03,2020-04-03,avion,Grand Est,Occitanie,,6
+2020-04-03,2020-04-03,train,Grand Est,Nouvelle-Aquitaine,,24
+2020-04-03,2020-04-04,avion,Île-de-France,Auvergne-Rhône-Alpes,,20
+2020-04-04,2020-04-05,avion,Grand Est,Occitanie,,12
+2020-04-05,2020-04-05,train,Île-de-France,Bretagne,,41
+2020-03-21,2020-04-05,avion;train,Grand Est,,Allemagne;Suisse;Luxembourg;Autriche,172
+2020-03-26,2020-03-28,avion,Bourgogne-Franche-Comté,,Suisse,5
+2020-04-10,2020-04-10,train,Île-de-France,Nouvelle-Aquitaine,,45
