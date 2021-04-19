@@ -8,6 +8,7 @@ import seaborn as sns
 from vizcovidfr.loads.load_datasets import Load_posquotdep,Load_posquotreg,Load_chiffres_fr
 from vizcovidfr.preprocesses import preprocess_chiffres_cles,preprocess_positivity
 from vizcovidfr.preprocesses import preprocess_positivity
+import matplotlib.pyplot as plt
 
 def keyseries(nom,chiffre,evo=True):
 
@@ -214,6 +215,7 @@ def keyseries(nom,chiffre,evo=True):
         DEPARTMENTS=dict(zip(DEPARTMENTS.values(),DEPARTMENTS.keys()))
         if nom in REGIONS.keys():
             df=preprocess_positivity.granupositivity(Load_posquotreg().save_as_df(),nom)
+        
         elif nom in DEPARTMENTS.keys():
             df=preprocess_positivity.granupositivity(Load_posquotdep().save_as_df(),nom)
 
@@ -257,7 +259,6 @@ def plotseries(series,average=True):
     else:
 
         ax=series.plot()
-
     return ax
 
 def keyplot(nom,chiffre,evo=True,average=True):
@@ -342,6 +343,7 @@ def keyplot(nom,chiffre,evo=True,average=True):
 
         ax.set(title="Daily number of people \
             cured from Covid-19 "+nom,ylabel="people")
+    plt.show()
 
 #%%
 keyplot("Hérault","cas",evo=False)

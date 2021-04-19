@@ -3,6 +3,9 @@ from download import download
 import pandas as pd
 from vizcovidfr.loads.load_datasets import Load_posquotfr,Load_posquotreg,Load_posquotdep
 from vizcovidfr.loads.load_datasets import Load_poshebdep,Load_poshebreg,Load_poshebfr
+from vizcovidfr.loads.load_datasets import Load_incquotdep,Load_incquotreg,Load_incquotfr
+from vizcovidfr.loads.load_datasets import Load_inchebdep,Load_inchebreg,Load_inchebfr
+from vizcovidfr.loads.load_datasets import Load_incregrea,Load_hopdep,Load_hopage,Load_hopsex
 from vizcovidfr.preprocesses.preprocess_positivity import ignoreage,granupositivity
 #%%
 
@@ -79,81 +82,64 @@ dfposfrheb
 comparativebarplot("2020-S23","T",dfposfrheb)
 
 #%%
-urlincdep="https://www.data.gouv.fr/fr/datasets/r/19a91d64-3cd3-42fc-9943-d635491a4d76"
-pathtarget="../data/incquotdep.csv"
-download(urlincdep,pathtarget,replace=True)
-dfincdep=pd.read_csv(pathtarget,sep=";")
-subtablepos(dfincdep,"dep","01")["P"]*100000/subtablepos(dfincdep,"dep","01")["pop"]
+dfincdep=ignoreage(Load_incquotdep().save_as_df())
+dfincdep
+granupositivity(dfincdep,"01","dep")["P"]*100000/granupositivity(dfincdep,"01","dep")["pop"]
 #%%
-urlincreg="https://www.data.gouv.fr/fr/datasets/r/ad09241e-52fa-4be8-8298-e5760b43cae2"
-pathtarget="../data/incquotreg.csv"
-download(urlincreg,pathtarget,replace=True)
-dfincreg=pd.read_csv(pathtarget,sep=";")
+dfincreg=ignoreage(Load_incquotreg().save_as_df())
 dfincreg
 def incidencerate(jour,df,sex=False):
     if not sex:
         return df.loc[jour,]["P"]*100000/df.loc[jour,"pop"]
     else: return [df.loc[jour,]["P_h"]*100000/df.loc[jour,]["pop_h"],df.loc[jour,]["P_f"]*100000/df.loc[jour,]["pop_f"]]
-comparativebarplot("2021-01-15","incidence",subtablepos(dfincreg,"reg",2))
-incidencerate("2021-01-15",subtablepos(dfincreg,"reg",3),sex=True)
+comparativebarplot("2021-01-15","incidence",granupositivity(dfincreg,2,"reg"))
+incidencerate("2021-01-15",granupositivity(dfincreg,3,"reg"),sex=True)
 
 
 #%%
-urlincfr="https://www.data.gouv.fr/fr/datasets/r/57d44bd6-c9fd-424f-9a72-7834454f9e3c"
-pathtarget="../data/incquotfr.csv"
-download(urlincfr,pathtarget,replace=True)
-dfincfr=pd.read_csv(pathtarget,sep=";")
+dfincfr=ignoreage(Load_incquotfr().save_as_df())
 dfincfr
-incidencerate("2021-01-15",ignoreage(dfincfr),sex=True)
+incidencerate("2021-01-15",dfincfr,sex=True)
 
 #%%
-urlincdepheb="https://www.data.gouv.fr/fr/datasets/r/bb2a18f3-bdd5-4101-8687-945d6e4e435f"
-pathtarget="../data/inchebdep.csv"
-download(urlincdepheb,pathtarget,replace=True)
-dfincdepheb=pd.read_csv(pathtarget,sep=";")
+dfincdepheb=ignoreage(Load_inchebdep().save_as_df(),"week")
 dfincdepheb
-subtablepos(dfincdepheb,"dep","01","week")["P"]*100000/subtablepos(dfincdepheb,"dep","01","week")["pop"]
+
+granupositivity(dfincdepheb,"01","dep")["P"]*100000/granupositivity(dfincdepheb,"01","dep")["pop"]
 
 
 #%%
-urlincregheb="https://www.data.gouv.fr/fr/datasets/r/66b09e9a-41b5-4ed6-b03c-9aef93a4b559"
-pathtarget="../data/inchebreg.csv"
-download(urlincregheb,pathtarget,replace=True)
-dfincregheb=pd.read_csv(pathtarget,sep=";")
+dfincregheb=ignoreage(Load_inchebreg().save_as_df(),"week")
 dfincregheb
-comparativebarplot("2020-S50","incidence",subtablepos(dfincregheb,"reg",2,"week"))
-incidencerate("2020-S50",subtablepos(dfincregheb,"reg",3,"week"),sex=True)
-subtablepos(dfincregheb,"reg",2,"week")
-
+comparativebarplot("2020-S50","incidence",granupositivity(dfincregheb,2,"reg"))
+incidencerate("2020-S50",granupositivity(dfincregheb,2,"reg"),sex=True)
+dfincregheb
+granupositivity(dfincregheb,2,"reg")
 #%%
 
-urlincfrheb="https://www.data.gouv.fr/fr/datasets/r/2360f82e-4fa4-475a-bc07-9caa206d9e32"
-pathtarget="../data/inchebfr.csv"
-download(urlincfrheb,pathtarget,replace=True)
-dfincfrheb=pd.read_csv(pathtarget,sep=";")
+dfincfrheb=ignoreage(Load_inchebfr().save_as_df(),"week")
 dfincfrheb
-incidencerate("2021-S01",dfincfrheb.groupby(['week']).sum(),sex=True)
-comparativebarplot("2021-S01","incidence",dfincfrheb.groupby(['week']).sum())
+incidencerate("2021-S01",dfincfrheb,sex=True)
+comparativebarplot("2021-S01","incidence",dfincfrheb)
 
 
 # %%
-urlincregrea="https://www.data.gouv.fr/fr/datasets/r/a1466f7f-4ece-4158-a373-f5d4db167eb0"
-pathtarget="../data/increareg.csv"
-download(urlincregrea,pathtarget,replace=True)
-dfincregrea=pd.read_csv(pathtarget,sep=";",encoding="latin-1")
+dfincregrea=Load_incregrea().save_as_df()
 dfincregrea
 dfincregrea.loc[dfincregrea["numReg"]==84,:]
 # %%
-urlhopdep="https://www.data.gouv.fr/fr/datasets/r/6fadff46-9efd-4c53-942a-54aca783c30c"
-pathtarget="../data/hopdep.csv"
-download(urlhopdep,pathtarget,replace=True)
-dfhopdep=pd.read_csv(pathtarget,sep=";",encoding="latin-1")
+dfhopdep=Load_hopdep().save_as_df()
 dfhopdep.loc[dfhopdep["dep"]=="03",:]
 #%%
-urlhopage="https://www.data.gouv.fr/fr/datasets/r/08c18e08-6780-452d-9b8c-ae244ad529b3"
-pathtarget="../data/hopage.csv"
-download(urlhopage,pathtarget,replace=True)
-dfhopage=pd.read_csv(pathtarget,sep=";",encoding="latin-1")
+dfhopage=Load_hopage().save_as_df()
 ignoreage(dfhopage.loc[dfhopage["reg"]==1,:])
+
+# %%
+dfhopsex=Load_hopsex().save_as_df()
+dfhopsex
+dfhopsex.index=pd.to_datetime(dfhopsex['jour'])
+del dfhopsex['jour']
+dfhopsex
+granupositivity(dfhopsex,"01","dep")
 
 # %%
