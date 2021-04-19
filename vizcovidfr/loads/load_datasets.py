@@ -19,7 +19,7 @@ path_target_cc = os.path.join(path_target, "chiffres-cles.csv")
 class Load_chiffres_cles:
     """
     Download and save 'chiffres-cles.csv',
-    a dataset containing general Covid-19 informations
+    a dataset containing general Covid-19 information
     """
     def __init__(self, url=url_cc, target_name=path_target_cc):
         download(url, target_name, replace=True)
@@ -42,7 +42,7 @@ path_target_tr = os.path.join(path_target, "transfer.csv")
 class Load_transfer:
     """
     Download and save 'transfer.csv',
-    a dataset containing informations about Covid-19 patient transfers
+    a dataset containing information about Covid-19 patient transfers
     """
     def __init__(self, url=url_tr, target_name=path_target_tr):
         download(url, target_name, replace=True)
@@ -73,7 +73,6 @@ class Load_Vaccine_storage:
         df = pd.read_csv(path_target_sen)
         return df
 
-
 # ---------- covid-19-france-vaccinations-age-dep ----------
 url_vac = "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/download/?format=csv&disjunctive.variable_label=true&refine.date=2021&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B"
 path_target_vac = os.path.join(
@@ -83,14 +82,14 @@ path_target_vac = os.path.join(
 class Load_vaccination:
     """
     Download and save 'covid-19-france-vaccinations-age-dep.csv',
-    a dataset containing Covid-19 vaccination informations
+    a dataset containing Covid-19 vaccination information
     """
     def __init__(self, url=url_vac, target_name=path_target_vac):
         download(url, target_name, replace=True)
 
     @staticmethod
     def save_as_df():
-        df = pd.read_csv(path_target_vac, sep = ';')
+        df = pd.read_csv(path_target_vac,sep=";")
         return df
 
 
@@ -121,7 +120,7 @@ path_target_posreg = os.path.join(path_target, "./posquotreg.csv")
 class Load_posquotreg:
     """
     Download and save 'posquotreg.csv',
-    a dataset containing positivity informations by region.
+    a dataset containing positivity information by region.
     """
     def __init__(self, url=url_posreg, target_name=path_target_posreg):
         download(url, target_name, replace=True)
@@ -140,7 +139,7 @@ path_target_posdep = os.path.join(path_target, "./posquotdep.csv")
 class Load_posquotdep:
     """
     Download and save 'posquotdep.csv',
-    a dataset containing positive informations by departments
+    a dataset containing positive information by departments
     """
     def __init__(self, url=url_posdep, target_name=path_target_posdep):
         download(url, target_name, replace=True)
@@ -168,8 +167,8 @@ class Load_posquotfr:
     def save_as_df():
         df = pd.read_csv(path_target_posfr, sep=";")
         return df
-
-
+    
+   
 # ---------- poshebdep ----------
 url_poshebdep = "https://www.data.gouv.fr/fr/datasets/r/dd3ac13c-e87f-4b33-8897-07baff4e1783"
 path_target_poshebdep = os.path.join(path_target, "./poshebdep.csv")
@@ -222,4 +221,184 @@ class Load_poshebfr:
     @staticmethod
     def save_as_df():
         df = pd.read_csv(path_target_poshebfr, sep=";")
+        return df
+
+# ---------- incquotdep ----------
+url_incdep = "https://www.data.gouv.fr/fr/datasets/r/19a91d64-3cd3-42fc-9943-d635491a4d76"
+path_target_incdep = os.path.join(path_target, "./incquotdep.csv")
+
+
+class Load_incquotdep:
+    """
+    Download and save 'incquotdep.csv',
+    a dataset containing incidence informations by departments 
+    """
+    def __init__(self, url=url_incdep, target_name=path_target_incdep):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_incdep, sep=";")
+        return df
+
+# ---------- incquotreg ----------
+url_increg = "https://www.data.gouv.fr/fr/datasets/r/ad09241e-52fa-4be8-8298-e5760b43cae2"
+path_target_increg = os.path.join(path_target, "./incquotreg.csv")
+
+
+class Load_incquotreg:
+    """
+    Download and save 'incquotreg.csv',
+    a dataset containing incidence information by regions 
+    """
+    def __init__(self, url=url_increg, target_name=path_target_increg):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_increg, sep=";")
+        return df
+
+# ---------- incfr ----------
+url_incfr = "https://www.data.gouv.fr/fr/datasets/r/57d44bd6-c9fd-424f-9a72-7834454f9e3c"
+path_target_incfr = os.path.join(path_target, "./incquotfr.csv")
+
+
+class Load_incquotfr:
+    """
+    Download and save 'incquotfr.csv',
+    a dataset containing incidence information  
+    """
+    def __init__(self, url=url_incfr, target_name=path_target_incfr):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_incfr, sep=";")
+        return df
+
+# ---------- inchebdep ----------
+url_incdepheb = "https://www.data.gouv.fr/fr/datasets/r/bb2a18f3-bdd5-4101-8687-945d6e4e435f"
+path_target_incdepheb = os.path.join(path_target, "./inchebdep.csv")
+
+
+class Load_inchebdep:
+    """
+    Download and save 'incquotfr.csv',
+    a dataset containing incidence information
+    """
+    def __init__(self, url=url_incdepheb, target_name=path_target_incdepheb):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_incdepheb, sep=";")
+        return df
+
+# ---------- inchebreg ----------
+url_incregheb = "https://www.data.gouv.fr/fr/datasets/r/66b09e9a-41b5-4ed6-b03c-9aef93a4b559"
+path_target_incregheb = os.path.join(path_target, "./inchebreg.csv")
+
+
+class Load_inchebreg:
+    """
+    Download and save 'inchebreg.csv',
+    a dataset containing incidence information
+    """
+    def __init__(self, url=url_incregheb, target_name=path_target_incregheb):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_incregheb, sep=";")
+        return df
+
+# ---------- inchebfr ----------
+url_incfrheb = "https://www.data.gouv.fr/fr/datasets/r/2360f82e-4fa4-475a-bc07-9caa206d9e32"
+path_target_incfrheb = os.path.join(path_target, "./inchebfr.csv")
+
+
+class Load_inchebfr:
+    """
+    Download and save 'inchebfr.csv',
+    a dataset containing incidence information
+    """
+    def __init__(self, url=url_incfrheb, target_name=path_target_incfrheb):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_incfrheb, sep=";")
+        return df
+
+# ---------- incregrea ----------
+url_incregrea = "https://www.data.gouv.fr/fr/datasets/r/a1466f7f-4ece-4158-a373-f5d4db167eb0"
+path_target_incregrea = os.path.join(path_target, "./incregrea.csv")
+
+
+class Load_incregrea:
+    """
+    Download and save 'inchebfr.csv',
+    a dataset containing incidence information
+    """
+    def __init__(self, url=url_incregrea, target_name=path_target_incregrea):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_incregrea, sep=";",encoding="latin-1")
+        return df
+
+# ---------- hopdep ----------
+url_hopdep ="https://www.data.gouv.fr/fr/datasets/r/6fadff46-9efd-4c53-942a-54aca783c30c"
+path_target_hopdep = os.path.join(path_target, "./hopdep.csv")
+
+
+class Load_hopdep:
+    """
+    Download and save 'hopdep.csv',
+    a dataset containing incidence information
+    """
+    def __init__(self, url=url_hopdep, target_name=path_target_hopdep):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_hopdep, sep=";",encoding="latin-1")
+        return df
+
+# ---------- hopage ----------
+url_hopage ="https://www.data.gouv.fr/fr/datasets/r/08c18e08-6780-452d-9b8c-ae244ad529b3"
+path_target_hopage = os.path.join(path_target, "./hopage.csv")
+
+
+class Load_hopage:
+    """
+    Download and save 'hopdep.csv',
+    a dataset containing incidence information
+    """
+    def __init__(self, url=url_hopage, target_name=path_target_hopage):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_hopage, sep=";",encoding="latin-1")
+        return df
+
+# ---------- hopage ----------
+url_hopsex ="https://www.data.gouv.fr/fr/datasets/r/63352e38-d353-4b54-bfd1-f1b3ee1cabd7"
+path_target_hopsex = os.path.join(path_target, "./hopsex.csv")
+
+
+class Load_hopsex:
+    """
+    Download and save 'hopdep.csv',
+    a dataset containing incidence information
+    """
+    def __init__(self, url=url_hopsex, target_name=path_target_hopsex):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target_hopsex, sep=";",encoding="latin-1")
         return df
