@@ -44,7 +44,7 @@ def test_sparse_graph():
     of the resulting graph is an integer.
     If not, an AssertionError will raise.
     """
-    G = sparse_graph.sparse_graph(show=False)
+    G = sparse.sparse_graph(show=False)
     e = G.number_of_edges()
     result = (type(e) == int)
     assert result
@@ -56,5 +56,5 @@ def test_sparse_matrix():
     is a sparse matrix.
     If not, an AssertionError will raise.
     """
-    result = (isspmatrix(sparse_graph.sparse_matrix(show=False)))
+    result = (isspmatrix(sparse.sparse_matrix(show=False)))
     assert result
