@@ -156,7 +156,7 @@ def vacmap(granularity, age_range):
                                    auto_highlight = True)
     #save the map into a html file
     tooltip = {
-    "html": "<b>{Nmb of first doses}</b> first doses and <b>{Nmb of second doses}</b> second doses, in <b>{department_code}</b> department",
+    "html": "<b>{Nmb of first doses}</b> first doses and <b>{Nmb of second doses}</b> second doses, in department <b>{department_code}</b>",
     "style": {"background": "grey", "color": "white", "font-family": '"Helvetica Neue", Arial', "z-index": "10000"},
     }
     r = pdk.Deck(
