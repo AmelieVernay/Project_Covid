@@ -9,29 +9,68 @@ from scipy.sparse import isspmatrix
 from vizcovidfr.loads import load_datasets
 
 
-def sparse_graph():
+def sparse_graph(directed=False):
     """
+    Plot and return the graph of the transfer of patient with Covid-19,
+    inside or outside France.
+
+    :Notes:
+
+    Try to first plot the undirected graph to see if you can guess the
+    direction of the arrows, then check by calling the function with
+    directed=True !
+
+    Parameters
+    ----------
+
+    :param directed: whether we want the graph to be directed or not
+    :type directed: bool, optional (default=False)
+
+    Returns
+    -------
+
+    :return: plot the graph representation and return the graph object
+    :rtype:
+        networkx.classes.graph.Graph (if directed=False)
+        networkx.classes.digraph.DiGraph (if directed=True)
+
+    :Examples:
+
+    >>> sparse_graph(directed=True)
+
+    >>> sparse_graph(directed=False)
     """
     raw_transfer = load_datasets.Load_transfer().save_as_df()
     raw_transfer['region_arrivee'] = raw_transfer['region_arrivee'].replace(
                                                 np.nan, 'outside France')
-    # keep only relevent informations
+    # keep only relevent information
     transfer = raw_transfer[['region_depart',
                              'region_arrivee',
                              'nombre_patients_transferes']]
     # make a graph out of the transfer dataframe,
-    G = nx.from_pandas_edgelist(transfer, 'region_depart',
-                                          'region_arrivee',
-                                          'nombre_patients_transferes')
+    if (directed):
+        word = 'Directed'
+        good_seed = 1133311  # it's a palindromic number!
+        G = nx.from_pandas_edgelist(transfer, 'region_depart',
+                                              'region_arrivee',
+                                              'nombre_patients_transferes',
+                                              create_using=nx.DiGraph())
+    else:
+        word = 'Undirected'
+        good_seed = 41
+        G = nx.from_pandas_edgelist(transfer, 'region_depart',
+                                              'region_arrivee',
+                                              'nombre_patients_transferes',
+                                              create_using=nx.Graph())
     # ---------- plot graph ----------
-    plt.figure(figsize=(14, 9))
+    plt.figure(figsize=(13, 9))
     # set (good) seed for orientation purpose
-    good_seed = 41
     # draw graph
     nx.draw_networkx(G, with_labels=True,
                      pos=nx.spring_layout(G, seed=good_seed),
                      node_color='#d51e3999',
-                     edge_color='#cc901699')
+                     edge_color='#cc901699',
+                     font_size=11)
 
     # extract edge 'weights' (i.e. number of transfered patients)
     labels = nx.get_edge_attributes(G, "nombre_patients_transferes")
@@ -43,17 +82,27 @@ def sparse_graph():
     lab_val = list(labels.values())
     scaled_lab_val = [element * 0.1 for element in lab_val]
     # draw egdes proportionately to weights
-    nx.draw_networkx_edges(G, pos=nx.spring_layout(G, seed=good_seed),
-                           width=scaled_lab_val,
-                           edge_color='#cc901699')
+    if (directed):
+        nx.draw_networkx_edges(G, pos=nx.spring_layout(G, seed=good_seed),
+                               width=scaled_lab_val,
+                               edge_color='#cc901699',
+                               arrowstyle='->',
+                               arrowsize=17)
+    else:
+        nx.draw_networkx_edges(G, pos=nx.spring_layout(G, seed=good_seed),
+                               width=scaled_lab_val,
+                               edge_color='#cc901699')
 
     plt.axis('off')
-    plt.title('Graph of patient transfers')
+    plt.figtext(.5, .9, f'{word} graph of patient transfers',
+                fontsize=17, ha='center')
     plt.show()
     return G
 
 
-G = sparse_graph()
+Ga = sparse_graph()
+
+Ga
 
 
 G["Bretagne"]["Grand Est"]["nombre_patients_transferes"]
