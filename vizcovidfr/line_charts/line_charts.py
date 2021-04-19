@@ -6,7 +6,7 @@ pd.options.display.max_rows = 25
 import datetime
 import plotly.express as px
 
-#from vizcovidfr.loads import load_datasets
+from vizcovidfr.loads import load_datasets
 
 
 
@@ -14,9 +14,9 @@ import plotly.express as px
 #line chart with number of vaccinated people in the whole France
 
 #line chart which represents the french vaccine storage per vaccine type 
-
-url = "https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/#_"
-path_target = "C:/Users/quenf/vizcovidfr/vizcovidfr/data/stocks-es-national.csv"
+df_vac_type = load_datasets.Load_Vaccine_storage().save_as_df()
+#url = "https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/#_"
+#path_target = "C:/Users/quenf/vizcovidfr/vizcovidfr/data/stocks-es-national.csv"
 #download(url, path_target, replace = True)
 
 def vactypedoses(vaccine_type):
@@ -31,7 +31,7 @@ def vactypedoses(vaccine_type):
     dose number and the actual cdu (common dispensing units) 
     number, of the chosen vaccine type (in storage).
     '''
-    df_Vac_type = pd.read_csv(path_target, sep = ",")
+    #df_Vac_type = pd.read_csv(path_target, sep = ",")
     df_Vac_type2 = df_Vac_type.groupby(['type_de_vaccin'])
     pfizer = df_Vac_type2.get_group('Pfizer').reset_index(drop = True)
     mdn = df_Vac_type2.get_group('Moderna').reset_index(drop = True)
@@ -64,7 +64,7 @@ def vactypedoses(vaccine_type):
 
 
 #Test
-vactypedoses(vaccine_type = 'Moderna')
+#vactypedoses(vaccine_type = 'All vaccines')
 
 #line chart with total number of vaccine doses
 

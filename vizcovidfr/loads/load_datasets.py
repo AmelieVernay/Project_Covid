@@ -55,7 +55,8 @@ class Load_transfer:
 
 
 # ---------- stocks-es-national ----------
-url_sen = "https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/#_"
+#url_sen = "https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/#_"
+url_sen = "https://www.data.gouv.fr/fr/datasets/r/519e2699-27d2-47c0-840b-81dbb30d4318"
 path_target_sen = os.path.join(path_target, "./stocks-es-national.csv")
 
 
@@ -72,8 +73,9 @@ class Load_Vaccine_storage:
         df = pd.read_csv(path_target_sen)
         return df
 
+
 # ---------- covid-19-france-vaccinations-age-dep ----------
-url_vac = "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/export/?disjunctive.variable_label&sort=date&refine.date=2021&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge"
+url_vac = "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/download/?format=csv&disjunctive.variable_label=true&refine.date=2021&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B"
 path_target_vac = os.path.join(
                     path_target, "./covid-19-france-vaccinations-age-dep.csv")
 
@@ -88,7 +90,7 @@ class Load_vaccination:
 
     @staticmethod
     def save_as_df():
-        df = pd.read_csv(path_target_vac)
+        df = pd.read_csv(path_target_vac, sep = ';')
         return df
 
 
@@ -166,8 +168,8 @@ class Load_posquotfr:
     def save_as_df():
         df = pd.read_csv(path_target_posfr, sep=";")
         return df
-    
-   
+
+
 # ---------- poshebdep ----------
 url_poshebdep = "https://www.data.gouv.fr/fr/datasets/r/dd3ac13c-e87f-4b33-8897-07baff4e1783"
 path_target_poshebdep = os.path.join(path_target, "./poshebdep.csv")
