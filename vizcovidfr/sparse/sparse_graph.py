@@ -1,4 +1,4 @@
-import time
+# ---------- requirements ----------
 import numpy as np
 import pandas as pd
 import networkx as nx
@@ -103,20 +103,15 @@ def sparse_graph(directed=False, show=True):
     return G
 
 
-Ga = sparse_graph(show=False)
+# Ga = sparse_graph(show=False)
+# print(Ga["Bretagne"]["Grand Est"]["nombre_patients_transferes"])
 
-print(Ga["Bretagne"]["Grand Est"]["nombre_patients_transferes"])
-
-
-# Now let's see it's adjacency matrix.
-
-#G["Bretagne"]["Grand Est"]["nombre_patients_transferes"]
-
+# Now let's see it's adjacency matrix!
 
 def sparse_matrix(show=True):
     """
-    Return and plot the adjacency matrix of the graph of the transfer of patient
-    with Covid-19, inside or outside France. This, by definition, is
+    Return and plot the adjacency matrix of the graph of the transfer of
+    patient with Covid-19, inside or outside France. This, by definition, is
     a sparse matrix.
 
     Parameters
