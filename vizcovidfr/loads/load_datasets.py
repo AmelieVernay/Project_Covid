@@ -19,7 +19,7 @@ path_target_cc = os.path.join(path_target, "chiffres-cles.csv")
 class Load_chiffres_cles:
     """
     Download and save 'chiffres-cles.csv',
-    a dataset containing general Covid-19 informations
+    a dataset containing general Covid-19 information
     """
     def __init__(self, url=url_cc, target_name=path_target_cc):
         download(url, target_name, replace=True)
@@ -42,7 +42,7 @@ path_target_tr = os.path.join(path_target, "transfer.csv")
 class Load_transfer:
     """
     Download and save 'transfer.csv',
-    a dataset containing informations about Covid-19 patient transfers
+    a dataset containing information about Covid-19 patient transfers
     """
     def __init__(self, url=url_tr, target_name=path_target_tr):
         download(url, target_name, replace=True)
@@ -55,7 +55,8 @@ class Load_transfer:
 
 
 # ---------- stocks-es-national ----------
-url_sen = "https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/#_"
+#url_sen = "https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/#_"
+url_sen = "https://www.data.gouv.fr/fr/datasets/r/519e2699-27d2-47c0-840b-81dbb30d4318"
 path_target_sen = os.path.join(path_target, "./stocks-es-national.csv")
 
 
@@ -73,7 +74,7 @@ class Load_Vaccine_storage:
         return df
 
 # ---------- covid-19-france-vaccinations-age-dep ----------
-url_vac = "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/export/?disjunctive.variable_label&sort=date&refine.date=2021&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge"
+url_vac = "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/download/?format=csv&disjunctive.variable_label=true&refine.date=2021&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B"
 path_target_vac = os.path.join(
                     path_target, "./covid-19-france-vaccinations-age-dep.csv")
 
@@ -81,14 +82,14 @@ path_target_vac = os.path.join(
 class Load_vaccination:
     """
     Download and save 'covid-19-france-vaccinations-age-dep.csv',
-    a dataset containing Covid-19 vaccination informations
+    a dataset containing Covid-19 vaccination information
     """
     def __init__(self, url=url_vac, target_name=path_target_vac):
         download(url, target_name, replace=True)
 
     @staticmethod
     def save_as_df():
-        df = pd.read_csv(path_target_vac)
+        df = pd.read_csv(path_target_vac,sep=";")
         return df
 
 
