@@ -2,9 +2,9 @@
 # vizcovidfr
 ## A python package to visualize spatial evolution of Covid19 cases in France
 
-[comment]: <> <p align="center">
-[comment]: <> <img src="./doc/source/_static/vizcovidfr_transfer_map.png" style="vertical-align:middle" width="400" height='400' class='center' alt='logo'>
-[comment]: <> </p>
+<p align="center">
+<img src="./doc/source/_static/vizcovidfr_transfer_map.png" style="vertical-align:middle" width="400" height='400' class='center' alt='logo'>
+</p>
 
 
 As part of our course [HMMA238](https://github.com/bcharlier/HMMA238) 'Software Development', we are working on a team project.
