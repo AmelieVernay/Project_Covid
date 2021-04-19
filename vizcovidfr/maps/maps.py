@@ -47,7 +47,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
     :param granularity: the granularity we want the map to be based on.
         Should be either 'region' or 'departement', defaults to 'departement'.
     :type granularity: str
-    :param date: the date on which we want to get Covid-19 informations.
+    :param date: the date on which we want to get Covid-19 information.
         Should be of the form 'YYYY-MM-DD', and from 2020-01-24 to yesterday,
         (because the database is updated on the end of every day, so depending
         on the hour you want to use the function,
@@ -57,11 +57,14 @@ def viz2Dmap(granularity='departement', date=yesterday,
     :param criterion: the Covid-19 indicator we want to see on the map.
         Should be either 'hospitalises', 'reanimation', or 'deces':
 
-        - 'hospitalises': will display to number of persons hospitalized
+        - 'hospitalises':
+            will display the number of persons hospitalized
             on the given date due to Covid-19
-        - 'reanimation': will display to number of persons in resuscitation
+        - 'reanimation':
+            will display the number of persons in resuscitation
             on the given date due to Covid-19
-        - 'deces': will display to cumulated number of death due to
+        - 'deces':
+            will display the cumulated number of death due to
             the Covid-19 in France from the beginning of the pandemic, up to
             the given date
 
@@ -87,10 +90,11 @@ def viz2Dmap(granularity='departement', date=yesterday,
         your favorite web browser
     :rtype: '.html' file
 
-    Examples
-    --------
+    :Examples:
+
     **easy example**
-    >>>viz2Dmap()
+
+    >>> viz2Dmap()
 
     **example using Linux path**
 
@@ -108,15 +112,15 @@ def viz2Dmap(granularity='departement', date=yesterday,
     ...          criterion='reanimation', color_pal='Greys',
     ...          file_path=W_path, file_name='funkymap')
 
-    Notes
-    -----
+    :Notes:
+
     **Manipulation tips:**
 
-    - pass mouse on map to get local informations
+    - pass mouse on map to get local information
     - use 'clic + mouse move' to move map
     '''
     # ---------- file imports ----------
-    # load geojson file containing geographic informations
+    # load geojson file containing geographic information
     reg_path = os.path.join(
                     os.path.dirname(
                         os.path.realpath(__file__)),
@@ -137,7 +141,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
     # keep only data corresponding to the given granularity
     df_local = df_covid.loc[df_covid['granularite'] == granularity]
     # choose the dataframe containing geographic
-    # informations according to the granularity
+    # information according to the granularity
     # (plus english precision)
     if (granularity == 'departement'):
         df = departments.copy()
@@ -252,11 +256,14 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     :param criterion: the Covid-19 indicator we want to see on the map.
         Should be either 'hospitalises', 'reanimation', or 'deces':
 
-        - 'hospitalises': will display to number of persons hospitalized
+        - 'hospitalises':
+            will display the number of persons hospitalized
             on a given date due to Covid-19
-        - 'reanimation': will display to number of persons in resuscitation
+        - 'reanimation':
+            will display the number of persons in resuscitation
             on a given date due to Covid-19
-        - 'deces': will display to cumulated number of death due to
+        - 'deces':
+            will display the cumulated number of death due to
             the Covid-19 in France from the beginning of the pandemic, up to
             a given date
 
@@ -282,8 +289,8 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
         your favorite web browser
     :rtype: '.html' file
 
-    Examples
-    --------
+    :Examples:
+
     **easy example**
 
     >>> viz3Dmap()
@@ -303,8 +310,7 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     >>> viz3Dmap(file_path=W_path, color=[230, 37, 37, 80],
     ...          criterion='deces')
 
-    Notes
-    -----
+    :Notes:
 
     The bottom of the map corresponds to the beginning of the Covid-19
     pandemic in France, specifically here, data start on 2020-01-24. The top
@@ -427,11 +433,11 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
         your favorite web browser
     :rtype: '.html' file
 
-    Examples
-    --------
+    :Examples:
+
     **easy example**
 
-    >>>transfer_map()
+    >>> transfer_map()
 
     **example using Linux path**
 
@@ -447,8 +453,8 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     >>> transfer_map(file_path=W_path, file_name='counter_intuitive_arc_map',
     ...          color_d=[61, 230, 37, 80], color_a=[230, 37, 37, 80])
 
-    Notes
-    -----
+    :Notes:
+
     **Manipulation tips:**
 
     - pass mouse on arc to see tooltip
@@ -475,10 +481,10 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     # set Europe Coordinate Reference System for geographic accuracy purpose
     region_points = region_points.set_crs(epsg=3035, allow_override=True)
     region_points['geometry'] = region_points['geometry'].centroid
-    # extract departure informations
+    # extract departure information
     departure = transfer[['region_depart', 'order', 'debut_transfert']]
     departure['nom'] = departure['region_depart']
-    # extract departure informations
+    # extract departure information
     arrival = transfer[['region_arrivee',
                         'nombre_patients_transferes',
                         'order']]
