@@ -1,40 +1,78 @@
 # ---------- requirements ----------
-#%%
 import os
-import pandas as pd
 from download import download
-import geopandas as gpd
+import pandas as pd
 import matplotlib.pyplot as plt
+import geopandas as gpd
 import numpy as np
 import pydeck as pdk
 
+# ---------- to import data ----------
 from vizcovidfr.loads import load_datasets
 
-#url = "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/export/?disjunctive.variable_label&sort=date&refine.date=2021&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge"
-#path_target = "C:/Users/quenf/vizcovidfr/vizcovidfr/data/covid-19-france-vaccinations-age-dep.csv"
+
+# gets user's path to Desktop
+A = os.path.expanduser("~")
+B = "Desktop"
+path_to_Desktop = os.path.join(A, B)
 
 
-#%%
-
-def vacmap(granularity, age_range):
+# ---------- sets vacmap function ----------
+def vacmap(granularity = 'region', age_range = 'all ages',
+        file_path = path_to_Desktop, file_name = 'vacmap', 
+        color_rgb = [255,69,0,150]):
     '''
     Make an interactive map of France vaccine data.
 
+    Parameters
+    ----------
     :param granularity: the granularity we want the map to be based on.
-        Should be either 'region' or 'department'. On the latter case,
-        columns layers will be raised from the centroid of each department,
-        while on the former, these will be raides from each region's centroid.
-    :type granularity: string
+        Either 'region' or 'department'. On the latter case,
+        column layers will be raised from the centroid of each department,
+        while on the former case, they will be raised from each region's centroid.
+    :type granularity: str, default = 'region'
     :param age_range: the age range we want to have information about vaccination.
         It can be '18-24', '25-29', '30-39', '40-49', '50-59', '60-64', '65-69', 
         '70-74', '75-79', '80 and +', 'all ages'. This last one representing the 
         cumulation of all the age ranges.
-        :type age_range: string
+    :type age_range: str, default = 'all ages'
+    :param file_path: the path on which the file will be saved, can be either Linux,
+        MAC-OS, or Windows path, defaults to user's Desktop.
+        **Warning:** only works if the user's OS default language is english.
+        Otherwise, path is not optional.
+    :type file_path: str, default = path_to_Desktop
+    :param file_name: the name under which to save the file.
+    :type file_name: str, default = 'vacmap'
+
+    :Examples:
+
+    **easy example**
+
+    >>> viz3Dmap()
+
+    **example using Linux path**
+
+    >>> import os
+    >>> path_to_desktop = os.path.expanduser("~/Desktop")
+    >>> vacmap(granularity = 'region', age_range = 'all ages', 
+    ...         file_path = path_to_desktop, file_name = 'vaccine_map',
+    ...         color = [245, 92, 245, 80])
+
+    **example using Windows path**
+
+    >>> import os
+    >>> W_path = 'c:\\Users\\username\\Documents'
+    >>> vacmap(granularity = 'department', age_range = '18-24', 
+    ...         file_path = path_to_desktop, file_name = 'vaccine_map',
+    ...         color = [207, 67, 80, 140])
+
+    Returns
+    -------
     :return: an interactive map representing the actual amount of both first
-    and second doses, per granularity and per age range, according to chosen 
-    options.
+    and second doses, per granularity and per age range, according to the chosen 
+    argument.
+    :rtype: '.html' file
     '''
-    #df_Vac = pd.read_csv(path_target, sep = ';')
     df_Vac = load_datasets.Load_vaccination().save_as_df()
     df_Vac.sort_values(by=['Date', 'Valeur de la variable'], inplace=True)
     reg_path = os.path.join(
@@ -154,7 +192,6 @@ def vacmap(granularity, age_range):
                                    get_fill_color = [255,69,0,150],
                                    pickable = True,
                                    auto_highlight = True)
-    #save the map into a html file
     tooltip = {
     "html": "<b>{Nmb of first doses}</b> first doses and <b>{Nmb of second doses}</b> second doses, in department <b>{department_code}</b>",
     "style": {"background": "grey", "color": "white", "font-family": '"Helvetica Neue", Arial', "z-index": "10000"},
@@ -164,13 +201,16 @@ def vacmap(granularity, age_range):
     initial_view_state=view,
     tooltip=tooltip,
     )
-    #r = pdk.Deck(layers=[covid_amount_layer], initial_view_state=view)
-    r.to_html('vacmaps.html')
+    #saves map
+    suffix = '.html'
+    save_path = os.path.join(file_path, file_name + suffix)
+    r.save(save_path)
+
 
 #Test
-vacmap('department', 'all ages')
+vacmap()
 
 
 
 
-# %%
+

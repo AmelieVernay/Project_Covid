@@ -19,7 +19,7 @@ def vactypedoses(vaccine_type = 'All vaccines', color_pal = 'darkblue',
                 font_color = 'white', bgcolor = 'darkslategrey', 
                 template = 'plotly_dark'):
     '''
-    Make an animated line chart of France vaccine data.
+    Makes an animated line chart of France vaccine data.
 
     Parameters
     ----------
@@ -27,41 +27,34 @@ def vactypedoses(vaccine_type = 'All vaccines', color_pal = 'darkblue',
         Either 'Pfizer', 'Moderna', 'AstraZeneca' or 'All vaccines'.
         In this latter case, the three vaccine types are represented.
         It is possible to hover one's mouse over the curves to get thorough information. 
-    :type vaccine_type: str
+    :type vaccine_type: str, default = 'All vaccines'
     :param color_pal: Sets the color of the chosen vaccine type curve.
         If 'All vaccines' vaccine_type is chosen, sets the color of the 'Pfizer' curve.
         For reference, see http://www.python-simple.com/img/img45.png.
-        Defaults to 'darkblue'.
-    :type color_pal: str
+    :type color_pal: str, default = 'darkblue'
     :param color_pal2: Only if 'All vaccines' vaccine_type is chosen.
         Sets the color of 'Moderna' curve.
         For reference, see http://www.python-simple.com/img/img45.png.
-        Defaults to 'crimson'.
-    :type color_pal2: str
+    :type color_pal2: str, default = 'crimson'
     :param color_pal3: Only if 'All vaccines' vaccine_type is chosen.
         Sets the color of 'AstraZeneca' curve.
         For reference, see http://www.python-simple.com/img/img45.png.
-        Defaults to 'darkgreen'.
-    :type color_pal3: str
+    :type color_pal3: str, default = 'darkgreen'
         :param font_size: Sets the size of characters in hover labels, defaults to 16.
     :type font_size: int
     :param font_family: Sets the font family of the characters in hover labels. 
         For reference, see 
-        http://jonathansoma.com/site/lede/data-studio/matplotlib/list-all-fonts-available-in-matplotlib-plus-samples/,
-        defaults to 'Franklin Gothic Medium'.
-    :type font_family: str
+        http://jonathansoma.com/site/lede/data-studio/matplotlib/list-all-fonts-available-in-matplotlib-plus-samples/
+    :type font_family: str, default = 'Franklin Gothic Medium'
     :param font_color: Sets the color of characters in hover labels,
-        For reference, see http://www.python-simple.com/img/img45.png, 
-        defaults to 'white'.
-    :type font_color: str
+        For reference, see http://www.python-simple.com/img/img45.png.
+    :type font_color: str, default = 'white'
     :param bgcolor: Sets the background color of all hover labels on graph.
-        For reference, see http://www.python-simple.com/img/img45.png, 
-        defaults to 'darkslategrey'.
-    :type bgcolor: str
+        For reference, see http://www.python-simple.com/img/img45.png.
+    :type bgcolor: str, default = 'darkslategrey'
     :param template: Sets the theme of plotly.
-        For reference, see https://plotly.com/python/templates/,
-        defaults to 'plotly_dark'. 
-    :type template: str
+        For reference, see https://plotly.com/python/templates/.
+    :type template: str, default = 'plotly_dark'
 
     Returns
     -------
@@ -129,27 +122,22 @@ def vacdoses(unit = 'doses', font_size = 16,
 
         For 'Pfizer' vaccine, the cdu conversion rate per dose is multiplied by 6.
         For Moderna and AstraZeneca vaccines, the cdu conversion rate per dose is multiplied by 10.
-        Defaults to 'doses'.
-    :type unit: str
-    :param font_size: Sets the size of characters in hover labels, defaults to 16.
-    :type font_size: int
+    :type unit: str, default = 'doses'
+    :param font_size: Sets the size of characters in hover labels.
+    :type font_size: int, default = 16
     :param font_family: Sets the font family of the characters in hover labels. 
         For reference, see 
-        http://jonathansoma.com/site/lede/data-studio/matplotlib/list-all-fonts-available-in-matplotlib-plus-samples/,
-        defaults to 'Franklin Gothic Medium'.
-    :type font_family: str
+        http://jonathansoma.com/site/lede/data-studio/matplotlib/list-all-fonts-available-in-matplotlib-plus-samples/.
+    :type font_family: str, default = 'Franklin Gothic Medium'
     :param font_color: Sets the color of characters in hover labels,.
-        For reference, see http://www.python-simple.com/img/img45.png, 
-        defaults to 'white'.
-    :type font_color: str
+        For reference, see http://www.python-simple.com/img/img45.png.
+    :type font_color: str, default = 'white'
     :param bgcolor: Sets the background color of all hover labels on graph.
-        For reference, see http://www.python-simple.com/img/img45.png, 
-        defaults to 'darkslategrey'.
-    :type bgcolor: str
+        For reference, see http://www.python-simple.com/img/img45.png.
+    :type bgcolor: str, default = 'darkslategrey'
     :param template: Sets the theme of plotly.
-        For reference, see https://plotly.com/python/templates/,
-        defaults to 'plotly_dark'. 
-    :type template: str
+        For reference, see https://plotly.com/python/templates/. 
+    :type template: str, default = 'plotly_dark'
 
     Returns
     -------
@@ -185,9 +173,8 @@ def vacdoses(unit = 'doses', font_size = 16,
     fig.show()
 
 #Test
-#vacdoses()
+vacdoses()
 
 
 
 
-# %%
