@@ -9,7 +9,6 @@ from vizcovidfr.loads import load_datasets
 
 
 #line chart representing the french vaccine storage per vaccine type 
-df_Vac_type = load_datasets.Load_Vaccine_storage().save_as_df()
 
 
 def vactypedoses(vaccine_type = 'All vaccines', color_pal = 'darkblue', 
@@ -62,6 +61,7 @@ def vactypedoses(vaccine_type = 'All vaccines', color_pal = 'darkblue',
     dose number of the chosen vaccine type (in storage).
     :rtype: plotly.graph_objects.Figure
     '''
+    df_Vac_type = load_datasets.Load_Vaccine_storage().save_as_df()
     df_Vac_type2 = df_Vac_type.groupby(['type_de_vaccin'])
     pfizer = df_Vac_type2.get_group('Pfizer').reset_index(drop = True)
     mdn = df_Vac_type2.get_group('Moderna').reset_index(drop = True)
@@ -146,6 +146,7 @@ def vacdoses(unit = 'doses', font_size = 16,
     unit.
     :rtype: plotly.graph_objects.Figure
     '''
+    df_Vac_type = load_datasets.Load_Vaccine_storage().save_as_df()
     df = df_Vac_type.groupby(['date'])['nb_doses', 'nb_ucd'].agg('sum').reset_index()
     doses = df.groupby(['date'])['nb_doses'].size().reset_index()
     ucd = df.groupby(['date'])['nb_ucd'].size().reset_index()
@@ -173,7 +174,7 @@ def vacdoses(unit = 'doses', font_size = 16,
     fig.show()
 
 #Test
-vacdoses()
+#vacdoses()
 
 
 
