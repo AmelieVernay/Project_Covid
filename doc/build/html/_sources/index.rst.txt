@@ -18,7 +18,7 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
    :caption: Getting started
 
    Getting_Started/introduction
-   Getting_started/install
+   Getting_Started/install
 
 .. toctree::
    :maxdepth: 2
@@ -38,6 +38,17 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
 
    Line_Charts/line_charts
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Regression
+
+   Regression/regression
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Histograms
+
+   Histograms/histograms
 
 Indices and tables
 ==================
