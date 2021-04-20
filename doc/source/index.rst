@@ -14,10 +14,11 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
    :caption: Contents:
 
 .. toctree::
-   :maxdepth: 1
-   :caption: Installation
+   :maxdepth: 2
+   :caption: Getting started
 
-   Installation/install
+   Getting_Started/introduction
+   Getting_started/install
 
 .. toctree::
    :maxdepth: 2

@@ -118,4 +118,3 @@ def test_vacdoses():
     """
     result = (type(line_charts.vacdoses()) != int)
     assert result
-
