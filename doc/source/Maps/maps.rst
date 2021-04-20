@@ -1,19 +1,19 @@
 Functions to generate maps
 ==========================
 
-The viz2Dmap function
----------------------
+viz2Dmap
+---------
 
 .. autofunction:: vizcovidfr.maps.maps.viz2Dmap
 
 
-The viz3Dmap function
----------------------
+viz3Dmap
+---------
 
 .. autofunction:: vizcovidfr.maps.maps.viz3Dmap
 
 
-The transfer_map function
--------------------------
+transfer_map
+--------------
 
 .. autofunction:: vizcovidfr.maps.maps.transfer_map
