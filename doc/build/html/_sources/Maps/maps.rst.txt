@@ -17,3 +17,9 @@ transfer_map
 --------------
 
 .. autofunction:: vizcovidfr.maps.maps.transfer_map
+
+
+vacmap
+-------
+
+.. autofunction:: vizcovidfr.maps.vacmaps.vacmap

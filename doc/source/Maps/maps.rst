@@ -22,4 +22,4 @@ transfer_map
 vacmap
 -------
 
-.. autofunction:: viscovidfr.maps.vacmaps.vacmap
+.. autofunction:: vizcovidfr.maps.vacmaps.vacmap
