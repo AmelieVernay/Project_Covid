@@ -3,7 +3,9 @@ from scipy.sparse import isspmatrix
 
 # local reqs
 from vizcovidfr.maps import maps
+from vizcovidfr.maps import vacmaps
 from vizcovidfr.sparse import sparse
+from vizcovidfr.line_charts import line_charts
 
 
 # ---------- maps ----------
@@ -36,6 +38,15 @@ def test_transfer_map():
     result = (type(maps.transfer_map(file_path='')) != int)
     assert result
 
+def test_vacmap():
+    """
+    Test vacmap by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will be raised
+    """
+    result = (type(vacmaps.vacmap(file_path='')) != int)
+    assert result
+
 
 # ---------- sparse ----------
 def test_sparse_graph():
@@ -57,4 +68,24 @@ def test_sparse_matrix():
     If not, an AssertionError will raise.
     """
     result = (isspmatrix(sparse.sparse_matrix(show=False)))
+    assert result
+
+# ---------- line charts ----------
+
+def test_vactypedoses():
+    """
+    Test vactypedoses by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will be raised
+    """
+    result = (type(line_charts.vactypedoses()) != int)
+    assert result
+
+def test_vacdoses():
+    """
+    Test vacdoses by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will be raised
+    """
+    result = (type(line_charts.vacdoses()) != int)
     assert result
