@@ -13,7 +13,7 @@ def test_viz2Dmap():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(maps.viz2Dmap()) != int)
+    result = (type(maps.viz2Dmap(file_path='')) != int)
     assert result
 
 
@@ -23,7 +23,7 @@ def test_viz3Dmap():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(maps.viz3Dmap()) != int)
+    result = (type(maps.viz3Dmap(file_path='')) != int)
     assert result
 
 
@@ -33,7 +33,7 @@ def test_transfer_map():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(maps.transfer_map()) != int)
+    result = (type(maps.transfer_map(file_path='')) != int)
     assert result
 
 

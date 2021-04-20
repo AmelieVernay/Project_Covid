@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>pydeck</title>
+        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+    <script src='https://cdn.jsdelivr.net/npm/@deck.gl/jupyter-widget@~8.4.*/dist/index.js'></script>
+    <style>
+    body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#deck-map-container {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+#map {
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+#deckgl-overlay {
+  z-index: 2;
+  background: none;
+}
+
+#deck-map-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#deck-container {
+  width: 100vw;
+  height: 100vh;
+}
+    </style>
+  </head>
+  <body>
+    <div id="deck-container">
+    </div>
+  </body>
+  <script>
+    const jsonInput = {"initialViewState": {"latitude": 46.2322, "longitude": 2.20967, "pitch": 50, "zoom": 5}, "layers": [{"@@type": "ArcLayer", "autoHighlight": true, "data": [{"code_x": "75", "code_y": "44", "debut_transfert": "2020-03-21", "lat_a": 45.20672621187794, "lat_d": 48.68891212258612, "lon_a": 0.20731316179089504, "lon_d": 5.613142790557654, "nombre_patients_transferes": 6, "order": 1, "region_arrivee": "Nouvelle-Aquitaine", "region_depart": "Grand Est"}, {"code_x": "75", "code_y": "44", "debut_transfert": "2020-03-27", "lat_a": 45.20672621187794, "lat_d": 48.68891212258612, "lon_a": 0.20731316179089504, "lon_d": 5.613142790557654, "nombre_patients_transferes": 6, "order": 5, "region_arrivee": "Nouvelle-Aquitaine", "region_depart": "Grand Est"}, {"code_x": "75", "code_y": "44", "debut_transfert": "2020-03-27", "lat_a": 45.20672621187794, "lat_d": 48.68891212258612, "lon_a": 0.20731316179089504, "lon_d": 5.613142790557654, "nombre_patients_transferes": 12, "order": 6, "region_arrivee": "Nouvelle-Aquitaine", "region_depart": "Grand Est"}, {"code_x": "75", "code_y": "44", "debut_transfert": "2020-03-29", "lat_a": 45.20672621187794, "lat_d": 48.68891212258612, "lon_a": 0.20731316179089504, "lon_d": 5.613142790557654, "nombre_patients_transferes": 12, "order": 10, "region_arrivee": "Nouvelle-Aquitaine", "region_depart": "Grand Est"}, {"code_x": "75", "code_y": "44", "debut_transfert": "2020-03-29", "lat_a": 45.20672621187794, "lat_d": 48.68891212258612, "lon_a": 0.20731316179089504, "lon_d": 5.613142790557654, "nombre_patients_transferes": 24, "order": 11, "region_arrivee": "Nouvelle-Aquitaine", "region_depart": "Grand Est"}, {"code_x": "75", "code_y": "44", "debut_transfert": "2020-04-03", "lat_a": 45.20672621187794, "lat_d": 48.68891212258612, "lon_a": 0.20731316179089504, "lon_d": 5.613142790557654, "nombre_patients_transferes": 24, "order": 19, "region_arrivee": "Nouvelle-Aquitaine", "region_depart": "Grand Est"}, {"code_x": "75", "code_y": "11", "debut_transfert": "2020-04-10", "lat_a": 45.20672621187794, "lat_d": 48.70928285677135, "lon_a": 0.20731316179089504, "lon_d": 2.503402713441013, "nombre_patients_transferes": 45, "order": 25, "region_arrivee": "Nouvelle-Aquitaine", "region_depart": "\u00cele-de-France"}, {"code_x": "53", "code_y": "44", "debut_transfert": "2020-03-23", "lat_a": 48.17840641717348, "lat_d": 48.68891212258612, "lon_a": -2.8410845489807595, "lon_d": 5.613142790557654, "nombre_patients_transferes": 6, "order": 3, "region_arrivee": "Bretagne", "region_depart": "Grand Est"}, {"code_x": "53", "code_y": "11", "debut_transfert": "2020-04-01", "lat_a": 48.17840641717348, "lat_d": 48.70928285677135, "lon_a": -2.8410845489807595, "lon_d": 2.503402713441013, "nombre_patients_transferes": 32, "order": 13, "region_arrivee": "Bretagne", "region_depart": "\u00cele-de-France"}, {"code_x": "53", "code_y": "11", "debut_transfert": "2020-04-05", "lat_a": 48.17840641717348, "lat_d": 48.70928285677135, "lon_a": -2.8410845489807595, "lon_d": 2.503402713441013, "nombre_patients_transferes": 41, "order": 22, "region_arrivee": "Bretagne", "region_depart": "\u00cele-de-France"}, {"code_x": "24", "code_y": "11", "debut_transfert": "2020-03-28", "lat_a": 47.484746131330894, "lat_d": 48.70928285677135, "lon_a": 1.684421269113294, "lon_d": 2.503402713441013, "nombre_patients_transferes": 12, "order": 7, "region_arrivee": "Centre-Val de Loire", "region_depart": "\u00cele-de-France"}, {"code_x": "24", "code_y": "11", "debut_transfert": "2020-04-01", "lat_a": 47.484746131330894, "lat_d": 48.70928285677135, "lon_a": 1.684421269113294, "lon_d": 2.503402713441013, "nombre_patients_transferes": 11, "order": 17, "region_arrivee": "Centre-Val de Loire", "region_depart": "\u00cele-de-France"}, {"code_x": "84", "code_y": "27", "debut_transfert": "2020-03-27", "lat_a": 45.5146115684075, "lat_d": 47.23422684747753, "lon_a": 4.536186898186846, "lon_d": 4.806857022075083, "nombre_patients_transferes": 41, "order": 8, "region_arrivee": "Auvergne-Rh\u00f4ne-Alpes", "region_depart": "Bourgogne-Franche-Comt\u00e9"}, {"code_x": "84", "code_y": "11", "debut_transfert": "2020-04-03", "lat_a": 45.5146115684075, "lat_d": 48.70928285677135, "lon_a": 4.536186898186846, "lon_d": 2.503402713441013, "nombre_patients_transferes": 20, "order": 20, "region_arrivee": "Auvergne-Rh\u00f4ne-Alpes", "region_depart": "\u00cele-de-France"}, {"code_x": "76", "code_y": "44", "debut_transfert": "2020-04-01", "lat_a": 43.70242105417714, "lat_d": 48.68891212258612, "lon_a": 2.1440151484205168, "lon_d": 5.613142790557654, "nombre_patients_transferes": 12, "order": 14, "region_arrivee": "Occitanie", "region_depart": "Grand Est"}, {"code_x": "76", "code_y": "44", "debut_transfert": "2020-04-03", "lat_a": 43.70242105417714, "lat_d": 48.68891212258612, "lon_a": 2.1440151484205168, "lon_d": 5.613142790557654, "nombre_patients_transferes": 6, "order": 18, "region_arrivee": "Occitanie", "region_depart": "Grand Est"}, {"code_x": "76", "code_y": "44", "debut_transfert": "2020-04-04", "lat_a": 43.70242105417714, "lat_d": 48.68891212258612, "lon_a": 2.1440151484205168, "lon_d": 5.613142790557654, "nombre_patients_transferes": 12, "order": 21, "region_arrivee": "Occitanie", "region_depart": "Grand Est"}, {"code_x": "28", "code_y": "11", "debut_transfert": "2020-04-01", "lat_a": 49.120231155818544, "lat_d": 48.70928285677135, "lon_a": 0.11069932794072483, "lon_d": 2.503402713441013, "nombre_patients_transferes": 44, "order": 16, "region_arrivee": "Normandie", "region_depart": "\u00cele-de-France"}], "getSourceColor": [243, 31, 44, 80], "getSourcePosition": "@@=[lon_d, lat_d]", "getTargetColor": [230, 190, 37, 80], "getTargetPosition": "@@=[lon_a, lat_a]", "getTilt": 15, "getWidth": 5, "id": "20603aa0-2596-405a-8b76-d66d50db6051", "pickable": true}], "mapProvider": "carto", "mapStyle": "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json", "views": [{"@@type": "MapView", "controller": true}]};
+    const tooltip = {'html': '<b>Date:            </b> {debut_transfert} <br />            <b>Number of transfered patient:            </b> {nombre_patients_transferes} <br />            <b>Departure region:</b> {region_depart} <br />            <b>Arrival region:</b> {region_arrivee}            '};
+    const customLibraries = null;
+
+    const deckInstance = createDeck({
+                  container: document.getElementById('deck-container'),
+      jsonInput,
+      tooltip,
+      customLibraries
+    });
+
+  </script>
+</html>
