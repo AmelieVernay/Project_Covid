@@ -2,6 +2,11 @@
 import pandas as pd
 import numpy as np
 from vizcovidfr.loads import load_datasets
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.metrics import mean_squared_error
+import operator
 
 T = load_datasets.Load_classe_age().save_as_df()
 
@@ -36,18 +41,13 @@ def dico_day(T):
     return dico_day
 
 def dico_var():
-    dico_var = {'hosp':'Hospitalization', 'rea':'Reanimation', 'cl_age90':'Age', 'HospConv':'Conventional hospitalization', 'SSR_USLD':'SSR and USLD', 'rad':'Come back home', 'dc':'Deaths'}
+    dico_var = {'hosp':'Hospitalization', 'rea':'Reanimation', 'cl_age90':'Age', 'HospConv':'Conventional hospitalization', 'SSR_USLD':'SSR and USLD', 'autres':'Others', 'rad':'Come back home', 'dc':'Deaths'}
     return dico_var
 
 def dico_reg():
     dico_reg = {1:'Guadeloupe', 2:'Martinique', 3:'Guyane', 4:'La Reunion', 6:'Mayotte', 11:'Île-de-France', 24:'Centre-Val de Loire', 27:'Bourgogne-Franche-Comte', 28:'Normmandie', 32:'Hauts-de-France', 44:'Grand Est', 52:'Pays de la Loire', 53:'Bretagne', 75:'Nouvelle-Aquitaine', 76:'Occitanie', 84:'Auvergne-Rhône-Alpes', 93:"Provence-Alpes Côte d'Azur", 94:'Corse'}
     return dico_reg
 
-from sklearn.linear_model import LinearRegression
-model = LinearRegression()
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.metrics import mean_squared_error
-import operator
 #Function which list the mean squared error and predict y
 def degreeChoice (x,y,degree):
     #Generate a new feature matrix consisting of all polynomial combinations of the features with degree less than or equal to the specified degree. 
@@ -65,27 +65,11 @@ def degreeChoice (x,y,degree):
     x_p, y_poly_pred_P = zip(*sorted_zip)
     return rmse, x_p, y_poly_pred_P
 
-def rmse(x, y):
+def rmse_list(x, y):
     rmselist = np.zeros(100)
     x_p_list = [None]*100
     y_poly_pred_P_list=[None]*100
     for i in np.arange(1, 101):
         rmselist[i-1] ,x_p_list[i-1],y_poly_pred_P_list[i-1] = degreeChoice(x,y,i)
-    return rmse, x_p_list, y_poly_pred_P_list
+    return rmselist, x_p_list, y_poly_pred_P_list
 
-
-# %%
-#R = reg(1, T)
-#R = date_time(R)
-#dico_col = dico_column(R)
-#covid_day = covid_days(R)
-#x = np.arange(0,covid_day.shape[0])
-#y = covid_day[dico_col[1]]
-#x = x[:, np.newaxis]
-#y = y[:, np.newaxis]
-#dico_day = dico_day(covid_day)
-#dico_var = dico_var()
-#dico_reg = dico_reg()
-#covid_day = covid_day.reset_index(drop=True)
-#rmse(x,y)
-# %%
