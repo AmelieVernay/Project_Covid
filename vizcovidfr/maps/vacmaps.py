@@ -44,6 +44,13 @@ def vacmap(granularity = 'region', age_range = 'all ages',
     :param file_name: the name under which to save the file.
     :type file_name: str, default = 'vacmap'
 
+    Returns
+    -------
+    :return: an interactive map representing the actual amount of both first
+    and second doses, per granularity and per age range, according to the chosen 
+    argument.
+    :rtype: '.html' file
+
     :Examples:
 
     **easy example**
@@ -65,14 +72,9 @@ def vacmap(granularity = 'region', age_range = 'all ages',
     >>> vacmap(granularity = 'department', age_range = '18-24', 
     ...         file_path = path_to_desktop, file_name = 'vaccine_map',
     ...         color = [207, 67, 80, 140])
-
-    Returns
-    -------
-    :return: an interactive map representing the actual amount of both first
-    and second doses, per granularity and per age range, according to the chosen 
-    argument.
-    :rtype: '.html' file
+    
     '''
+
     df_Vac = load_datasets.Load_vaccination().save_as_df()
     df_Vac.sort_values(by=['Date', 'Valeur de la variable'], inplace=True)
     reg_path = os.path.join(
