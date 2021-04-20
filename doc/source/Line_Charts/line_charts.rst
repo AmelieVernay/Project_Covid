@@ -1,14 +1,14 @@
 Functions to generate line charts
-==========================
+==================================
 
-The vactypedoses function
----------------------
+vactypedoses
+-------------
 
 .. autofunction:: vizcovidfr.line_charts.line_charts.vactypedoses
 
 
-The vacdoses function
----------------------
+vacdoses
+---------
 
 .. autofunction:: vizcovidfr.line_charts.line_charts.vacdoses
 
