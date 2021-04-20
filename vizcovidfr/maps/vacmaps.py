@@ -22,7 +22,7 @@ def vacmap(granularity = 'region', age_range = 'all ages',
         file_path = path_to_Desktop, file_name = 'vacmap', 
         color_rgb = [255,69,0,150]):
     '''
-    Make an interactive map of France vaccine data.
+    Makes an interactive map of France vaccine data.
 
     Parameters
     ----------
@@ -204,11 +204,11 @@ def vacmap(granularity = 'region', age_range = 'all ages',
     #saves map
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
-    r.save(save_path)
+    r.to_html(save_path)
 
 
 #Test
-vacmap()
+#vacmap()
 
 
 

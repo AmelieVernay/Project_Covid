@@ -33,7 +33,7 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
 
 .. toctree::
    :maxdepth: 2
-   :caption: Line_Charts
+   :caption: Line charts
 
    Line_Charts/line_charts
 

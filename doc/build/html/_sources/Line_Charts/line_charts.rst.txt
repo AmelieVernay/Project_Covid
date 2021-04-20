@@ -1,14 +1,26 @@
 Functions to generate line charts
+<<<<<<< HEAD
+==================================
+
+vactypedoses 
+--------------------------
+=======
 ==========================
 
 The vactypedoses function
 ---------------------
+>>>>>>> e377aaf301f29f3af400ee65459b38836decdcc0
 
 .. autofunction:: vizcovidfr.line_charts.line_charts.vactypedoses
 
 
+<<<<<<< HEAD
+vacdoses
+----------------------
+=======
 The vacdoses function
 ---------------------
+>>>>>>> e377aaf301f29f3af400ee65459b38836decdcc0
 
 .. autofunction:: vizcovidfr.line_charts.line_charts.vacdoses
 
