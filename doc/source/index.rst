@@ -51,7 +51,7 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
    Histograms/histograms
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Sources and references
 
    sources_ref/sources
