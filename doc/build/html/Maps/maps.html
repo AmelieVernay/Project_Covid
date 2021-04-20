@@ -1,35 +1,14 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>Functions to generate maps &mdash; vizcovidfr 0.0.1 documentation</title>
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/js/custom.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
 
   
   <link rel="stylesheet" href="../_static/css/style.css" type="text/css" />
@@ -37,6 +16,31 @@
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/explore.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/nbsphinx.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script src="../_static/js/custom.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="The sparse_graph function" href="../Sparse/sparse.html" />
@@ -160,6 +164,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -167,11 +172,11 @@
               
             
             
-              <p><span class="caption-text">Installation</span></p>
+              <p class="caption"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Installation/install.html">Installation guide</a></li>
 </ul>
-<p><span class="caption-text">Maps</span></p>
+<p class="caption"><span class="caption-text">Maps</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Functions to generate maps</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#viz2dmap">viz2Dmap</a></li>
@@ -180,12 +185,12 @@
 </ul>
 </li>
 </ul>
-<p><span class="caption-text">Sparse</span></p>
+<p class="caption"><span class="caption-text">Sparse</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html">The sparse_graph function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html#the-sparse-matrix-function">The sparse_matrix function</a></li>
 </ul>
-<p><span class="caption-text">Line_Charts</span></p>
+<p class="caption"><span class="caption-text">Line charts</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">Functions to generate line charts</a></li>
 </ul>
@@ -193,6 +198,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -227,18 +233,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Functions to generate maps</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/Maps/maps.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -252,313 +260,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="functions-to-generate-maps">
+  <div class="section" id="functions-to-generate-maps">
 <h1>Functions to generate maps<a class="headerlink" href="#functions-to-generate-maps" title="Permalink to this headline">¶</a></h1>
-<section id="viz2dmap">
+<div class="section" id="viz2dmap">
 <h2>viz2Dmap<a class="headerlink" href="#viz2dmap" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt id="vizcovidfr.maps.maps.viz2Dmap">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz2Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2021-04-19'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'YlGnBu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/home/vamelie/Desktop'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid2Dmap'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz2Dmap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make interactive choropleth map to visualize different aspects of the
-Covid-19 pandemic in France. The map is saved on an html file at a given
-path on a given name, see function parameters for details.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>granularity</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='departement'</em>) – the granularity we want the map to be based on.
-Should be either ‘region’ or ‘departement’.</p></li>
-<li><p><strong>date</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default=yesterday</em>) – the date on which we want to get Covid-19 information.
-Should be of the form ‘YYYY-MM-DD’, and from 2020-01-24 to yesterday,
-(because the database is updated on the end of every day, so depending
-on the hour you want to use the function,
-today’s data might not exist yet)</p></li>
-<li><p><strong>criterion</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='hospitalises'</em>) – <p>the Covid-19 indicator we want to see on the map.
-Should be either ‘hospitalises’, ‘reanimation’, or ‘deces’:</p>
-<ul>
-<li><dl class="simple">
-<dt>’hospitalises’:</dt><dd><p>display the number of persons hospitalized
-on the given date due to Covid-19</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>’reanimation’:</dt><dd><p>display the number of persons in resuscitation
-on the given date due to Covid-19</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>’deces’:</dt><dd><p>display the cumulated number of death due to
-the Covid-19 in France from the beginning of the pandemic, up to
-the given date</p>
-</dd>
-</dl>
-</li>
-</ul>
-</p></li>
-<li><p><strong>color_pal</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='YlGnBu'</em>) – <p>the color palette we want for the map.</p>
-<p>For reference,
-see <a class="reference external" href="https://colorbrewer2.org/#type=sequential&amp;scheme=YlGnBu&amp;n=3">https://colorbrewer2.org/#type=sequential&amp;scheme=YlGnBu&amp;n=3</a>,
-defaults to ‘YlGnBu’ (for color-blind people purpose)</p>
-</p></li>
-<li><p><strong>file_path</strong> (<em>str</em><em>, </em><em>optional*</em><em>, </em><em>default to user's Desktop</em>) – <p>the path on which to save the file, can be either Linux,
-MAC-OS, or Windows path.</p>
-<blockquote>
-<div><p>(*) <strong>Warning:</strong> the default parameter only works if the user’s
-OS default language is english. Otherwise,
-path is <strong>not optional</strong>.</p>
-</div></blockquote>
-</p></li>
-<li><p><strong>file_name</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='Covid2Dmap'</em>) – the name under which to save the file</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>An interactive choropleth map saved on a html file openable on
-your favorite web browser</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>‘.html’ file</p>
-</dd>
-<dt class="field-odd">Examples</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p><strong>easy example</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">viz2Dmap</span><span class="p">()</span>
-</pre></div>
 </div>
-<p><strong>example using Linux path</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">path_to_desktop</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/Desktop&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viz2Dmap</span><span class="p">(</span><span class="n">granularity</span><span class="o">=</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2020-12-25&#39;</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;deces&#39;</span><span class="p">,</span>
-<span class="gp">... </span>         <span class="n">color_pal</span><span class="o">=</span><span class="s1">&#39;Greys&#39;</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="n">path_to_desktop</span><span class="p">,</span>
-<span class="gp">... </span>         <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;creepymap&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p><strong>example using Windows path</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">W_path</span> <span class="o">=</span> <span class="s1">&#39;c:\Users\username\Documents&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viz2Dmap</span><span class="p">(</span><span class="n">granularity</span><span class="o">=</span><span class="s1">&#39;department&#39;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2021-01-17&#39;</span><span class="p">,</span>
-<span class="gp">... </span>         <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;reanimation&#39;</span><span class="p">,</span> <span class="n">color_pal</span><span class="o">=</span><span class="s1">&#39;Greys&#39;</span><span class="p">,</span>
-<span class="gp">... </span>         <span class="n">file_path</span><span class="o">=</span><span class="n">W_path</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;funkymap&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Notes</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p><strong>Manipulation tips:</strong></p>
-<ul class="simple">
-<li><p>pass mouse on map to get local information</p></li>
-<li><p>use ‘clic + mouse move’ to move map</p></li>
-</ul>
-</dd></dl>
-
-</section>
-<section id="viz3dmap">
+<div class="section" id="viz3dmap">
 <h2>viz3Dmap<a class="headerlink" href="#viz3dmap" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt id="vizcovidfr.maps.maps.viz3Dmap">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz3Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/home/vamelie/Desktop'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid3Dmap'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[255,</span> <span class="pre">165,</span> <span class="pre">0,</span> <span class="pre">80]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz3Dmap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make a 3D map out of France Covid-19 data.
-Layers elevation represent the amount of death for the given place at a
-given day, which can be view by passing the mouse on it.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>granularity</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='departement'</em>) – the granularity we want the map to be based on.
-Should be either ‘region’ or ‘departement’. On the latter case,
-columns layers will be raised from the centroid of each department,
-while on the former, these will be raides from each region’s centroid.</p></li>
-<li><p><strong>criterion</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='hospitalises'</em>) – <p>the Covid-19 indicator we want to see on the map.
-Should be either ‘hospitalises’, ‘reanimation’, or ‘deces’:</p>
-<ul>
-<li><dl class="simple">
-<dt>’hospitalises’:</dt><dd><p>display the number of persons hospitalized
-on a given date due to Covid-19</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>’reanimation’:</dt><dd><p>display the number of persons in resuscitation
-on a given date due to Covid-19</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>’deces’:</dt><dd><p>display the cumulated number of death due to
-the Covid-19 in France from the beginning of the pandemic, up to
-a given date</p>
-</dd>
-</dl>
-</li>
-</ul>
-</p></li>
-<li><p><strong>color</strong> (<em>list</em><em>, </em><em>optional</em><em>, </em><em>default=</em><em>[</em><em>255</em><em>, </em><em>165</em><em>, </em><em>0</em><em>, </em><em>80</em><em>] </em><em>~yellow</em>) – <p>color for columns. Should be a list
-containing RGBA colors (red, green, blue, alpha).</p>
-<p>Need inspiration? see here <a class="reference external" href="https://rgbacolorpicker.com/">https://rgbacolorpicker.com/</a></p>
-</p></li>
-<li><p><strong>file_path</strong> (<em>str</em><em>, </em><em>optional*</em><em>, </em><em>default to user's Desktop</em>) – <p>the path on which to save the file, can be either Linux,
-MAC-OS, or Windows path.</p>
-<blockquote>
-<div><p>(*) <strong>Warning:</strong> the default parameter only works if the user’s
-OS default language is english. Otherwise,
-path is <strong>not optional</strong>.</p>
-</div></blockquote>
-</p></li>
-<li><p><strong>file_name</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='Covid3Dmap'</em>) – the name under which to save the file</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>An interactive 3D map saved on a html file openable on
-your favorite web browser</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>‘.html’ file</p>
-</dd>
-<dt class="field-odd">Examples</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p><strong>easy example</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">viz3Dmap</span><span class="p">()</span>
-</pre></div>
 </div>
-<p><strong>example using Linux path</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">path_to_desktop</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/Desktop&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viz3Dmap</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">path_to_desktop</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;pinky_3D_map&#39;</span><span class="p">,</span>
-<span class="gp">... </span>         <span class="n">granularity</span><span class="o">=</span><span class="s1">&#39;departement&#39;</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;reanimation&#39;</span><span class="p">,</span>
-<span class="gp">... </span>         <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">245</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
-</pre></div>
-</div>
-<p><strong>example using Windows path</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">W_path</span> <span class="o">=</span> <span class="s1">&#39;c:\Users\username\Documents&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">viz3Dmap</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">W_path</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">230</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span>
-<span class="gp">... </span>         <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;deces&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Notes</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p>The bottom of the map corresponds to the beginning of the Covid-19
-pandemic in France, specifically here, data start on 2020-01-24. The top
-of the columns corresponds to now.</p>
-<p><strong>Manipulation tips:</strong></p>
-<ul class="simple">
-<li><p>pass mouse on columns to see time evolution</p></li>
-<li><p>use ‘ctrl + mouse move’ to change view angle</p></li>
-<li><p>use ‘clic + mouse move’ to move map</p></li>
-</ul>
-</dd></dl>
-
-</section>
-<section id="transfer-map">
+<div class="section" id="transfer-map">
 <h2>transfer_map<a class="headerlink" href="#transfer-map" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt id="vizcovidfr.maps.maps.transfer_map">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">transfer_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/home/vamelie/Desktop'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid_transfer_map'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[243,</span> <span class="pre">31,</span> <span class="pre">44,</span> <span class="pre">80]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[230,</span> <span class="pre">190,</span> <span class="pre">37,</span> <span class="pre">80]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.transfer_map" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make interactive 3D-arc-map to visualize the transfer of Covid-19
-patient in France from regions to others.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>color_d</strong> (<em>list</em><em>, </em><em>optional</em><em>, </em><em>default=</em><em>[</em><em>243</em><em>, </em><em>31</em><em>, </em><em>44</em><em>, </em><em>80</em><em>] </em><em>~red</em>) – <p>color for departure point on arcs. Should be a list
-containing RGBA colors (red, green, blue, alpha).</p>
-<p>Need inspiration? see here <a class="reference external" href="https://rgbacolorpicker.com/">https://rgbacolorpicker.com/</a></p>
-</p></li>
-<li><p><strong>color_a</strong> (<em>list</em><em>, </em><em>optional</em><em>, </em><em>default=</em><em>[</em><em>230</em><em>, </em><em>190</em><em>, </em><em>37</em><em>, </em><em>80</em><em>] </em><em>~yellow</em>) – <p>color for arrival point on arcs. Should be a list
-containing RGBA colors (red, green, blue, alpha).</p>
-<p>Need inspiration? see here <a class="reference external" href="https://rgbacolorpicker.com/">https://rgbacolorpicker.com/</a></p>
-</p></li>
-<li><p><strong>file_path</strong> (<em>str</em><em>, </em><em>optional*</em><em>, </em><em>default to user's Desktop</em>) – <p>the path on which to save the file, can be either Linux,
-MAC-OS, or Windows path.</p>
-<blockquote>
-<div><p>(*) <strong>Warning:</strong> the default parameter only works if the user’s
-OS default language is english. Otherwise,
-path is <strong>not optional</strong>.</p>
-</div></blockquote>
-</p></li>
-<li><p><strong>file_name</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='Covid_transfer_map'</em>) – the name under which to save the file</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>An interactive 3D-arc-map saved on a html file openable on
-your favorite web browser</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>‘.html’ file</p>
-</dd>
-<dt class="field-odd">Examples</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p><strong>easy example</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">transfer_map</span><span class="p">()</span>
-</pre></div>
 </div>
-<p><strong>example using Linux path</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">path_to_desktop</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/Desktop&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">transfer_map</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">path_to_desktop</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;pinky_arc_map&#39;</span><span class="p">,</span>
-<span class="gp">... </span>         <span class="n">color_d</span><span class="o">=</span><span class="p">[</span><span class="mi">255</span><span class="p">,</span> <span class="mi">165</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="n">color_a</span><span class="o">=</span><span class="p">[</span><span class="mi">128</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
-</pre></div>
 </div>
-<p><strong>example using Windows path</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">W_path</span> <span class="o">=</span> <span class="s1">&#39;c:\Users\username\Documents&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">transfer_map</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">W_path</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;counter_intuitive_arc_map&#39;</span><span class="p">,</span>
-<span class="gp">... </span>         <span class="n">color_d</span><span class="o">=</span><span class="p">[</span><span class="mi">61</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="n">color_a</span><span class="o">=</span><span class="p">[</span><span class="mi">230</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
-</pre></div>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Notes</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p><strong>Manipulation tips:</strong></p>
-<ul class="simple">
-<li><p>pass mouse on arc to see tooltip</p></li>
-<li><p>use ‘ctrl + mouse move’ to change view angle</p></li>
-<li><p>use ‘clic + mouse move’ to move map</p></li>
-</ul>
-</dd></dl>
-
-</section>
-</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../Sparse/sparse.html" class="btn btn-neutral float-right" title="The sparse_graph function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../Installation/install.html" class="btn btn-neutral float-left" title="Installation guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../Sparse/sparse.html" class="btn btn-neutral float-right" title="The sparse_graph function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Installation/install.html" class="btn btn-neutral float-left" title="Installation guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2021, Foux Quentin ; Llinares Laurent ; Nicolas Alexandre ; Vernay Amelie
+        &#169; Copyright 2021, Foux Quentin ; Llinares Laurent ; Nicolas Alexandre ; Vernay Amelie.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -566,7 +308,6 @@ your favorite web browser</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
