@@ -39,6 +39,7 @@
   <link rel="stylesheet" href="../_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The sparse_graph function" href="../Sparse/sparse.html" />
     <link rel="prev" title="Installation guide" href="../Installation/install.html" />
   <link rel="shortcut icon" href="../_static/images/favicon.ico"/>
   
@@ -179,6 +180,11 @@
 </ul>
 </li>
 </ul>
+<p><span class="caption-text">Sparse</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html">The sparse_graph function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html#the-sparse-matrix-function">The sparse_matrix function</a></li>
+</ul>
 
             
           
@@ -255,49 +261,51 @@ path on a given name, see function parameters for details.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>granularity</strong> (<em>str</em>) – the granularity we want the map to be based on.
-Should be either ‘region’ or ‘departement’, defaults to ‘departement’.</p></li>
-<li><p><strong>date</strong> (<em>str</em>) – the date on which we want to get Covid-19 informations.
+<li><p><strong>granularity</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='departement'</em>) – the granularity we want the map to be based on.
+Should be either ‘region’ or ‘departement’.</p></li>
+<li><p><strong>date</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default=yesterday</em>) – the date on which we want to get Covid-19 information.
 Should be of the form ‘YYYY-MM-DD’, and from 2020-01-24 to yesterday,
 (because the database is updated on the end of every day, so depending
 on the hour you want to use the function,
-today’s data might not exist yet),
-defaults to yesterday.</p></li>
-<li><p><strong>criterion</strong> (<em>str</em>) – <p>the Covid-19 indicator we want to see on the map.
+today’s data might not exist yet)</p></li>
+<li><p><strong>criterion</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='hospitalises'</em>) – <p>the Covid-19 indicator we want to see on the map.
 Should be either ‘hospitalises’, ‘reanimation’, or ‘deces’:</p>
 <ul>
 <li><dl class="simple">
-<dt>’hospitalises’:</dt><dd><p>will display to number of persons hospitalized
+<dt>’hospitalises’:</dt><dd><p>display the number of persons hospitalized
 on the given date due to Covid-19</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>’reanimation’:</dt><dd><p>will display to number of persons in resuscitation
+<dt>’reanimation’:</dt><dd><p>display the number of persons in resuscitation
 on the given date due to Covid-19</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>’deces’:</dt><dd><p>will display to cumulated number of death due to
+<dt>’deces’:</dt><dd><p>display the cumulated number of death due to
 the Covid-19 in France from the beginning of the pandemic, up to
 the given date</p>
 </dd>
 </dl>
 </li>
 </ul>
-<p>defaults to ‘hospitalises’.</p>
 </p></li>
-<li><p><strong>color_pal</strong> (<em>str</em>) – the color palette we want for the map.
-For reference,
+<li><p><strong>color_pal</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='YlGnBu'</em>) – <p>the color palette we want for the map.</p>
+<p>For reference,
 see <a class="reference external" href="https://colorbrewer2.org/#type=sequential&amp;scheme=YlGnBu&amp;n=3">https://colorbrewer2.org/#type=sequential&amp;scheme=YlGnBu&amp;n=3</a>,
-defaults to ‘YlGnBu’ (for color-blind people purpose)</p></li>
-<li><p><strong>file_path</strong> (<em>str</em>) – the path on which to save the file, can be either Linux,
-MAC-OS, or Windows path, defaults to user’s Desktop.
-<strong>Warning:</strong> only works if the user’s OS default language is english.
-Otherwise, path is not optional.</p></li>
-<li><p><strong>file_name</strong> (<em>str</em>) – the name under which to save the file,
-defaults to ‘Covid2Dmap’</p></li>
+defaults to ‘YlGnBu’ (for color-blind people purpose)</p>
+</p></li>
+<li><p><strong>file_path</strong> (<em>str</em><em>, </em><em>optional*</em><em>, </em><em>default to user's Desktop</em>) – <p>the path on which to save the file, can be either Linux,
+MAC-OS, or Windows path.</p>
+<blockquote>
+<div><p>(*) <strong>Warning:</strong> the default parameter only works if the user’s
+OS default language is english. Otherwise,
+path is <strong>not optional</strong>.</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>file_name</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='Covid2Dmap'</em>) – the name under which to save the file</p></li>
 </ul>
 </dd>
 </dl>
@@ -313,7 +321,9 @@ your favorite web browser</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p><strong>easy example</strong></p>
-<p>&gt;&gt;&gt;viz2Dmap()</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">viz2Dmap</span><span class="p">()</span>
+</pre></div>
+</div>
 <p><strong>example using Linux path</strong></p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">path_to_desktop</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/Desktop&quot;</span><span class="p">)</span>
@@ -336,7 +346,7 @@ your favorite web browser</p>
 </dl>
 <p><strong>Manipulation tips:</strong></p>
 <ul class="simple">
-<li><p>pass mouse on map to get local informations</p></li>
+<li><p>pass mouse on map to get local information</p></li>
 <li><p>use ‘clic + mouse move’ to move map</p></li>
 </ul>
 </dd></dl>
@@ -346,53 +356,54 @@ your favorite web browser</p>
 <h2>The viz3Dmap function<a class="headerlink" href="#the-viz3dmap-function" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="vizcovidfr.maps.maps.viz3Dmap">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz3Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/home/vamelie/Desktop'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'3Dmap_Covid'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[255,</span> <span class="pre">165,</span> <span class="pre">0,</span> <span class="pre">80]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz3Dmap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz3Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/home/vamelie/Desktop'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid3Dmap'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[255,</span> <span class="pre">165,</span> <span class="pre">0,</span> <span class="pre">80]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz3Dmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make a 3D map out of France Covid-19 data.
 Layers elevation represent the amount of death for the given place at a
 given day, which can be view by passing the mouse on it.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>granularity</strong> (<em>string</em>) – the granularity we want the map to be based on.
+<li><p><strong>granularity</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='departement'</em>) – the granularity we want the map to be based on.
 Should be either ‘region’ or ‘departement’. On the latter case,
 columns layers will be raised from the centroid of each department,
-while on the former, these will be raides from each region’s centroid.
-Defaults to ‘department’.</p></li>
-<li><p><strong>criterion</strong> (<em>str</em>) – <p>the Covid-19 indicator we want to see on the map.
+while on the former, these will be raides from each region’s centroid.</p></li>
+<li><p><strong>criterion</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='hospitalises'</em>) – <p>the Covid-19 indicator we want to see on the map.
 Should be either ‘hospitalises’, ‘reanimation’, or ‘deces’:</p>
 <ul>
 <li><dl class="simple">
-<dt>’hospitalises’:</dt><dd><p>will display to number of persons hospitalized
+<dt>’hospitalises’:</dt><dd><p>display the number of persons hospitalized
 on a given date due to Covid-19</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>’reanimation’:</dt><dd><p>will display to number of persons in resuscitation
+<dt>’reanimation’:</dt><dd><p>display the number of persons in resuscitation
 on a given date due to Covid-19</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>’deces’:</dt><dd><p>will display to cumulated number of death due to
+<dt>’deces’:</dt><dd><p>display the cumulated number of death due to
 the Covid-19 in France from the beginning of the pandemic, up to
 a given date</p>
 </dd>
 </dl>
 </li>
 </ul>
-<p>defaults to ‘hospitalises’.</p>
 </p></li>
-<li><p><strong>color</strong> (<em>str</em>) – color for columns. Should be a list
-containing RGBA colors (red, green, blue, alpha).
-For example, see here <a class="reference external" href="https://rgbacolorpicker.com/">https://rgbacolorpicker.com/</a>,
-defaults to yellow (sort of)</p></li>
-<li><p><strong>file_path</strong> (<em>str</em>) – the path on which to save the file, can be either Linux,
-MAC-OS, or Windows path, defaults to user’s Desktop.
-<strong>Warning:</strong> only works if the user’s OS default language is english.
-Otherwise, path is not optional.</p></li>
-<li><p><strong>file_name</strong> (<em>str</em>) – the name under which to save the file,
-defaults to ‘3Dmap_Covid’</p></li>
+<li><p><strong>color</strong> (<em>list</em><em>, </em><em>optional</em><em>, </em><em>default=</em><em>[</em><em>255</em><em>, </em><em>165</em><em>, </em><em>0</em><em>, </em><em>80</em><em>] </em><em>~yellow</em>) – <p>color for columns. Should be a list
+containing RGBA colors (red, green, blue, alpha).</p>
+<p>Need inspiration? see here <a class="reference external" href="https://rgbacolorpicker.com/">https://rgbacolorpicker.com/</a></p>
+</p></li>
+<li><p><strong>file_path</strong> (<em>str</em><em>, </em><em>optional*</em><em>, </em><em>default to user's Desktop</em>) – <p>the path on which to save the file, can be either Linux,
+MAC-OS, or Windows path.</p>
+<blockquote>
+<div><p>(*) <strong>Warning:</strong> the default parameter only works if the user’s
+OS default language is english. Otherwise,
+path is <strong>not optional</strong>.</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>file_name</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='Covid3Dmap'</em>) – the name under which to save the file</p></li>
 </ul>
 </dd>
 </dl>
@@ -452,20 +463,23 @@ patient in France from regions to others.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>file_path</strong> (<em>str</em>) – the path on which to save the file, can be either Linux,
-MAC-OS, or Windows path, defaults to user’s Desktop.
-<strong>Warning:</strong> only works if the user’s OS default language is english.
-Otherwise, path is not optional.</p></li>
-<li><p><strong>file_name</strong> (<em>str</em>) – the name under which to save the file,
-defaults to ‘Covid_transfer_map’</p></li>
-<li><p><strong>color_d</strong> (<em>list</em>) – color for departure point on arcs. Should be a list
-containing RGBA colors (red, green, blue, alpha).
-For example, see here <a class="reference external" href="https://rgbacolorpicker.com/">https://rgbacolorpicker.com/</a>,
-defaults to red (sort of)</p></li>
-<li><p><strong>color_a</strong> (<em>list</em>) – color for arrival point on arcs. Should be a list
-containing RGBA colors (red, green, blue, alpha).
-For example, see here <a class="reference external" href="https://rgbacolorpicker.com/">https://rgbacolorpicker.com/</a>,
-defaults to yellow (sort of)</p></li>
+<li><p><strong>color_d</strong> (<em>list</em><em>, </em><em>optional</em><em>, </em><em>default=</em><em>[</em><em>243</em><em>, </em><em>31</em><em>, </em><em>44</em><em>, </em><em>80</em><em>] </em><em>~red</em>) – <p>color for departure point on arcs. Should be a list
+containing RGBA colors (red, green, blue, alpha).</p>
+<p>Need inspiration? see here <a class="reference external" href="https://rgbacolorpicker.com/">https://rgbacolorpicker.com/</a></p>
+</p></li>
+<li><p><strong>color_a</strong> (<em>list</em><em>, </em><em>optional</em><em>, </em><em>default=</em><em>[</em><em>230</em><em>, </em><em>190</em><em>, </em><em>37</em><em>, </em><em>80</em><em>] </em><em>~yellow</em>) – <p>color for arrival point on arcs. Should be a list
+containing RGBA colors (red, green, blue, alpha).</p>
+<p>Need inspiration? see here <a class="reference external" href="https://rgbacolorpicker.com/">https://rgbacolorpicker.com/</a></p>
+</p></li>
+<li><p><strong>file_path</strong> (<em>str</em><em>, </em><em>optional*</em><em>, </em><em>default to user's Desktop</em>) – <p>the path on which to save the file, can be either Linux,
+MAC-OS, or Windows path.</p>
+<blockquote>
+<div><p>(*) <strong>Warning:</strong> the default parameter only works if the user’s
+OS default language is english. Otherwise,
+path is <strong>not optional</strong>.</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>file_name</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='Covid_transfer_map'</em>) – the name under which to save the file</p></li>
 </ul>
 </dd>
 </dl>
@@ -481,7 +495,9 @@ your favorite web browser</p>
 <dd class="field-odd"><p></p></dd>
 </dl>
 <p><strong>easy example</strong></p>
-<p>&gt;&gt;&gt;transfer_map()</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">transfer_map</span><span class="p">()</span>
+</pre></div>
+</div>
 <p><strong>example using Linux path</strong></p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">path_to_desktop</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/Desktop&quot;</span><span class="p">)</span>
@@ -518,6 +534,8 @@ your favorite web browser</p>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Sparse/sparse.html" class="btn btn-neutral float-right" title="The sparse_graph function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../Installation/install.html" class="btn btn-neutral float-left" title="Installation guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

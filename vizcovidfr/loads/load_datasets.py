@@ -402,3 +402,18 @@ class Load_hopsex:
     def save_as_df():
         df = pd.read_csv(path_target_hopsex, sep=";",encoding="latin-1")
         return df
+
+url_classe_age = "https://www.data.gouv.fr/fr/datasets/r/08c18e08-6780-452d-9b8c-ae244ad529b3"
+path_target6 = os.path.join(
+                os.path.dirname(
+                    os.path.realpath(__file__)),
+                "..", "data", "./classe_age.csv")
+
+class Load_classe_age:
+    def __init__(self, url=url_classe_age, target_name=path_target6):
+        download(url, target_name, replace=True)
+
+    @staticmethod
+    def save_as_df():
+        df = pd.read_csv(path_target6, sep=";")
+        return df

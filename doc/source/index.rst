@@ -27,9 +27,16 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
 
 .. toctree::
    :maxdepth: 2
-   :caption: Maps
+   :caption: Sparse
+
+   Sparse/sparse
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Line_Charts
 
    Line_Charts/line_charts
+
 
 Indices and tables
 ==================
