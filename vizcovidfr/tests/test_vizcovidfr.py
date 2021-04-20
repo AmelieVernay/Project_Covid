@@ -1,10 +1,11 @@
+
 # ---------- requirements ----------
 from scipy.sparse import isspmatrix
 
 # local reqs
 from vizcovidfr.maps import maps
 from vizcovidfr.sparse import sparse
-
+from vizcovidfr.regression import regression
 
 # ---------- maps ----------
 def test_viz2Dmap():
@@ -58,3 +59,32 @@ def test_sparse_matrix():
     """
     result = (isspmatrix(sparse.sparse_matrix(show=False)))
     assert result
+
+#-------------regression------------
+def test_scatter_reg():
+    """
+    Test scatter_reg by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type(regression.scatter_reg(1,1)) != int)
+    assert result
+
+def test_poly_fit():
+    """
+    Test poly_fit by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type(regression.poly_fit(1,1)) != int)
+    assert result
+
+def test_R2():
+    """
+    Test R2 by running the function checking if R2 is different of 2.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type(regression.R2(1,1)) != 2)
+    assert result
+
