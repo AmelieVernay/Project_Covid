@@ -37,6 +37,11 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
 
    Line_Charts/line_charts
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Regression
+
+   Regression/regression
 
 Indices and tables
 ==================
