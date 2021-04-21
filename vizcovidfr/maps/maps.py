@@ -740,15 +740,26 @@ def vacmap(granularity='region', age_range='all ages',
                                    get_fill_color=[255, 69, 0, 150],
                                    pickable=True,
                                    auto_highlight=True)
-    tooltip = {
-        "html": "<b>{Nmb of first doses}</b> first doses and\
-                 <b>{Nmb of second doses}</b> second doses,\
-                 in {gra} <b>{department_code}</b>",
-        "style": {"background": "grey",
-                  "color": "white",
-                  "font-family": '"Helvetica Neue", Arial',
-                  "z-index": "10000"},
-    }
+    if (granularity == 'department'):
+        tooltip = {
+            "html": "<b>{Nmb of first doses}</b> first doses and\
+                     <b>{Nmb of second doses}</b> second doses,\
+                     in <b>{department_name}</b>",
+            "style": {"background": "grey",
+                      "color": "white",
+                      "font-family": '"Helvetica Neue", Arial',
+                      "z-index": "10000"},
+                   }
+    else:
+        tooltip = {
+            "html": "<b>{Nmb of first doses}</b> first doses and\
+                    <b>{Nmb of second doses}</b> second doses,\
+                    in <b>{region_name}</b>",
+            "style": {"background": "grey",
+                      "color": "white",
+                      "font-family": '"Helvetica Neue", Arial',
+                      "z-index": "10000"},
+                   }
     r = pdk.Deck(covid_amount_layer,
                  initial_view_state=view,
                  tooltip=tooltip)
