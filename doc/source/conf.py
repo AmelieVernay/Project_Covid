@@ -34,6 +34,7 @@ release = '0.0.1'
 extensions = [
 	"dask_sphinx_theme",
 	"sphinx.ext.autodoc",
+	"sphinx_gallery.gen_gallery",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -66,3 +67,11 @@ html_theme_options = {
 html_css_files = {
 	'custom.css',
 }
+
+
+sphinx_gallery_conf = {
+	'example_dirs': '../examples',
+	'gallery_dirs': 'auto_examples',
+	'remove_config_comments': True,
+}
+
