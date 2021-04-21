@@ -2,7 +2,7 @@ Introduction
 ============
 
 
-As you probably know, since the end of 2019, the world is facing `the Covid-19 pandemic`.
+As you probably know, since the end of 2019, the world is facing `the Covid-19 pandemic`_.
 You might feel quite confused with everything that is being said here and there about the evolution of heath situation. Here is where **vizcovidfr** comes into play.
 The package won't cure any ills, but hopefully it will provide you an easy way to understand the changing situation in France.
 

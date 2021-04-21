@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="../_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The sparse_graph function" href="../Sparse/sparse.html" />
+    <link rel="next" title="sparse_graph" href="../Sparse/sparse.html" />
     <link rel="prev" title="Installation guide" href="../Getting_Started/install.html" />
   <link rel="shortcut icon" href="../_static/images/favicon.ico"/>
   
@@ -184,8 +184,8 @@
 </ul>
 <p><span class="caption-text">Sparse</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html">The sparse_graph function</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html#the-sparse-matrix-function">The sparse_matrix function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html">sparse_graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html#sparse-matrix">sparse_matrix</a></li>
 </ul>
 <p><span class="caption-text">Line charts</span></p>
 <ul>
@@ -272,7 +272,7 @@
 <h2>viz2Dmap<a class="headerlink" href="#viz2dmap" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="vizcovidfr.maps.maps.viz2Dmap">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz2Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2021-04-19'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'YlGnBu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/home/vamelie/Desktop'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid2Dmap'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz2Dmap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz2Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2021-04-20'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'YlGnBu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/home/vamelie/Desktop'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid2Dmap'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz2Dmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make interactive choropleth map to visualize different aspects of the
 Covid-19 pandemic in France. The map is saved on an html file at a given
 path on a given name, see function parameters for details.</p>
@@ -567,8 +567,18 @@ Otherwise, path is not optional.</p></li>
 <li><p><strong>file_name</strong> (<em>str</em><em>, </em><em>default = 'vacmap'</em>) – the name under which to save the file.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Examples</dt>
-<dd class="field-even"><p></p></dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>an interactive map representing the actual amount of both first</p>
+</dd>
+</dl>
+<p>and second doses, per granularity and per age range, according to the chosen 
+argument.
+:rtype: ‘.html’ file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Examples</dt>
+<dd class="field-odd"><p></p></dd>
 </dl>
 <p><strong>easy example</strong></p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">viz3Dmap</span><span class="p">()</span>
@@ -590,14 +600,6 @@ Otherwise, path is not optional.</p></li>
 <span class="gp">... </span>        <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="mi">207</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">140</span><span class="p">])</span>
 </pre></div>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>an interactive map representing the actual amount of both first</p>
-</dd>
-</dl>
-<p>and second doses, per granularity and per age range, according to the chosen 
-argument.
-:rtype: ‘.html’ file</p>
 </dd></dl>
 
 </section>
@@ -611,7 +613,7 @@ argument.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Sparse/sparse.html" class="btn btn-neutral float-right" title="The sparse_graph function" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../Sparse/sparse.html" class="btn btn-neutral float-right" title="sparse_graph" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../Getting_Started/install.html" class="btn btn-neutral float-left" title="Installation guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

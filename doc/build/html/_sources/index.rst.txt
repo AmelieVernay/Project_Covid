@@ -21,7 +21,7 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
    Getting_Started/install
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Maps
 
    Maps/maps
