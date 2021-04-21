@@ -3,9 +3,12 @@ from download import download
 import pandas as pd
 import seaborn as sns
 from vizcovidfr.loads.load_datasets import Load_posquotfr,Load_posquotreg,Load_posquotdep
-from vizcovidfr.loads.load_datasets import Load_poshebreg,Load_poshebfr,Load_incregrea
-
+from vizcovidfr.loads.load_datasets import Load_poshebreg,Load_poshebfr,Load_incregrea,Load_hopage
+import plotly.express
 from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
+
+
+
 #%%
 def S2020_2021(semaine):
     return int(semaine[3])*53+int(semaine[6:8])
@@ -52,7 +55,7 @@ def heatmapregage(df,granu,weekday):
     df.drop(df.loc[df["cl_age90"]==0].index,inplace=True)
     sns.heatmap(df.pivot(granu,"cl_age90","incid"))
 
-heatmapregage(dfposreg,"2020-11-06","reg")
+heatmapregage(dfposreg,"reg","2020-11-06")
 
 
 # %%
@@ -76,10 +79,10 @@ def heatmapregday(df,age,debut,granu="reg",weekday="jour",fin=None):
     elif weekday =="week":
         a=[W2020_2021(i) for i in range(S2020_2021(debut),S2020_2021(fin)+1)]
         df=df[df['week'].isin(a)]
-
     sns.heatmap(df.pivot(weekday,granu,"incid"))
 
 heatmapregday(dfposreg,0,"2020-11")
+
 # %%
 #dfposdep=Load_posquotdep().save_as_df()
 #heatmapregday(dfposdep,0,"dep","2020-11")
@@ -92,7 +95,6 @@ dfposhebreg
 # %%
 
     
-W2020_2021(13)
 
 debut="2020-S36"
 fin="2021-S02"
@@ -109,5 +111,57 @@ dfincregrea["jour"] = pd.to_datetime(dfincregrea['jour']).dt.date
 
 sns.heatmap(dfincregrea.pivot("jour","numReg","incid_rea"))
 
+def incregra(debut,fin=None):
+    df=Load_incregrea().save_as_df()
+
+    df["jour"] = pd.to_datetime(df["jour"])
+    df= df.set_index('jour')
+    if fin is None:
+        df=df[debut].reset_index()
+    else:
+        df=df[debut:fin].reset_index()
+    df["jour"] = pd.to_datetime(df['jour']).dt.date
+
+    sns.heatmap(df.pivot("jour","numReg","incid_rea"))
+#%%
+
+def hopage(chiffre,modes,debut):
+    dfhopage=Load_hopage().save_as_df()
+    if modes=="reg-age":
+        dfhopage=dfhopage.loc[dfhopage["jour"]==debut]
+        dfhopage.drop(dfhopage.loc[dfhopage["cl_age90"]==0].index,inplace=True)
+
+        sns.heatmap(dfhopage.pivot("cl_age90","reg",chiffre))
+
+    if modes=="reg-jour":
+        dfhopage["jour"] = pd.to_datetime(dfhopage["jour"])
+        dfhopage= dfhopage.set_index('jour')
+        dfhopage=dfhopage[debut].reset_index()
+        dfhopage["jour"] = pd.to_datetime(dfhopage['jour']).dt.date
+        dfhopage=dfhopage.loc[dfhopage["cl_age90"]==0]
+
+        sns.heatmap(dfhopage.pivot("jour","reg",chiffre))
+
+    if modes=="age-jour":
+        dfhopage["jour"] = pd.to_datetime(dfhopage["jour"])
+        dfhopage.drop(dfhopage.loc[dfhopage["cl_age90"]==0].index,inplace=True)
+
+        dfhopage= dfhopage.set_index('jour')
+        dfhopage=dfhopage[debut].reset_index()
+        dfhopage["jour"] = pd.to_datetime(dfhopage['jour']).dt.date
+        dfhopage=dfhopage.groupby(["jour","cl_age90"]).sum().reset_index()
+        sns.heatmap(dfhopage.pivot("cl_age90","jour",chiffre))
+
+hopage("hosp","age-jour","2020-11")
+#dfhopage=Load_hopage().save_as_df()
 
 
+#dfhopage=Load_hopage().save_as_df()
+#dfhopage["jour"] = pd.to_datetime(dfhopage["jour"])
+#dfhopage= dfhopage.set_index('jour')
+#dfhopage=dfhopage["2020-11"].reset_index()
+#dfhopage["jour"] = pd.to_datetime(dfhopage['jour']).dt.date
+#dfhopage=dfhopage.groupby(["jour"]).sum()
+
+#dfhopage
+# %%
