@@ -1,24 +1,34 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>The sparse_graph function &mdash; vizcovidfr 0.0.1 documentation</title>
   
 
   
-  
+  <link rel="stylesheet" href="../_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/explore.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/nbsphinx.css" type="text/css" />
+
   
   
 
   
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -30,13 +40,6 @@
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../_static/css/style.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/explore.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Functions to generate line charts" href="../Line_Charts/line_charts.html" />
@@ -160,6 +163,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -167,27 +171,36 @@
               
             
             
-              <p><span class="caption-text">Installation</span></p>
+              <p class="caption"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Installation/install.html">Installation guide</a></li>
 </ul>
-<p><span class="caption-text">Maps</span></p>
+<p class="caption"><span class="caption-text">Maps</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">Functions to generate maps</a></li>
 </ul>
-<p><span class="caption-text">Sparse</span></p>
+<p class="caption"><span class="caption-text">Sparse</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">The sparse_graph function</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#the-sparse-matrix-function">The sparse_matrix function</a></li>
 </ul>
-<p><span class="caption-text">Line_Charts</span></p>
+<p class="caption"><span class="caption-text">Line charts</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">Functions to generate line charts</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Regression</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions about evolution of Covid in France and polynomial regression</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Barplots</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Bar plots about classification of Covid variable in France</a></li>
 </ul>
 
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -222,18 +235,20 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>The sparse_graph function</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/Sparse/sparse.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -247,111 +262,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="the-sparse-graph-function">
+  <div class="section" id="the-sparse-graph-function">
 <h1>The sparse_graph function<a class="headerlink" href="#the-sparse-graph-function" title="Permalink to this headline">¶</a></h1>
-<dl class="py function">
-<dt id="vizcovidfr.sparse.sparse.sparse_graph">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.sparse.sparse.</span></code><code class="sig-name descname"><span class="pre">sparse_graph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.sparse.sparse.sparse_graph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot and return the graph of the transfer of patient with Covid-19,
-inside or outside France.</p>
-<p><strong>Note:</strong>
-Try to first plot the undirected graph to see if you can guess the
-direction of the arrows, then check by calling the function with
-directed=True !</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>directed</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=False</em><em>)</em>) – whether we want the graph to be directed or not</p></li>
-<li><p><strong>show</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=True</em>) – whether or not to show the graph</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the transfer graph and a plot of its representation</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>networkx.classes.graph.Graph (if directed=False)</p></li>
-<li><p>networkx.classes.digraph.DiGraph (if directed=True)</p></li>
-</ul>
-</p>
-</dd>
-<dt class="field-odd">Examples</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sparse_graph</span><span class="p">()</span>
-</pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sparse_graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</section>
-<section id="the-sparse-matrix-function">
+<div class="section" id="the-sparse-matrix-function">
 <h1>The sparse_matrix function<a class="headerlink" href="#the-sparse-matrix-function" title="Permalink to this headline">¶</a></h1>
-<dl class="py function">
-<dt id="vizcovidfr.sparse.sparse.sparse_matrix">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.sparse.sparse.</span></code><code class="sig-name descname"><span class="pre">sparse_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.sparse.sparse.sparse_matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return and plot the adjacency matrix of the graph of the transfer of
-patient with Covid-19, inside or outside France. This, by definition, is
-a sparse matrix.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>show</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=True</em>) – whether or not to show the matrix</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the adjacency matrix of transfer graph and a plot of its
-representation</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>scipy.sparse.csr.csr_matrix</p>
-</dd>
-<dt class="field-even">Examples</dt>
-<dd class="field-even"><p></p></dd>
-</dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sparse_matrix</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">isspmatrix</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">A</span> <span class="o">=</span> <span class="n">sparse_matrix</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">isspmatrix</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
-<span class="go">True</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</section>
 
 
            </div>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../Line_Charts/line_charts.html" class="btn btn-neutral float-right" title="Functions to generate line charts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../Maps/maps.html" class="btn btn-neutral float-left" title="Functions to generate maps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="../Line_Charts/line_charts.html" class="btn btn-neutral float-right" title="Functions to generate line charts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Maps/maps.html" class="btn btn-neutral float-left" title="Functions to generate maps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2021, Foux Quentin ; Llinares Laurent ; Nicolas Alexandre ; Vernay Amelie
+        &#169; Copyright 2021, Foux Quentin ; Llinares Laurent ; Nicolas Alexandre ; Vernay Amelie.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
@@ -359,7 +304,6 @@ representation</p>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
