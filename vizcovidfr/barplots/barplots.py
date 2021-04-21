@@ -21,7 +21,9 @@ def compareHF(jour,chiffre,df):
     if not chiffre in ["hosp","rea","rad","dc"]:
 
         return [df.loc[jour,][chiffre+"_h"],df.loc[jour,][chiffre+"_f"]]
-    else: return [df.loc[jour,].loc[df.loc[jour,]["sexe"]==1]][chiffre],df.loc[jour,].loc[df[jour,]["sexe"==2]][chiffre]]
+    else: 
+        df=df.loc[jour,]
+        return [df.loc[df["sexe"]==1][chiffre],df.loc[df["sexe"]==2][chiffre]]
 
 def positiverate(jour,df,sex=False,rate=True):
     if not sex:
@@ -45,7 +47,6 @@ def comparativebarplot(jour,chiffre,df,cumulative=False):
         positif=incidencerate(jour,df,True)
     else:
         positif = compareHF(jour,chiffre,df)
-
     ax.bar(sex,positif)
     plt.show()
 
@@ -70,7 +71,6 @@ def barplotscomparison(jour,chiffre,granu,numero=None,cumulative=False,weekday="
             else:
                 df=ignoreage(Load_poshebreg().save_as_df(),weekday)
 
-    df=granupositivity(df,numero,granu)
     if granu=="dep":
         if weekday=="jour":
             if chiffre=="incidence":
@@ -83,30 +83,39 @@ def barplotscomparison(jour,chiffre,granu,numero=None,cumulative=False,weekday="
                 df=ignoreage(Load_inchebdep().save_as_df(),weekday)
             else:
                 df=ignoreage(Load_poshebdep().save_as_df(),weekday)
+    df=granupositivity(df,numero,granu)
+
     if chiffre in ["hosp","rea","rad","dc"]:
     
         dfhopsex=Load_hopsex().save_as_df()
         dfhopsex.index=pd.to_datetime(dfhopsex['jour'])
         del dfhopsex['jour']
-        granupositivity(dfhopsex,numero,granu)
-
+        df=granupositivity(dfhopsex,numero,granu)
     comparativebarplot(jour ,chiffre,df,True)
 
 
+barplotscomparison("2020-10-12","incidence","reg",2)
+#dfhopsex=Load_hopsex().save_as_df()
+#dfhopsex.index=pd.to_datetime(dfhopsex['jour'])
 
-barplotscomparison("2020-10-12","P","reg",2)
+#df=granupositivity(dfhopsex,"02","dep")
 
+#df=df.loc["2020-10-12",]
+#df
+
+#df.loc[df["sexe"]==1]["hosp"]
+
+#dfhopsex.index=pd.to_datetime(dfhopsex['jour'])
+#dfhopsex.loc[dfhopsex['sexe']==0]["hosp"]
 
 # %%
-dfincregrea=Load_incregrea().save_as_df()
-dfincregrea
-dfincregrea.loc[dfincregrea["numReg"]==84,:]
+#dfincregrea=Load_incregrea().save_as_df()
+#dfincregrea
+#dfincregrea.loc[dfincregrea["numReg"]==84,:]
 # %%
-dfhopdep=Load_hopdep().save_as_df()
-dfhopdep.loc[dfhopdep["dep"]=="03",:]
+#dfhopdep=Load_hopdep().save_as_df()
+#dfhopdep.loc[dfhopdep["dep"]=="03",:]
 #%%
-dfhopage=Load_hopage().save_as_df()
-ignoreage(dfhopage.loc[dfhopage["reg"]==1,:])
 
 # %%
 
