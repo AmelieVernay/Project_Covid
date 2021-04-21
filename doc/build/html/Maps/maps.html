@@ -548,35 +548,42 @@ your favorite web browser</p>
 <dl class="py function">
 <dt id="vizcovidfr.maps.vacmaps.vacmap">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.vacmaps.</span></code><code class="sig-name descname"><span class="pre">vacmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'region'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all</span> <span class="pre">ages'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/home/vamelie/Desktop'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vacmap'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_rgb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[255,</span> <span class="pre">69,</span> <span class="pre">0,</span> <span class="pre">150]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.vacmaps.vacmap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Makes an interactive map of France vaccine data.</p>
+<dd><p>Make an interactive map of France vaccine data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>granularity</strong> (<em>str</em><em>, </em><em>default = 'region'</em>) – the granularity we want the map to be based on.
+<li><p><strong>granularity</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='region'</em>) – the granularity we want the map to be based on.
 Either ‘region’ or ‘department’. On the latter case,
 column layers will be raised from the centroid of each department,
-while on the former case, they will be raised from each region’s centroid.</p></li>
-<li><p><strong>age_range</strong> (<em>str</em><em>, </em><em>default = 'all ages'</em>) – the age range we want to have information about vaccination.
-It can be ‘18-24’, ‘25-29’, ‘30-39’, ‘40-49’, ‘50-59’, ‘60-64’, ‘65-69’, 
-‘70-74’, ‘75-79’, ‘80 and +’, ‘all ages’. This last one representing the 
-cumulation of all the age ranges.</p></li>
-<li><p><strong>file_path</strong> (<em>str</em><em>, </em><em>default = path_to_Desktop</em>) – the path on which the file will be saved, can be either Linux,
-MAC-OS, or Windows path, defaults to user’s Desktop.
-<strong>Warning:</strong> only works if the user’s OS default language is english.
-Otherwise, path is not optional.</p></li>
-<li><p><strong>file_name</strong> (<em>str</em><em>, </em><em>default = 'vacmap'</em>) – the name under which to save the file.</p></li>
+while on the former case, they will be raised from each region’s
+centroid.</p></li>
+<li><p><strong>age_range</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='all ages'</em>) – <p>the age range we want to have information about
+vaccination.</p>
+<p>It can be ‘18-24’, ‘25-29’, ‘30-39’, ‘40-49’, ‘50-59’, ‘60-64’,
+‘65-69’, ‘70-74’, ‘75-79’, ‘80 and +’, ‘all ages’.
+This last one represents the cumulation of all the age ranges.</p>
+</p></li>
+<li><p><strong>file_path</strong> (<em>str</em><em>, </em><em>optional*</em><em>, </em><em>default to user's Desktop</em>) – <p>the path on which to save the file, can be either Linux,
+MAC-OS, or Windows path.</p>
+<blockquote>
+<div><p>(*) <strong>Warning:</strong> the default parameter only works if the user’s
+OS default language is english. Otherwise,
+path is <strong>not optional</strong>.</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>file_name</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='vacmap'</em>) – the name under which to save the file.</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>an interactive map representing the actual amount of both first</p>
+<dd class="field-odd"><p>an interactive map representing the actual amount of both first
+and second doses, per granularity and per age range, according to
+the chosen argument.</p>
 </dd>
-</dl>
-<p>and second doses, per granularity and per age range, according to the chosen 
-argument.
-:rtype: ‘.html’ file</p>
-<dl class="field-list simple">
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>‘.html’ file</p>
+</dd>
 <dt class="field-odd">Examples</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
@@ -587,16 +594,16 @@ argument.
 <p><strong>example using Linux path</strong></p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">path_to_desktop</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~/Desktop&quot;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vacmap</span><span class="p">(</span><span class="n">granularity</span> <span class="o">=</span> <span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="n">age_range</span> <span class="o">=</span> <span class="s1">&#39;all ages&#39;</span><span class="p">,</span> 
-<span class="gp">... </span>        <span class="n">file_path</span> <span class="o">=</span> <span class="n">path_to_desktop</span><span class="p">,</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;vaccine_map&#39;</span><span class="p">,</span>
-<span class="gp">... </span>        <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="mi">245</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vacmap</span><span class="p">(</span><span class="n">granularity</span><span class="o">=</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="n">age_range</span><span class="o">=</span><span class="s1">&#39;all ages&#39;</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">file_path</span><span class="o">=</span><span class="n">path_to_desktop</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;vaccine_map&#39;</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="mi">245</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
 </pre></div>
 </div>
 <p><strong>example using Windows path</strong></p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">os</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">W_path</span> <span class="o">=</span> <span class="s1">&#39;c:\Users\username\Documents&#39;</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">vacmap</span><span class="p">(</span><span class="n">granularity</span> <span class="o">=</span> <span class="s1">&#39;department&#39;</span><span class="p">,</span> <span class="n">age_range</span> <span class="o">=</span> <span class="s1">&#39;18-24&#39;</span><span class="p">,</span> 
-<span class="gp">... </span>        <span class="n">file_path</span> <span class="o">=</span> <span class="n">path_to_desktop</span><span class="p">,</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;vaccine_map&#39;</span><span class="p">,</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">vacmap</span><span class="p">(</span><span class="n">granularity</span><span class="o">=</span><span class="s1">&#39;department&#39;</span><span class="p">,</span> <span class="n">age_range</span><span class="o">=</span><span class="s1">&#39;18-24&#39;</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">file_path</span><span class="o">=</span><span class="n">path_to_desktop</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="s1">&#39;vaccine_map&#39;</span><span class="p">,</span>
 <span class="gp">... </span>        <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="mi">207</span><span class="p">,</span> <span class="mi">67</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">140</span><span class="p">])</span>
 </pre></div>
 </div>
