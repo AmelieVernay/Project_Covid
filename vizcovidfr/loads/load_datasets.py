@@ -1,7 +1,6 @@
 from download import download
 import pandas as pd
 import os
-from datetime import date
 
 
 # Define global path target on which to join our files.
@@ -139,7 +138,7 @@ path_target_posdep = os.path.join(path_target, "./posquotdep.csv")
 class Load_posquotdep:
     """
     Download and save 'posquotdep.csv',
-    a dataset containing positive information by departments
+    a dataset containing positivity information by departments
     """
     def __init__(self, url=url_posdep, target_name=path_target_posdep):
         download(url, target_name, replace=True)
@@ -158,7 +157,7 @@ path_target_posfr = os.path.join(path_target, "./posquotfr.csv")
 class Load_posquotfr:
     """
     Download and save 'posquotfr.csv',
-    a dataset containing positive information for France
+    a dataset containing positivity information for France
     """
     def __init__(self, url=url_posfr, target_name=path_target_posfr):
         download(url, target_name, replace=True)
@@ -177,7 +176,7 @@ path_target_poshebdep = os.path.join(path_target, "./poshebdep.csv")
 class Load_poshebdep:
     """
     Download and save 'poshebdep.csv',
-    a dataset containing positive informations by departments weekly
+    a dataset containing positivity informations by departments weekly
     """
     def __init__(self, url=url_poshebdep, target_name=path_target_poshebdep):
         download(url, target_name, replace=True)
@@ -195,7 +194,7 @@ path_target_poshebreg = os.path.join(path_target, "./poshebreg.csv")
 class Load_poshebreg:
     """
     Download and save 'poshebreg.csv',
-    a dataset containing positive informations by regions weekly
+    a dataset containing positivity informations by regions weekly
     """
     def __init__(self, url=url_poshebreg, target_name=path_target_poshebreg):
         download(url, target_name, replace=True)
@@ -213,7 +212,7 @@ path_target_poshebfr = os.path.join(path_target, "./poshebfr.csv")
 class Load_poshebfr:
     """
     Download and save 'poshebfr.csv',
-    a dataset containing positive informations in France weekly
+    a dataset containing positivity informations in France weekly
     """
     def __init__(self, url=url_poshebfr, target_name=path_target_poshebfr):
         download(url, target_name, replace=True)
@@ -267,7 +266,7 @@ path_target_incfr = os.path.join(path_target, "./incquotfr.csv")
 class Load_incquotfr:
     """
     Download and save 'incquotfr.csv',
-    a dataset containing incidence information  
+    a dataset containing incidence information for France
     """
     def __init__(self, url=url_incfr, target_name=path_target_incfr):
         download(url, target_name, replace=True)
@@ -284,8 +283,8 @@ path_target_incdepheb = os.path.join(path_target, "./inchebdep.csv")
 
 class Load_inchebdep:
     """
-    Download and save 'incquotfr.csv',
-    a dataset containing incidence information
+    Download and save 'inchebdep.csv',
+    a dataset containing incidence information by departments weekly
     """
     def __init__(self, url=url_incdepheb, target_name=path_target_incdepheb):
         download(url, target_name, replace=True)
@@ -303,7 +302,7 @@ path_target_incregheb = os.path.join(path_target, "./inchebreg.csv")
 class Load_inchebreg:
     """
     Download and save 'inchebreg.csv',
-    a dataset containing incidence information
+    a dataset containing incidence information by regions weekly
     """
     def __init__(self, url=url_incregheb, target_name=path_target_incregheb):
         download(url, target_name, replace=True)
@@ -321,7 +320,7 @@ path_target_incfrheb = os.path.join(path_target, "./inchebfr.csv")
 class Load_inchebfr:
     """
     Download and save 'inchebfr.csv',
-    a dataset containing incidence information
+    a dataset containing incidence information for France weekly
     """
     def __init__(self, url=url_incfrheb, target_name=path_target_incfrheb):
         download(url, target_name, replace=True)
@@ -338,8 +337,8 @@ path_target_incregrea = os.path.join(path_target, "./incregrea.csv")
 
 class Load_incregrea:
     """
-    Download and save 'inchebfr.csv',
-    a dataset containing incidence information
+    Download and save 'incregrea.csv',
+    a dataset containing  information about intensive care incidence
     """
     def __init__(self, url=url_incregrea, target_name=path_target_incregrea):
         download(url, target_name, replace=True)
@@ -357,7 +356,7 @@ path_target_hopdep = os.path.join(path_target, "./hopdep.csv")
 class Load_hopdep:
     """
     Download and save 'hopdep.csv',
-    a dataset containing incidence information
+    a dataset containing  information about hospitals by departments
     """
     def __init__(self, url=url_hopdep, target_name=path_target_hopdep):
         download(url, target_name, replace=True)
@@ -374,8 +373,8 @@ path_target_hopage = os.path.join(path_target, "./hopage.csv")
 
 class Load_hopage:
     """
-    Download and save 'hopdep.csv',
-    a dataset containing incidence information
+    Download and save 'hopage.csv',
+    a dataset containing information about hospital by age
     """
     def __init__(self, url=url_hopage, target_name=path_target_hopage):
         download(url, target_name, replace=True)
@@ -392,8 +391,8 @@ path_target_hopsex = os.path.join(path_target, "./hopsex.csv")
 
 class Load_hopsex:
     """
-    Download and save 'hopdep.csv',
-    a dataset containing incidence information
+    Download and save 'hopsex.csv',
+    a dataset containing information about hospital by sex
     """
     def __init__(self, url=url_hopsex, target_name=path_target_hopsex):
         download(url, target_name, replace=True)
