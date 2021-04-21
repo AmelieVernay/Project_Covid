@@ -4,9 +4,15 @@ import pandas as pd
 from download import download
 import datetime
 import plotly.express as px
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # local reqs
 from vizcovidfr.loads import load_datasets
+from vizcovidfr.loads.load_datasets import Load_posquotdep,Load_posquotreg,Load_chiffres_fr
+from vizcovidfr.preprocesses import preprocess_chiffres_cles,preprocess_positivity
+from vizcovidfr.preprocesses import preprocess_positivity
+from vizcovidfr.preprocesses.preprocess_positivity import REGIONS,DEPARTMENTS
 
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
@@ -226,6 +232,139 @@ def vacdoses(unit='doses', font_size=16,
     print("Time to execute: {0:.5f} s.".format(end - start))
     fig.show()
 
+def keyseries(nom,chiffre,evo=True):
+
+    """
+
+    Extract the main time series about information concerning
+    the evolution of the deases COVID-19 in France or a sub-part of France
+
+    Parameters
+    ----------
+    :param nom: A name in French of a department, or region , 
+        or the whole territory
+    :type nom: str
+    :param chiffre: The figure of interest in French suc as "deces" , "cas" 
+
+        - 'cas_confirmes':
+            number of confirmed cases
+        - 'cas_ehpad':
+            number of confirmed cases in 
+        - 'deces':
+            display the cumulated number of death due to
+            the Covid-19 in France from the beginning of the pandemic, up to
+            the given date
+    
+    :type chiffre: str
+
+    :param evo: New per day or cumulative
+    :type evo: bool, optional, default=True
+
+
+
+    Returns
+    -------
+    :return: A time series until today since the beginning of the records of the figure of interest 
+    :rtype: 'pandas.Series' 
+    evo: New per day or cumulative
+
+    :Examples:
+    >>> keyseries("France","cas",evo=False)
+
+
+    """
+
+    fr= nom=="France"
+
+    if chiffre in ["deces_à_l'hôpital","deceshop"]:
+
+        chiffre="total_deces_hopital"
+        fr=True #no big difference with only "deces"
+
+    if fr:
+
+        
+        df_covid=preprocess_chiffres_cles.gooddates(Load_chiffres_fr().save_as_df())
+
+    if chiffre in ["cas","nombre_de_cas","cas_confirmes"]:
+
+        chiffre="cas_confirmes"
+
+        if fr:
+
+            chiffre="total_cas_confirmes"
+
+    elif chiffre in ["hospitalisation","hôpital","hospitalises"]:
+        
+        chiffre="hospitalises"
+
+        if fr:
+
+            chiffre="patients_hospitalises"
+
+    elif chiffre in ["deces_ehpad"]:
+
+        if fr:
+
+            chiffre="total_deces_ehpad"
+
+    elif chiffre in ["morts"]:
+
+        chiffre="deces"
+
+    elif chiffre in ["reanimation"]:
+
+        if fr:
+
+            chiffre="patients_reanimation"
+
+    elif chiffre in ["cas_confirmes_ehpad"]:
+
+        if fr:
+
+            chiffre="total_cas_confirmes_ephad"
+
+    elif chiffre in ["gueris"]:
+
+        if fr:
+
+            chiffre="total_patients_gueris" #options with
+            # different expressions for a same argument
+
+    if fr:
+
+        if evo:
+
+            return df_covid[chiffre].diff()
+
+        return df_covid[chiffre]
+
+    elif chiffre in ["cas_confirmes"]: #need specific datasets
+
+        if nom in REGIONS.keys():
+            df=preprocess_positivity.granupositivity(Load_posquotreg().save_as_df(),nom)
+        
+        elif nom in DEPARTMENTS.keys():
+            df=preprocess_positivity.granupositivity(Load_posquotdep().save_as_df(),nom)
+
+        
+        if evo:
+
+            return df['P']
+
+        else: 
+                
+            return df['P'].cumsum()
+
+
+
+
+
+    if evo:
+
+        return preprocess_chiffres_cles.keysubtablename(nom)[chiffre].dropna().diff()
+
+    return preprocess_chiffres_cles.keysubtablename(nom)[chiffre].dropna()
 
 # Test:
 # vacdoses()
