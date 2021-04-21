@@ -228,6 +228,10 @@ def viz2Dmap(granularity='departement', date=yesterday,
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     map.save(save_path)
+    sms1 = f"\nThat's it! \n{file_name + suffix} has been successfully saved"
+    sms2 = f" in {file_path}! \nYou can go ahead and open it with your"
+    sms3 = " favorite web browser!"
+    print(sms1 + sms2 + sms3)
 
 
 # TODO:
@@ -395,6 +399,10 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     covid_amount_layer_map.to_html(save_path)
+    sms1 = f"\nThat's it! \n{file_name + suffix} has been successfully saved"
+    sms2 = f" in {file_path}! \nYou can go ahead and open it with your"
+    sms3 = " favorite web browser!"
+    print(sms1 + sms2 + sms3)
 
 
 # ---------- define transfer_map ----------
@@ -543,6 +551,10 @@ def transfer_map(file_path='~/Desktop/vizcovidfr_files/',
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     arc_layer_map.to_html(save_path)
+    sms1 = f"\nThat's it! \n{file_name + suffix} has been successfully saved"
+    sms2 = f" in {file_path}! \nYou can go ahead and open it with your"
+    sms3 = " favorite web browser!"
+    print(sms1 + sms2 + sms3)
 
 
 # TODO:
@@ -768,3 +780,7 @@ def vacmap(granularity='region', age_range='all ages',
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     r.to_html(save_path)
+    sms1 = f"\nThat's it! \n{file_name + suffix} has been successfully saved"
+    sms2 = f" in {file_path}! \nYou can go ahead and open it with your"
+    sms3 = " favorite web browser!"
+    print(sms1 + sms2 + sms3)
