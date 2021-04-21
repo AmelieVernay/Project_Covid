@@ -1,10 +1,10 @@
-The sparse_graph function
--------------------------
+sparse_graph
+--------------
 
 .. autofunction:: vizcovidfr.sparse.sparse.sparse_graph
 
 
-The sparse_matrix function
---------------------------
+sparse_matrix
+---------------
 
 .. autofunction:: vizcovidfr.sparse.sparse.sparse_matrix

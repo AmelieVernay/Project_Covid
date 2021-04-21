@@ -16,16 +16,13 @@ import json
 # local reqs
 from vizcovidfr.loads import load_datasets
 from vizcovidfr.preprocesses import preprocess_chiffres_cles
+from vizcovidfr.preprocesses import preprocess_maps
+
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
 
 
 # ---------- format some default arguments ----------
-
-# get user's path to Desktop
-A = os.path.expanduser("~")
-B = "Desktop"
-path_to_Desktop = os.path.join(A, B)
 
 # format yesterday's date
 dt_today = datetime.now()
@@ -36,7 +33,7 @@ yesterday = dt_yesterday.strftime('%Y-%m-%d')
 # ---------- define viz2Dmap ----------
 def viz2Dmap(granularity='departement', date=yesterday,
              criterion='hospitalises', color_pal='YlGnBu',
-             file_path=path_to_Desktop, file_name='Covid2Dmap'):
+             file_path='~/Desktop/vizcovidfr_files/', file_name='Covid2Dmap'):
     '''
     Make interactive choropleth map to visualize different aspects of the
     Covid-19 pandemic in France. The map is saved on an html file at a given
@@ -80,7 +77,8 @@ def viz2Dmap(granularity='departement', date=yesterday,
             (*) **Warning:** the default parameter only works if the user's
             OS default language is english. Otherwise,
             path is **not optional**.
-    :type file_path: str, optional*, default to user's Desktop
+    :type file_path: str, optional*, default to a folder 'vizcovidfr_files'
+        in the user's Desktop
     :param file_name: the name under which to save the file
     :type file_name: str, optional, default='Covid2Dmap'
 
@@ -99,14 +97,13 @@ def viz2Dmap(granularity='departement', date=yesterday,
     **example using Linux path**
 
     >>> import os
-    >>> path_to_desktop = os.path.expanduser("~/Desktop")
+    >>> path_to_Documents = os.path.expanduser("~/Documents")
     >>> viz2Dmap(granularity='region', date='2020-12-25', criterion='deces',
-    ...          color_pal='Greys', file_path=path_to_desktop,
+    ...          color_pal='Greys', file_path=path_to_Documents,
     ...          file_name='creepymap')
 
     **example using Windows path**
 
-    >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> viz2Dmap(granularity='department', date='2021-01-17',
     ...          criterion='reanimation', color_pal='Greys',
@@ -189,7 +186,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
             columns=['code', criterion],
             key_on="feature.properties.code",
             fill_color=color_pal,
-            fill_opacity=1,
+            fill_opacity=0.7,
             line_opacity=0.2,
             legend_name=legend,
             smooth_factor=0
@@ -227,6 +224,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
                  '''.format(title)
     map.get_root().html.add_child(folium.Element(title_html))
     # save map
+    file_path = preprocess_maps.map_save_path_routine(file_path)
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     map.save(save_path)
@@ -238,7 +236,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
 
 # ---------- define viz3Dmap ----------
 def viz3Dmap(granularity='departement', criterion='hospitalises',
-             file_path=path_to_Desktop, file_name='Covid3Dmap',
+             file_path='~/Desktop/vizcovidfr_files/', file_name='Covid3Dmap',
              color=[255, 165, 0, 80]):
     '''
     Make a 3D map out of France Covid-19 data.
@@ -278,7 +276,8 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
             (*) **Warning:** the default parameter only works if the user's
             OS default language is english. Otherwise,
             path is **not optional**.
-    :type file_path: str, optional*, default to user's Desktop
+    :type file_path: str, optional*, default to a folder 'vizcovidfr_files'
+        in the user's Desktop
     :param file_name: the name under which to save the file
     :type file_name: str, optional, default='Covid3Dmap'
 
@@ -297,14 +296,13 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     **example using Linux path**
 
     >>> import os
-    >>> path_to_desktop = os.path.expanduser("~/Desktop")
-    >>> viz3Dmap(file_path=path_to_desktop, file_name='pinky_3D_map',
+    >>> path_to_Documents = os.path.expanduser("~/Documents")
+    >>> viz3Dmap(file_path=path_to_Documents, file_name='pinky_3D_map',
     ...          granularity='departement', criterion='reanimation',
     ...          color=[245, 92, 245, 80])
 
     **example using Windows path**
 
-    >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> viz3Dmap(file_path=W_path, color=[230, 37, 37, 80],
     ...          criterion='deces')
@@ -374,8 +372,8 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     A['lat'] = A.geometry.apply(lambda p: p.y)
     # ---------- make map! ----------
     # initialize view (centered on Paris!)
-    view = pdk.ViewState(latitude=46.232192999999995,
-                         longitude=2.209666999999996,
+    view = pdk.ViewState(latitude=46.2322,
+                         longitude=2.20967,
                          pitch=50,
                          zoom=5.5)
     # add pydeck layers
@@ -393,13 +391,15 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
                                       initial_view_state=view,
                                       tooltip=tooltip)
     # save map
+    file_path = preprocess_maps.map_save_path_routine(file_path)
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     covid_amount_layer_map.to_html(save_path)
 
 
 # ---------- define transfer_map ----------
-def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
+def transfer_map(file_path='~/Desktop/vizcovidfr_files/',
+                 file_name='Covid_transfer_map',
                  color_d=[243, 31, 44, 80], color_a=[230, 190, 37, 80]):
     """
     Make interactive 3D-arc-map to visualize the transfer of Covid-19
@@ -424,7 +424,8 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
             (*) **Warning:** the default parameter only works if the user's
             OS default language is english. Otherwise,
             path is **not optional**.
-    :type file_path: str, optional*, default to user's Desktop
+    :type file_path: str, optional*, default to a folder 'vizcovidfr_files'
+        in the user's Desktop
     :param file_name: the name under which to save the file
     :type file_name: str, optional, default='Covid_transfer_map'
 
@@ -443,13 +444,12 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     **example using Linux path**
 
     >>> import os
-    >>> path_to_desktop = os.path.expanduser("~/Desktop")
-    >>> transfer_map(file_path=path_to_desktop, file_name='pinky_arc_map',
+    >>> path_to_Documents = os.path.expanduser("~/Documents")
+    >>> transfer_map(file_path=path_to_Documents, file_name='pinky_arc_map',
     ...          color_d=[255, 165, 0, 80], color_a=[128, 0, 128, 80])
 
     **example using Windows path**
 
-    >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> transfer_map(file_path=W_path, file_name='counter_intuitive_arc_map',
     ...          color_d=[61, 230, 37, 80], color_a=[230, 37, 37, 80])
@@ -539,6 +539,7 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
                              initial_view_state=view,
                              tooltip=tooltip)
     # save map
+    file_path = preprocess_maps.map_save_path_routine(file_path)
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     arc_layer_map.to_html(save_path)
@@ -546,3 +547,224 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
 
 # TODO:
 # remove # save for sparse matrix purpose ? if not needed
+
+
+# ---------- define vacmap function ----------
+def vacmap(granularity='region', age_range='all ages',
+           file_path='~/Desktop/vizcovidfr_files/', file_name='vacmap',
+           color_rgb=[255, 69, 0, 150]):
+    '''
+    Make an interactive map of France vaccine data.
+
+    Parameters
+    ----------
+    :param granularity: the granularity we want the map to be based on.
+        Either 'region' or 'department'. On the latter case,
+        column layers will be raised from the centroid of each department,
+        while on the former case, they will be raised from each region's
+        centroid.
+    :type granularity: str, optional, default='region'
+    :param age_range: the age range we want to have information about
+        vaccination.
+
+        It can be '18-24', '25-29', '30-39', '40-49', '50-59', '60-64',
+        '65-69', '70-74', '75-79', '80 and +', 'all ages'.
+        This last one represents the cumulation of all the age ranges.
+    :type age_range: str, optional, default='all ages'
+    :param file_path: the path on which to save the file, can be either Linux,
+        MAC-OS, or Windows path.
+
+            (*) **Warning:** the default parameter only works if the user's
+            OS default language is english. Otherwise,
+            path is **not optional**.
+    :type file_path: str, optional*, default to a folder 'vizcovidfr_files'
+        in the user's Desktop
+    :param file_name: the name under which to save the file.
+    :type file_name: str, optional, default='vacmap'
+
+    Returns
+    -------
+    :return: an interactive map representing the actual amount of both first
+        and second doses, per granularity and per age range, according to
+        the chosen argument.
+    :rtype: '.html' file
+
+    :Examples:
+
+    **easy example**
+
+    >>> viz3Dmap()
+
+    **example using Linux path**
+
+    >>> import os
+    >>> path_to_Documents = os.path.expanduser("~/Documents")
+    >>> vacmap(granularity='region', age_range='all ages',
+    ...         file_path=path_to_Documents, file_name='vaccine_map',
+    ...         color=[245, 92, 245, 80])
+
+    **example using Windows path**
+
+    >>> W_path = 'c:\\Users\\username\\Documents'
+    >>> vacmap(granularity='department', age_range='18-24',
+    ...         file_path=path_to_desktop, file_name='vaccine_map',
+    ...         color = [207, 67, 80, 140])
+
+    '''
+    # load vaccin dataset
+    df_Vac = load_datasets.Load_vaccination().save_as_df()
+    df_Vac.sort_values(by=['Date', 'Valeur de la variable'], inplace=True)
+    # load geographic datasets
+    reg_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "regions.geojson")
+    dep_path = os.path.join(
+                    os.path.dirname(
+                        os.path.realpath(__file__)),
+                    "geodata", "departements.geojson")
+    rgn = gpd.read_file(reg_path)
+    dpt = gpd.read_file(dep_path)
+    # make groups
+    df_Vac = df_Vac.groupby(['Valeur de la variable'])
+    till_24 = df_Vac.get_group(24).reset_index(drop=True)
+    till_29 = df_Vac.get_group(29).reset_index(drop=True)
+    till_39 = df_Vac.get_group(39).reset_index(drop=True)
+    till_49 = df_Vac.get_group(49).reset_index(drop=True)
+    till_59 = df_Vac.get_group(59).reset_index(drop=True)
+    till_64 = df_Vac.get_group(64).reset_index(drop=True)
+    till_69 = df_Vac.get_group(69).reset_index(drop=True)
+    till_74 = df_Vac.get_group(74).reset_index(drop=True)
+    till_79 = df_Vac.get_group(79).reset_index(drop=True)
+    sup_80 = df_Vac.get_group(80).reset_index(drop=True)
+    all_ages = df_Vac.get_group(0).reset_index(drop=True)
+    # choose dataframe according to age_range argument
+    if (age_range == '18-24'):
+        df = till_24.copy()
+        age = '18-24'
+    elif (age_range == '25-29'):
+        df = till_29.copy()
+        age = '25-29'
+    elif (age_range == '30-39'):
+        df = till_39.copy()
+        age = '30-39'
+    elif (age_range == '40-49'):
+        df = till_49.copy()
+        age = '40-49'
+    elif (age_range == '50-59'):
+        df = till_59.copy()
+        age = '50-59'
+    elif (age_range == '60-24'):
+        df = till_64.copy()
+        age = '60-64'
+    elif (age_range == '65-69'):
+        df = till_69.copy()
+        age = '65-69'
+    elif (age_range == '70-74'):
+        df = till_74.copy()
+        age = '70-74'
+    elif (age_range == '75-79'):
+        df = till_79.copy()
+        age = '65-79'
+    elif (age_range == '80 and +'):
+        df = sup_80.copy()
+        age = '80 and +'
+    elif (age_range == 'all ages'):
+        df = all_ages.copy()
+        age = 'all ages'
+    # choose dataframe according to granularity argument
+    if (granularity == 'department'):
+        df2 = dpt.copy()
+        gra = 'department'
+        df['code'] = df['Code Officiel Département']
+        df3 = df.groupby(['Date',
+                          'code'])['Nombre cumulé de doses n°1',
+                                   'n_cum_dose2'].agg('sum').reset_index()
+        # pick the latest cumulation per granularity
+        df3 = df3.groupby(['code']).agg('max')
+        df3['code'] = df3.index
+        df3.reset_index(drop=True, inplace=True)
+        df3.drop([76, 97], 0, inplace=True)  # non-existent departments
+        # no localisation data for these departments:
+        df3.drop([98, 99, 100, 101, 102, 103, 104], 0, inplace=True)
+    else:
+        df2 = rgn.copy()
+        gra = 'region'
+        df['code'] = df['Code Officiel Région']
+        df3 = df.groupby(['Date',
+                          'code'])['Nombre cumulé de doses n°1',
+                                   'n_cum_dose2'].agg('sum').reset_index()
+        # pick the latest cumule per granularity
+        df3 = df3.groupby(['code']).agg('max')
+        df3['code'] = df3.index
+        df3.reset_index(drop=True, inplace=True)
+        df3['code'] = df3['code'].astype(int)
+        df3['code'] = df3['code'].astype(str)
+        df3['code'][0] = '01'
+        df3['code'][1] = '02'
+        df3['code'][2] = '03'
+        df3['code'][3] = '04'
+        df3['code'][4] = '06'
+        df3.drop([18, 19], 0, inplace=True)
+        # 977 and 978 are departments, not regions
+    # grab department centroids (lat and lon)
+    df_points = df2.copy()
+    df_points = df_points.set_crs(epsg=3035, allow_override=True)
+    df_points['geometry'] = df_points['geometry'].centroid
+    # merge dataframes
+    df_merged = pd.merge(df3, df_points, on='code')
+    df_merged['lon'] = df_merged.geometry.apply(lambda p: p.x)
+    df_merged['lat'] = df_merged.geometry.apply(lambda p: p.y)
+    if (granularity == 'department'):
+        df_merged.rename(
+            columns={'Nombre cumulé de doses n°1': 'Nmb of first doses',
+                     'code': 'department_code', 'nom': 'department_name',
+                     'n_cum_dose2': 'Nmb of second doses'}, inplace=True)
+    else:
+        df_merged.rename(
+            columns={'Nombre cumulé de doses n°1': 'Nmb of first doses',
+                     'code': 'region_code', 'nom': 'region_name',
+                     'n_cum_dose2': 'Nmb of second doses'}, inplace=True)
+    # ---------- make map! ----------
+    # initialize view (centered on Paris!)
+    view = pdk.ViewState(latitude=46.2322,
+                         longitude=2.20967,
+                         pitch=50,
+                         zoom=6)
+    covid_amount_layer = pdk.Layer('ColumnLayer',
+                                   data=df_merged,
+                                   get_position=['lon', 'lat'],
+                                   get_elevation=150,
+                                   elevation_scale=50,
+                                   radius=10000,
+                                   get_fill_color=[255, 69, 0, 150],
+                                   pickable=True,
+                                   auto_highlight=True)
+    if (granularity == 'department'):
+        tooltip = {
+            "html": "<b>{Nmb of first doses}</b> first doses and\
+                     <b>{Nmb of second doses}</b> second doses,\
+                     in <b>{department_name}</b>",
+            "style": {"background": "grey",
+                      "color": "white",
+                      "font-family": '"Helvetica Neue", Arial',
+                      "z-index": "10000"},
+                   }
+    else:
+        tooltip = {
+            "html": "<b>{Nmb of first doses}</b> first doses and\
+                    <b>{Nmb of second doses}</b> second doses,\
+                    in <b>{region_name}</b>",
+            "style": {"background": "grey",
+                      "color": "white",
+                      "font-family": '"Helvetica Neue", Arial',
+                      "z-index": "10000"},
+                   }
+    r = pdk.Deck(covid_amount_layer,
+                 initial_view_state=view,
+                 tooltip=tooltip)
+    # save map
+    file_path = preprocess_maps.map_save_path_routine(file_path)
+    suffix = '.html'
+    save_path = os.path.join(file_path, file_name + suffix)
+    r.to_html(save_path)

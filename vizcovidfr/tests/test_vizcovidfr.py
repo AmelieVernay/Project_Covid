@@ -4,7 +4,6 @@ from scipy.sparse import isspmatrix
 
 # local reqs
 from vizcovidfr.maps import maps
-from vizcovidfr.maps import vacmaps
 from vizcovidfr.sparse import sparse
 from vizcovidfr.regression import regression
 from vizcovidfr.line_charts import line_charts
@@ -40,13 +39,14 @@ def test_transfer_map():
     result = (type(maps.transfer_map(file_path='')) != int)
     assert result
 
+
 def test_vacmap():
     """
     Test vacmap by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will be raised
     """
-    result = (type(vacmaps.vacmap(file_path='')) != int)
+    result = (type(maps.vacmap(file_path='')) != int)
     assert result
 
 
@@ -72,15 +72,17 @@ def test_sparse_matrix():
     result = (isspmatrix(sparse.sparse_matrix(show=False)))
     assert result
 
-#-------------regression------------
+
+# ---------- regression ----------
 def test_scatter_reg():
     """
     Test scatter_reg by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(regression.scatter_reg(1,1)) != int)
+    result = (type(regression.scatter_reg(1, 1)) != int)
     assert result
+
 
 def test_poly_fit():
     """
@@ -88,8 +90,9 @@ def test_poly_fit():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(regression.poly_fit(1,1)) != int)
+    result = (type(regression.poly_fit(1, 1)) != int)
     assert result
+
 
 def test_R2():
     """
@@ -97,8 +100,9 @@ def test_R2():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(regression.R2(1,1)) != 2)
+    result = (type(regression.R2(1, 1)) != 2)
     assert result
+
 
 # ---------- line charts ----------
 def test_vactypedoses():
@@ -110,6 +114,7 @@ def test_vactypedoses():
     result = (type(line_charts.vactypedoses()) != int)
     assert result
 
+
 def test_vacdoses():
     """
     Test vacdoses by running the function.
@@ -118,4 +123,3 @@ def test_vacdoses():
     """
     result = (type(line_charts.vacdoses()) != int)
     assert result
-

@@ -17,7 +17,7 @@ def sparse_graph(directed=False, show=True):
     **Note:**
     Try to first plot the undirected graph to see if you can guess the
     direction of the arrows, then check by calling the function with
-    directed=True !
+    *directed=True* !
 
     Parameters
     ----------
