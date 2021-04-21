@@ -1,4 +1,5 @@
 # ---------- requirements ----------
+import time
 import pandas as pd
 
 import geopandas as gpd
@@ -118,6 +119,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
     '''
     # ---------- file imports ----------
     # load geojson file containing geographic information
+    start = time.time()
     reg_path = os.path.join(
                     os.path.dirname(
                         os.path.realpath(__file__)),
@@ -232,6 +234,8 @@ def viz2Dmap(granularity='departement', date=yesterday,
     sms2 = f" in {file_path}! \nYou can go ahead and open it with your"
     sms3 = " favorite web browser!"
     print(sms1 + sms2 + sms3)
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
 
 
 # TODO:
@@ -324,6 +328,7 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     - use 'clic + mouse move' to move map
     '''
     # ---------- file imports ----------
+    start = time.time()
     # geo files
     reg_path = os.path.join(
                     os.path.dirname(
@@ -403,6 +408,8 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     sms2 = f" in {file_path}! \nYou can go ahead and open it with your"
     sms3 = " favorite web browser!"
     print(sms1 + sms2 + sms3)
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
 
 
 # ---------- define transfer_map ----------
@@ -470,6 +477,7 @@ def transfer_map(file_path='~/Desktop/vizcovidfr_files/',
     - use 'ctrl + mouse move' to change view angle
     - use 'clic + mouse move' to move map
     """
+    start = time.time()
     # ---------- covid file ----------
     transfer = load_datasets.Load_transfer().save_as_df()
     # Keep trace of transfer order
@@ -555,6 +563,8 @@ def transfer_map(file_path='~/Desktop/vizcovidfr_files/',
     sms2 = f" in {file_path}! \nYou can go ahead and open it with your"
     sms3 = " favorite web browser!"
     print(sms1 + sms2 + sms3)
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
 
 
 # TODO:
@@ -623,6 +633,7 @@ def vacmap(granularity='region', age_range='all ages',
     ...         color = [207, 67, 80, 140])
 
     '''
+    start = time.time()
     # load vaccin dataset
     df_Vac = load_datasets.Load_vaccination().save_as_df()
     df_Vac.sort_values(by=['Date', 'Valeur de la variable'], inplace=True)
@@ -784,3 +795,5 @@ def vacmap(granularity='region', age_range='all ages',
     sms2 = f" in {file_path}! \nYou can go ahead and open it with your"
     sms3 = " favorite web browser!"
     print(sms1 + sms2 + sms3)
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))

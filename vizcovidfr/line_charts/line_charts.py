@@ -1,4 +1,5 @@
 # ---------- requirements ----------
+import time
 import pandas as pd
 from download import download
 import datetime
@@ -7,6 +8,8 @@ import plotly.express as px
 # local reqs
 from vizcovidfr.loads import load_datasets
 
+# add python option to avoid "false positive" warning:
+pd.options.mode.chained_assignment = None  # default='warn'
 
 # line chart representing the french vaccine storage per vaccine type
 
@@ -67,6 +70,7 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
         dose number of the chosen vaccine type (in storage).
     :rtype: plotly.graph_objects.Figure
     '''
+    start = time.time()
     df_Vac_type = load_datasets.Load_Vaccine_storage().save_as_df()
     df_Vac_type2 = df_Vac_type.groupby(['type_de_vaccin'])
     pfizer = df_Vac_type2.get_group('Pfizer').reset_index(drop=True)
@@ -124,6 +128,10 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
             )
         )
     # displaying line chart according to vaccine_type argument
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
     fig.show()
 
 # how to display the year of each date?
@@ -182,6 +190,7 @@ def vacdoses(unit='doses', font_size=16,
         amount in storage of vaccine doses, according to the chosen unit.
     :rtype: plotly.graph_objects.Figure
     '''
+    start = time.time()
     df_Vac_type = load_datasets.Load_Vaccine_storage().save_as_df()
     df = df_Vac_type.groupby(['date'])['nb_doses',
                                        'nb_ucd'].agg('sum').reset_index()
@@ -198,12 +207,12 @@ def vacdoses(unit='doses', font_size=16,
         nbr = 'nb_ucd'
         a = 'cdu'
     # display line chart according to unit argument
-    fig = px.line(df,
-                  x='date',
-                  y=nbr,
-                  title="Evolution of vaccine %s number in storage\
-                           (in France)" % a,
-                  template=template)
+    fig = px.line(
+                df,
+                x='date',
+                y=nbr,
+                title=f"Evolution of vaccine {a} number in storage in France",
+                template=template)
     fig.update_traces(mode="markers + lines", hovertemplate=None)
     fig.update_layout(hovermode="x unified")
     fig.update_layout(
@@ -213,6 +222,8 @@ def vacdoses(unit='doses', font_size=16,
             font_size=font_size,
             font_family=font_family
             ))
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
     fig.show()
 
 

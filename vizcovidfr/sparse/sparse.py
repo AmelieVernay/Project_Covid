@@ -1,4 +1,5 @@
 # ---------- requirements ----------
+import time
 import numpy as np
 import pandas as pd
 import networkx as nx
@@ -41,6 +42,7 @@ def sparse_graph(directed=False, show=True):
 
     >>> sparse_graph(directed=True)
     """
+    start = time.time()
     raw_transfer = load_datasets.Load_transfer().save_as_df()
     raw_transfer['region_arrivee'] = raw_transfer['region_arrivee'].replace(
                                                 np.nan, 'outside France')
@@ -97,8 +99,10 @@ def sparse_graph(directed=False, show=True):
     plt.axis('off')
     plt.figtext(.5, .9, f'{word} graph of patient transfers',
                 fontsize=17, ha='center')
+    end = time.time()
     if (show):
         plt.show()
+    print("Time to execute: {0:.5f} s.".format(end - start))
     return G
 
 
@@ -134,6 +138,7 @@ def sparse_matrix(show=True):
     True
 
     """
+    start = time.time()
     # take only the graph object
     G = sparse_graph(show=False)
     # get adjacency matrix
@@ -158,8 +163,10 @@ def sparse_matrix(show=True):
                 fontsize=14, ha='center')
     plt.figtext(.5, 0.92, f'percentage of occupation: {rounded_percent_occ}',
                 fontsize=11, ha='center')
+    end = time.time()
     if (show):
         plt.show()
+    print("Time to execute: {0:.5f} s.".format(end - start))
     return A
 
 

@@ -1,16 +1,23 @@
 #%%
+import time
 import numpy as np
 import pandas as pd
 import plotly.express as px
-from sklearn.linear_model import LinearRegression
-model = LinearRegression()
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.metrics import mean_squared_error
+
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
-from sklearn.metrics import r2_score
+
 from vizcovidfr.loads import load_datasets
 from vizcovidfr.preprocesses import preprocess_classe_age as pca
+
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+
+# add python option to avoid "false positive" warning:
+pd.options.mode.chained_assignment = None  # default='warn'
 
 T = load_datasets.Load_classe_age().save_as_df()
 
@@ -114,19 +121,34 @@ def scatter_reg(num_var, num_reg):
     :rtype: plotly.graph_objects.Scatter
 
     """
-    #Extracting chosen region
+    start = time.time()
+    # extracting chosen region
     T2 = pca.reg(num_reg, T)
-    #Converting to datetime format
+    # converting to datetime format
     T2 = pca.date_time(T2)
     dico_col = pca.dico_column(T2)
-    #Grouping by day
+    # grouping by day
     covid_day = pca.covid_day_fct(T2)
-    #Creating dictionnaries
+    # creating dictionnaries
     dico_reg = pca.dico_reg()
     dico_var = pca.dico_var()
-    #Scatter plot
+    # scatter plot
     fig = px.scatter(
-    covid_day, x=covid_day.index, y=dico_col[num_var], opacity=0.65, trendline_color_override='darkblue', labels = {dico_col[num_var]:dico_var[dico_col[num_var]], 'index':'Date'}, title="Scatter plot of the evolution of" + " " + dico_var[dico_col[num_var]] + " in " + dico_reg[num_reg])
+                covid_day,
+                x=covid_day.index,
+                y=dico_col[num_var],
+                opacity=0.65,
+                trendline_color_override='darkblue',
+                labels={
+                    dico_col[num_var]: dico_var[dico_col[num_var]],
+                    'index': 'Date'},
+                title="Scatter plot of the evolution of" +
+                      " " +
+                      dico_var[dico_col[num_var]] +
+                      " in " +
+                      dico_reg[num_reg])
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
     fig.show()
 
 
@@ -231,11 +253,12 @@ def poly_fit(num_var, num_reg):
     :rtype: plotly.graph_objects.plot
 
     """
+    start = time.time()
     R = pca.reg(num_reg, T)
     R = pca.date_time(R)
     dico_col = pca.dico_column(R)
     covid_day = pca.covid_day_fct(R)
-    x = np.arange(0,covid_day.shape[0])
+    x = np.arange(0, covid_day.shape[0])
     y = covid_day[dico_col[num_var]]
     x = x[:, np.newaxis]
     y = y[:, np.newaxis]
@@ -246,15 +269,25 @@ def poly_fit(num_var, num_reg):
     rmselist, x_p_list, y_poly_pred_P_list = pca.rmse_list(x, y)
     deg = list(rmselist).index(rmselist.min())
     fig = plt.scatter(dico_days.values(), y)
-    plt.plot(dico_days.values(),y_poly_pred_P_list[deg],color='r')
-    plt.suptitle("Polynomial regression of" + " " + dico_var[dico_col[num_var]] + " in " + dico_reg[num_reg]).set_fontsize(15)
-    blue_line = mlines.Line2D([], [], color='blue',
+    plt.plot(dico_days.values(),
+             y_poly_pred_P_list[deg],
+             color='r')
+    plt.suptitle("Polynomial regression of" +
+                 " " +
+                 dico_var[dico_col[num_var]] +
+                 " in " +
+                 dico_reg[num_reg]).set_fontsize(15)
+    blue_line = mlines.Line2D(
+                          [], [], color='blue',
                           markersize=15,
                           marker='.', label=dico_var[dico_col[num_var]])
-    red_line = mlines.Line2D([], [], color='red',
+    red_line = mlines.Line2D(
+                          [], [], color='red',
                           markersize=15, label='Regression curve')
     plt.legend(handles=[blue_line, red_line])
     plt.title(f'Degree of polynomial regression : {deg+1}', fontsize=10)
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
     plt.show()
 
 
@@ -356,6 +389,7 @@ def R2(num_var, num_reg):
     :rtype: plotly.graph_objects.Scatter
 
     """
+    start = time.time()
     R = pca.reg(num_reg, T)
     R = pca.date_time(R)
     dico_col = pca.dico_column(R)
@@ -369,5 +403,9 @@ def R2(num_var, num_reg):
     covid_day = covid_day.reset_index(drop=True)
     rmselist, x_p_list, y_poly_pred_P_list = pca.rmse_list(x, y)
     deg = list(rmselist).index(rmselist.min())
-    res = 'R2 of polynomial regression of ' + dico_var[dico_col[num_var]] + ' in ' + dico_reg[num_reg] + f' is : {r2_score(y,y_poly_pred_P_list[deg])}.'
+    res = 'R2 of polynomial regression of ' + dico_var[dico_col[num_var]] + \
+          ' in ' + dico_reg[num_reg] + \
+         f' is : {r2_score(y,y_poly_pred_P_list[deg])}.'
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
     return res
