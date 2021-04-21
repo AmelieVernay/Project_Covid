@@ -1,4 +1,3 @@
-#%%
 import pandas as pd
 import numpy as np
 from vizcovidfr.loads import load_datasets
@@ -26,6 +25,15 @@ def covid_day_fct(T):
     A = T.groupby(by=['jour']).sum()
     A['jour'] = A.index
     return A
+
+def rad_dc(T):
+    T1 = T[T['cl_age90'] == 0]
+    X = T1.tail(18)
+    return X
+
+def rename_cl(T):
+    T['cl_age90'] = ['0-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80-89', '+90']
+    return T
 
 #Creation of some dictionnaries
 def dico_column(T):
