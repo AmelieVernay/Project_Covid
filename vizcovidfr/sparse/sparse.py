@@ -105,6 +105,7 @@ def sparse_graph(directed=False, show=True):
 # Ga = sparse_graph(show=False)
 # print(Ga["Bretagne"]["Grand Est"]["nombre_patients_transferes"])
 
+
 # Now let's see it's adjacency matrix!
 
 def sparse_matrix(show=True):
