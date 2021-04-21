@@ -21,7 +21,7 @@ def compareHF(jour,chiffre,df):
     if not chiffre in ["hosp","rea","rad","dc"]:
 
         return [df.loc[jour,][chiffre+"_h"],df.loc[jour,][chiffre+"_f"]]
-    else: return [df.loc[jour,].loc[sexe==1,][chiffre],df.loc[jour,].loc[sexe==2,][chiffre]]
+    else: return [df.loc[jour,].loc[df.loc[jour,]["sexe"]==1]][chiffre],df.loc[jour,].loc[df[jour,]["sexe"==2]][chiffre]]
 
 def positiverate(jour,df,sex=False,rate=True):
     if not sex:
