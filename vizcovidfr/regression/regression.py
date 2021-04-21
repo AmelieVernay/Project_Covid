@@ -74,7 +74,7 @@ def scatter_reg(num_var, num_reg):
 
     3 : Guyane
 
-    4 : La Reunion
+    4 : La Réunion
 
     6 : Mayotte
 
@@ -84,7 +84,7 @@ def scatter_reg(num_var, num_reg):
 
     27 : Bourgogne-Franche-Comte
 
-    28 : Normmandie
+    28 : Normandie
 
     32 : Hauts-de-France
 
@@ -111,7 +111,7 @@ def scatter_reg(num_var, num_reg):
 
     :return: Scatter plot of the evolution of one of the Covid variable in
         a specific region of France.
-    :rtype: plotly.graph_objects.Scatter.
+    :rtype: plotly.graph_objects.Scatter
 
     """
     #Extracting chosen region
@@ -191,7 +191,7 @@ def poly_fit(num_var, num_reg):
 
     3 : Guyane
 
-    4 : La Reunion
+    4 : La Réunion
 
     6 : Mayotte
 
@@ -201,7 +201,7 @@ def poly_fit(num_var, num_reg):
 
     27 : Bourgogne-Franche-Comte
 
-    28 : Normmandie
+    28 : Normandie
 
     32 : Hauts-de-France
 
@@ -228,7 +228,7 @@ def poly_fit(num_var, num_reg):
 
     :return: Scatter plot of the evolution of one of the Covid variable
         in a specific region of France with the regression line.
-    :rtype: plotly.graph_objects.plot.
+    :rtype: plotly.graph_objects.plot
 
     """
     R = pca.reg(num_reg, T)
@@ -316,7 +316,7 @@ def R2(num_var, num_reg):
 
     3 : Guyane
 
-    4 : La Reunion
+    4 : La Réunion
 
     6 : Mayotte
 
@@ -326,7 +326,7 @@ def R2(num_var, num_reg):
 
     27 : Bourgogne-Franche-Comte
 
-    28 : Normmandie
+    28 : Normandie
 
     32 : Hauts-de-France
 
@@ -353,7 +353,7 @@ def R2(num_var, num_reg):
 
     :return: Scatter plot of the evolution of one of Covid variable
         in a specific region of France.
-    :rtype: plotly.graph_objects.Scatter.
+    :rtype: plotly.graph_objects.Scatter
 
     """
     R = pca.reg(num_reg, T)
