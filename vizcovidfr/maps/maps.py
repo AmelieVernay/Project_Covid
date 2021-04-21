@@ -16,6 +16,8 @@ import json
 # local reqs
 from vizcovidfr.loads import load_datasets
 from vizcovidfr.preprocesses import preprocess_chiffres_cles
+from vizcovidfr.preprocesses import preprocess_maps
+
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
 
@@ -222,16 +224,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
                  '''.format(title)
     map.get_root().html.add_child(folium.Element(title_html))
     # save map
-    if (file_path == '~/Desktop/vizcovidfr_files/'):
-        A = os.path.expanduser("~")
-        B = "Desktop"
-        file_path = os.path.join(A, B)
-
-    if not os.path.exists(os.path.join(file_path, "vizcovidfr_files")):
-        os.mkdir(os.path.join(file_path, "vizcovidfr_files"))
-
-    file_path = os.path.join(file_path, "vizcovidfr_files")
-
+    file_path = preprocess_maps.map_save_path_routine(file_path)
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     map.save(save_path)
@@ -398,15 +391,7 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
                                       initial_view_state=view,
                                       tooltip=tooltip)
     # save map
-    if (file_path == '~/Desktop/vizcovidfr_files/'):
-        A = os.path.expanduser("~")
-        B = "Desktop"
-        file_path = os.path.join(A, B)
-
-    if not os.path.exists(os.path.join(file_path, "vizcovidfr_files")):
-        os.mkdir(os.path.join(file_path, "vizcovidfr_files"))
-
-    file_path = os.path.join(file_path, "vizcovidfr_files")
+    file_path = preprocess_maps.map_save_path_routine(file_path)
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     covid_amount_layer_map.to_html(save_path)
@@ -554,15 +539,7 @@ def transfer_map(file_path='~/Desktop/vizcovidfr_files/',
                              initial_view_state=view,
                              tooltip=tooltip)
     # save map
-    if (file_path == '~/Desktop/vizcovidfr_files/'):
-        A = os.path.expanduser("~")
-        B = "Desktop"
-        file_path = os.path.join(A, B)
-
-    if not os.path.exists(os.path.join(file_path, "vizcovidfr_files")):
-        os.mkdir(os.path.join(file_path, "vizcovidfr_files"))
-
-    file_path = os.path.join(file_path, "vizcovidfr_files")
+    file_path = preprocess_maps.map_save_path_routine(file_path)
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     arc_layer_map.to_html(save_path)
@@ -776,15 +753,7 @@ def vacmap(granularity='region', age_range='all ages',
                  initial_view_state=view,
                  tooltip=tooltip)
     # save map
-    if (file_path == '~/Desktop/vizcovidfr_files/'):
-        A = os.path.expanduser("~")
-        B = "Desktop"
-        file_path = os.path.join(A, B)
-
-    if not os.path.exists(os.path.join(file_path, "vizcovidfr_files")):
-        os.mkdir(os.path.join(file_path, "vizcovidfr_files"))
-
-    file_path = os.path.join(file_path, "vizcovidfr_files")
+    file_path = preprocess_maps.map_save_path_routine(file_path)
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     r.to_html(save_path)
