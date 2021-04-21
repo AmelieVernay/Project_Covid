@@ -46,7 +46,7 @@ def test_vacmap():
     If something fails while running it, result won't be defined,
     and an AssertionError will be raised
     """
-    result = (type(vacmaps.vacmap(file_path='')) != int)
+    result = (type(maps.vacmap(file_path='')) != int)
     assert result
 
 

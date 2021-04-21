@@ -743,7 +743,7 @@ def vacmap(granularity='region', age_range='all ages',
     tooltip = {
         "html": "<b>{Nmb of first doses}</b> first doses and\
                  <b>{Nmb of second doses}</b> second doses,\
-                 in department <b>{department_code}</b>",
+                 in {gra} <b>{department_code}</b>",
         "style": {"background": "grey",
                   "color": "white",
                   "font-family": '"Helvetica Neue", Arial',
