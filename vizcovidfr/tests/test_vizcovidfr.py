@@ -1,4 +1,3 @@
-
 # ---------- requirements ----------
 from scipy.sparse import isspmatrix
 
@@ -8,7 +7,7 @@ from vizcovidfr.maps import vacmaps
 from vizcovidfr.sparse import sparse
 from vizcovidfr.regression import regression
 from vizcovidfr.line_charts import line_charts
-
+from vizcovidfr.barplots import barplots_cl_age
 
 # ---------- maps ----------
 def test_viz2Dmap():
@@ -119,3 +118,22 @@ def test_vacdoses():
     result = (type(line_charts.vacdoses()) != int)
     assert result
 
+#----------- barplots ---------------
+def test_bar_age():
+    """
+    Test bar_age by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type(barplots_cl_age.bar_age(1,1)) != int)
+    assert result
+
+def test_bar_reg():
+    """
+    Test bar_reg by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type(barplots_cl_age.bar_reg(1)) != int)
+    assert result
+# %%
