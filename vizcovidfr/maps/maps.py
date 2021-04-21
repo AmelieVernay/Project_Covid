@@ -22,11 +22,6 @@ pd.options.mode.chained_assignment = None  # default='warn'
 
 # ---------- format some default arguments ----------
 
-# get user's path to Desktop
-A = os.path.expanduser("~")
-B = "Desktop"
-path_to_Desktop = os.path.join(A, B)
-
 # format yesterday's date
 dt_today = datetime.now()
 dt_yesterday = (dt_today - timedelta(1))
@@ -36,7 +31,7 @@ yesterday = dt_yesterday.strftime('%Y-%m-%d')
 # ---------- define viz2Dmap ----------
 def viz2Dmap(granularity='departement', date=yesterday,
              criterion='hospitalises', color_pal='YlGnBu',
-             file_path=path_to_Desktop, file_name='Covid2Dmap'):
+             file_path='~/Desktop/vizcovidfr_files/', file_name='Covid2Dmap'):
     '''
     Make interactive choropleth map to visualize different aspects of the
     Covid-19 pandemic in France. The map is saved on an html file at a given
@@ -80,7 +75,8 @@ def viz2Dmap(granularity='departement', date=yesterday,
             (*) **Warning:** the default parameter only works if the user's
             OS default language is english. Otherwise,
             path is **not optional**.
-    :type file_path: str, optional*, default to user's Desktop
+    :type file_path: str, optional*, default to a folder 'vizcovidfr_files'
+        in the user's Desktop
     :param file_name: the name under which to save the file
     :type file_name: str, optional, default='Covid2Dmap'
 
@@ -99,14 +95,13 @@ def viz2Dmap(granularity='departement', date=yesterday,
     **example using Linux path**
 
     >>> import os
-    >>> path_to_desktop = os.path.expanduser("~/Desktop")
+    >>> path_to_Documents = os.path.expanduser("~/Documents")
     >>> viz2Dmap(granularity='region', date='2020-12-25', criterion='deces',
-    ...          color_pal='Greys', file_path=path_to_desktop,
+    ...          color_pal='Greys', file_path=path_to_Documents,
     ...          file_name='creepymap')
 
     **example using Windows path**
 
-    >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> viz2Dmap(granularity='department', date='2021-01-17',
     ...          criterion='reanimation', color_pal='Greys',
@@ -189,7 +184,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
             columns=['code', criterion],
             key_on="feature.properties.code",
             fill_color=color_pal,
-            fill_opacity=1,
+            fill_opacity=0.7,
             line_opacity=0.2,
             legend_name=legend,
             smooth_factor=0
@@ -227,6 +222,16 @@ def viz2Dmap(granularity='departement', date=yesterday,
                  '''.format(title)
     map.get_root().html.add_child(folium.Element(title_html))
     # save map
+    if (file_path == '~/Desktop/vizcovidfr_files/'):
+        A = os.path.expanduser("~")
+        B = "Desktop"
+        file_path = os.path.join(A, B)
+
+    if not os.path.exists(os.path.join(file_path, "vizcovidfr_files")):
+        os.mkdir(os.path.join(file_path, "vizcovidfr_files"))
+
+    file_path = os.path.join(file_path, "vizcovidfr_files")
+
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     map.save(save_path)
@@ -238,7 +243,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
 
 # ---------- define viz3Dmap ----------
 def viz3Dmap(granularity='departement', criterion='hospitalises',
-             file_path=path_to_Desktop, file_name='Covid3Dmap',
+             file_path='~/Desktop/vizcovidfr_files/', file_name='Covid3Dmap',
              color=[255, 165, 0, 80]):
     '''
     Make a 3D map out of France Covid-19 data.
@@ -278,7 +283,8 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
             (*) **Warning:** the default parameter only works if the user's
             OS default language is english. Otherwise,
             path is **not optional**.
-    :type file_path: str, optional*, default to user's Desktop
+    :type file_path: str, optional*, default to a folder 'vizcovidfr_files'
+        in the user's Desktop
     :param file_name: the name under which to save the file
     :type file_name: str, optional, default='Covid3Dmap'
 
@@ -297,14 +303,13 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     **example using Linux path**
 
     >>> import os
-    >>> path_to_desktop = os.path.expanduser("~/Desktop")
-    >>> viz3Dmap(file_path=path_to_desktop, file_name='pinky_3D_map',
+    >>> path_to_Documents = os.path.expanduser("~/Documents")
+    >>> viz3Dmap(file_path=path_to_Documents, file_name='pinky_3D_map',
     ...          granularity='departement', criterion='reanimation',
     ...          color=[245, 92, 245, 80])
 
     **example using Windows path**
 
-    >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> viz3Dmap(file_path=W_path, color=[230, 37, 37, 80],
     ...          criterion='deces')
@@ -374,8 +379,8 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     A['lat'] = A.geometry.apply(lambda p: p.y)
     # ---------- make map! ----------
     # initialize view (centered on Paris!)
-    view = pdk.ViewState(latitude=46.232192999999995,
-                         longitude=2.209666999999996,
+    view = pdk.ViewState(latitude=46.2322,
+                         longitude=2.20967,
                          pitch=50,
                          zoom=5.5)
     # add pydeck layers
@@ -393,13 +398,23 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
                                       initial_view_state=view,
                                       tooltip=tooltip)
     # save map
+    if (file_path == '~/Desktop/vizcovidfr_files/'):
+        A = os.path.expanduser("~")
+        B = "Desktop"
+        file_path = os.path.join(A, B)
+
+    if not os.path.exists(os.path.join(file_path, "vizcovidfr_files")):
+        os.mkdir(os.path.join(file_path, "vizcovidfr_files"))
+
+    file_path = os.path.join(file_path, "vizcovidfr_files")
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     covid_amount_layer_map.to_html(save_path)
 
 
 # ---------- define transfer_map ----------
-def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
+def transfer_map(file_path='~/Desktop/vizcovidfr_files/',
+                 file_name='Covid_transfer_map',
                  color_d=[243, 31, 44, 80], color_a=[230, 190, 37, 80]):
     """
     Make interactive 3D-arc-map to visualize the transfer of Covid-19
@@ -424,7 +439,8 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
             (*) **Warning:** the default parameter only works if the user's
             OS default language is english. Otherwise,
             path is **not optional**.
-    :type file_path: str, optional*, default to user's Desktop
+    :type file_path: str, optional*, default to a folder 'vizcovidfr_files'
+        in the user's Desktop
     :param file_name: the name under which to save the file
     :type file_name: str, optional, default='Covid_transfer_map'
 
@@ -443,13 +459,12 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
     **example using Linux path**
 
     >>> import os
-    >>> path_to_desktop = os.path.expanduser("~/Desktop")
-    >>> transfer_map(file_path=path_to_desktop, file_name='pinky_arc_map',
+    >>> path_to_Documents = os.path.expanduser("~/Documents")
+    >>> transfer_map(file_path=path_to_Documents, file_name='pinky_arc_map',
     ...          color_d=[255, 165, 0, 80], color_a=[128, 0, 128, 80])
 
     **example using Windows path**
 
-    >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> transfer_map(file_path=W_path, file_name='counter_intuitive_arc_map',
     ...          color_d=[61, 230, 37, 80], color_a=[230, 37, 37, 80])
@@ -539,6 +554,15 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
                              initial_view_state=view,
                              tooltip=tooltip)
     # save map
+    if (file_path == '~/Desktop/vizcovidfr_files/'):
+        A = os.path.expanduser("~")
+        B = "Desktop"
+        file_path = os.path.join(A, B)
+
+    if not os.path.exists(os.path.join(file_path, "vizcovidfr_files")):
+        os.mkdir(os.path.join(file_path, "vizcovidfr_files"))
+
+    file_path = os.path.join(file_path, "vizcovidfr_files")
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     arc_layer_map.to_html(save_path)
@@ -547,9 +571,10 @@ def transfer_map(file_path=path_to_Desktop, file_name='Covid_transfer_map',
 # TODO:
 # remove # save for sparse matrix purpose ? if not needed
 
-# ---------- set vacmap function ----------
+
+# ---------- define vacmap function ----------
 def vacmap(granularity='region', age_range='all ages',
-           file_path=path_to_Desktop, file_name='vacmap',
+           file_path='~/Desktop/vizcovidfr_files/', file_name='vacmap',
            color_rgb=[255, 69, 0, 150]):
     '''
     Make an interactive map of France vaccine data.
@@ -575,7 +600,8 @@ def vacmap(granularity='region', age_range='all ages',
             (*) **Warning:** the default parameter only works if the user's
             OS default language is english. Otherwise,
             path is **not optional**.
-    :type file_path: str, optional*, default to user's Desktop
+    :type file_path: str, optional*, default to a folder 'vizcovidfr_files'
+        in the user's Desktop
     :param file_name: the name under which to save the file.
     :type file_name: str, optional, default='vacmap'
 
@@ -595,14 +621,13 @@ def vacmap(granularity='region', age_range='all ages',
     **example using Linux path**
 
     >>> import os
-    >>> path_to_desktop = os.path.expanduser("~/Desktop")
+    >>> path_to_Documents = os.path.expanduser("~/Documents")
     >>> vacmap(granularity='region', age_range='all ages',
-    ...         file_path=path_to_desktop, file_name='vaccine_map',
+    ...         file_path=path_to_Documents, file_name='vaccine_map',
     ...         color=[245, 92, 245, 80])
 
     **example using Windows path**
 
-    >>> import os
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> vacmap(granularity='department', age_range='18-24',
     ...         file_path=path_to_desktop, file_name='vaccine_map',
@@ -707,6 +732,7 @@ def vacmap(granularity='region', age_range='all ages',
         # 977 and 978 are departments, not regions
     # grab department centroids (lat and lon)
     df_points = df2.copy()
+    df_points = df_points.set_crs(epsg=3035, allow_override=True)
     df_points['geometry'] = df_points['geometry'].centroid
     # merge dataframes
     df_merged = pd.merge(df3, df_points, on='code')
@@ -750,6 +776,15 @@ def vacmap(granularity='region', age_range='all ages',
                  initial_view_state=view,
                  tooltip=tooltip)
     # save map
+    if (file_path == '~/Desktop/vizcovidfr_files/'):
+        A = os.path.expanduser("~")
+        B = "Desktop"
+        file_path = os.path.join(A, B)
+
+    if not os.path.exists(os.path.join(file_path, "vizcovidfr_files")):
+        os.mkdir(os.path.join(file_path, "vizcovidfr_files"))
+
+    file_path = os.path.join(file_path, "vizcovidfr_files")
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     r.to_html(save_path)
