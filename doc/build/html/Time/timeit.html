@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Computation times &mdash; vizcovidfr 0.0.1 documentation</title>
+  <title>Time efficiency &mdash; vizcovidfr 0.0.1 documentation</title>
   
 
   
@@ -43,7 +43,9 @@
   <link rel="stylesheet" href="../_static/css/faculty.css" type="text/css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Roboto:400,700|Roboto+Mono:400,700&display=swap" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sources" href="../sources_ref/sources.html" />
+    <link rel="prev" title="3D maps" href="../staticexamples/transfer.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -123,13 +125,13 @@
 </ul>
 <p><span class="caption-text">Example gallery</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="index.html">Welcome to vizcovidfr’s gallery!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">Welcome to vizcovidfr’s gallery!</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../staticexamples/vizvaccine.html">What about vaccines?</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../staticexamples/transfer.html">3D maps</a></li>
 </ul>
 <p><span class="caption-text">Time efficiency</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Time/timeit.html">Time efficiency</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Time efficiency</a></li>
 </ul>
 <p><span class="caption-text">Sources and references</span></p>
 <ul>
@@ -184,13 +186,13 @@
     
   <li class="breadcrumb"><a href="../index.html">vizcovidfr</a> &raquo;</li>
     
-  <li class="breadcrumb">Computation times</li>
+  <li class="breadcrumb">Time efficiency</li>
 
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/auto_examples/sg_execution_times.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Time/timeit.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -203,31 +205,66 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="computation-times">
-<span id="sphx-glr-auto-examples-sg-execution-times"></span><h1>Computation times<a class="headerlink" href="#computation-times" title="Permalink to this headline">¶</a></h1>
-<p><strong>00:04.604</strong> total execution time for <strong>auto_examples</strong> files:</p>
+  <section id="time-efficiency">
+<h1>Time efficiency<a class="headerlink" href="#time-efficiency" title="Permalink to this headline">¶</a></h1>
+<p>When building our package, we tried to keep an eye on the execution time
+of our different functions. We use the package <strong>time</strong> to do so.</p>
+<p>We noticed that the only thing that makes some of our function/classes long to
+run, is the fact that we are using large data sets. Indeed, in order to
+provide a visualization tool for the evolution of the <em>actual</em> Covid-19
+pandemic, we need to make our function load data sets every time they are
+called. We always need the updated version of the data, therefore we can’t
+just load them once for all.</p>
+<p>It is no surprise that the slower functions are the one loading the larger
+data sets.</p>
+<p>We kept track of these execution times, and the below table is a summary of
+this.</p>
+<p>The table is given for execution time comparison <strong>between</strong> the
+different functions. Time might differ according to computers, background
+processes, and so on. These values have all been calculated on the same
+machine, under the same conditions.</p>
+<p>The execution time is also provided as a message in the terminal when running
+any of <strong>vizcodifr</strong>’s functions.</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 80%" />
-<col style="width: 12%" />
-<col style="width: 9%" />
+<col style="width: 61%" />
+<col style="width: 39%" />
 </colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>function</p></th>
+<th class="head"><p>Execution time</p></th>
+</tr>
+</thead>
 <tbody>
-<tr class="row-odd"><td><p><span class="xref std std-ref">sphx_glr_auto_examples_plot_vaccin.py</span> (<code class="docutils literal notranslate"><span class="pre">plot_vaccin.py</span></code>)</p></td>
-<td><p>00:04.604</p></td>
-<td><p>0.0 MB</p></td>
+<tr class="row-even"><td><p>vacmap</p></td>
+<td><p>74.86038 s.</p></td>
 </tr>
-<tr class="row-even"><td><p><span class="xref std std-ref">sphx_glr_auto_examples_plot_3Dmaps.py</span> (<code class="docutils literal notranslate"><span class="pre">plot_3Dmaps.py</span></code>)</p></td>
-<td><p>00:00.000</p></td>
-<td><p>0.0 MB</p></td>
+<tr class="row-odd"><td><p>viz2Dmap</p></td>
+<td><p>21.74077 s.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="plot_regression.html#sphx-glr-auto-examples-plot-regression-py"><span class="std std-ref">Polynomial regression</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_regression.py</span></code>)</p></td>
-<td><p>00:00.000</p></td>
-<td><p>0.0 MB</p></td>
+<tr class="row-even"><td><p>viz3Dmap</p></td>
+<td><p>19.54393 s.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="plot_sparse.html#sphx-glr-auto-examples-plot-sparse-py"><span class="std std-ref">Which way did they go?</span></a> (<code class="docutils literal notranslate"><span class="pre">plot_sparse.py</span></code>)</p></td>
-<td><p>00:00.000</p></td>
-<td><p>0.0 MB</p></td>
+<tr class="row-odd"><td><p>sparse_graph</p></td>
+<td><p>0.50041 s.</p></td>
+</tr>
+<tr class="row-even"><td><p>sparse_matrix</p></td>
+<td><p>0.43385 s.</p></td>
+</tr>
+<tr class="row-odd"><td><p>regression.R2</p></td>
+<td><p>0.53918 s.</p></td>
+</tr>
+<tr class="row-even"><td><p>regression.poly_fit</p></td>
+<td><p>0.42157 s.</p></td>
+</tr>
+<tr class="row-odd"><td><p>regression.scatter_reg</p></td>
+<td><p>0.35140 s.</p></td>
+</tr>
+<tr class="row-even"><td><p>vacdoses</p></td>
+<td><p>0.76860 s.</p></td>
+</tr>
+<tr class="row-odd"><td><p>vactypedoses</p></td>
+<td><p>0.42227 s.</p></td>
 </tr>
 </tbody>
 </table>
@@ -238,6 +275,15 @@
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sources_ref/sources.html" class="btn btn-neutral float-right" title="Sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../staticexamples/transfer.html" class="btn btn-neutral float-left" title="3D maps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

@@ -12,7 +12,7 @@
 #
 # import os
 # import sys
-# import dask_sphinx_theme
+# import faculty_sphinx_theme
 # sys.path.insert(0, os.path.abspath('.'))
 
 
@@ -32,7 +32,7 @@ release = '0.0.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-	"dask_sphinx_theme",
+	"faculty_sphinx_theme",
 	"sphinx.ext.autodoc",
 	"sphinx_gallery.gen_gallery",
 ]
@@ -51,7 +51,7 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'dask_sphinx_theme'
+html_theme = 'faculty-sphinx-theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -61,7 +61,7 @@ html_static_path = ['_static']
 html_logo = '_static/light_transfer_map.png'
 
 html_theme_options = {
-	'logo_only': True,
+	'logo_only': False,
 }
 
 html_css_files = {

@@ -6,10 +6,11 @@ Vaccine types
 The commands below allow you to learn more about the evolution of
 the number of vaccine doses in stock per type, through time.
 The resulting graph is interactive:
--you can pass your mouse on the lines to get more information
--you can select the lines you want to keep by clicking on the legend
--you can zoom on a time zone by clicking and hovering your mouse on it.
-You can then go back to default view by double-clicking anywhere.
+
+* You can pass your mouse on the lines to get more information
+* You can select the lines you want to keep by clicking on the legend
+* You can zoom on a time zone by clicking and hovering your mouse on it.
+* You can then go back to default view by double-clicking anywhere.
 
 .. code-block:: python
 
