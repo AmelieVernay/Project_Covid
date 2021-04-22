@@ -15,6 +15,7 @@ from vizcovidfr.heatmaps import heatmap
 from vizcovidfr.preprocesses.preprocess_positivity import ignoreage
 from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
 from vizcovidfr.loads.load_datasets import Load_posquotreg
+from vizcovidfr.loads.load_datasets import Load_incquotreg
 
 
 # ---------- maps ----------
@@ -221,7 +222,7 @@ def test_comparativebarplot():
                 barplots.comparativebarplot(
                         "2020-11-12",
                         "incidence",
-                        granupositvity(
+                        granupositivity(
                             ignoreage(Load_incquotreg().save_as_df()),
                             2, "reg", cumulative=False))) != int)
     assert result
