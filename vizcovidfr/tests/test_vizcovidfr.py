@@ -9,12 +9,20 @@ from vizcovidfr.line_charts import line_charts
 from vizcovidfr.barplots import barplots_cl_age
 from vizcovidfr.pie_charts import pie_chart
 
+
 # ---------- maps ----------
 def test_viz2Dmap():
     """
     Test viz2Dmap by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
+    ---
+    Fonctions/methods that will be tested by extension:
+        - load_datasets.Load_chiffres_cles().save_as_df()
+        - preprocess_chiffres_cles.drop_some_columns()
+        - preprocess_chiffres_cles.reg_depts()
+        - preprocess_chiffres_cles.reg_depts_code_format()
+        - preprocess_maps.map_save_path_routine(file_path)
     """
     result = (type(maps.viz2Dmap(file_path='')) != int)
     assert result
@@ -25,6 +33,13 @@ def test_viz3Dmap():
     Test viz3Dmap by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
+    ---
+    Fonctions/methods that will be tested by extension:
+        - load_datasets.Load_chiffres_cles().save_as_df()
+        - preprocess_chiffres_cles.drop_some_columns()
+        - preprocess_chiffres_cles.reg_depts()
+        - preprocess_chiffres_cles.reg_depts_code_format()
+        - preprocess_maps.map_save_path_routine(file_path)
     """
     result = (type(maps.viz3Dmap(file_path='')) != int)
     assert result
@@ -35,6 +50,10 @@ def test_transfer_map():
     Test transfer_map by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
+    ---
+    Fonctions/methods that will be tested by extension:
+        - load_datasets.Load_transfer().save_as_df()
+        - preprocess_maps.map_save_path_routine(file_path)
     """
     result = (type(maps.transfer_map(file_path='')) != int)
     assert result
@@ -45,6 +64,10 @@ def test_vacmap():
     Test vacmap by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will be raised
+    ---
+    Fonctions/methods that will be tested by extension:
+        - load_datasets.Load_vaccination().save_as_df()
+        - preprocess_maps.map_save_path_routine(file_path)
     """
     result = (type(maps.vacmap(file_path='')) != int)
     assert result
@@ -124,15 +147,17 @@ def test_vacdoses():
     result = (type(line_charts.vacdoses()) != int)
     assert result
 
-#----------- barplots ---------------
+
+# ----------- barplots ---------------
 def test_bar_age():
     """
     Test bar_age by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(barplots_cl_age.bar_age(1,1)) != int)
+    result = (type(barplots_cl_age.bar_age(1, 1)) != int)
     assert result
+
 
 def test_bar_reg():
     """
@@ -143,7 +168,8 @@ def test_bar_reg():
     result = (type(barplots_cl_age.bar_reg(1)) != int)
     assert result
 
-#----------- pie chart ---------------
+
+# ----------- pie chart ---------------
 def test_piechart():
     """
     Test piechart by running the function.
