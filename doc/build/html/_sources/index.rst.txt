@@ -56,6 +56,7 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
 
    auto_examples/index
    staticexamples/vizvaccine
+   staticexamples/transfer
 
 .. toctree::
    :maxdepth: 1

@@ -6,10 +6,10 @@ Vaccine types
 The commands below allow you to learn more about the evolution of
 the number of vaccine doses in stock per type, through time.
 The resulting graph is interactive:
-	- -you can pass your mouse on the lines to get more information
-	- -you can select the lines you want to keep by clicking on the legend
-	- -you can zoom on a time zone by clicking and hovering your mouse on it.
-	You can then go back to default view by double-clicking anywhere.
+-you can pass your mouse on the lines to get more information
+-you can select the lines you want to keep by clicking on the legend
+-you can zoom on a time zone by clicking and hovering your mouse on it.
+You can then go back to default view by double-clicking anywhere.
 
 .. code-block:: python
 
@@ -21,7 +21,7 @@ The resulting graph is interactive:
                              template='seaborn')
 
 
-**NB** The graph below is just a static image, and therefore, is not 
+**NB** The graph below is just a static image, and therefore, is *not*
 interactive.
 You can simply copy-paste the code block above to generate the interactive
 version. It should work or your side.
@@ -33,4 +33,4 @@ version. It should work or your side.
 +--------------+
 
 
-.. |vaccines| image:: vaccinstorage.png
+.. |vaccines| image:: vaccinestorage.png
