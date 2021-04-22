@@ -18,6 +18,33 @@ from vizcovidfr.preprocesses.preprocess_positivity import ignoreage,granupositiv
 
 #%%
 def compareHF(jour,chiffre,df):
+    
+    """
+
+    Gives the positivity or number of test for male and female
+    
+    Parameters
+    ----------
+    :param jour: A specific day or a week ("2020-11-12","2020-S45")
+    :type nom: str
+    :param chiffre: positivity "P" or "T" test or even 'pop'
+
+    :type chiffre: str
+
+    :param df: A dataframe of positivity by any region or frequency
+            with a specific age class 
+
+
+    Returns
+    -------
+    :return: A list comparing two numbers refering to male and female
+    :rtype: list 
+
+    :Examples:
+    >>> compareHF("2020-11-12","P",granupositvity(ignoreage(Load_incquotreg().save_as_df()),2,"reg"))
+
+
+    """
     if not chiffre in ["hosp","rea","rad","dc"]:
 
         return [df.loc[jour,][chiffre+"_h"],df.loc[jour,][chiffre+"_f"]]
@@ -26,15 +53,75 @@ def compareHF(jour,chiffre,df):
         return [df.loc[df["sexe"]==1][chiffre],df.loc[df["sexe"]==2][chiffre]]
 
 def positiverate(jour,df,sex=False,rate=True):
+
+    """
+
+    Gives the positive rate for male and female or together
+    
+    Parameters
+    ----------
+    :param jour: A specific day or a week ("2020-11-12","2020-S45")
+    :type nom: str
+    :param df:  A dataframe of positivity for a  region or  with any frequency
+            with a specific age class 
+
+    :param sex: distinct the sexes
+    :type sex: bool,optional, default=False
+
+    :param rate: make a ratio with people tested if True
+    :type rate: bool,optional, default=True
+
+
+    Returns
+    -------
+    :return: A list comparing two numbers refering to male and female
+    :rtype: list 
+
+    :Examples:
+    >>> positiverate("2020-11-12",granupositvity(ignoreage(Load_incquotreg().save_as_df()),2,"reg"),sex=True)
+
+
+    """
+
     if not sex:
         if rate:
             return df.loc[jour,]["P"]/df.loc[jour,"T"]
         else: 
             return df.loc[jour,]["P"]
-    else: return [df.loc[jour,]["P_h"]/df.loc[jour,]["T_h"],df.loc[jour,]["P_f"]/df.loc[jour,]["T_f"]]
-
+    else: 
+        if rate:
+            return [df.loc[jour,]["P_h"]/df.loc[jour,]["T_h"],df.loc[jour,]["P_f"]/df.loc[jour,]["T_f"]]
+        else: return[df.loc[jour,]["P_h"],df.loc[jour,]["P_f"]]
 
 def comparativebarplot(jour,chiffre,df,cumulative=False):
+    """
+
+    Makes the barplot comparing the two numbers obtained by other
+    functions
+    
+    Parameters
+    ----------
+    :param jour: A specific day or a week ("2020-11-12","2020-S45")
+    :type nom: str
+    :param df:  A dataframe of positivity for a  region or  with any frequency
+            with a specific age class 
+
+    :param chiffre: positivity "P" or "T" test or even 'pop' and now
+            positiverate and incidence
+    :type chiffre: str
+
+    :param cumulative: count since the beginning
+    :type rate: bool,optional, default=False
+
+
+    Returns
+    -------
+    :return: A barplot comparing two numbers refering to male and female
+
+    :Examples:
+    >>> comparativebarplot("2020-11-12","incidence",granupositvity(ignoreage(Load_incquotreg().save_as_df()),2,"reg"),cumulative=False)
+    """
+
     import matplotlib.pyplot as plt
     fig = plt.figure()
     ax = fig.add_axes([0,0,1,1])
@@ -52,12 +139,64 @@ def comparativebarplot(jour,chiffre,df,cumulative=False):
 
 
 def incidencerate(jour,df,sex=False):
+
+    """
+
+    Give the incidence rate (1/100 000) for a certain population
+    
+    Parameters
+    ----------
+    :param jour: A specific day or a week ("2020-11-12","2020-S45")
+    :type nom: str
+    :param df:  A dataframe of positivity for a  region or  with any frequency
+            with a specific age class 
+
+    :param sex: positivity "P" or "T" test or even 'pop' and now
+            positiverate and incidence
+    :type sex: bool,optional, default=False
+
+
+
+    Returns
+    -------
+    :return: A list of with the incidence
+
+    :Examples:
+    >>> incidencerate("2020-11-12",granupositvity(ignoreage(Load_incquotreg().save_as_df()),2,"reg"),sex=True)
+    """
+
     if not sex:
         return df.loc[jour,]["P"]*100000/df.loc[jour,"pop"]
     else: return [df.loc[jour,]["P_h"]*100000/df.loc[jour,]["pop_h"],df.loc[jour,]["P_f"]*100000/df.loc[jour,]["pop_f"]]
 
 
-def barplotscomparison(jour,chiffre,granu,numero=None,cumulative=False,weekday="jour"):
+def barplotscomparison(jour,chiffre,granu,numero,cumulative=False,weekday="jour"):
+    """
+
+    Give different barplots by loading the correct dataset
+    
+    Parameters
+    ----------
+    :param jour: A specific day or a week ("2020-11-12","2020-S45")
+    :type jour: str
+    :param df:  A dataframe of positivity 
+
+    :param granu: the granularity region, departments, country
+    :type granu: str
+
+    :param numero: the code of the region, departments, country
+
+    :param cumulative: Since the beginning or not
+    :type cumulative: bool,optional,default=False
+
+
+    Returns
+    -------
+    :return: A list of with the incidence
+
+    :Examples:
+    >>> incidencerate("2020-11-12",granupositvity(ignoreage(Load_incquotreg().save_as_df()),2,"reg"),sex=True)
+    """
     if granu=="reg":
         if weekday=="jour":
             if chiffre=="incidence":
@@ -94,7 +233,7 @@ def barplotscomparison(jour,chiffre,granu,numero=None,cumulative=False,weekday="
     comparativebarplot(jour ,chiffre,df,True)
 
 
-barplotscomparison("2020-10-12","incidence","reg",2)
+#barplotscomparison("2020-10-12","incidence","reg",2)
 #dfhopsex=Load_hopsex().save_as_df()
 #dfhopsex.index=pd.to_datetime(dfhopsex['jour'])
 
