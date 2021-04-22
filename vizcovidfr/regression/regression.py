@@ -96,7 +96,7 @@ def scatter_reg(num_var, num_reg, save = False):
     
         27 : Bourgogne-Franche-Comte
 
-        28 : Normmandie
+        28 : Normandie
 
         32 : Hauts-de-France
 
