@@ -13,6 +13,27 @@ Below are a few examples of what you can do with **vizcovidfr**.
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Polynomial regression">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_regression_thumb.png
+     :alt: Polynomial regression
+
+     :ref:`sphx_glr_auto_examples_plot_regression.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_regression
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Which way did they go?">
 
 .. only:: html
@@ -31,6 +52,27 @@ Below are a few examples of what you can do with **vizcovidfr**.
    :hidden:
 
    /auto_examples/plot_sparse
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="3D maps">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_3Dmaps_thumb.png
+     :alt: 3D maps
+
+     :ref:`sphx_glr_auto_examples_plot_3Dmaps.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_3Dmaps
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

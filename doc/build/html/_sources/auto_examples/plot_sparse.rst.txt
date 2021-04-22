@@ -52,17 +52,18 @@ of patient transfers.
 
     Downloading data from https://static.data.gouv.fr/resources/donnees-relatives-aux-transferts-de-patients-atteints-de-covid-19/20200424-183902/transferts-patients-covid19.csv (2 kB)
 
-    file_sizes:   0%|                                   | 0.00/1.79k [00:00<?, ?B/s]    file_sizes: 100%|##########################| 1.79k/1.79k [00:00<00:00, 3.86MB/s]
+    file_sizes:   0%|                                   | 0.00/1.79k [00:00<?, ?B/s]    file_sizes: 100%|##########################| 1.79k/1.79k [00:00<00:00, 3.42MB/s]
     Successfully downloaded file to /home/vamelie/Documents/ClonedRepo/vizcovidfr/vizcovidfr/loads/../data/transfer.csv
+    Time to execute: 0.47681 s.
 
-    <networkx.classes.graph.Graph object at 0x7f71a44edbb0>
+    <networkx.classes.graph.Graph object at 0x7fe59f62acd0>
 
 
 
 .. GENERATED FROM PYTHON SOURCE LINES 16-23
 
 Do you remember which way did the patient go?
-You can figure it out with the next part!
+You can figure it out with the next part
 
 The directed graph
 ------------------
@@ -91,17 +92,18 @@ of patient transfers.
 
     Downloading data from https://static.data.gouv.fr/resources/donnees-relatives-aux-transferts-de-patients-atteints-de-covid-19/20200424-183902/transferts-patients-covid19.csv (2 kB)
 
-    file_sizes:   0%|                                   | 0.00/1.79k [00:00<?, ?B/s]    file_sizes: 100%|##########################| 1.79k/1.79k [00:00<00:00, 4.37MB/s]
+    file_sizes:   0%|                                   | 0.00/1.79k [00:00<?, ?B/s]    file_sizes: 100%|##########################| 1.79k/1.79k [00:00<00:00, 1.05MB/s]
     Successfully downloaded file to /home/vamelie/Documents/ClonedRepo/vizcovidfr/vizcovidfr/loads/../data/transfer.csv
+    Time to execute: 0.51698 s.
 
-    <networkx.classes.digraph.DiGraph object at 0x7f71a44ed4f0>
+    <networkx.classes.digraph.DiGraph object at 0x7fe59f62a9d0>
 
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  1.445 seconds)
+   **Total running time of the script:** ( 0 minutes  1.504 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_sparse.py:

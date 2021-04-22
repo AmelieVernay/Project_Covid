@@ -65,7 +65,7 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     :param bgcolor: the background color of all hover labels on graph.
         For reference, see http://www.python-simple.com/img/img45.png.
     :type bgcolor: str, optional, default='darkslategrey'
-    :param template: the visual style we want the graph to be 
+    :param template: the visual style we want the graph to be
         based on.
 
         For reference, see https://plotly.com/python/templates/.
@@ -164,25 +164,25 @@ def vacdoses(unit='doses', font_size=16,
         is multiplied by 6.
         For Moderna and AstraZeneca vaccines, the cdu conversion rate per dose
         is multiplied by 10.
-    :type unit: str, optional, default = 'doses'
+    :type unit: str, optional, default='doses'
     :param font_size: the size of characters in hover labels.
-    :type font_size: int, optional, default = 16
+    :type font_size: int, optional, default=16
     :param font_family: the font family of the characters in hover labels.
         For reference, see
         http://jonathansoma.com/site/lede/data-studio/matplotlib/list-all-fonts-available-in-matplotlib-plus-samples/.
-    :type font_family: str, optional, default = 'Franklin Gothic Medium'
+    :type font_family: str, optional, default='Franklin Gothic Medium'
     :param font_color: the color of characters in hover labels.
         For reference, see http://www.python-simple.com/img/img45.png.
-    :type font_color: str, optional, default = 'white'
+    :type font_color: str, optional, default='white'
     :param bgcolor: the background color of all hover labels on graph.
 
         For reference, see http://www.python-simple.com/img/img45.png.
-    :type bgcolor: str, optional, default = 'darkslategrey'
-    :param template: the visual style we want the graph to be 
+    :type bgcolor: str, optional, default='darkslategrey'
+    :param template: the visual style we want the graph to be
         based on.
 
         For reference, see https://plotly.com/python/templates/.
-    :type template: str, optional, default = 'plotly_dark'
+    :type template: str, optional, default='plotly_dark'
 
     Returns
     -------
@@ -235,20 +235,20 @@ def keyseries(nom,chiffre,evo=True):
 
     Parameters
     ----------
-    :param nom: A name in French of a department, or region , 
+    :param nom: A name in French of a department, or region ,
         or the whole territory
     :type nom: str
-    :param chiffre: The figure of interest in French suc as "deces" , "cas" 
+    :param chiffre: The figure of interest in French suc as "deces" , "cas"
 
         - 'cas_confirmes':
             number of confirmed cases
         - 'cas_ehpad':
-            number of confirmed cases in 
+            number of confirmed cases in
         - 'deces':
             display the cumulated number of death due to
             the Covid-19 in France from the beginning of the pandemic, up to
             the given date
-    
+
     :type chiffre: str
 
     :param evo: New per day or cumulative
@@ -258,8 +258,8 @@ def keyseries(nom,chiffre,evo=True):
 
     Returns
     -------
-    :return: A time series until today since the beginning of the records of the figure of interest 
-    :rtype: 'pandas.Series' 
+    :return: A time series until today since the beginning of the records of the figure of interest
+    :rtype: 'pandas.Series'
     evo: New per day or cumulative
 
     :Examples:
@@ -277,7 +277,7 @@ def keyseries(nom,chiffre,evo=True):
 
     if fr:
 
-        
+
         df_covid=preprocess_chiffres_cles.gooddates(Load_chiffres_fr().save_as_df())
 
     if chiffre in ["cas","nombre_de_cas","cas_confirmes"]:
@@ -289,7 +289,7 @@ def keyseries(nom,chiffre,evo=True):
             chiffre="total_cas_confirmes"
 
     elif chiffre in ["hospitalisation","hôpital","hospitalises"]:
-        
+
         chiffre="hospitalises"
 
         if fr:
@@ -337,17 +337,17 @@ def keyseries(nom,chiffre,evo=True):
 
         if nom in REGIONS.keys():
             df=preprocess_positivity.granupositivity(Load_posquotreg().save_as_df(),nom)
-        
+
         elif nom in DEPARTMENTS.keys():
             df=preprocess_positivity.granupositivity(Load_posquotdep().save_as_df(),nom)
 
-        
+
         if evo:
 
             return df['P']
 
-        else: 
-                
+        else:
+
             return df['P'].cumsum()
 
 

@@ -14,7 +14,7 @@ sparse.sparse_graph(directed=False)
 
 ##############################
 # Do you remember which way did the patient go?
-# You can figure it out with the next part!
+# You can figure it out with the next part
 #
 # The directed graph
 # ------------------

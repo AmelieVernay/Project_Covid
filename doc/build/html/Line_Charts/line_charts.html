@@ -279,7 +279,7 @@
 <dl class="py function">
 <dt id="vizcovidfr.line_charts.line_charts.vactypedoses">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.line_charts.line_charts.</span></code><code class="sig-name descname"><span class="pre">vactypedoses</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vaccine_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'All</span> <span class="pre">vaccines'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'darkblue'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'crimson'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'darkgreen'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_family</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Franklin</span> <span class="pre">Gothic</span> <span class="pre">Medium'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'white'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bgcolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'darkslategrey'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'plotly_dark'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.line_charts.line_charts.vactypedoses" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make animated line chart of France vaccine data.</p>
+<dd><p>Make an interactive line chart of France vaccine data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -289,7 +289,7 @@ In this latter case, the three vaccine types are represented.
 It is possible to hover one’s mouse over the curves to get thorough
 information.</p></li>
 <li><p><strong>color_pal</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='darkblue'</em>) – <p>the color of the chosen vaccine type curve.
-If ‘All vaccines’ vaccine_type is chosen, sets the color of the
+If ‘All vaccines’ vaccine_type is chosen, set the color of the
 ‘Pfizer’ curve.</p>
 <p>For reference, see <a class="reference external" href="http://www.python-simple.com/img/img45.png">http://www.python-simple.com/img/img45.png</a>.</p>
 </p></li>
@@ -310,7 +310,8 @@ Set the color of ‘AstraZeneca’ curve.</p>
 For reference, see <a class="reference external" href="http://www.python-simple.com/img/img45.png">http://www.python-simple.com/img/img45.png</a>.</p></li>
 <li><p><strong>bgcolor</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='darkslategrey'</em>) – the background color of all hover labels on graph.
 For reference, see <a class="reference external" href="http://www.python-simple.com/img/img45.png">http://www.python-simple.com/img/img45.png</a>.</p></li>
-<li><p><strong>template</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='plotly_dark'</em>) – <p>the plotly theme</p>
+<li><p><strong>template</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='plotly_dark'</em>) – <p>the visual style we want the graph to be
+based on.</p>
 <p>For reference, see <a class="reference external" href="https://plotly.com/python/templates/">https://plotly.com/python/templates/</a>.</p>
 </p></li>
 </ul>
@@ -337,7 +338,7 @@ dose number of the chosen vaccine type (in storage).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>unit</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default = 'doses'</em>) – <p>the type of dose units we want to display.
+<li><p><strong>unit</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='doses'</em>) – <p>the type of dose units we want to display.
 Either ‘doses’ or ‘cdu’ (shorts for ‘common dispensing units’),</p>
 <ul>
 <li><dl class="simple">
@@ -358,16 +359,17 @@ is multiplied by 6.
 For Moderna and AstraZeneca vaccines, the cdu conversion rate per dose
 is multiplied by 10.</p>
 </p></li>
-<li><p><strong>font_size</strong> (<em>int</em><em>, </em><em>optional</em><em>, </em><em>default = 16</em>) – the size of characters in hover labels.</p></li>
-<li><p><strong>font_family</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default = 'Franklin Gothic Medium'</em>) – the font family of the characters in hover labels.
+<li><p><strong>font_size</strong> (<em>int</em><em>, </em><em>optional</em><em>, </em><em>default=16</em>) – the size of characters in hover labels.</p></li>
+<li><p><strong>font_family</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='Franklin Gothic Medium'</em>) – the font family of the characters in hover labels.
 For reference, see
 <a class="reference external" href="http://jonathansoma.com/site/lede/data-studio/matplotlib/list-all-fonts-available-in-matplotlib-plus-samples/">http://jonathansoma.com/site/lede/data-studio/matplotlib/list-all-fonts-available-in-matplotlib-plus-samples/</a>.</p></li>
-<li><p><strong>font_color</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default = 'white'</em>) – the color of characters in hover labels,.
+<li><p><strong>font_color</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='white'</em>) – the color of characters in hover labels.
 For reference, see <a class="reference external" href="http://www.python-simple.com/img/img45.png">http://www.python-simple.com/img/img45.png</a>.</p></li>
-<li><p><strong>bgcolor</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default = 'darkslategrey'</em>) – <p>the background color of all hover labels on graph.</p>
+<li><p><strong>bgcolor</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='darkslategrey'</em>) – <p>the background color of all hover labels on graph.</p>
 <p>For reference, see <a class="reference external" href="http://www.python-simple.com/img/img45.png">http://www.python-simple.com/img/img45.png</a>.</p>
 </p></li>
-<li><p><strong>template</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default = 'plotly_dark'</em>) – <p>the theme of plotly.</p>
+<li><p><strong>template</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='plotly_dark'</em>) – <p>the visual style we want the graph to be
+based on.</p>
 <p>For reference, see <a class="reference external" href="https://plotly.com/python/templates/">https://plotly.com/python/templates/</a>.</p>
 </p></li>
 </ul>

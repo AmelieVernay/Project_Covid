@@ -1,5 +1,5 @@
 Functions about evolution of Covid in France and polynomial regression
-====================================
+======================================================================
 
 scatter_reg
 ------------------------------

@@ -404,6 +404,8 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     suffix = '.html'
     save_path = os.path.join(file_path, file_name + suffix)
     covid_amount_layer_map.to_html(save_path)
+    # show map
+    covid_amount_layer_map.show()
     sms1 = f"\nThat's it! \n{file_name + suffix} has been successfully saved"
     sms2 = f" in {file_path}! \nYou can go ahead and open it with your"
     sms3 = " favorite web browser!"
