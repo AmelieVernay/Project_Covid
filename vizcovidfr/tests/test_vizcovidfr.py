@@ -128,6 +128,9 @@ def test_R2():
     Test R2 by running the function checking if R2 is different of 2.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
+    ---
+    Fonctions/methods that will be tested by extension:
+        -load_datasets.Load_Vaccine_storage().save_as_df()
     """
     result = (type(regression.R2(1, 1)) != 2)
     assert result
@@ -139,6 +142,9 @@ def test_vactypedoses():
     Test vactypedoses by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will be raised
+    ---
+    Functions/methods that will be tested by extension:
+        - load_datasets.Load_Vaccine_storage().save_as_df()
     """
     result = (type(line_charts.vactypedoses()) != int)
     assert result
@@ -149,6 +155,9 @@ def test_vacdoses():
     Test vacdoses by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will be raised
+    ---
+    Functions/methods that will be tested by extension:
+        - load_datasets.Load_Vaccine_storage().save_as_df()
     """
     result = (type(line_charts.vacdoses()) != int)
     assert result
@@ -181,6 +190,11 @@ def test_piechart():
     Test piechart by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
+    ---
+    Functions/methods that will be tested by extension:
+        - load_datasets.Load_chiffres_cles().save_as_df()
+        - preprocess_chiffres_cles.drop_some_columns()
+        - preprocess_chiffres_cles.reg_depts()
     """
     result = (type(pie_chart.piechart()) != int)
     assert result
