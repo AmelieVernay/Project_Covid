@@ -6,7 +6,7 @@ from vizcovidfr.loads.load_datasets import Load_posquotfr,Load_posquotreg,Load_p
 from vizcovidfr.loads.load_datasets import Load_poshebreg,Load_poshebfr,Load_incregrea,Load_hopage
 import plotly.express
 from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
-
+import matplotlib.pyplot as plt
 
 
 
@@ -97,10 +97,10 @@ def heatmapageday(df,debut,fin=None,weekday="jour"):
 
     df.drop(df.loc[df["cl_age90"]==0].index,inplace=True)
     sns.heatmap(df.pivot(weekday,"cl_age90","incid"))
-
+    plt.show()
 
 def heatmapregage(df,granu,weekday):
-   """
+    """
 
     Give the heatmap by age class and regions for incidence rate
     
@@ -132,7 +132,7 @@ def heatmapregage(df,granu,weekday):
     df["incid"]=df["P"]/df['pop']*100000
     df.drop(df.loc[df["cl_age90"]==0].index,inplace=True)
     sns.heatmap(df.pivot(granu,"cl_age90","incid"))
-
+    plt.show()
 
 def heatmapregday(df,age,debut,granu="reg",weekday="jour",fin=None):
     """
@@ -186,10 +186,10 @@ def heatmapregday(df,age,debut,granu="reg",weekday="jour",fin=None):
         a=[W2020_2021(i) for i in range(S2020_2021(debut),S2020_2021(fin)+1)]
         df=df[df['week'].isin(a)]
     sns.heatmap(df.pivot(weekday,granu,"incid"))
-
+    plt.show()
 
 def incregra(debut,fin=None):
-   """
+    """
 
     Give the heatmap by age class and regions for incidence in intesive care
     
@@ -224,6 +224,7 @@ def incregra(debut,fin=None):
     df["jour"] = pd.to_datetime(df['jour']).dt.date
 
     sns.heatmap(df.pivot("jour","numReg","incid_rea"))
+    plt.show()
 #%%
 
 def hopage(chiffre,modes,debut):
@@ -281,6 +282,6 @@ def hopage(chiffre,modes,debut):
         dfhopage["jour"] = pd.to_datetime(dfhopage['jour']).dt.date
         dfhopage=dfhopage.groupby(["jour","cl_age90"]).sum().reset_index()
         sns.heatmap(dfhopage.pivot("cl_age90","jour",chiffre))
-
+    plt.show()
 
 
