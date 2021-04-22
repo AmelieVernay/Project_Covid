@@ -1,4 +1,3 @@
-#%%
 import numpy as np
 import pandas as pd
 import plotly.express as px
@@ -14,8 +13,7 @@ from vizcovidfr.preprocesses import preprocess_classe_age as pca
 
 T = load_datasets.Load_classe_age().save_as_df()
 
-
-def scatter_reg(num_var, num_reg):
+def scatter_reg(num_var, num_reg, save = False):
     """
     Display the scatter plot of the evolution of the given variable in the
     given region. Each variable and region have a special code that you can
@@ -24,94 +22,96 @@ def scatter_reg(num_var, num_reg):
     Parameters
     ----------
 
-    :param num_var: code of the variable you want to display. Codes are in\
-    the following dictionnary :
-
-    1 : Hospitalization
-
-    2 : Reanimation
-
-    3 : Conventional hospitalization
-
-    4 : SSR and USLD
-
-    5 : Others
-
-    6 : Come back home
-
-    7 : Deaths
-
-        - Hospitalization :
-            number of hospitalized patients.
-
-        - Reanimation :
-            number of people currently in intensive care or intensive care.
-
-        - Conventional hospitalization :
-            number of people currently in conventional hospitalization.
-
-        - SSR and USLD :
-            number of people currently in Aftercare and Rehabilitation \
-            (SSR in french) or Long-Term Care Units (USLD in french).
-
-        - Others :
-            number of people currently hospitalized in another type of service.
-
-        - Come back home :
-            cumulative number of people who returned home.
-
-        - Deaths :
-            cumulative number of deceased persons.
-
-    :type num_var: int (from 1 to 7)
-
-    :param num_reg: code of the region you want to display. Codes are in\
-    the following dictionnary (official INSAA code) :
-
-    1 : Guadeloupe
-
-    2 : Martinique
-
-    3 : Guyane
-
-    4 : La Réunion
-
-    6 : Mayotte
-
-    11 : Île-de-France
-
-    24 : Centre-Val de Loire
-
-    27 : Bourgogne-Franche-Comte
-
-    28 : Normandie
-
-    32 : Hauts-de-France
-
-    44 : Grand Est
-
-    52 : Pays de la Loire
-
-    53 : Bretagne
-
-    75 : Nouvelle-Aquitaine
-
-    76 : Occitanie
-
-    84 : Auvergne-Rhône-Alpes
-
-    93 : Provence-Alpes Côte d'Azur
-
-    94 : Corse
-
+    :param num_var: code of the variable you want to display. 
+        Codes are in the following dictionnary.
+    :type num_var: int
+    :param num_reg: code of the region you want to display. 
+        Codes are the official INSAA code region and are given in the dictionnary below.
     :type num_reg: int
+    :param save: True if you want to save the graph in pdf file, False otherwise.
+    :type save: bool, optionnal, default = False
+    
+    Variable dictionnary :
+
+        1 : Hospitalization
+
+        2 : Reanimation
+
+        3 : Conventional hospitalization
+    
+        4 : SSR and USLD
+
+        5 : Others
+
+        6 : Come back home
+
+        7 : Deaths
+
+    - Hospitalization :
+        number of hospitalized patients.
+
+    - Reanimation :
+        number of people currently in intensive care or intensive care.
+
+    - Conventional hospitalization :
+        number of people currently in conventional hospitalization.
+
+    - SSR and USLD :
+        number of people currently in Aftercare and Rehabilitation (SSR in french) or Long-Term Care Units (USLD in french).
+    
+    - Others :
+        number of people currently hospitalized in another type of service.
+    
+    - Come back home :
+        cumulative number of people who returned home.
+    
+    - Deaths :
+        cumulative number of deceased persons.
+
+
+    Region dictionnary :
+
+        1 : Guadeloupe
+
+        2 : Martinique
+
+        3 : Guyane
+
+        4 : La Reunion
+
+        6 : Mayotte
+
+        11 : Île-de-France
+
+        24 : Centre-Val de Loire
+    
+        27 : Bourgogne-Franche-Comte
+
+        28 : Normmandie
+
+        32 : Hauts-de-France
+
+        44 : Grand Est
+
+        52 : Pays de la Loire
+
+        53 : Bretagne
+
+        75 : Nouvelle-Aquitaine
+
+        76 : Occitanie
+
+        84 : Auvergne-Rhône-Alpes
+
+        93 : Provence-Alpes Côte d'Azur
+
+        94 : Corse
 
     Returns
     ----------
 
-    :return: Scatter plot of the evolution of one of the Covid variable in
-        a specific region of France.
-    :rtype: plotly.graph_objects.Scatter
+    :return: Scatter plot of one of the Covid variable in a specific region of France.
+    :rtype: Figure
 
     """
     #Extracting chosen region
@@ -122,15 +122,18 @@ def scatter_reg(num_var, num_reg):
     #Grouping by day
     covid_day = pca.covid_day_fct(T2)
     #Creating dictionnaries
+    dico_file = pca.dico_file()
     dico_reg = pca.dico_reg()
     dico_var = pca.dico_var()
     #Scatter plot
     fig = px.scatter(
     covid_day, x=covid_day.index, y=dico_col[num_var], opacity=0.65, trendline_color_override='darkblue', labels = {dico_col[num_var]:dico_var[dico_col[num_var]], 'index':'Date'}, title="Scatter plot of the evolution of" + " " + dico_var[dico_col[num_var]] + " in " + dico_reg[num_reg])
+    if save == True:
+        fig.write_image(f"scatter_{dico_file[num_var]}_{dico_reg[num_reg]}.pdf")
     fig.show()
 
 
-def poly_fit(num_var, num_reg):
+def poly_fit(num_var, num_reg, save = False):
     """
     Display the scatter plot of the evolution of the given variable in the
     given region with a polynomial regression. Each variable and region have
@@ -141,94 +144,96 @@ def poly_fit(num_var, num_reg):
     Parameters
     ----------
 
-    :param num_var: code of the variable you want to display.
-        Codes are in the following dictionnary :
-
-    1 : Hospitalization
-
-    2 : Reanimation
-
-    3 : Conventional hospitalization
-
-    4 : SSR and USLD
-
-    5 : Others
-
-    6 : Come back home
-
-    7 : Deaths
-
-        - Hospitalization :
-            number of hospitalized patients.
-
-        - Reanimation :
-            number of people currently in intensive care or intensive care.
-
-        - Conventional hospitalization :
-            number of people currently in conventional hospitalization.
-
-        - SSR and USLD :
-            number of people currently in Aftercare and Rehabilitation
-            (SSR in french) or Long-Term Care Units (USLD in french).
-
-        - Others :
-            number of people currently hospitalized in another type of service.
-
-        - Come back home :
-            cumulative number of people who returned home.
-
-        - Deaths :
-            cumulative number of deceased persons.
-
-    :type num_var: int (from 1 to 7)
-
-    :param num_reg: code of the region you want to display. Codes are in
-        the following dictionnary (official INSAA code) :
-
-    1 : Guadeloupe
-
-    2 : Martinique
-
-    3 : Guyane
-
-    4 : La Réunion
-
-    6 : Mayotte
-
-    11 : Île-de-France
-
-    24 : Centre-Val de Loire
-
-    27 : Bourgogne-Franche-Comte
-
-    28 : Normandie
-
-    32 : Hauts-de-France
-
-    44 : Grand Est
-
-    52 : Pays de la Loire
-
-    53 : Bretagne
-
-    75 : Nouvelle-Aquitaine
-
-    76 : Occitanie
-
-    84 : Auvergne-Rhône-Alpes
-
-    93 : Provence-Alpes Côte d'Azur
-
-    94 : Corse
-
+    :param num_var: code of the variable you want to display. 
+        Codes are in the following dictionnary.
+    :type num_var: int
+    :param num_reg: code of the region you want to display. 
+        Codes are the official INSAA code region and are given in the dictionnary below.
     :type num_reg: int
+    :param save: True if you want to save the graph in pdf file, False otherwise.
+    :type save: bool, optionnal, default = False
+    
+    Variable dictionnary :
+
+        1 : Hospitalization
+
+        2 : Reanimation
+
+        3 : Conventional hospitalization
+    
+        4 : SSR and USLD
+
+        5 : Others
+
+        6 : Come back home
+
+        7 : Deaths
+
+    - Hospitalization :
+        number of hospitalized patients.
+
+    - Reanimation :
+        number of people currently in intensive care or intensive care.
+
+    - Conventional hospitalization :
+        number of people currently in conventional hospitalization.
+
+    - SSR and USLD :
+        number of people currently in Aftercare and Rehabilitation (SSR in french) or Long-Term Care Units (USLD in french).
+    
+    - Others :
+        number of people currently hospitalized in another type of service.
+    
+    - Come back home :
+        cumulative number of people who returned home.
+    
+    - Deaths :
+        cumulative number of deceased persons.
+
+
+    Region dictionnary :
+
+        1 : Guadeloupe
+
+        2 : Martinique
+
+        3 : Guyane
+
+        4 : La Reunion
+
+        6 : Mayotte
+
+        11 : Île-de-France
+
+        24 : Centre-Val de Loire
+    
+        27 : Bourgogne-Franche-Comte
+
+        28 : Normmandie
+
+        32 : Hauts-de-France
+
+        44 : Grand Est
+
+        52 : Pays de la Loire
+
+        53 : Bretagne
+
+        75 : Nouvelle-Aquitaine
+
+        76 : Occitanie
+
+        84 : Auvergne-Rhône-Alpes
+
+        93 : Provence-Alpes Côte d'Azur
+
+        94 : Corse
 
     Returns
     ----------
 
-    :return: Scatter plot of the evolution of one of the Covid variable
-        in a specific region of France with the regression line.
-    :rtype: plotly.graph_objects.plot
+    :return: Scatter plot of one of the Covid variable in a specific region of France with the regression curve.
+    :rtype: Figure
 
     """
     R = pca.reg(num_reg, T)
@@ -240,6 +245,7 @@ def poly_fit(num_var, num_reg):
     x = x[:, np.newaxis]
     y = y[:, np.newaxis]
     dico_days = pca.dico_day(covid_day)
+    dico_file = pca.dico_file()
     dico_var = pca.dico_var()
     dico_reg = pca.dico_reg()
     covid_day = covid_day.reset_index(drop=True)
@@ -255,105 +261,107 @@ def poly_fit(num_var, num_reg):
                           markersize=15, label='Regression curve')
     plt.legend(handles=[blue_line, red_line])
     plt.title(f'Degree of polynomial regression : {deg+1}', fontsize=10)
+    #Saving pdf file
+    if save == True:
+        plt.savefig(f"regression_" + dico_file[num_var] + "_" + dico_reg[num_reg] + ".pdf", dpi=1200)
     plt.show()
 
 
 def R2(num_var, num_reg):
     """
     Display the R2 of the polynomial regression made by poly_fit function.
-    Arguments are the same than poly_fit.
 
     Parameters
     ----------
 
-    :param num_var: code of the variable you want to display.
-        Codes are in the following dictionnary :
-
-    1 : Hospitalization
-
-    2 : Reanimation
-
-    3 : Conventional hospitalization
-
-    4 : SSR and USLD
-
-    5 : Others
-
-    6 : Come back home
-
-    7 : Deaths
-
-        - Hospitalization :
-            number of hospitalized patients.
-
-        - Reanimation :
-            number of people currently in intensive care or intensive care.
-
-        - Conventional hospitalization :
-            number of people currently in conventional hospitalization.
-
-        - SSR and USLD :
-            number of people currently in Aftercare and Rehabilitation
-            (SSR in french) or Long-Term Care Units (USLD in french).
-
-        - Others :
-            number of people currently hospitalized in another type of service.
-
-        - Come back home :
-            cumulative number of people who returned home.
-
-        - Deaths :
-            cumulative number of deceased persons.
-
-    :type num_var: int (from 1 to 7)
-
-    :param num_reg: code of the region you want to display.
-        Codes are in the following dictionnary (official INSAA code) :
-
-    1 : Guadeloupe
-
-    2 : Martinique
-
-    3 : Guyane
-
-    4 : La Réunion
-
-    6 : Mayotte
-
-    11 : Île-de-France
-
-    24 : Centre-Val de Loire
-
-    27 : Bourgogne-Franche-Comte
-
-    28 : Normandie
-
-    32 : Hauts-de-France
-
-    44 : Grand Est
-
-    52 : Pays de la Loire
-
-    53 : Bretagne
-
-    75 : Nouvelle-Aquitaine
-
-    76 : Occitanie
-
-    84 : Auvergne-Rhône-Alpes
-
-    93 : Provence-Alpes Côte d'Azur
-
-    94 : Corse
-
+    :param num_var: code of the variable you want to display. 
+        Codes are in the following dictionnary.
+    :type num_var: int
+    :param num_reg: code of the region you want to display. 
+        Codes are the official INSAA code region and are given in the dictionnary below.
     :type num_reg: int
+    
+    Variable dictionnary :
+
+        1 : Hospitalization
+
+        2 : Reanimation
+
+        3 : Conventional hospitalization
+    
+        4 : SSR and USLD
+
+        5 : Others
+
+        6 : Come back home
+
+        7 : Deaths
+
+    - Hospitalization :
+        number of hospitalized patients.
+
+    - Reanimation :
+        number of people currently in intensive care or intensive care.
+
+    - Conventional hospitalization :
+        number of people currently in conventional hospitalization.
+
+    - SSR and USLD :
+        number of people currently in Aftercare and Rehabilitation (SSR in french) or Long-Term Care Units (USLD in french).
+    
+    - Others :
+        number of people currently hospitalized in another type of service.
+    
+    - Come back home :
+        cumulative number of people who returned home.
+    
+    - Deaths :
+        cumulative number of deceased persons.
+
+
+    Region dictionnary :
+
+        1 : Guadeloupe
+
+        2 : Martinique
+
+        3 : Guyane
+
+        4 : La Reunion
+
+        6 : Mayotte
+
+        11 : Île-de-France
+
+        24 : Centre-Val de Loire
+    
+        27 : Bourgogne-Franche-Comte
+
+        28 : Normmandie
+
+        32 : Hauts-de-France
+
+        44 : Grand Est
+
+        52 : Pays de la Loire
+
+        53 : Bretagne
+
+        75 : Nouvelle-Aquitaine
+
+        76 : Occitanie
+
+        84 : Auvergne-Rhône-Alpes
+
+        93 : Provence-Alpes Côte d'Azur
+
+        94 : Corse
 
     Returns
     ----------
 
-    :return: Scatter plot of the evolution of one of Covid variable
-        in a specific region of France.
-    :rtype: plotly.graph_objects.Scatter
+    :return: R2 of the polynomial regression of one of the Covid variable in a specific region of France.
+    :rtype: float
 
     """
     R = pca.reg(num_reg, T)
@@ -371,3 +379,4 @@ def R2(num_var, num_reg):
     deg = list(rmselist).index(rmselist.min())
     res = 'R2 of polynomial regression of ' + dico_var[dico_col[num_var]] + ' in ' + dico_reg[num_reg] + f' is : {r2_score(y,y_poly_pred_P_list[deg])}.'
     return res
+
