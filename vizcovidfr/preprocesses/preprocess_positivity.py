@@ -128,12 +128,56 @@ REGIONS=dict(REGIONS)
 
 
 def ignoreage(df,weekday="jour"):
+    """
+
+    Extract the dataframe and ignore the age component by selecting the 0 age class
+
+    Parameters
+    ----------
+    :param df: A dataframe containing covid information by age
+        Pandas dataframe
+    :param weekday: whether it's a day "jour" or a "week"
+    :type weekday: str, optional, default="jour"
+
+    Returns
+    -------
+    :return: A dataframe of incidence ignoring age 
+    :rtype: 'pandas.dataframe' 
+
+    :Examples:
+    >>> ignoreage(Load_posquotreg().save_as_df(),"jour")
+
+
+    """
     df.index=df[weekday]
     del df[weekday]
     return df.loc[df['cl_age90']==0]
 
 
 def granupositivity(df,nom,granularite=None):
+
+    """
+
+    Extract the dataframe for a specific region or department
+
+    Parameters
+    ----------
+    :param df: A dataframe containing covid information by age
+        Pandas dataframe
+    :param nom: str or int for a specific region if it's a
+        int granularity must be region
+        if it's a string containing a int it must be departments
+    :param granularite: a string to tell whether it's "reg" or "dep"
+        if the name is not specific
+    Returns
+    -------
+    :return: A dataframe of incidence for a region
+    :rtype: 'pandas.dataframe' 
+    :Examples:
+    >>> granupositivity(ignoreage(Load_poshebreg().save_as_df(),"week"),2,"reg")
+
+
+    """
 
     if granularite is not None:
         return df.loc[df[granularite]==nom,:]
