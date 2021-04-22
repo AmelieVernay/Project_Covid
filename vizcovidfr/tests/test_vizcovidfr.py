@@ -224,7 +224,7 @@ def test_comparativebarplot():
                         "incidence",
                         granupositivity(
                             ignoreage(Load_incquotreg().save_as_df()),
-                            2, "reg", cumulative=False))) != int)
+                            2, "reg"))) != int)
     assert result
 
 
