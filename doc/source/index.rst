@@ -71,6 +71,12 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
    Time/timeit
 
 .. toctree::
+   :maxdepth: 2
+   :caption: Heatmaps
+
+   Heatmaps/heatmaps
+
+.. toctree::
    :maxdepth: 1
    :caption: Sources and references
 
