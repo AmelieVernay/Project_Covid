@@ -6,10 +6,13 @@ from vizcovidfr.maps import maps
 from vizcovidfr.sparse import sparse
 from vizcovidfr.regression import regression
 from vizcovidfr.line_charts import line_charts
-from vizcovidfr.barplots import barplots_cl_age,barplots
+
+from vizcovidfr.barplots import barplots_cl_age, barplots
 from vizcovidfr.pie_charts import pie_chart
 from vizcovidfr.prediction import prediction
 from vizcovidfr.heatmaps import heatmap
+
+
 # ---------- maps ----------
 def test_viz2Dmap():
     """
@@ -159,14 +162,16 @@ def test_vacdoses():
     result = (type(line_charts.vacdoses()) != int)
     assert result
 
+
 def test_keyseries():
     """
     Test keyseries by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will be raised
     """
-    result=(type(line_charts.keyseries("Hérault","deces"))!=int)
+    result = (type(line_charts.keyseries("Hérault", "deces")) != int)
     assert result
+
 
 def test_keyplot():
     """
@@ -178,9 +183,9 @@ def test_keyplot():
         - linecharts.plotseries()
 
     """
-    result=(type(line_charts.keyplot("Hérault","deces"))!=int)
+    result = (type(line_charts.keyplot("Hérault", "deces")) != int)
 
-    
+
 # ----------- barplots ---------------
 def test_bar_age():
     """
@@ -202,15 +207,19 @@ def test_bar_reg():
     assert result
 
 
-
 def test_comparativebarplot():
     """
     Test comparativebarplot by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(comparativebarplot("2020-11-12","incidence",\
-        granupositvity(ignoreage(Load_incquotreg().save_as_df()),2,"reg"),cumulative=False))) != int)
+    result = (type(
+                comparativebarplot(
+                        "2020-11-12",
+                        "incidence",
+                        granupositvity(
+                            ignoreage(Load_incquotreg().save_as_df()),
+                            2, "reg", cumulative=False))) != int)
     assert result
 
 
@@ -227,17 +236,19 @@ def test_piechart():
         - preprocess_chiffres_cles.reg_depts()
     """
     result = (type(pie_chart.piechart()) != int)
+    assert result
 
-    
-#--------------prediction--------------
+
+# --------------prediction--------------
 def test_predict_curve():
     """
     Test predict_curve by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(prediction.predict_curve(1,1,'2022-08-01')) != int)
+    result = (type(prediction.predict_curve(1, 1, '2022-08-01')) != int)
     assert result
+
 
 def test_predict_value():
     """
@@ -245,16 +256,20 @@ def test_predict_value():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type((prediction.predict_value(1,1,'2022-08-01'))) != int)
+    result = (type((prediction.predict_value(1, 1, '2022-08-01'))) != int)
     assert result
 
-#--------------heatmaps--------------
 
+# --------------heatmaps--------------
 def test_heatmapregage():
     """
     Test heatmapregage by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type((heatmap.heatmapregage(Load_posquotreg().save_as_df(),"reg","2020-11-06")) != int)
+    result = (type(
+                (heatmap.heatmapregage(
+                            Load_posquotreg().save_as_df(),
+                            "reg",
+                            "2020-11-06"))) != int)
     assert result

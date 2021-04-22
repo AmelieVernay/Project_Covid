@@ -58,7 +58,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
             display the number of persons hospitalized
             on the given date due to Covid-19
         - 'reanimation':
-            display the number of persons in resuscitation
+            display the number of persons in intensive care
             on the given date due to Covid-19
         - 'deces':
             display the cumulated number of death due to
@@ -265,7 +265,7 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
             display the number of persons hospitalized
             on a given date due to Covid-19
         - 'reanimation':
-            display the number of persons in resuscitation
+            display the number of persons in intensive care
             on a given date due to Covid-19
         - 'deces':
             display the cumulated number of death due to
@@ -361,7 +361,7 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
     elif (criterion == 'reanimation'):
         tooltip = {
             "html": "<b>Place:</b> {nom} <br /><b>Date:</b> {date}\
-            <br /><b>Number of persons in resuscitation:</b> {reanimation}"}
+            <br /><b>Number of persons in intensive care:</b> {reanimation}"}
     else:
         tooltip = {
             "html": "<b>Place:</b> {nom} <br /><b>Date:</b> {date}\
