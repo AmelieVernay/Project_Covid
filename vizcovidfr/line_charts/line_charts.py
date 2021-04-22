@@ -244,12 +244,19 @@ def keyseries(nom,chiffre,evo=True):
         - 'cas_confirmes':
             number of confirmed cases
         - 'cas_ehpad':
-            number of confirmed cases in
+            number of confirmed cases in EHPADs
         - 'deces':
             display the cumulated number of death due to
             the Covid-19 in France from the beginning of the pandemic, up to
             the given date
-
+        - 'deces_ephad':
+            number of death that occured in EHPADs due to the pandemic
+        - 'reanimation':
+            current number of people in intensive care
+        - 'hospitalises':
+            current number of people hospitalized
+        - 'gueris':
+            number of people cured
     :type chiffre: str
 
     :param evo: New per day or cumulative
@@ -259,9 +266,8 @@ def keyseries(nom,chiffre,evo=True):
 
     Returns
     -------
-    :return: A time series until today since the beginning of the records of the figure of interest
-    :rtype: 'pandas.Series'
-    evo: New per day or cumulative
+    :return: A time series until today since the beginning of the records of the figure of interest 
+    :rtype: 'pandas.Series' 
 
     :Examples:
     >>> keyseries("France","cas",evo=False)
@@ -360,6 +366,7 @@ def keyseries(nom,chiffre,evo=True):
         return preprocess_chiffres_cles.keysubtablename(nom)[chiffre].dropna().diff()
 
     return preprocess_chiffres_cles.keysubtablename(nom)[chiffre].dropna()
+
 
 # Test:
 # vacdoses()
