@@ -8,7 +8,7 @@ from vizcovidfr.regression import regression
 from vizcovidfr.line_charts import line_charts
 from vizcovidfr.barplots import barplots_cl_age
 from vizcovidfr.pie_charts import pie_chart
-
+from vizcovidfr.prediction import prediction
 
 # ---------- maps ----------
 def test_viz2Dmap():
@@ -194,4 +194,23 @@ def test_piechart():
         - preprocess_chiffres_cles.reg_depts()
     """
     result = (type(pie_chart.piechart()) != int)
+
+    
+#--------------prediction--------------
+def test_predict_curve():
+    """
+    Test predict_curve by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type(prediction.predict_curve(1,1,'2022-08-01')) != int)
+    assert result
+
+def test_predict_value():
+    """
+    Test predict_value by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type((prediction.predict_value(1,1,'2022-08-01')) != int)
     assert result

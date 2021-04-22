@@ -1,4 +1,4 @@
-Bar plots about classification of Covid variable in France
+Functions to generate bar plots
 ====================================
 
 bar_age
