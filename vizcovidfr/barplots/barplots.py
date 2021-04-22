@@ -195,7 +195,7 @@ def barplotscomparison(jour,chiffre,granu,numero,cumulative=False,weekday="jour"
     :return: A list of with the incidence
 
     :Examples:
-    >>> incidencerate("2020-11-12",granupositvity(ignoreage(Load_incquotreg().save_as_df()),2,"reg"),sex=True)
+    >>> barplotscomparison("2020-10-12","incidence","reg",2)
     """
     if granu=="reg":
         if weekday=="jour":
