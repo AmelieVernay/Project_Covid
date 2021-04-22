@@ -26,7 +26,7 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
                  font_color='white', bgcolor='darkslategrey',
                  template='plotly_dark'):
     '''
-    Make animated line chart of France vaccine data.
+    Make an interactive line chart of France vaccine data.
 
     Parameters
     ----------
@@ -37,7 +37,7 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
         information.
     :type vaccine_type: str, optional, default='All vaccines'
     :param color_pal: the color of the chosen vaccine type curve.
-        If 'All vaccines' vaccine_type is chosen, sets the color of the
+        If 'All vaccines' vaccine_type is chosen, set the color of the
         'Pfizer' curve.
 
         For reference, see http://www.python-simple.com/img/img45.png.
@@ -65,7 +65,8 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     :param bgcolor: the background color of all hover labels on graph.
         For reference, see http://www.python-simple.com/img/img45.png.
     :type bgcolor: str, optional, default='darkslategrey'
-    :param template: the plotly theme
+    :param template: the visual style we want the graph to be 
+        based on.
 
         For reference, see https://plotly.com/python/templates/.
     :type template: str, optional, default='plotly_dark'
@@ -133,18 +134,10 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
             font_family="Franklin Gothic Medium"
             )
         )
-    # displaying line chart according to vaccine_type argument
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
-    end = time.time()
-    print("Time to execute: {0:.5f} s.".format(end - start))
+    # display line chart according to vaccine_type argument
     fig.show()
-
-# how to display the year of each date?
-
-
-# Test:
-# vactypedoses()
 
 
 # line chart with total number of vaccine doses in storage
@@ -178,14 +171,15 @@ def vacdoses(unit='doses', font_size=16,
         For reference, see
         http://jonathansoma.com/site/lede/data-studio/matplotlib/list-all-fonts-available-in-matplotlib-plus-samples/.
     :type font_family: str, optional, default = 'Franklin Gothic Medium'
-    :param font_color: the color of characters in hover labels,.
+    :param font_color: the color of characters in hover labels.
         For reference, see http://www.python-simple.com/img/img45.png.
     :type font_color: str, optional, default = 'white'
     :param bgcolor: the background color of all hover labels on graph.
 
         For reference, see http://www.python-simple.com/img/img45.png.
     :type bgcolor: str, optional, default = 'darkslategrey'
-    :param template: the theme of plotly.
+    :param template: the visual style we want the graph to be 
+        based on.
 
         For reference, see https://plotly.com/python/templates/.
     :type template: str, optional, default = 'plotly_dark'
@@ -212,7 +206,6 @@ def vacdoses(unit='doses', font_size=16,
         df = ucd.copy()
         nbr = 'nb_ucd'
         a = 'cdu'
-    # display line chart according to unit argument
     fig = px.line(
                 df,
                 x='date',
@@ -230,6 +223,7 @@ def vacdoses(unit='doses', font_size=16,
             ))
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
+    # display line chart according to unit argument
     fig.show()
 
 def keyseries(nom,chiffre,evo=True):
