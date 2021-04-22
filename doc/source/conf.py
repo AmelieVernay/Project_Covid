@@ -69,6 +69,9 @@ html_css_files = {
 }
 
 
+import plotly.io as pio
+pio.renderers.default = 'sphinx_gallery'
+
 sphinx_gallery_conf = {
 	'example_dirs': '../examples',
 	'gallery_dirs': 'auto_examples',

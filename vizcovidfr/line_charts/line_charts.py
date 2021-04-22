@@ -137,7 +137,8 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
     # display line chart according to vaccine_type argument
-    fig.show()
+    # fig.show()
+    fig
 
 
 # line chart with total number of vaccine doses in storage

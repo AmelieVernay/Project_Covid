@@ -5,12 +5,14 @@
 
 Computation times
 =================
-**00:04.415** total execution time for **auto_examples** files:
+**00:08.555** total execution time for **auto_examples** files:
 
 +---------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_regression.py` (``plot_regression.py``) | 00:04.415 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_vaccin.py` (``plot_vaccin.py``)         | 00:08.555 | 0.0 MB |
 +---------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_auto_examples_plot_3Dmaps.py` (``plot_3Dmaps.py``)         | 00:00.000 | 0.0 MB |
++---------------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_auto_examples_plot_regression.py` (``plot_regression.py``) | 00:00.000 | 0.0 MB |
 +---------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_auto_examples_plot_sparse.py` (``plot_sparse.py``)         | 00:00.000 | 0.0 MB |
 +---------------------------------------------------------------------------+-----------+--------+
