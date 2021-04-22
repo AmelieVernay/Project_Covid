@@ -1,10 +1,7 @@
 # ---------- requirements ----------
-
 import pandas as pd
 from vizcovidfr.loads import load_datasets
 from datetime import date
-# load 'chiffres-cles' dataset
-df_covid = load_datasets.Load_chiffres_cles().save_as_df()
 
 
 # ---------- preprocess functions ----------
@@ -64,13 +61,14 @@ def reg_depts_code_format(df):
 
 
 def keysubtablename(nom):
-    """
-    nom: A part of France or a partition
+    '''
+    Extract the data frame that contains the infoormation for
+    a certain granularity or territory
 
-    Function that extract the data for a certain
-    granularity or territory and remove repetitions.
-    """
-
+    :param nom: A territory or a granularity
+    :return: 'chiffres-cles' for only a region or a specific granularity
+    :rtype: Pandas dataframe
+    '''
     df_covid = load_datasets.Load_chiffres_cles().save_as_df()
     if nom in ["departements", "pays", "region"]:
         dfsub = df_covid.loc[df_covid['granularite'] == nom]
@@ -82,6 +80,14 @@ def keysubtablename(nom):
 
 
 def gooddates(df_covid):
+    '''
+    Remove the fake first lines with wrong dates
+
+    :param df_covid: 'chiffres-cles' as Pandas dataframe.
+        Should only be used with this dataset.
+    :return: 'chiffres-cles' for only a region or a specific granularity
+    :rtype: Pandas dataframe
+    '''
     dat = df_covid['date']
     a = list((dat[:]))
     b = list(map(lambda x: x[:4] + "-" + x[5:7] + "-" + x[8:], a))

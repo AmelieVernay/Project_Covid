@@ -58,7 +58,7 @@ html_theme = 'dask_sphinx_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-html_logo = '_static/vizcovidfr_transfer_map.png'
+html_logo = '_static/light_transfer_map.png'
 
 html_theme_options = {
 	'logo_only': True,
