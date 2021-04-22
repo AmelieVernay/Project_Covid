@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Functions to generate scatter plot and polynomial regression &mdash; vizcovidfr 0.0.1 documentation</title>
+  <title>Functions for prediction &mdash; vizcovidfr 0.0.1 documentation</title>
   
 
   
@@ -42,20 +42,20 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Functions to generate bar plots" href="../Barplots/barplots.html" />
-    <link rel="prev" title="Functions to generate line charts" href="../Line_Charts/line_charts.html" />
+    <link rel="next" title="Sources" href="../sources_ref/sources.html" />
+    <link rel="prev" title="Functions to generate bar plots" href="../Barplots/barplots.html" />
   <link rel="shortcut icon" href="../_static/images/favicon.ico"/>
   
-  <meta name="Description" content="Functions to generate scatter plot and polynomial regression">
-  <meta property="og:description" content="Functions to generate scatter plot and polynomial regression">
-  <meta name="twitter:description" content="Functions to generate scatter plot and polynomial regression" />
-  <meta property="og:title" content="vizcovidfr 0.0.1 documentation - Functions to generate scatter plot and polynomial regression">
+  <meta name="Description" content="Functions for prediction">
+  <meta property="og:description" content="Functions for prediction">
+  <meta name="twitter:description" content="Functions for prediction" />
+  <meta property="og:title" content="vizcovidfr 0.0.1 documentation - Functions for prediction">
   <meta property="og:image" content="https://github.com/dask.png">
   <meta property="og:image:secure_url" content="https://github.com/dask.png" />
   <meta property="og:image:type" content="image/png" />
   <meta property="og:image:width" content="380" />
   <meta property="og:image:height" content="380" />
-  <meta property="og:url" content="Regression/regression.html">
+  <meta property="og:url" content="Prediction/prediction.html">
   <meta property="og:site_name" content="vizcovidfr 0.0.1 documentation">
 
   <meta name="twitter:site" content="https://dask.org" />
@@ -190,21 +190,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">Functions to generate line charts</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Regression</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions to generate scatter plot and polynomial regression</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#scatter-reg">scatter_reg</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#poly-fit">poly_fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#r2">R2</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions to generate scatter plot and polynomial regression</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Barplots</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Functions to generate bar plots</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Prediction</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">Functions for prediction</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions for prediction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#predict-curve">predict_curve</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#predict-value">predict_value</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption"><span class="caption-text">Sources and references</span></p>
 <ul>
@@ -257,13 +256,13 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Functions to generate scatter plot and polynomial regression</li>
+      <li>Functions for prediction</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/Regression/regression.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Prediction/prediction.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -276,16 +275,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="functions-to-generate-scatter-plot-and-polynomial-regression">
-<h1>Functions to generate scatter plot and polynomial regression<a class="headerlink" href="#functions-to-generate-scatter-plot-and-polynomial-regression" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="scatter-reg">
-<h2>scatter_reg<a class="headerlink" href="#scatter-reg" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="functions-for-prediction">
+<h1>Functions for prediction<a class="headerlink" href="#functions-for-prediction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="predict-curve">
+<h2>predict_curve<a class="headerlink" href="#predict-curve" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="vizcovidfr.regression.regression.scatter_reg">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.regression.regression.</span></code><code class="sig-name descname"><span class="pre">scatter_reg</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.regression.regression.scatter_reg" title="Permalink to this definition">¶</a></dt>
-<dd><p>Display the scatter plot of the evolution of the given variable in the
-given region. Each variable and region have a special code that you can
-see in function parameters for details.</p>
+<dt id="vizcovidfr.prediction.prediction.predict_curve">
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.prediction.prediction.</span></code><code class="sig-name descname"><span class="pre">predict_curve</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'date'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.prediction.prediction.predict_curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the scatter plot of the given variable in the given region with predicted curve until the given date. Each variable and region have a special code that you can see in function parameters for details.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -293,6 +290,8 @@ see in function parameters for details.</p>
 Codes are in the following dictionnary.</p></li>
 <li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display. 
 Codes are the official INSAA code region and are given in the dictionnary below.</p></li>
+<li><p><strong>date</strong> (<em>str</em>) – date where regression line will stop.
+Must be a future date, not a date from the past.</p></li>
 <li><p><strong>save</strong> (<em>bool</em><em>, </em><em>optionnal</em><em>, </em><em>default = False</em>) – True if you want to save the graph in pdf file, False otherwise.</p></li>
 </ul>
 </dd>
@@ -367,7 +366,7 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Scatter plot of one of the Covid variable in a specific region of France.</p>
+<dd class="field-odd"><p>Prediction graph of one of the Covid variable in a specific region of France.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>Figure</p>
@@ -376,16 +375,12 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </dd></dl>
 
 </div>
-<div class="section" id="poly-fit">
-<h2>poly_fit<a class="headerlink" href="#poly-fit" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="predict-value">
+<h2>predict_value<a class="headerlink" href="#predict-value" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="vizcovidfr.regression.regression.poly_fit">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.regression.regression.</span></code><code class="sig-name descname"><span class="pre">poly_fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.regression.regression.poly_fit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Display the scatter plot of the evolution of the given variable in the
-given region with a polynomial regression. Each variable and region have
-a special code that you can see in function parameters for details.
-Degree of polynom is chosen by minimizing the mean squared error
-and is displayed as well.</p>
+<dt id="vizcovidfr.prediction.prediction.predict_value">
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.prediction.prediction.</span></code><code class="sig-name descname"><span class="pre">predict_value</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'date'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.prediction.prediction.predict_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the predicted value of the given variable in the given region on the given date. Each variable and region have a special code that you can see in function parameters for details.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -393,7 +388,8 @@ and is displayed as well.</p>
 Codes are in the following dictionnary.</p></li>
 <li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display. 
 Codes are the official INSAA code region and are given in the dictionnary below.</p></li>
-<li><p><strong>save</strong> (<em>bool</em><em>, </em><em>optionnal</em><em>, </em><em>default = False</em>) – True if you want to save the graph in pdf file, False otherwise.</p></li>
+<li><p><strong>date</strong> (<em>str</em>) – date when you want to predict the variable.
+Must be a future date, not a date from the past.</p></li>
 </ul>
 </dd>
 </dl>
@@ -467,105 +463,10 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Scatter plot of one of the Covid variable in a specific region of France with the regression curve.</p>
+<dd class="field-odd"><p>Prediction of one of the Covid variable in a specific region of France on the given date.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>Figure</p>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
-<div class="section" id="r2">
-<h2>R2<a class="headerlink" href="#r2" title="Permalink to this headline">¶</a></h2>
-<dl class="py function">
-<dt id="vizcovidfr.regression.regression.R2">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.regression.regression.</span></code><code class="sig-name descname"><span class="pre">R2</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.regression.regression.R2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Display the R2 of the polynomial regression made by poly_fit function.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>num_var</strong> (<em>int</em>) – code of the variable you want to display. 
-Codes are in the following dictionnary.</p></li>
-<li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display. 
-Codes are the official INSAA code region and are given in the dictionnary below.</p></li>
-</ul>
-</dd>
-</dl>
-<p>Variable dictionnary :</p>
-<blockquote>
-<div><p>1 : Hospitalization</p>
-<p>2 : Reanimation</p>
-<p>3 : Conventional hospitalization</p>
-<p>4 : SSR and USLD</p>
-<p>5 : Others</p>
-<p>6 : Come back home</p>
-<p>7 : Deaths</p>
-</div></blockquote>
-<ul class="simple">
-<li><dl class="simple">
-<dt>Hospitalization :</dt><dd><p>number of hospitalized patients.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Reanimation :</dt><dd><p>number of people currently in intensive care or intensive care.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Conventional hospitalization :</dt><dd><p>number of people currently in conventional hospitalization.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>SSR and USLD :</dt><dd><p>number of people currently in Aftercare and Rehabilitation (SSR in french) or Long-Term Care Units (USLD in french).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Others :</dt><dd><p>number of people currently hospitalized in another type of service.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Come back home :</dt><dd><p>cumulative number of people who returned home.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>Deaths :</dt><dd><p>cumulative number of deceased persons.</p>
-</dd>
-</dl>
-</li>
-</ul>
-<p>Region dictionnary :</p>
-<blockquote>
-<div><p>1 : Guadeloupe</p>
-<p>2 : Martinique</p>
-<p>3 : Guyane</p>
-<p>4 : La Reunion</p>
-<p>6 : Mayotte</p>
-<p>11 : Île-de-France</p>
-<p>24 : Centre-Val de Loire</p>
-<p>27 : Bourgogne-Franche-Comte</p>
-<p>28 : Normmandie</p>
-<p>32 : Hauts-de-France</p>
-<p>44 : Grand Est</p>
-<p>52 : Pays de la Loire</p>
-<p>53 : Bretagne</p>
-<p>75 : Nouvelle-Aquitaine</p>
-<p>76 : Occitanie</p>
-<p>84 : Auvergne-Rhône-Alpes</p>
-<p>93 : Provence-Alpes Côte d’Azur</p>
-<p>94 : Corse</p>
-</div></blockquote>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>R2 of the polynomial regression of one of the Covid variable in a specific region of France.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>float</p>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -579,8 +480,8 @@ Codes are the official INSAA code region and are given in the dictionnary below.
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../Barplots/barplots.html" class="btn btn-neutral float-right" title="Functions to generate bar plots" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../Line_Charts/line_charts.html" class="btn btn-neutral float-left" title="Functions to generate line charts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../sources_ref/sources.html" class="btn btn-neutral float-right" title="Sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Barplots/barplots.html" class="btn btn-neutral float-left" title="Functions to generate bar plots" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

@@ -171,11 +171,7 @@
               
             
             
-<<<<<<< HEAD
-              <p class="caption"><span class="caption-text">Installation</span></p>
-=======
-              <p><span class="caption-text">Getting started</span></p>
->>>>>>> b7f2a8e480d3aeef899419e24fb93ea562fbda29
+              <p class="caption"><span class="caption-text">Getting started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Getting_Started/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Getting_Started/install.html">Installation guide</a></li>
@@ -189,35 +185,25 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">sparse_graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#sparse-matrix">sparse_matrix</a></li>
 </ul>
-<<<<<<< HEAD
 <p class="caption"><span class="caption-text">Line charts</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">Functions to generate line charts</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Regression</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions about evolution of Covid in France and polynomial regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions to generate scatter plot and polynomial regression</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Barplots</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Bar plots about classification of Covid variable in France</a></li>
-=======
-<p><span class="caption-text">Line charts</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">Functions to generate line charts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Functions to generate bar plots</a></li>
 </ul>
-<p><span class="caption-text">Regression</span></p>
+<p class="caption"><span class="caption-text">Prediction</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions about evolution of Covid in France and polynomial regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">Functions for prediction</a></li>
 </ul>
-<p><span class="caption-text">Histograms</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Histograms/histograms.html">Functions about classification of Covid variable in France by age group</a></li>
-</ul>
-<p><span class="caption-text">Sources and references</span></p>
+<p class="caption"><span class="caption-text">Sources and references</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../sources_ref/sources.html">Sources</a></li>
->>>>>>> b7f2a8e480d3aeef899419e24fb93ea562fbda29
 </ul>
 
             
@@ -285,80 +271,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-<<<<<<< HEAD
-  <div class="section" id="the-sparse-graph-function">
-<h1>The sparse_graph function<a class="headerlink" href="#the-sparse-graph-function" title="Permalink to this headline">¶</a></h1>
-</div>
-<div class="section" id="the-sparse-matrix-function">
-<h1>The sparse_matrix function<a class="headerlink" href="#the-sparse-matrix-function" title="Permalink to this headline">¶</a></h1>
-=======
-  <section id="sparse-graph">
+  <div class="section" id="sparse-graph">
 <h1>sparse_graph<a class="headerlink" href="#sparse-graph" title="Permalink to this headline">¶</a></h1>
-<dl class="py function">
-<dt id="vizcovidfr.sparse.sparse.sparse_graph">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.sparse.sparse.</span></code><code class="sig-name descname"><span class="pre">sparse_graph</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.sparse.sparse.sparse_graph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Plot and return the graph of the transfer of patient with Covid-19,
-inside or outside France.</p>
-<p><strong>Note:</strong>
-Try to first plot the undirected graph to see if you can guess the
-direction of the arrows, then check by calling the function with
-<em>directed=True</em> !</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>directed</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=False</em><em>)</em>) – whether we want the graph to be directed or not</p></li>
-<li><p><strong>show</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=True</em>) – whether or not to show the graph</p></li>
-</ul>
-</dd>
-</dl>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the transfer graph and a plot of its representation</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p>networkx.classes.graph.Graph (if directed=False)</p></li>
-<li><p>networkx.classes.digraph.DiGraph (if directed=True)</p></li>
-</ul>
-</p>
-</dd>
-<dt class="field-odd">Examples</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sparse_graph</span><span class="p">()</span>
-</pre></div>
 </div>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sparse_graph</span><span class="p">(</span><span class="n">directed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
-
-</section>
-<section id="sparse-matrix">
+<div class="section" id="sparse-matrix">
 <h1>sparse_matrix<a class="headerlink" href="#sparse-matrix" title="Permalink to this headline">¶</a></h1>
-<dl class="py function">
-<dt id="vizcovidfr.sparse.sparse.sparse_matrix">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.sparse.sparse.</span></code><code class="sig-name descname"><span class="pre">sparse_matrix</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">show</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.sparse.sparse.sparse_matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return and plot the adjacency matrix of the graph of the transfer of
-patient with Covid-19, inside or outside France. This, by definition, is
-a sparse matrix.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>show</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=True</em>) – whether or not to show the matrix</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>the adjacency matrix of transfer graph and a plot of its
-representation</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>scipy.sparse.csr.csr_matrix</p>
-</dd>
-<dt class="field-even">Examples</dt>
-<dd class="field-even"><p></p></dd>
-</dl>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sparse_matrix</span><span class="p">(</span><span class="n">show</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</pre></div>
->>>>>>> b7f2a8e480d3aeef899419e24fb93ea562fbda29
 </div>
 
 
