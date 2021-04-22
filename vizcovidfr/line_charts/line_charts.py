@@ -367,5 +367,167 @@ def keyseries(nom,chiffre,evo=True):
     return preprocess_chiffres_cles.keysubtablename(nom)[chiffre].dropna()
 
 
+def plotseries(series,average=True):
+
+    """
+    Allows you to plot a seaborn Series , on a seven-day moving average
+    or not
+
+    Parameters
+    ----------
+    :param series: Any series
+    :type series: 'pandas.Series' 
+
+    :param average: moving average on seven days
+    :type average: bool, optional, default=True
+
+
+
+
+    Returns
+    -------
+    :return: A plot
+
+
+    :Examples:
+    >>> plotseries(keyseries("France","cas",evo=True),average=True)
+
+    """
+    sns.set(rc={'figure.figsize':(11, 4)})
+
+    if average:
+
+        ax=series.rolling(window=7).mean().plot()
+
+    else:
+
+        ax=series.plot()
+        plt.show()
+    return ax
+
+def keyplot(nom,chiffre,evo=True,average=True):
+
+    """
+
+    From the descirption of a time series, display the corresponding
+    with a correct title
+    Plot the time series associates with figures of Covid-19.
+    Take in acount the scale (country, region, ...)
+
+
+    Parameters
+    ----------
+
+    :param nom: A name in French of a department, or region , 
+        or the whole territory
+    :type nom: str
+    :param chiffre: The figure of interest in French suc as "deces" , "cas" 
+
+        - 'cas_confirmes':
+            number of confirmed cases
+        - 'cas_ehpad':
+            number of confirmed cases in EHPADs
+        - 'deces':
+            display the cumulated number of death due to
+            the Covid-19 in France from the beginning of the pandemic, up to
+            the given date
+        - 'deces_ephad':
+            number of death that occured in EHPADs due to the pandemic
+        - 'reanimation':
+            current number of people in intensive care
+        - 'hospitalises':
+            current number of people hospitalized
+        - 'gueris':
+            number of people cured
+    :type chiffre: str
+
+    :param evo: New per day or cumulative
+    :type evo: bool, optional, default=True
+
+    :param average: moving average on seven days
+    :type average: bool, optional, default=True
+
+
+    Returns
+    -------
+    :return: A plot
+
+    :Examples:
+    >>> keyplot("France","cas",evo=True,average=True)
+
+
+    """
+
+    ax=plotseries(keyseries(nom,chiffre,evo),average)
+
+    if chiffre in ["cas","nombre_de_cas","cas_confirmes"] and not evo :
+
+        ax.set(title= "Prevalence of Covid-19 in "+nom,ylabel="case")
+
+    elif chiffre in ["cas","nombre_de_cas","cas_confirmes"] and evo:
+
+        ax.set(title= "Daily cases of Covid-19 in "+nom,ylabel="case")
+
+    elif chiffre in ["hospitalisation","hôpital","hospitalises"] and evo:
+
+        ax.set(title= "Daily extra patients of Covid-19\
+             at the hospital in "+nom,ylabel="people hospitalized")
+
+    elif chiffre in ["hospitalisation","hôpital","hospitalises"] and not evo:
+
+        ax.set(title= "Number of patients of Covid-19\
+         at the hospital in "+nom,ylabel="people hospitalized")
+
+    elif chiffre in["deces_ehpad"] and not evo:
+
+        ax.set(title= "Number of death of Covid-19 \
+            in EHPADs in "+nom,ylabel="death")
+
+    elif chiffre in["deces_ehpad"] and  evo:
+
+        ax.set(title= "Number of death of Covid-19 in\
+             EHPADs in "+nom,ylabel="death")
+
+    elif chiffre in["deces","morts"] and  not evo:
+
+        ax.set(title= "Number of deaths of Covid-19 \
+             in "+nom,ylabel="death")
+
+    elif chiffre in["deces","morts"] and   evo:
+
+        ax.set(title= "New deaths of Covid-19\
+              in "+nom,ylabel="death")
+
+    elif chiffre in["reanimation"] and   evo:
+
+        ax.set(title= "Daily extra patients in\
+             intensive care because of Covid-19  in \
+                 "+nom,ylabel="patients")
+
+    elif chiffre in ["reanimation"] and not  evo:
+    
+        ax.set(title="Number of patients in intensive\
+         care because of Covid-19 in"+nom,ylabel="patients")
+
+    elif chiffre in ["cas_confirmes_ehpad"] and evo:
+     
+        ax.set(title="Daily cases of Covid-19 in\
+         EHPADs"+nom,ylabel="cases")
+
+    elif chiffre in ["cas_confirmes_ehpad"] and  not evo:
+
+        ax.set(title="Prevalence of Covid-19 in\
+             EHPADs"+nom,ylabel="cases")
+
+    elif chiffre in ["gueris"] and  not evo:
+
+        ax.set(title="Number of people cured from \
+            Covid-19 "+nom,ylabel="people")
+
+    elif chiffre in ["gueris"] and   evo:
+
+        ax.set(title="Daily number of people \
+            cured from Covid-19 "+nom,ylabel="people")
+    plt.show()
 # Test:
 # vacdoses()
