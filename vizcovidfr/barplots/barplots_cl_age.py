@@ -22,7 +22,7 @@ def bar_age(num_var, num_reg, save=False):
         Codes are the official INSAA code region and are given in the dictionnary below.
     :type num_reg: int
     :param save: True if you want to save the graph in pdf file, False otherwise.
-    :type save: bool, default = False
+    :type save: bool, optionnal, default = False
     
     Variable dictionnary :
 
@@ -116,6 +116,7 @@ def bar_age(num_var, num_reg, save=False):
     data_reg_age = data_reg.groupby(by='cl_age90').sum()
     data_reg_age['cl_age90'] = data_reg_age.index
     data_reg_age = pca.rename_cl(data_reg_age)
+    dico_file = pca.dico_file()
     dico_var = pca.dico_var()
     dico_reg = pca.dico_reg()
     #Come back home and deaths
@@ -137,9 +138,8 @@ def bar_age(num_var, num_reg, save=False):
             fig.show()
     #Saving pdf file
     if save == True:
-            if not os.path.exists("images"):
-                    os.mkdir("images")
-            fig.write_image(f"images/bar_{dico_var[dico_col[num_var]]}_{dico_reg[num_reg]}_age.pdf")
+            fig.write_image(f"bar_age_{dico_file[num_var]}_{dico_reg[num_reg]}.pdf")
+
 
 def bar_reg(num_var, save=False):
     """
@@ -152,7 +152,7 @@ def bar_reg(num_var, save=False):
         Codes are in the following dictionnary.
     :type num_var: int
     :param save: True if you want to save the graph in pdf file, False otherwise.
-    :type save: bool, default = False
+    :type save: bool, optionnal, default = False
 
     - Variable dictionnary :
 
@@ -242,6 +242,7 @@ def bar_reg(num_var, save=False):
     T2 = pca.drop0(T)
     T_rad_dc = pca.rad_dc(T)
     data_day =T2.groupby(by='reg').sum()
+    dico_file = pca.dico_file()
     dico_col = pca.dico_column(T2)
     dico_var = pca.dico_var()
     dico_reg = pca.dico_reg()
@@ -255,8 +256,6 @@ def bar_reg(num_var, save=False):
             fig.update_xaxes(type='category')
             fig.show()
     if save == True:
-            if not os.path.exists("images"):
-                    os.mkdir("images")
-            fig.write_image(f"images/bar_{dico_var[dico_col[num_var]]}_reg.pdf")
+            fig.write_image(f"bar_reg_{dico_file[num_var]}.pdf")
 
 
