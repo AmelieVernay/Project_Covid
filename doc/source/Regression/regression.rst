@@ -1,4 +1,4 @@
-Polynomial regression
+Functions to generate scatter plot and polynomial regression
 ====================================
 
 scatter_reg
