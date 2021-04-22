@@ -191,7 +191,7 @@ def heatmapregday(df,age,debut,granu="reg",weekday="jour",fin=None):
     sns.heatmap(df.pivot(weekday,granu,"incid"))
     plt.show()
 
-def incregra(debut,fin=None):
+def incregrea(debut,fin=None):
     """
 
     Give the heatmap by age class and regions for incidence in intesive care
