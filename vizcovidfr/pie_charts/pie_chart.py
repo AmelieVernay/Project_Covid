@@ -1,9 +1,10 @@
 import plotly.express as px
+import time
 # local reqs
 from vizcovidfr.loads import load_datasets
 from vizcovidfr.preprocesses import preprocess_chiffres_cles
 
-#%%
+
 def piechart(criterion='reanimation', date='2021-04-20', template='plotly_dark'):
     '''
     Make a pie chart of France covid-19 data, per region.
@@ -37,6 +38,7 @@ def piechart(criterion='reanimation', date='2021-04-20', template='plotly_dark')
     :type date: str, optional, default='2021-04-20'
     :param template: the visual style we want the graph to be 
         based on.
+        For reference, see https://plotly.com/python/templates/.
     :type template: str, optional, default='plotly_dark'
 
     Returns
@@ -60,6 +62,7 @@ def piechart(criterion='reanimation', date='2021-04-20', template='plotly_dark')
     - pass mouse on the pie chart slices to get 
         thorough information.
     '''
+    start = time.time()
     df_covid = load_datasets.Load_chiffres_cles().save_as_df()
     #preprocess
     df_covid = preprocess_chiffres_cles.drop_some_columns(df_covid)
@@ -98,6 +101,8 @@ def piechart(criterion='reanimation', date='2021-04-20', template='plotly_dark')
                     title=f'{a} rate per region on the {date}', 
                     template=template)
     fig.update_traces(textposition='inside', textinfo='percent+label', rotation=180)
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
     fig.show()
 
 
