@@ -3,7 +3,7 @@
 ## A python package to visualize spatial evolution of Covid19 cases in France
 
 <p align="center">
-<img src="./doc/source/_static/vizcovidfr_transfer_map.png" style="vertical-align:middle" width="400" height='400' class='center' alt='logo'>
+<img src="./doc/source/_static/vizcovidfr_transfer_map.png" style="vertical-align:middle" width="600" height='400' class='center' alt='logo'>
 </p>
 
 
@@ -31,6 +31,6 @@ We use Covid-related [datasets available on data.gouv.fr](https://www.data.gouv.
 - Foux Quentin: line charts or/and other useful charts which would be relevant to desired variables
 - Llinares Laurent: line charts, bar plots and heatmap
 - Nicolas Alexandre: bar plots / regression / prediction
-- Vernay Amelie: maps
+- Vernay Amelie: maps / sparse / time
 
 - Everyone: module architecture, documentation, unit tests...
