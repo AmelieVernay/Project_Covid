@@ -43,8 +43,8 @@
   <link rel="stylesheet" href="../_static/css/nbsphinx.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Sources" href="../sources_ref/sources.html" />
-    <link rel="prev" title="3D maps" href="../auto_examples/plot_3Dmaps.html" />
+    <link rel="next" title="3D maps" href="transfer.html" />
+    <link rel="prev" title="Which way did they go?" href="../auto_examples/plot_sparse.html" />
   <link rel="shortcut icon" href="../_static/images/favicon.ico"/>
   
   <meta name="Description" content="What about vaccines?">
@@ -143,7 +143,7 @@
 
           
             
-            <img src="../_static/vizcovidfr_transfer_map.png" class="logo" alt="Logo"/>
+            <img src="../_static/light_transfer_map.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -204,6 +204,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#vaccine-types">Vaccine types</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="transfer.html">3D maps</a></li>
 </ul>
 <p><span class="caption-text">Sources and references</span></p>
 <ul>
@@ -278,15 +279,11 @@
 <h2>Vaccine types<a class="headerlink" href="#vaccine-types" title="Permalink to this headline">¶</a></h2>
 <p>The commands below allow you to learn more about the evolution of
 the number of vaccine doses in stock per type, through time.
-The resulting graph is interactive:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>-you can pass your mouse on the lines to get more information</p></li>
-<li><p>-you can select the lines you want to keep by clicking on the legend</p></li>
-<li><p>-you can zoom on a time zone by clicking and hovering your mouse on it.</p></li>
-</ul>
-<p>You can then go back to default view by double-clicking anywhere.</p>
-</div></blockquote>
+The resulting graph is interactive:
+-you can pass your mouse on the lines to get more information
+-you can select the lines you want to keep by clicking on the legend
+-you can zoom on a time zone by clicking and hovering your mouse on it.
+You can then go back to default view by double-clicking anywhere.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vizcovidfr.line_charts</span> <span class="kn">import</span> <span class="n">line_charts</span>
 <span class="n">line_charts</span><span class="o">.</span><span class="n">vactypedoses</span><span class="p">(</span><span class="n">vaccine_type</span><span class="o">=</span><span class="s1">&#39;All vaccines&#39;</span><span class="p">,</span> <span class="n">color_pal</span><span class="o">=</span><span class="s1">&#39;teal&#39;</span><span class="p">,</span>
                          <span class="n">color_pal2</span><span class="o">=</span><span class="s1">&#39;goldenrod&#39;</span><span class="p">,</span> <span class="n">color_pal3</span><span class="o">=</span><span class="s1">&#39;maroon&#39;</span><span class="p">,</span>
@@ -295,7 +292,7 @@ The resulting graph is interactive:</p>
                          <span class="n">template</span><span class="o">=</span><span class="s1">&#39;seaborn&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>NB</strong> The graph below is just a static image, and therefore, is not
+<p><strong>NB</strong> The graph below is just a static image, and therefore, is <em>not</em>
 interactive.
 You can simply copy-paste the code block above to generate the interactive
 version. It should work or your side.</p>
@@ -304,7 +301,7 @@ version. It should work or your side.</p>
 <col style="width: 100%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><img alt="vaccines" src="staticexamples/vaccinstorage.png" /></p></td>
+<tr class="row-odd"><td><p><img alt="vaccines" src="../_images/vaccinestorage.png" /></p></td>
 </tr>
 </tbody>
 </table>
@@ -319,10 +316,10 @@ version. It should work or your side.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../sources_ref/sources.html" class="btn btn-neutral float-right" title="Sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="transfer.html" class="btn btn-neutral float-right" title="3D maps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../auto_examples/plot_3Dmaps.html" class="btn btn-neutral float-left" title="3D maps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../auto_examples/plot_sparse.html" class="btn btn-neutral float-left" title="Which way did they go?" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

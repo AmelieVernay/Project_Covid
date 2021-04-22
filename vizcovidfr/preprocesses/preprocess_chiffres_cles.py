@@ -1,10 +1,7 @@
 # ---------- requirements ----------
-
 import pandas as pd
 from vizcovidfr.loads import load_datasets
 from datetime import date
-# load 'chiffres-cles' dataset
-#df_covid = load_datasets.Load_chiffres_cles().save_as_df()
 
 
 # ---------- preprocess functions ----------
@@ -65,8 +62,9 @@ def reg_depts_code_format(df):
 
 def keysubtablename(nom):
     '''
-    Extract the data frame that contains the infoormation for 
+    Extract the data frame that contains the infoormation for
     a certain granularity or territory
+
     :param nom: A territory or a granularity
     :return: 'chiffres-cles' for only a region or a specific granularity
     :rtype: Pandas dataframe
@@ -82,9 +80,9 @@ def keysubtablename(nom):
 
 
 def gooddates(df_covid):
-     '''
+    '''
+    Remove the fake first lines with wrong dates
 
-    remove the fake first lines with wrong dates
     :param df_covid: 'chiffres-cles' as Pandas dataframe.
         Should only be used with this dataset.
     :return: 'chiffres-cles' for only a region or a specific granularity
