@@ -12,6 +12,10 @@ from vizcovidfr.pie_charts import pie_chart
 from vizcovidfr.prediction import prediction
 from vizcovidfr.heatmaps import heatmap
 
+from vizcovidfr.preprocesses.preprocess_positivity import ignoreage
+from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
+from vizcovidfr.loads.load_datasets import Load_posquotreg
+
 
 # ---------- maps ----------
 def test_viz2Dmap():
@@ -214,7 +218,7 @@ def test_comparativebarplot():
     and an AssertionError will raise.
     """
     result = (type(
-                comparativebarplot(
+                barplots.comparativebarplot(
                         "2020-11-12",
                         "incidence",
                         granupositvity(
