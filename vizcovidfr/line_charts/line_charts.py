@@ -546,5 +546,3 @@ def keyplot(nom,chiffre,evo=True,average=True):
         ax.set(title="Daily number of people \
             cured from Covid-19 "+nom,ylabel="people")
     plt.show()
-# Test:
-# vacdoses()

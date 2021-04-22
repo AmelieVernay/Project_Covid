@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import geopandas as gpd
 from scipy.sparse import isspmatrix
 
+# local req
 from vizcovidfr.loads import load_datasets
 
 

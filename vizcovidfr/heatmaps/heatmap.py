@@ -1,10 +1,13 @@
-#%%
+# ---------- requirements ----------
 from download import download
 import pandas as pd
 import seaborn as sns
+import plotly.express
+import time
+
+# local reqs
 from vizcovidfr.loads.load_datasets import Load_posquotfr,Load_posquotreg,Load_posquotdep
 from vizcovidfr.loads.load_datasets import Load_poshebreg,Load_poshebfr,Load_incregrea,Load_hopage
-import plotly.express
 from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
 import matplotlib.pyplot as plt
 
