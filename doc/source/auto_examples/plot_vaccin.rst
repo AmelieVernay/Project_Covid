@@ -24,16 +24,16 @@ What about vaccines?
 .. GENERATED FROM PYTHON SOURCE LINES 7-16
 
 Vaccin types
-------------
-The commands below allow you to learn more about the evolution of
-the number of vaccin doses in stock per type, through time.
-The resulting graph is interactive:
-  * you can pass your mouse on the lines to get more information
-  * you can select the lines you want to keep by clicking on the legend
-  * you can zoom on a time zone by clicking and hovering your mouse on it.
-    You can then go back to default view by double-clicking anywhere.
+ ------------
+ The commands below allow you to learn more about the evolution of
+ the number of vaccin doses in stock per type, through time.
+ The resulting graph is interactive:
+	* you can pass your mouse on the lines to get more information
+ 	* you can select the lines you want to keep by clicking on the legend
+	* you can zoom on a time zone by clicking and hovering your mouse on it.
+ You can then go back to default view by double-clicking anywhere.
 
-.. GENERATED FROM PYTHON SOURCE LINES 16-23
+.. GENERATED FROM PYTHON SOURCE LINES 16-25
 
 .. code-block:: default
 
@@ -48,6 +48,8 @@ The resulting graph is interactive:
 
 
 
+
+
 .. rst-class:: sphx-glr-script-out
 
  Out:
@@ -56,21 +58,38 @@ The resulting graph is interactive:
 
     Downloading data from https://raw.githubusercontent.com/opencovid19-fr/data/master/dist/chiffres-cles.csv (6.4 MB)
 
-    file_sizes:   0%|                                   | 0.00/6.76M [00:00<?, ?B/s]    file_sizes:   2%|4                          | 123k/6.76M [00:00<00:06, 1.07MB/s]    file_sizes:   8%|##1                        | 549k/6.76M [00:00<00:02, 2.80MB/s]    file_sizes:  14%|###7                       | 942k/6.76M [00:00<00:01, 3.17MB/s]    file_sizes:  21%|#####3                    | 1.40M/6.76M [00:00<00:01, 3.54MB/s]    file_sizes:  27%|######9                   | 1.79M/6.76M [00:00<00:01, 3.56MB/s]    file_sizes:  35%|#########1                | 2.38M/6.76M [00:00<00:01, 3.93MB/s]    file_sizes:  43%|###########1              | 2.91M/6.76M [00:00<00:00, 4.25MB/s]    file_sizes:  51%|#############2            | 3.43M/6.76M [00:00<00:00, 4.39MB/s]    file_sizes:  59%|###############2          | 3.96M/6.76M [00:01<00:00, 4.50MB/s]    file_sizes:  66%|#################2        | 4.48M/6.76M [00:01<00:00, 4.60MB/s]    file_sizes:  74%|###################2      | 5.01M/6.76M [00:01<00:00, 4.68MB/s]    file_sizes:  84%|#####################7    | 5.66M/6.76M [00:01<00:00, 4.65MB/s]    file_sizes:  91%|#######################7  | 6.18M/6.76M [00:01<00:00, 4.60MB/s]    file_sizes:  99%|#########################8| 6.71M/6.76M [00:01<00:00, 4.66MB/s]    file_sizes: 100%|##########################| 6.76M/6.76M [00:01<00:00, 4.23MB/s]
+    file_sizes:   0%|                                   | 0.00/6.76M [00:00<?, ?B/s]    file_sizes:   4%|#1                         | 287k/6.76M [00:00<00:02, 2.66MB/s]    file_sizes:   9%|##4                        | 614k/6.76M [00:00<00:02, 2.25MB/s]    file_sizes:  14%|###7                       | 942k/6.76M [00:00<00:02, 2.62MB/s]    file_sizes:  19%|####8                     | 1.27M/6.76M [00:00<00:02, 2.46MB/s]    file_sizes:  23%|#####8                    | 1.53M/6.76M [00:00<00:02, 2.39MB/s]    file_sizes:  27%|######9                   | 1.79M/6.76M [00:00<00:02, 2.41MB/s]    file_sizes:  30%|#######9                  | 2.06M/6.76M [00:00<00:01, 2.44MB/s]    file_sizes:  34%|########9                 | 2.32M/6.76M [00:01<00:02, 2.10MB/s]    file_sizes:  38%|#########9                | 2.58M/6.76M [00:01<00:02, 2.05MB/s]    file_sizes:  43%|###########1              | 2.91M/6.76M [00:01<00:01, 2.31MB/s]    file_sizes:  48%|############4             | 3.24M/6.76M [00:01<00:01, 2.51MB/s]    file_sizes:  53%|#############7            | 3.56M/6.76M [00:01<00:01, 2.71MB/s]    file_sizes:  58%|##############9           | 3.89M/6.76M [00:01<00:01, 2.71MB/s]    file_sizes:  62%|################2         | 4.22M/6.76M [00:01<00:01, 2.51MB/s]    file_sizes:  66%|#################2        | 4.48M/6.76M [00:01<00:00, 2.48MB/s]    file_sizes:  70%|##################2       | 4.74M/6.76M [00:01<00:00, 2.48MB/s]    file_sizes:  74%|###################2      | 5.01M/6.76M [00:02<00:00, 2.43MB/s]    file_sizes:  79%|####################5     | 5.33M/6.76M [00:02<00:00, 2.50MB/s]    file_sizes:  84%|#####################7    | 5.66M/6.76M [00:02<00:00, 2.60MB/s]    file_sizes:  89%|#######################   | 5.99M/6.76M [00:02<00:00, 2.66MB/s]    file_sizes:  93%|########################2 | 6.32M/6.76M [00:02<00:00, 2.32MB/s]    file_sizes:  97%|#########################3| 6.58M/6.76M [00:02<00:00, 2.36MB/s]    file_sizes: 100%|##########################| 6.76M/6.76M [00:02<00:00, 2.44MB/s]
     Successfully downloaded file to /home/vamelie/Documents/ClonedRepo/vizcovidfr/vizcovidfr/loads/../data/chiffres-cles.csv
     Downloading data from https://static.data.gouv.fr/resources/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/20210420-184226/stocks-es-national.csv (2 kB)
 
-    file_sizes:   0%|                                   | 0.00/1.54k [00:00<?, ?B/s]    file_sizes: 100%|##########################| 1.54k/1.54k [00:00<00:00, 2.21MB/s]
+    file_sizes:   0%|                                   | 0.00/1.54k [00:00<?, ?B/s]    file_sizes: 100%|##########################| 1.54k/1.54k [00:00<00:00, 3.05MB/s]
     Successfully downloaded file to /home/vamelie/Documents/ClonedRepo/vizcovidfr/vizcovidfr/loads/../data/./stocks-es-national.csv
-    Time to execute: 5.63199 s.
+    Time to execute: 0.53484 s.
 
 
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 26-40
+
+**NB** The graph might not render correctly in the gallery... 
+We are doing our best to fix this.
+You can simply copy-paste the code block or download the source code
+to try by yourself. It should work or your side.
+
++--------------+
+|              |
+|  |vaccines|  | 
+|              |
++--------------+
+
+
+.. |vaccines| image:: ../../../vizcovidfr_transfer_map.png
 
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  8.555 seconds)
+   **Total running time of the script:** ( 0 minutes  4.604 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_vaccin.py:

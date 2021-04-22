@@ -73,27 +73,6 @@ Below are a few examples of what you can do with **vizcovidfr**.
    :hidden:
 
    /auto_examples/plot_3Dmaps
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="What about vaccines?">
-
-.. only:: html
-
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_vaccin_thumb.png
-     :alt: What about vaccines?
-
-     :ref:`sphx_glr_auto_examples_plot_vaccin.py`
-
-.. raw:: html
-
-    </div>
-
-
-.. toctree::
-   :hidden:
-
-   /auto_examples/plot_vaccin
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>
