@@ -17,8 +17,6 @@ from vizcovidfr.preprocesses.preprocess_positivity import REGIONS, DEPARTMENTS
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
 
-# line chart representing the french vaccine storage per vaccine type
-
 
 def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
                  color_pal2='crimson', color_pal3='darkgreen',
@@ -26,7 +24,8 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
                  font_color='white', bgcolor='darkslategrey',
                  template='plotly_dark'):
     '''
-    Make an interactive line chart of France vaccine data.
+    Make an interactive line chart of France vaccine storage, 
+    according to the vaccine type.
 
     Parameters
     ----------
@@ -52,7 +51,7 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
 
         For reference, see http://www.python-simple.com/img/img45.png.
     :type color_pal3: str, optional, default='darkgreen'
-        :param font_size: the size of characters in hover labels
+    :param font_size: the size of characters in hover labels
     :type font_size: int, optional, default=16
     :param font_family: the font family of the characters in hover labels.
 
@@ -76,6 +75,20 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     :return: animated line chart representing the actual
         dose number of the chosen vaccine type (in storage).
     :rtype: plotly.graph_objects.Figure
+
+    :Notes:
+
+    **Manipulation tips:**
+    
+    - click on a vaccine type label on the top right of 
+        the graph to remove it from the chart.
+    - click on the camera icon on the very top 
+        right of the chart to save the image as 
+        a png.
+    - click on the 'zoom in' icon to zoom in, or on 
+        the icon 'zoom out' to zoom out, on the chart.
+    - click on the 'autoscale' icon to let plotly autoscale
+        the chart.
     '''
     start = time.time()
     df_Vac_type = load_datasets.Load_Vaccine_storage().save_as_df()
@@ -83,7 +96,6 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     pfizer = df_Vac_type2.get_group('Pfizer').reset_index(drop=True)
     mdn = df_Vac_type2.get_group('Moderna').reset_index(drop=True)
     astra = df_Vac_type2.get_group('AstraZeneca').reset_index(drop=True)
-
     # choose dataframe according to vaccine_type argument
     if (vaccine_type == 'Pfizer'):
         df = pfizer.copy()
@@ -92,8 +104,10 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
                       x='date',
                       y='nb_doses',
                       color='type_de_vaccin',
+                      labels={'type_de_vaccin': 'Vaccine type'},
                       color_discrete_map={'Pfizer': color_pal},
-                      title='Pfizer vaccine storage in France')
+                      title='Pfizer vaccine storage in France',
+                      template=template)
     elif (vaccine_type == 'Moderna'):
         df = mdn.copy()
         vac_type = 'Moderna'
@@ -101,17 +115,21 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
                       x='date',
                       y='nb_doses',
                       color='type_de_vaccin',
+                      labels={'type_de_vaccin': 'Vaccine type'},
                       color_discrete_map={'Moderna': color_pal},
-                      title='Moderna vaccine storage in France')
+                      title='Moderna vaccine storage in France',
+                      template=template)
     elif (vaccine_type == 'AstraZeneca'):
         df = astra.copy()
-        vac_type == 'AstraZeneca'
+        vac_type = 'AstraZeneca'
         fig = px.line(df,
                       x='date',
                       y='nb_doses',
                       color='type_de_vaccin',
+                      labels={'type_de_vaccin': 'Vaccine type'},
                       color_discrete_map={'AstraZeneca': color_pal},
-                      title='AstraZeneca vaccine storage in France')
+                      title='AstraZeneca vaccine storage in France',
+                      template=template)
     elif (vaccine_type == 'All vaccines'):
         df = df_Vac_type.copy()
         vac_type = 'ALL'
@@ -119,6 +137,7 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
                       x='date',
                       y='nb_doses',
                       color='type_de_vaccin',
+                      labels={'type_de_vaccin': 'Vaccine type'},
                       color_discrete_map={'Pfizer': color_pal,
                                           'Moderna': color_pal2,
                                           'AstraZeneca': color_pal3},
@@ -139,14 +158,12 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     # display line chart according to vaccine_type argument
     fig.show()
 
-
-# line chart with total number of vaccine doses in storage
 def vacdoses(unit='doses', font_size=16,
              font_family="Franklin Gothic Medium",
              font_color='white', bgcolor='darkslategrey',
              template='plotly_dark'):
     '''
-    Make an interactive line chart of France vaccine data.
+    Make an interactive line chart of France vaccine storage.
 
     Parameters
     ----------
