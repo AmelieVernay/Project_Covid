@@ -7,6 +7,7 @@ from vizcovidfr.sparse import sparse
 from vizcovidfr.regression import regression
 from vizcovidfr.line_charts import line_charts
 from vizcovidfr.barplots import barplots_cl_age
+from vizcovidfr.pie_charts import pie_chart
 
 # ---------- maps ----------
 def test_viz2Dmap():
@@ -142,3 +143,12 @@ def test_bar_reg():
     result = (type(barplots_cl_age.bar_reg(1)) != int)
     assert result
 
+#----------- pie chart ---------------
+def test_piechart():
+    """
+    Test piechart by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type(pie_chart.piechart()) != int)
+    assert result
