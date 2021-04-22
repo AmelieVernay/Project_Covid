@@ -14,6 +14,8 @@
 
   
   
+    <link rel="shortcut icon" href="../_static/images/favicon.ico"/>
+  
   
   
 
@@ -25,111 +27,30 @@
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/js/custom.js"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
     
 
   
-  <link rel="stylesheet" href="../_static/css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/explore.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/nbsphinx.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/faculty.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Roboto:400,700|Roboto+Mono:400,700&display=swap" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3D maps" href="transfer.html" />
-    <link rel="prev" title="Which way did they go?" href="../auto_examples/plot_sparse.html" />
-  <link rel="shortcut icon" href="../_static/images/favicon.ico"/>
-  
-  <meta name="Description" content="What about vaccines?">
-  <meta property="og:description" content="What about vaccines?">
-  <meta name="twitter:description" content="What about vaccines?" />
-  <meta property="og:title" content="vizcovidfr 0.0.1 documentation - What about vaccines?">
-  <meta property="og:image" content="https://github.com/dask.png">
-  <meta property="og:image:secure_url" content="https://github.com/dask.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="380" />
-  <meta property="og:image:height" content="380" />
-  <meta property="og:url" content="staticexamples/vizvaccine.html">
-  <meta property="og:site_name" content="vizcovidfr 0.0.1 documentation">
-
-  <meta name="twitter:site" content="https://dask.org" />
-  <meta name="twitter:creator" content="@dask_dev" />
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:image" content="https://github.com/dask.png" />
-  <meta name="twitter:image:alt" content="vizcovidfr 0.0.1 documentation">
-  
-
+    <link rel="prev" title="Which way did they go?" href="../auto_examples/plot_sparse.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
 
-  
-    <nav id="explore-links">
-        <a href="https://docs.dask.org/">
-        <img class="caption" src="../_static/images/dask-horizontal-white.svg"/>
-        </a>
-
-        <ul>
-        <li>
-            <a>Get Started</a>
-            <ul>
-            <li><a href="https://docs.dask.org/en/latest/install.html"> Install </a></li>
-            <li><a href="https://examples.dask.org"> Examples </a></li>
-            <li><a href="https://github.com/dask/dask-tutorial"> Tutorial </a></li>
-            <li><a href="https://docs.dask.org/en/latest/why.html"> Why Dask? </a></li>
-            <li><a href="https://stories.dask.org/en/latest"> Use Cases </a></li>
-            <li><a href="https://www.youtube.com/watch?v=RA_2qdipVng&list=PLRtz5iA93T4PQvWuoMnIyEIz1fXiJ5Pri"> Talks </a></li>
-            <li><a href="https://mybinder.org/v2/gh/dask/dask-examples/master?urlpath=lab"> Try Online </a></li>
-            <li><a href="https://dask.org/slides"> Slides </a></li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="">Algorithms</a>
-            <ul>
-            <li><a href="https://docs.dask.org/en/latest/array.html">Arrays</a></li>
-            <li><a href="https://docs.dask.org/en/latest/dataframe.html">Dataframes</a></li>
-            <li><a href="https://docs.dask.org/en/latest/bag.html">Bags</a></li>
-            <li><a href="https://docs.dask.org/en/latest/delayed.html">Delayed (custom)</a></li>
-            <li><a href="https://docs.dask.org/en/latest/futures.html">Futures (real-time)</a></li>
-            <li><a href="http://ml.dask.org">Machine Learning</a></li>
-            <li><a href="https://xarray.pydata.org/en/latest/">XArray</a></li>
-            </ul>
-        </li>
-
-        <li>
-            <a href="https://docs.dask.org/en/latest/setup.html">Setup</a>
-            <ul>
-            <li><a href="https://docs.dask.org/en/latest/setup/single-machine.html"> Local </a></li>
-            <li><a href="https://docs.dask.org/en/latest/setup/cloud.html"> Cloud </a></li>
-            <li><a href="https://docs.dask.org/en/latest/setup/hpc.html"> HPC </a></li>
-            <li><a href="https://kubernetes.dask.org/en/latest/"> Kubernetes </a></li>
-            <li><a href="https://yarn.dask.org/en/latest/"> Hadoop / Yarn </a></li>
-            </ul>
-        </li>
-
-        <li>
-            <a>Community</a>
-            <ul>
-            <li><a href="http://docs.dask.org/en/latest/support.html">Ask for Help</a></li>
-            <li><a href="https://github.com/dask">Github</a></li>
-            <li><a href="https://stackoverflow.com/questions/tagged/dask">Stack Overflow</a></li>
-            <li><a href="https://twitter.com/dask_dev">Twitter</a></li>
-            <li><a href="https://blog.dask.org/"> Developer Blog </a></li>
-            <li><a href="https://youtube.com/c/dask-dev"> YouTube Channel </a></li>
-            </ul>
-        </li>
-        </ul>
-
-    </nav>
-  
+   
   <div class="wy-grid-for-nav">
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
@@ -137,22 +58,23 @@
         <div class="wy-side-nav-search" >
           
 
-          
-            <a href="../index.html">
-          
+  
+    <a class="heading heading-extra-margin" href="../index.html">
+      <div class="logo-box logo-box-large">
+        <img class="logo" src="../_static/light_transfer_map.png"/>
+      </div>
+      
+        <span class="icon icon-home"> vizcovidfr</span>
+      
+    </a>
+  
 
-          
-            
-            <img src="../_static/light_transfer_map.png" class="logo" alt="Logo"/>
-          
-          </a>
+  
+    
+    
+  
 
-          
-            
-            
-          
-
-          
+  
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -161,7 +83,7 @@
   </form>
 </div>
 
-          
+
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -191,11 +113,15 @@
 </ul>
 <p><span class="caption-text">Regression</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions about evolution of Covid in France and polynomial regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions to generate scatter plot and polynomial regression</a></li>
 </ul>
 <p><span class="caption-text">Barplots</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Bar plots about classification of Covid variable in France</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Functions to generate bar plots</a></li>
+</ul>
+<p><span class="caption-text">Prediction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">Functions for prediction</a></li>
 </ul>
 <p><span class="caption-text">Example gallery</span></p>
 <ul class="current">
@@ -206,9 +132,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="transfer.html">3D maps</a></li>
 </ul>
+<p><span class="caption-text">Time efficiency</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Time/timeit.html">Time efficiency</a></li>
+</ul>
 <p><span class="caption-text">Sources and references</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../sources_ref/sources.html">Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sources_ref/refs.html">References</a></li>
 </ul>
 
             
@@ -229,6 +160,10 @@
 
 
       <div class="wy-nav-content">
+
+  
+
+  
         
         <div class="rst-content">
         
@@ -252,10 +187,10 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-      <li>What about vaccines?</li>
+  <li class="breadcrumb"><a href="../index.html">vizcovidfr</a> &raquo;</li>
     
+  <li class="breadcrumb">What about vaccines?</li>
+
     
       <li class="wy-breadcrumbs-aside">
         
@@ -279,11 +214,13 @@
 <h2>Vaccine types<a class="headerlink" href="#vaccine-types" title="Permalink to this headline">¶</a></h2>
 <p>The commands below allow you to learn more about the evolution of
 the number of vaccine doses in stock per type, through time.
-The resulting graph is interactive:
--you can pass your mouse on the lines to get more information
--you can select the lines you want to keep by clicking on the legend
--you can zoom on a time zone by clicking and hovering your mouse on it.
-You can then go back to default view by double-clicking anywhere.</p>
+The resulting graph is interactive:</p>
+<ul class="simple">
+<li><p>You can pass your mouse on the lines to get more information</p></li>
+<li><p>You can select the lines you want to keep by clicking on the legend</p></li>
+<li><p>You can zoom on a time zone by clicking and hovering your mouse on it.</p></li>
+<li><p>You can then go back to default view by double-clicking anywhere.</p></li>
+</ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">vizcovidfr.line_charts</span> <span class="kn">import</span> <span class="n">line_charts</span>
 <span class="n">line_charts</span><span class="o">.</span><span class="n">vactypedoses</span><span class="p">(</span><span class="n">vaccine_type</span><span class="o">=</span><span class="s1">&#39;All vaccines&#39;</span><span class="p">,</span> <span class="n">color_pal</span><span class="o">=</span><span class="s1">&#39;teal&#39;</span><span class="p">,</span>
                          <span class="n">color_pal2</span><span class="o">=</span><span class="s1">&#39;goldenrod&#39;</span><span class="p">,</span> <span class="n">color_pal3</span><span class="o">=</span><span class="s1">&#39;maroon&#39;</span><span class="p">,</span>
@@ -337,6 +274,8 @@ version. It should work or your side.</p>
 </footer>
 
         </div>
+
+
       </div>
 
     </section>
