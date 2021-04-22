@@ -30,7 +30,7 @@ We use Covid-related [datasets available on data.gouv.fr](https://www.data.gouv.
 
 - Foux Quentin: line charts or/and other useful charts which would be relevant to desired variables
 - Llinares Laurent: line charts, bar plots and heatmap
-- Nicolas Alexandre: histograms / bar chart / visualization
+- Nicolas Alexandre: bar plots / regression / prediction
 - Vernay Amelie: maps
 
 - Everyone: module architecture, documentation, unit tests...
