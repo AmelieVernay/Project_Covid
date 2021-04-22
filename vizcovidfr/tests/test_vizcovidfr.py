@@ -17,7 +17,7 @@ def test_viz2Dmap():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     ---
-    Fonctions/methods that will be tested by extension:
+    Functions/methods that will be tested by extension:
         - load_datasets.Load_chiffres_cles().save_as_df()
         - preprocess_chiffres_cles.drop_some_columns()
         - preprocess_chiffres_cles.reg_depts()
@@ -34,7 +34,7 @@ def test_viz3Dmap():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     ---
-    Fonctions/methods that will be tested by extension:
+    Functions/methods that will be tested by extension:
         - load_datasets.Load_chiffres_cles().save_as_df()
         - preprocess_chiffres_cles.drop_some_columns()
         - preprocess_chiffres_cles.reg_depts()
@@ -51,7 +51,7 @@ def test_transfer_map():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     ---
-    Fonctions/methods that will be tested by extension:
+    Functions/methods that will be tested by extension:
         - load_datasets.Load_transfer().save_as_df()
         - preprocess_maps.map_save_path_routine()
     """
@@ -65,7 +65,7 @@ def test_vacmap():
     If something fails while running it, result won't be defined,
     and an AssertionError will be raised
     ---
-    Fonctions/methods that will be tested by extension:
+    Functions/methods that will be tested by extension:
         - load_datasets.Load_vaccination().save_as_df()
         - preprocess_maps.map_save_path_routine()
     """
@@ -80,7 +80,7 @@ def test_sparse_graph():
     of the resulting graph is an integer.
     If not, an AssertionError will raise.
     ---
-    Fonctions/methods that will be tested by extension:
+    Functions/methods that will be tested by extension:
         - load_datasets.Load_transfer().save_as_df()
     """
     G = sparse.sparse_graph(show=False)
@@ -95,7 +95,7 @@ def test_sparse_matrix():
     is a sparse matrix.
     If not, an AssertionError will raise.
     ---
-    Fonctions/methods that will be tested by extension:
+    Functions/methods that will be tested by extension:
         - load_datasets.Load_transfer().save_as_df()
     """
     result = (isspmatrix(sparse.sparse_matrix(show=False)))
@@ -128,9 +128,6 @@ def test_R2():
     Test R2 by running the function checking if R2 is different of 2.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
-    ---
-    Fonctions/methods that will be tested by extension:
-        -load_datasets.Load_Vaccine_storage().save_as_df()
     """
     result = (type(regression.R2(1, 1)) != 2)
     assert result
