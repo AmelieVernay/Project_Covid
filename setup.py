@@ -19,6 +19,7 @@ setup(
                                   'vizcovidfr.barplots',
                                   'vizcovidfr.histograms',
                                   'vizcovidfr.line_charts',
+                                  'vizcovidfr.pie_charts',
                                   'vizcovidfr.maps',
                                   'vizcovidfr.sparse'])
 )

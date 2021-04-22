@@ -79,6 +79,9 @@ def test_sparse_graph():
     Test sparse_graph. Call the function and check if the number of edges
     of the resulting graph is an integer.
     If not, an AssertionError will raise.
+    ---
+    Fonctions/methods that will be tested by extension:
+        - load_datasets.Load_transfer().save_as_df()
     """
     G = sparse.sparse_graph(show=False)
     e = G.number_of_edges()
@@ -91,6 +94,9 @@ def test_sparse_matrix():
     Test sparse_matrix. Call the function and check if the resulting matrix
     is a sparse matrix.
     If not, an AssertionError will raise.
+    ---
+    Fonctions/methods that will be tested by extension:
+        - load_datasets.Load_transfer().save_as_df()
     """
     result = (isspmatrix(sparse.sparse_matrix(show=False)))
     assert result
