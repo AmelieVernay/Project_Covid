@@ -28,7 +28,7 @@ We use Covid-related [datasets available on data.gouv.fr](https://www.data.gouv.
 
 ### Roles
 
-- Foux Quentin: line charts or/and other useful charts which would be relevant to desired variables
+- Foux Quentin: line charts / piecharts / maps(vacmap)
 - Llinares Laurent: line charts, bar plots and heatmap
 - Nicolas Alexandre: bar plots / regression / prediction
 - Vernay Amelie: maps
