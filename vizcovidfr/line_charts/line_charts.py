@@ -9,10 +9,10 @@ import seaborn as sns
 
 # local reqs
 from vizcovidfr.loads import load_datasets
-from vizcovidfr.loads.load_datasets import Load_posquotdep,Load_posquotreg,Load_chiffres_fr
-from vizcovidfr.preprocesses import preprocess_chiffres_cles,preprocess_positivity
+from vizcovidfr.loads.load_datasets import Load_posquotdep, Load_posquotreg, Load_chiffres_fr
+from vizcovidfr.preprocesses import preprocess_chiffres_cles, preprocess_positivity
 from vizcovidfr.preprocesses import preprocess_positivity
-from vizcovidfr.preprocesses.preprocess_positivity import REGIONS,DEPARTMENTS
+from vizcovidfr.preprocesses.preprocess_positivity import REGIONS, DEPARTMENTS
 
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
@@ -137,8 +137,7 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
     # display line chart according to vaccine_type argument
-    # fig.show()
-    fig
+    fig.show()
 
 
 # line chart with total number of vaccine doses in storage

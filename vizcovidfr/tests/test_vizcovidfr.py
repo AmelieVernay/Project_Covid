@@ -22,7 +22,7 @@ def test_viz2Dmap():
         - preprocess_chiffres_cles.drop_some_columns()
         - preprocess_chiffres_cles.reg_depts()
         - preprocess_chiffres_cles.reg_depts_code_format()
-        - preprocess_maps.map_save_path_routine(file_path)
+        - preprocess_maps.map_save_path_routine()
     """
     result = (type(maps.viz2Dmap(file_path='')) != int)
     assert result
@@ -39,7 +39,7 @@ def test_viz3Dmap():
         - preprocess_chiffres_cles.drop_some_columns()
         - preprocess_chiffres_cles.reg_depts()
         - preprocess_chiffres_cles.reg_depts_code_format()
-        - preprocess_maps.map_save_path_routine(file_path)
+        - preprocess_maps.map_save_path_routine()
     """
     result = (type(maps.viz3Dmap(file_path='')) != int)
     assert result
@@ -53,7 +53,7 @@ def test_transfer_map():
     ---
     Fonctions/methods that will be tested by extension:
         - load_datasets.Load_transfer().save_as_df()
-        - preprocess_maps.map_save_path_routine(file_path)
+        - preprocess_maps.map_save_path_routine()
     """
     result = (type(maps.transfer_map(file_path='')) != int)
     assert result
@@ -67,7 +67,7 @@ def test_vacmap():
     ---
     Fonctions/methods that will be tested by extension:
         - load_datasets.Load_vaccination().save_as_df()
-        - preprocess_maps.map_save_path_routine(file_path)
+        - preprocess_maps.map_save_path_routine()
     """
     result = (type(maps.vacmap(file_path='')) != int)
     assert result
