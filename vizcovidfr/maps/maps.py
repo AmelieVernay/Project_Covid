@@ -590,7 +590,7 @@ def vacmap(granularity='region', age_range='all ages',
         vaccination.
 
         It can be '18-24', '25-29', '30-39', '40-49', '50-59', '60-64',
-        '65-69', '70-74', '75-79', '80 and +', 'all ages'.
+        '65-69', '70-74', '75-79', '80 and +', or 'all ages'.
         This last one represents the cumulation of all the age ranges.
     :type age_range: str, optional, default='all ages'
     :param file_path: the path on which to save the file, can be either Linux,
