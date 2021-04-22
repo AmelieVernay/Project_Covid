@@ -1,18 +1,19 @@
+#%%
 import plotly.express as px
 import time
 # local reqs
 from vizcovidfr.loads import load_datasets
 from vizcovidfr.preprocesses import preprocess_chiffres_cles
 
-
-def piechart(criterion='reanimation', date='2021-04-20', template='plotly_dark'):
+#%%
+def piechart(criterion='reanimation', date='2021-04-20', template='plotly_dark', num_dose='1'):
     '''
     Make a pie chart of France covid-19 data, per region.
 
     Parameters
     ----------
     :param criterion: the criterion we want information about.
-        Either 'deces', 'hospitalises' or 'reanimation':
+        Either 'deces', 'hospitalises', 'reanimation' or 'vaccination':
 
             - 'deces': 
                 give the cumulated number of deaths 
@@ -27,6 +28,14 @@ def piechart(criterion='reanimation', date='2021-04-20', template='plotly_dark')
                 give the number of persons in intensive care
                 and the intensive care rate, per region,
                 on the chosen date, due to covid-19.
+            - 'vaccination':
+                give the cumulated number of first or second 
+                vaccination doses according to the chosen 
+                num_dose argument and its vaccination rate, 
+                per region.
+                The rate per region represents the number of 
+                doses (first or second) out of the total number 
+                of French people vaccinated (first or second).
             
     :type criterion: str, optional, default='reanimation'
     :param date: only if criterion argument is 'hospitalises' 
@@ -40,6 +49,16 @@ def piechart(criterion='reanimation', date='2021-04-20', template='plotly_dark')
         based on.
         For reference, see https://plotly.com/python/templates/.
     :type template: str, optional, default='plotly_dark'
+    :param num_dose: only if criterion argument is 'vaccination'.
+        The dose number of the vaccine.
+        Should be either '1' or '2':
+
+            - '1': 
+                display only the number of first doses. 
+            - '2':
+                display only the number of second doses.
+
+    :type num_dose: str, optional, default='1'
 
     Returns
     -------
@@ -100,6 +119,38 @@ def piechart(criterion='reanimation', date='2021-04-20', template='plotly_dark')
                     color_discrete_sequence=px.colors.sequential.thermal, 
                     title=f'{a} rate per region on the {date}', 
                     template=template)
+    elif (criterion == 'vaccination'):
+        df_Vac = load_datasets.Load_vaccination().save_as_df()
+        df_Vac = df_Vac.groupby(['Valeur de la variable'])
+        all_ages = df_Vac.get_group(0).reset_index(drop=True)
+        #sum per date and region
+        df_reg2 = all_ages.groupby(['Date',
+                                    'Nom Officiel Région'])['Nombre cumulé de doses n°1',
+                                                            'n_cum_dose2'].agg('sum').reset_index()
+        df = df_reg2.groupby(['Nom Officiel Région']).agg('max').reset_index()
+        #Saint-Barthélemy and Saint-Martin are departments and not regions
+        df.drop([17, 18], 0, inplace=True)
+        df.reset_index(drop=True)
+        if (num_dose == '1'):
+            a = 'First dose vaccination'
+            fig = px.pie(df, values='Nombre cumulé de doses n°1',
+                        names='Nom Officiel Région',
+                        color_discrete_sequence=px.colors.sequential.thermal,
+                        labels={'Nom Officiel Région': 'Region name',
+                                'Nombre cumulé de doses n°1': 'First vaccine doses administered till today',
+                                'n_cum_dose2': 'Second vaccine doses administered till today'},
+                        title=f'{a} rate per region', 
+                        template=template)
+        else:
+            a = 'Second dose vaccination'
+            fig = px.pie(df, values='n_cum_dose2',
+                        names='Nom Officiel Région',
+                        color_discrete_sequence=px.colors.sequential.thermal,
+                        labels={'Nom Officiel Région': 'Region name',
+                                'Nombre cumulé de doses n°1': 'First vaccine doses administered till today',
+                                'n_cum_dose2': 'Second vaccine doses administered till today'},
+                        title=f'{a} rate per region', 
+                        template=template)           
     fig.update_traces(textposition='inside', textinfo='percent+label', rotation=180)
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
@@ -109,3 +160,5 @@ def piechart(criterion='reanimation', date='2021-04-20', template='plotly_dark')
 
 
 
+
+# %%
