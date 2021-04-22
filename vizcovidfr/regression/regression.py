@@ -1,3 +1,4 @@
+# ---------- requirements ----------
 import time
 import numpy as np
 import pandas as pd
@@ -6,14 +7,15 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 
-from vizcovidfr.loads import load_datasets
-from vizcovidfr.preprocesses import preprocess_classe_age as pca
-
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 from sklearn.linear_model import LinearRegression
 model = LinearRegression()
+
+# local reqs
+from vizcovidfr.loads import load_datasets
+from vizcovidfr.preprocesses import preprocess_classe_age as pca
 
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
@@ -30,15 +32,15 @@ def scatter_reg(num_var, num_reg, save = False):
     ----------
 
     :param num_var: code of the variable you want to display. 
-        Codes are in the following dictionnary.
+        Codes are in the following dictionary.
     :type num_var: int
     :param num_reg: code of the region you want to display. 
-        Codes are the official INSAA code region and are given in the dictionnary below.
+        Codes are the official INSAA code region and are given in the dictionary below.
     :type num_reg: int
     :param save: True if you want to save the graph in pdf file, False otherwise.
     :type save: bool, optionnal, default = False
     
-    Variable dictionnary :
+    Variable dictionary :
 
         1 : Hospitalization
 
@@ -58,7 +60,7 @@ def scatter_reg(num_var, num_reg, save = False):
         number of hospitalized patients.
 
     - Reanimation :
-        number of people currently in intensive care or intensive care.
+        number of people currently in intensive care.
 
     - Conventional hospitalization :
         number of people currently in conventional hospitalization.
@@ -76,7 +78,7 @@ def scatter_reg(num_var, num_reg, save = False):
         cumulative number of deceased persons.
 
 
-    Region dictionnary :
+    Region dictionary :
 
         1 : Guadeloupe
 
@@ -129,7 +131,7 @@ def scatter_reg(num_var, num_reg, save = False):
     dico_col = pca.dico_column(T2)
     #Grouping by day
     covid_day = pca.covid_day_fct(T2)
-    #Creating dictionnaries
+    #Creating dictionaries
     dico_file = pca.dico_file()
     dico_reg = pca.dico_reg()
     dico_var = pca.dico_var()
@@ -167,15 +169,15 @@ def poly_fit(num_var, num_reg, save = False):
     ----------
 
     :param num_var: code of the variable you want to display. 
-        Codes are in the following dictionnary.
+        Codes are in the following dictionary.
     :type num_var: int
     :param num_reg: code of the region you want to display. 
-        Codes are the official INSAA code region and are given in the dictionnary below.
+        Codes are the official INSAA code region and are given in the dictionary below.
     :type num_reg: int
     :param save: True if you want to save the graph in pdf file, False otherwise.
-    :type save: bool, optionnal, default = False
+    :type save: bool, optional, default = False
     
-    Variable dictionnary :
+    Variable dictionary :
 
         1 : Hospitalization
 
@@ -195,7 +197,7 @@ def poly_fit(num_var, num_reg, save = False):
         number of hospitalized patients.
 
     - Reanimation :
-        number of people currently in intensive care or intensive care.
+        number of people currently in intensive care.
 
     - Conventional hospitalization :
         number of people currently in conventional hospitalization.
@@ -213,7 +215,7 @@ def poly_fit(num_var, num_reg, save = False):
         cumulative number of deceased persons.
 
 
-    Region dictionnary :
+    Region dictionary :
 
         1 : Guadeloupe
 
@@ -231,7 +233,7 @@ def poly_fit(num_var, num_reg, save = False):
     
         27 : Bourgogne-Franche-Comte
 
-        28 : Normmandie
+        28 : Normandie
 
         32 : Hauts-de-France
 
@@ -308,13 +310,13 @@ def R2(num_var, num_reg):
     ----------
 
     :param num_var: code of the variable you want to display. 
-        Codes are in the following dictionnary.
+        Codes are in the following dictionary.
     :type num_var: int
     :param num_reg: code of the region you want to display. 
-        Codes are the official INSAA code region and are given in the dictionnary below.
+        Codes are the official INSAA code region and are given in the dictionary below.
     :type num_reg: int
     
-    Variable dictionnary :
+    Variable dictionary :
 
         1 : Hospitalization
 
@@ -334,7 +336,7 @@ def R2(num_var, num_reg):
         number of hospitalized patients.
 
     - Reanimation :
-        number of people currently in intensive care or intensive care.
+        number of people currently in intensive care.
 
     - Conventional hospitalization :
         number of people currently in conventional hospitalization.
@@ -352,7 +354,7 @@ def R2(num_var, num_reg):
         cumulative number of deceased persons.
 
 
-    Region dictionnary :
+    Region dictionary :
 
         1 : Guadeloupe
 
@@ -370,7 +372,7 @@ def R2(num_var, num_reg):
     
         27 : Bourgogne-Franche-Comte
 
-        28 : Normmandie
+        28 : Normandie
 
         32 : Hauts-de-France
 
