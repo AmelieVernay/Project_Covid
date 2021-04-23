@@ -112,12 +112,18 @@ def bar_age(num_var, num_reg, save=False):
     :rtype: plotly.graph_objects.bar.
 
     """
+    # Testing execution time
     start = time.time()
+    # Dropping rows where cl_age90 = 0
     T2 = pca.drop0(T)
-    #Come back home and deaths are cumulative numbers, so we preprocess them in another dataframe.
+    # Come back home and deaths are cumulative numbers, so we preprocess them in another dataframe
+    # Extracting 10 last rows of the given region (useful for variable 6 or 7) dataframe
     T_rad_dc = pca.reg(num_reg,T2).tail(10)
+    # Renaming columns
     T_rad_dc = pca.rename_cl(T_rad_dc)
+    # Extracting the given region dataframe (1 to 5)
     data_reg = pca.reg(num_reg, T2)
+    # Creating dictionnary 
     dico_col = pca.dico_column(data_reg)
     data_reg_age = data_reg.groupby(by='cl_age90').sum()
     data_reg_age['cl_age90'] = data_reg_age.index
@@ -125,7 +131,7 @@ def bar_age(num_var, num_reg, save=False):
     dico_file = pca.dico_file()
     dico_var = pca.dico_var()
     dico_reg = pca.dico_reg()
-    #Come back home and deaths
+    # Plotting figure, condition depending of the variable
     if num_var == 6 or num_var ==7:
             fig = px.bar(T_rad_dc, x = 'cl_age90', y = dico_col[num_var], 
             hover_data = [dico_col[num_var]],
@@ -142,7 +148,7 @@ def bar_age(num_var, num_reg, save=False):
             height = 400,
             title="Bar plot of" + " " + dico_var[dico_col[num_var]] + " in " + dico_reg[num_reg] + " by age group today")
             fig.show()
-    #Saving pdf file
+    # Saving pdf file
     if save == True:
             fig.write_image(f"bar_age_{dico_file[num_var]}_{dico_reg[num_reg]}.pdf")
     end = time.time()
@@ -247,15 +253,22 @@ def bar_reg(num_var, save=False):
     :rtype: plotly.graph_objects.bar.
 
     """
+    # Testing execution time
     start = time.time()
+    # Drop rows where cl_age90 = 0
     T2 = pca.drop0(T)
+    # Come back home and deaths are cumulative numbers, so we preprocess them in another dataframe
+    # Extracting 18 last rows (useful for variable 6 or 7) dataframe
     T_rad_dc = pca.rad_dc(T)
+    # Grouping by region
     data_day =T2.groupby(by='reg').sum()
+    # Creating dictionnaries
     dico_file = pca.dico_file()
     dico_col = pca.dico_column(T2)
     dico_var = pca.dico_var()
     dico_reg = pca.dico_reg()
     #Come back home and deaths are cumulative numbers, so we take the value of the last day recorded
+    # Plotting figures
     if num_var == 6 or num_var == 7:
             fig = px.bar(T_rad_dc, x=T_rad_dc['reg'], y=dico_col[num_var], color=dico_col[num_var], labels = {dico_col[num_var]:dico_var[dico_col[num_var]], 'reg': 'Region in France'}, height = 400, title="Bar plot of" + " " + dico_var[dico_col[num_var]] + " by region group today")
             fig.update_xaxes(type='category')
@@ -264,6 +277,7 @@ def bar_reg(num_var, save=False):
             fig = px.bar(data_day, x=data_day.index, y=dico_col[num_var], color=dico_col[num_var], labels = {dico_col[num_var]:dico_var[dico_col[num_var]], 'reg': 'Region in France'}, height = 400, title="Bar plot of" + " " + dico_var[dico_col[num_var]] + " by region group today")
             fig.update_xaxes(type='category')
             fig.show()
+    # Saving file
     if save == True:
             fig.write_image(f"bar_reg_{dico_file[num_var]}.pdf")
     end = time.time()
