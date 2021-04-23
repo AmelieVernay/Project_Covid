@@ -111,6 +111,20 @@ def bar_age(num_var, num_reg, save=False):
     :return: Bar plot of one of the Covid variable in a specific region of France grouped by age.
     :rtype: plotly.graph_objects.bar.
 
+    :Example:
+
+    **Bar plot of hospitalization in Guadeloupe by age group today**
+
+    >>> bar_age(1,1)
+
+    **Bar plot of hospitalization in Corse by age group today**
+
+    >>> bar_age(1,94)
+
+    **Bar plot of deaths in Guadeloupe by age group today**
+
+    >>> bar_age(7,1)
+
     """
     # Testing execution time
     start = time.time()
@@ -153,7 +167,7 @@ def bar_age(num_var, num_reg, save=False):
             fig.write_image(f"bar_age_{dico_file[num_var]}_{dico_reg[num_reg]}.pdf")
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
-
+bar_age(1,94)
 
 def bar_reg(num_var, save=False):
     """
@@ -251,6 +265,16 @@ def bar_reg(num_var, save=False):
 
     :return: Bar plot of one of the Covid variable by region group.
     :rtype: plotly.graph_objects.bar.
+
+    :Example:
+
+    **Bar plot of hospitalization in Guadeloupe by age group today**
+
+    >>> bar_reg(1)
+
+    **Bar plot of hospitalization in Corse by age group today**
+
+    >>> bar_reg(7)
 
     """
     # Testing execution time
