@@ -128,11 +128,13 @@ def scatter_reg(num_var, num_reg, save=False):
     :rtype: Figure
 
     """
+    # Test execution time
     start = time.time()
     # Extracting chosen region
     T2 = pca.reg(num_reg, T)
     # Converting to datetime format
     T2 = pca.date_time(T2)
+    # Creating dictionnary with columns
     dico_col = pca.dico_column(T2)
     # Grouping by day
     covid_day = pca.covid_day_fct(T2)
@@ -270,22 +272,33 @@ def poly_fit(num_var, num_reg, save=False):
     :rtype: Figure
 
     """
+    # Testing execution time
     start = time.time()
+    # Extracting chosen region
     R = pca.reg(num_reg, T)
+    # Converting to datetime format
     R = pca.date_time(R)
+    # Creating dictionnary with columns
     dico_col = pca.dico_column(R)
+    # Grouping by day
     covid_day = pca.covid_day_fct(R)
+    # Defining x and y
     x = np.arange(0, covid_day.shape[0])
     y = covid_day[dico_col[num_var]]
     x = x[:, np.newaxis]
     y = y[:, np.newaxis]
+    # Creating dictionnaries
     dico_days = pca.dico_day(covid_day)
     dico_file = pca.dico_file()
     dico_var = pca.dico_var()
     dico_reg = pca.dico_reg()
+    # Reseting index
     covid_day = covid_day.reset_index(drop=True)
+    # Creating root of mean squared error (RMSE), x_p and y_predict list
     rmselist, x_p_list, y_poly_pred_P_list = pca.rmse_list(x, y)
+    # Choosing degree which mimnimize RMSE
     deg = list(rmselist).index(rmselist.min())
+    # Plotting figure
     fig = plt.scatter(dico_days.values(), y)
     plt.plot(dico_days.values(),
              y_poly_pred_P_list[deg],
@@ -415,20 +428,31 @@ def R2(num_var, num_reg):
     :rtype: float
 
     """
+    # Testing execution time
     start = time.time()
+    # Extracting chosen region
     R = pca.reg(num_reg, T)
+    # Converting to format datetime
     R = pca.date_time(R)
+    # Creating dictionnary with columns
     dico_col = pca.dico_column(R)
+    # Grouping by day
     covid_day = pca.covid_day_fct(R)
+    # Defining x and y
     x = np.arange(0, covid_day.shape[0])
     y = covid_day[dico_col[num_var]]
     x = x[:, np.newaxis]
     y = y[:, np.newaxis]
+    # Creating dictionnaries
     dico_var = pca.dico_var()
     dico_reg = pca.dico_reg()
+    # Reseting index
     covid_day = covid_day.reset_index(drop=True)
+    # Creating root of mean squared error (RMSE), x_p and y_predict list
     rmselist, x_p_list, y_poly_pred_P_list = pca.rmse_list(x, y)
+    # Choosing degree which minimize RMSE
     deg = list(rmselist).index(rmselist.min())
+    # Calculating R2
     res = 'R2 of polynomial regression of ' + dico_var[dico_col[num_var]] + \
           ' in ' + dico_reg[num_reg] + \
          f' is : {r2_score(y,y_poly_pred_P_list[deg])}.'
