@@ -1,18 +1,22 @@
-#%%
+# ---------- requirements ----------
 from download import download
 import pandas as pd
 import seaborn as sns
-from vizcovidfr.loads.load_datasets import Load_posquotfr,Load_posquotreg,Load_posquotdep
-from vizcovidfr.loads.load_datasets import Load_poshebreg,Load_poshebfr,Load_incregrea,Load_hopage
 import plotly.express
+import time
+
+# local reqs
+from vizcovidfr.loads.load_datasets import Load_posquotfr
+from vizcovidfr.loads.load_datasets import Load_posquotreg
+from vizcovidfr.loads.load_datasets import Load_posquotdep
+from vizcovidfr.loads.load_datasets import Load_poshebreg, Load_poshebfr
+from vizcovidfr.loads.load_datasets import Load_incregrea, Load_hopage
 from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
-
-
+import matplotlib.pyplot as plt
 
 
 def S2020_2021(semaine):
     """
-
     Number of the week
 
     Parameters
@@ -30,9 +34,9 @@ def S2020_2021(semaine):
     """
     return int(semaine[3])*53+int(semaine[6:8])
 
+
 def W2020_2021(number):
     """
-
     The week  of the year
 
     Parameters
@@ -48,16 +52,15 @@ def W2020_2021(number):
     :Examples:
     >>> W200_2021("2020-S35")
     """
-
-    if number==53:
+    if (number == 53):
         return "202"+str(number//54)+f"-S{number:02}"
     return "202"+str(number//54)+f"-S{number%53:02}"
 
-def heatmapageday(df,debut,fin=None,weekday="jour"):
-    """
 
+def heatmapageday(df, debut, fin=None, weekday="jour"):
+    """
     Give the heatmap by age class and day for incidence rate
-    
+
     Parameters
     ----------
     :param df:  A dataframe of positivity for a territory
@@ -97,13 +100,13 @@ def heatmapageday(df,debut,fin=None,weekday="jour"):
 
     df.drop(df.loc[df["cl_age90"]==0].index,inplace=True)
     sns.heatmap(df.pivot(weekday,"cl_age90","incid"))
+    plt.show()
 
 
-def heatmapregage(df,granu,weekday):
-   """
-
+def heatmapregage(df, granu, weekday):
+    """
     Give the heatmap by age class and regions for incidence rate
-    
+
     Parameters
     ----------
     :param df:  A dataframe of positivity for a territory
@@ -132,13 +135,13 @@ def heatmapregage(df,granu,weekday):
     df["incid"]=df["P"]/df['pop']*100000
     df.drop(df.loc[df["cl_age90"]==0].index,inplace=True)
     sns.heatmap(df.pivot(granu,"cl_age90","incid"))
-
+    plt.show()
 
 def heatmapregday(df,age,debut,granu="reg",weekday="jour",fin=None):
     """
 
     Give the heatmap by age class and regions for incidence rate
-    
+
     Parameters
     ----------
     :param df:  A dataframe of positivity for a territory
@@ -178,7 +181,7 @@ def heatmapregday(df,age,debut,granu="reg",weekday="jour",fin=None):
         if fin is None:
             df=df[debut][['incid',granu,'cl_age90']].reset_index()
         else:
-    
+
             df=df[debut:fin][['incid',granu,'cl_age90']].reset_index()
 
         df[weekday] = pd.to_datetime(df['jour']).dt.date
@@ -186,13 +189,13 @@ def heatmapregday(df,age,debut,granu="reg",weekday="jour",fin=None):
         a=[W2020_2021(i) for i in range(S2020_2021(debut),S2020_2021(fin)+1)]
         df=df[df['week'].isin(a)]
     sns.heatmap(df.pivot(weekday,granu,"incid"))
+    plt.show()
 
-
-def incregra(debut,fin=None):
-   """
+def incregrea(debut,fin=None):
+    """
 
     Give the heatmap by age class and regions for incidence in intesive care
-    
+
     Parameters
     ----------
     :param debut: a month or a day ('2020-11')
@@ -224,6 +227,7 @@ def incregra(debut,fin=None):
     df["jour"] = pd.to_datetime(df['jour']).dt.date
 
     sns.heatmap(df.pivot("jour","numReg","incid_rea"))
+    plt.show()
 #%%
 
 def hopage(chiffre,modes,debut):
@@ -231,7 +235,7 @@ def hopage(chiffre,modes,debut):
 
     Give the heatmap that you chose between "reg-age","reg-jour",
     "age-jour"
-    
+
     Parameters
     ----------
     :param chiffre: to chose between "hosp","rea", "rad","dc"
@@ -281,6 +285,4 @@ def hopage(chiffre,modes,debut):
         dfhopage["jour"] = pd.to_datetime(dfhopage['jour']).dt.date
         dfhopage=dfhopage.groupby(["jour","cl_age90"]).sum().reset_index()
         sns.heatmap(dfhopage.pivot("cl_age90","jour",chiffre))
-
-
-
+    plt.show()

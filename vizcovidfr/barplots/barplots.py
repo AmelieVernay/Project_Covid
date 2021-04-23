@@ -1,13 +1,16 @@
-#%%
+# ---------- requirements ----------
 from download import download
 import pandas as pd
+import time
+
+# local reqs
 from vizcovidfr.loads.load_datasets import Load_posquotfr,Load_posquotreg,Load_posquotdep
 from vizcovidfr.loads.load_datasets import Load_poshebdep,Load_poshebreg,Load_poshebfr
 from vizcovidfr.loads.load_datasets import Load_incquotdep,Load_incquotreg,Load_incquotfr
 from vizcovidfr.loads.load_datasets import Load_inchebdep,Load_inchebreg,Load_inchebfr
 from vizcovidfr.loads.load_datasets import Load_incregrea,Load_hopdep,Load_hopage,Load_hopsex
 from vizcovidfr.preprocesses.preprocess_positivity import ignoreage,granupositivity
-#%%
+
 
 #dfposfr=ignoreage(Load_posquotfr().save_as_df())
 
@@ -16,7 +19,7 @@ from vizcovidfr.preprocesses.preprocess_positivity import ignoreage,granupositiv
 #dfposfr['P']/dfposfr["T"]
 #dfposfr
 
-#%%
+
 def compareHF(jour,chiffre,df):
     
     """
@@ -45,12 +48,15 @@ def compareHF(jour,chiffre,df):
 
 
     """
+    start = time.time()
     if not chiffre in ["hosp","rea","rad","dc"]:
 
         return [df.loc[jour,][chiffre+"_h"],df.loc[jour,][chiffre+"_f"]]
     else: 
         df=df.loc[jour,]
         return [df.loc[df["sexe"]==1][chiffre],df.loc[df["sexe"]==2][chiffre]]
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
 
 def positiverate(jour,df,sex=False,rate=True):
 
@@ -82,7 +88,7 @@ def positiverate(jour,df,sex=False,rate=True):
 
 
     """
-
+    start = time.time()
     if not sex:
         if rate:
             return df.loc[jour,]["P"]/df.loc[jour,"T"]
@@ -92,6 +98,8 @@ def positiverate(jour,df,sex=False,rate=True):
         if rate:
             return [df.loc[jour,]["P_h"]/df.loc[jour,]["T_h"],df.loc[jour,]["P_f"]/df.loc[jour,]["T_f"]]
         else: return[df.loc[jour,]["P_h"],df.loc[jour,]["P_f"]]
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
 
 def comparativebarplot(jour,chiffre,df,cumulative=False):
     """
@@ -121,7 +129,7 @@ def comparativebarplot(jour,chiffre,df,cumulative=False):
     :Examples:
     >>> comparativebarplot("2020-11-12","incidence",granupositvity(ignoreage(Load_incquotreg().save_as_df()),2,"reg"),cumulative=False)
     """
-
+    start = time.time()
     import matplotlib.pyplot as plt
     fig = plt.figure()
     ax = fig.add_axes([0,0,1,1])
@@ -136,6 +144,8 @@ def comparativebarplot(jour,chiffre,df,cumulative=False):
         positif = compareHF(jour,chiffre,df)
     ax.bar(sex,positif)
     plt.show()
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
 
 
 def incidencerate(jour,df,sex=False):
@@ -164,11 +174,12 @@ def incidencerate(jour,df,sex=False):
     :Examples:
     >>> incidencerate("2020-11-12",granupositvity(ignoreage(Load_incquotreg().save_as_df()),2,"reg"),sex=True)
     """
-
+    start = time.time()
     if not sex:
         return df.loc[jour,]["P"]*100000/df.loc[jour,"pop"]
     else: return [df.loc[jour,]["P_h"]*100000/df.loc[jour,]["pop_h"],df.loc[jour,]["P_f"]*100000/df.loc[jour,]["pop_f"]]
-
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
 
 def barplotscomparison(jour,chiffre,granu,numero,cumulative=False,weekday="jour"):
     """
@@ -197,6 +208,7 @@ def barplotscomparison(jour,chiffre,granu,numero,cumulative=False,weekday="jour"
     :Examples:
     >>> barplotscomparison("2020-10-12","incidence","reg",2)
     """
+    start = time.time()
     if granu=="reg":
         if weekday=="jour":
             if chiffre=="incidence":
@@ -231,6 +243,8 @@ def barplotscomparison(jour,chiffre,granu,numero,cumulative=False,weekday="jour"
         del dfhopsex['jour']
         df=granupositivity(dfhopsex,numero,granu)
     comparativebarplot(jour ,chiffre,df,True)
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
 
 
 #barplotscomparison("2020-10-12","incidence","reg",2)

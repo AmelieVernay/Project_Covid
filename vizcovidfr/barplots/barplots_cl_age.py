@@ -1,10 +1,15 @@
+# ---------- requirements ----------
 import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import os
+import time
+
+# local reqs
 from vizcovidfr.loads import load_datasets
 from vizcovidfr.preprocesses import preprocess_classe_age as pca
-import os
+
 
 T = load_datasets.Load_classe_age().save_as_df()
 
@@ -16,22 +21,22 @@ def bar_age(num_var, num_reg, save=False):
     ----------
 
     :param num_var: code of the variable you want to display. 
-        Codes are in the following dictionnary.
+        Codes are in the following dictionary.
     :type num_var: int
     :param num_reg: code of the region you want to display. 
-        Codes are the official INSAA code region and are given in the dictionnary below.
+        Codes are the official INSAA code region and are given in the dictionary below.
     :type num_reg: int
     :param save: True if you want to save the graph in pdf file, False otherwise.
-    :type save: bool, optionnal, default = False
+    :type save: bool, optional, default = False
     
-    Variable dictionnary :
+    Variable dictionary :
 
         1 : Hospitalization
 
         2 : Reanimation
 
         3 : Conventional hospitalization
-    
+
         4 : SSR and USLD
 
         5 : Others
@@ -44,7 +49,7 @@ def bar_age(num_var, num_reg, save=False):
         number of hospitalized patients.
 
     - Reanimation :
-        number of people currently in intensive care or intensive care.
+        number of people currently in intensive care.
 
     - Conventional hospitalization :
         number of people currently in conventional hospitalization.
@@ -62,7 +67,7 @@ def bar_age(num_var, num_reg, save=False):
         cumulative number of deceased persons.
 
 
-    Region dictionnary :
+    Region dictionary :
 
         1 : Guadeloupe
 
@@ -80,7 +85,7 @@ def bar_age(num_var, num_reg, save=False):
     
         27 : Bourgogne-Franche-Comte
 
-        28 : Normmandie
+        28 : Normandie
 
         32 : Hauts-de-France
 
@@ -107,6 +112,7 @@ def bar_age(num_var, num_reg, save=False):
     :rtype: plotly.graph_objects.bar.
 
     """
+    start = time.time()
     T2 = pca.drop0(T)
     #Come back home and deaths are cumulative numbers, so we preprocess them in another dataframe.
     T_rad_dc = pca.reg(num_reg,T2).tail(10)
@@ -139,6 +145,8 @@ def bar_age(num_var, num_reg, save=False):
     #Saving pdf file
     if save == True:
             fig.write_image(f"bar_age_{dico_file[num_var]}_{dico_reg[num_reg]}.pdf")
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
 
 
 def bar_reg(num_var, save=False):
@@ -149,12 +157,12 @@ def bar_reg(num_var, save=False):
     ----------
 
     :param num_var: code of the variable you want to display. 
-        Codes are in the following dictionnary.
+        Codes are in the following dictionary.
     :type num_var: int
     :param save: True if you want to save the graph in pdf file, False otherwise.
-    :type save: bool, optionnal, default = False
+    :type save: bool, optional, default = False
 
-    - Variable dictionnary :
+    - Variable dictionary :
 
         1 : Hospitalization
 
@@ -174,7 +182,7 @@ def bar_reg(num_var, save=False):
         number of hospitalized patients.
 
     - Reanimation :
-        number of people currently in intensive care or intensive care.
+        number of people currently in intensive care.
 
     - Conventional hospitalization :
         number of people currently in conventional hospitalization.
@@ -211,7 +219,7 @@ def bar_reg(num_var, save=False):
     
         27 : Bourgogne-Franche-Comte
 
-        28 : Normmandie
+        28 : Normandie
 
         32 : Hauts-de-France
 
@@ -239,6 +247,7 @@ def bar_reg(num_var, save=False):
     :rtype: plotly.graph_objects.bar.
 
     """
+    start = time.time()
     T2 = pca.drop0(T)
     T_rad_dc = pca.rad_dc(T)
     data_day =T2.groupby(by='reg').sum()
@@ -246,7 +255,7 @@ def bar_reg(num_var, save=False):
     dico_col = pca.dico_column(T2)
     dico_var = pca.dico_var()
     dico_reg = pca.dico_reg()
-    #Come back home and deaths are cumulative number, so we take the value of the last day recorded
+    #Come back home and deaths are cumulative numbers, so we take the value of the last day recorded
     if num_var == 6 or num_var == 7:
             fig = px.bar(T_rad_dc, x=T_rad_dc['reg'], y=dico_col[num_var], color=dico_col[num_var], labels = {dico_col[num_var]:dico_var[dico_col[num_var]], 'reg': 'Region in France'}, height = 400, title="Bar plot of" + " " + dico_var[dico_col[num_var]] + " by region group today")
             fig.update_xaxes(type='category')
@@ -257,5 +266,7 @@ def bar_reg(num_var, save=False):
             fig.show()
     if save == True:
             fig.write_image(f"bar_reg_{dico_file[num_var]}.pdf")
+    end = time.time()
+    print("Time to execute: {0:.5f} s.".format(end - start))
 
 
