@@ -43,7 +43,7 @@ def piechart(criterion='reanimation', date='2021-04-20',
     :param date: only if criterion argument is 'hospitalises'
         or 'reanimation'.
         Set the date which we want to have information on.
-        The date format must be the following one: '%Y-%m-%d'.
+        The date format must be the following one: 'YY-mm-dd'.
         The chosen date must be between '2020-04-04' and
         today's date.
     :type date: str, optional, default='2021-04-20'
