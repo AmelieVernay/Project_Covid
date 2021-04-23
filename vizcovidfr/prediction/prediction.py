@@ -31,6 +31,7 @@ def predict_curve(num_var, num_reg, date = 'date', save = False):
         Codes are the official INSAA code region and are given in the dictionnary below.
     :type num_reg: int
     :param date: date where regression line will stop.
+        Must be on YYYY/MM/DD format.
         Must be a future date, not a date from the past.
     :type date: str
     :param save: True if you want to save the graph in pdf file, False otherwise.
@@ -178,6 +179,7 @@ def predict_value(num_var, num_reg, date = 'date'):
         Codes are the official INSAA code region and are given in the dictionnary below.
     :type num_reg: int
     :param date: date when you want to predict the variable.
+        Must be on YYYY/MM/DD format.
         Must be a future date, not a date from the past.
     :type date: str
     
