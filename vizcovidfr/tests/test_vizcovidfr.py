@@ -12,10 +12,10 @@ from vizcovidfr.pie_charts import pie_chart
 from vizcovidfr.prediction import prediction
 from vizcovidfr.heatmaps import heatmap
 
-from vizcovidfr.preprocesses.preprocess_positivity import ignoreage
-from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
-from vizcovidfr.loads.load_datasets import Load_posquotreg
-from vizcovidfr.loads.load_datasets import Load_incquotreg
+#from vizcovidfr.preprocesses.preprocess_positivity import ignoreage
+#from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
+#from vizcovidfr.loads.load_datasets import Load_posquotreg
+#from vizcovidfr.loads.load_datasets import Load_incquotreg
 
 
 # ---------- maps ----------
@@ -168,27 +168,14 @@ def test_vacdoses():
     assert result
 
 
-def test_keyseries():
+def test_keytimeseries():
     """
     Test keyseries by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will be raised
     """
-    result = (type(line_charts.keyseries("Hérault", "deces")) != int)
+    result = (type(line_charts.keytimeseries()) != int)
     assert result
-
-
-def test_keyplot():
-    """
-    Test keyseries by running the function.
-    If something fails while running it, result won't be defined,
-    and an AssertionError will be raised
-    ---
-    Functions/methods that will be tested by extension:
-        - linecharts.plotseries()
-
-    """
-    result = (type(line_charts.keyplot("Hérault", "deces")) != int)
 
 
 # ----------- barplots ---------------
@@ -209,22 +196,6 @@ def test_bar_reg():
     and an AssertionError will raise.
     """
     result = (type(barplots_cl_age.bar_reg(1)) != int)
-    assert result
-
-
-def test_comparativebarplot():
-    """
-    Test comparativebarplot by running the function.
-    If something fails while running it, result won't be defined,
-    and an AssertionError will raise.
-    """
-    result = (type(
-                barplots.comparativebarplot(
-                        "2020-11-12",
-                        "incidence",
-                        granupositivity(
-                            ignoreage(Load_incquotreg().save_as_df()),
-                            2, "reg"))) != int)
     assert result
 
 
@@ -266,15 +237,11 @@ def test_predict_value():
 
 
 # --------------heatmaps--------------
-def test_heatmapregage():
+def test_heatmap_age():
     """
     Test heatmapregage by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(
-                (heatmap.heatmapregage(
-                            Load_posquotreg().save_as_df(),
-                            "reg",
-                            "2020-11-06"))) != int)
+    result = (type(heatmap.heatmap_age(start='2021-03')) != int)
     assert result

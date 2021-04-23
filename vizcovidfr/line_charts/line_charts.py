@@ -1,16 +1,15 @@
 # ---------- requirements ----------
 import time
 import pandas as pd
-from download import download
-import datetime
 import plotly.express as px
 import matplotlib.pyplot as plt
-import seaborn as sns
 
 # local reqs
 from vizcovidfr.loads import load_datasets
-from vizcovidfr.loads.load_datasets import Load_posquotdep, Load_posquotreg, Load_chiffres_fr
-from vizcovidfr.preprocesses import preprocess_chiffres_cles, preprocess_positivity
+from vizcovidfr.loads.load_datasets import Load_posquotdep
+from vizcovidfr.loads.load_datasets import Load_posquotreg
+from vizcovidfr.loads.load_datasets import Load_chiffres_fr
+from vizcovidfr.preprocesses import preprocess_chiffres_cles
 from vizcovidfr.preprocesses import preprocess_positivity
 from vizcovidfr.preprocesses.preprocess_positivity import REGIONS, DEPARTMENTS
 
@@ -244,295 +243,180 @@ def vacdoses(unit='doses', font_size=16,
     # display line chart according to unit argument
     fig.show()
 
-##
-A = preprocess_chiffres_cles.gooddates(
-                                Load_chiffres_fr().save_as_df())
-A.head()
-##
 
-def keyseries(nom, chiffre, evo=True, average=True):
+def keytimeseries(place='France', criterion='hospitalisation', evo=True, average=True):
     """
-    Extract the main time series about information concerning
-    the evolution of the deases COVID-19 in France or a sub-part of France
+    Make a time series about information concerning
+    the evolution of the COVID-19 in France or a sub-part of France.
 
     Parameters
     ----------
-    :param nom: A name in French of a department, or region ,
-        or the whole territory
-    :type nom: str
-    :param chiffre: The figure of interest in French suc as "deces" , "cas"
+    :param place: 'France' for the whole territory or the (french)
+        name of a region,
+        for reference,
+        see https://www.regions-et-departements.fr/regions-francaises
+    :type place: str, optional, default='France'
+    :param criterion: The figure of interest in French suc as "deces" , "cas"
 
         - 'cas_confirmes':
             number of confirmed cases
-        - 'cas_ehpad':
-            number of confirmed cases in EHPADs
         - 'deces':
-            display the cumulated number of death due to
-            the Covid-19 in France from the beginning of the pandemic, up to
-            the given date
-        - 'deces_ephad':
-            number of death that occured in EHPADs due to the pandemic
+            cumulated number of deaths
         - 'reanimation':
-            current number of people in intensive care
-        - 'hospitalises':
-            current number of people hospitalized
+            number of people in intensive care
+        - 'hospitalisation':
+            number of hospitalized people
         - 'gueris':
-            number of people cured
-    :type chiffre: str
+            number of cured people
+    :type criterion: str, optional, default='hospitalisation'
 
-    :param evo: New per day or cumulative
+    :param evo:
+        if True: new per day
+        if False: cumulative
+    :type evo: bool, optional, default=True
+    :param average:
+        if True: evolution on a 7 day moving average
     :type evo: bool, optional, default=True
 
     Returns
     -------
     :return: A time series until today since the beginning of the records of
         the figure of interest
-    :rtype: 'pandas.Series'
+    :rtype: plotly.graph_objects.Figure
+
     :Examples:
-    >>> keyseries("France","cas",evo=False)
+    >>> keytimeseries(place='Occitanie', criterion='gueris',
+    ...               evo=False, average=True)
+
+    >>> keytimeseries(place='France', criterion='cas_confirmes',
+    ...               evo=True, average=False)
     """
-    fr = (nom == "France")
+    start = time.time()
+    fr = (place == "France")
     if fr:
         df_covid = preprocess_chiffres_cles.gooddates(
                                         Load_chiffres_fr().save_as_df())
-    if chiffre in ["cas", "nombre_de_cas", "cas_confirmes"]:
-        chiffre = "cas_confirmes"
+    if criterion in ["cas", "nombre_de_cas", "cas_confirmes"]:
+        criterion = "cas_confirmes"
+        key_legend = 'confirmed cases'
         if fr:
-            chiffre = "total_cas_confirmes"
-    elif chiffre in ["hospitalisation", "hôpital", "hospitalises"]:
-        chiffre = "hospitalises"
+            criterion = "total_cas_confirmes"
+    elif criterion in ["hospitalisation", "hôpital", "hospitalises"]:
+        criterion = "hospitalises"
+        key_legend = 'hospitalizations'
         if fr:
-            chiffre = "patients_hospitalises"
-    elif chiffre in ["deces_ehpad"]:
+            criterion = "patients_hospitalises"
+    elif criterion in ["deces_ehpad"]:
+        key_legend = 'deaths in EHPAD'
         if fr:
-            chiffre = "total_deces_ehpad"
-    elif chiffre in ["morts", "deces", "deces_à_l'hôpital"]:
-        chiffre = "deces"
+            criterion = "total_deces_ehpad"
+    elif criterion in ["morts", "deces", "deces_à_l'hôpital"]:
+        criterion = "deces"
+        key_legend = 'deaths'
         if fr:
-            chiffre = "total_deces_hopital"
-    elif chiffre in ["reanimation"]:
+            criterion = "total_deces_hopital"
+    elif criterion in ["reanimation"]:
+        key_legend = 'patients in intensive care'
         if fr:
-            chiffre = "patients_reanimation"
+            criterion = "patients_reanimation"
 
-    elif chiffre in ["cas_confirmes_ehpad"]:
+    elif criterion in ["cas_confirmes_ehpad"]:
+        key_legend = 'confirmed cases in EHPAD'
         if fr:
-            chiffre = "total_cas_confirmes_ephad"
-    elif chiffre in ["gueris"]:
+            criterion = "total_cas_confirmes_ehpad"
+    elif criterion in ["gueris"]:
+        key_legend = 'cured patients'
         if fr:
-            chiffre = "total_patients_gueris"  # options with
+            criterion = "total_patients_gueris"  # options with
             # different expressions for a same argument
     if fr:
         if evo:
             if average:
-                fig = px.line(df_covid[chiffre].diff().rolling(window=7).mean())
+                axis = 'Average number'
+                title = f'Evolution of the number of {key_legend} in France on a 7 day moving average'
+                fig = px.line(
+                        df_covid[criterion].diff().rolling(window=7).mean(),
+                        title=title)
+                fig = fig.update_yaxes(title_text=axis)
                 fig.show()
+                end = time.time()
+                print("Time to execute: {0:.5f} s.".format(end - start))
                 return
-            fig = px.line(df_covid[chiffre].diff())
+            axis = 'Number'
+            title = f'Evolution of the number of {key_legend} in France'
+            fig = px.line(df_covid[criterion].diff(), title=title)
+            fig = fig.update_yaxes(title_text=axis)
             fig.show()
+            end = time.time()
+            print("Time to execute: {0:.5f} s.".format(end - start))
             return
         else:
             if average:
-                fig = px.line(df_covid[chiffre].rolling(window=7).mean())
+                axis = 'Cumulated average number'
+                title = f'Evolution of the cumulated number of {key_legend} in France on a 7 day moving average'
+                fig = px.line(df_covid[criterion].rolling(window=7).mean(),
+                              title=title)
+                fig = fig.update_yaxes(title_text=axis)
                 fig.show()
+                end = time.time()
+                print("Time to execute: {0:.5f} s.".format(end - start))
                 return
-            fig = px.line(df_covid[chiffre])
+            axis = 'Cumulated number'
+            title = f'Evolution of the cumulated number of {key_legend} in France'
+            fig = px.line(df_covid[criterion], title=title)
+            fig = fig.update_yaxes(title_text=axis)
             fig.show()
+            end = time.time()
+            print("Time to execute: {0:.5f} s.".format(end - start))
             return
-
-    elif chiffre in ["cas_confirmes"]:  # need specific datasets
-        if nom in REGIONS.keys():
+    elif criterion in ["cas_confirmes"]:  # need specific datasets
+        if place in REGIONS.keys():
+            df = preprocess_positivity.ignoreage(
+                            preprocess_positivity.granupositivity(
+                                        Load_posquotreg().save_as_df(), place))
+            series = df['P']
+        elif place in DEPARTMENTS.keys():
             df = preprocess_positivity.granupositivity(
-                                        Load_posquotreg().save_as_df(), nom)
-        elif nom in DEPARTMENTS.keys():
-            df = preprocess_positivity.granupositivity(
-                                        Load_posquotdep().save_as_df(), nom)
-        series = df['P']
-
+                                        Load_posquotdep().save_as_df(), place)
+            series = df['P']
     else:
         series = preprocess_chiffres_cles.gooddates(
                     preprocess_chiffres_cles.keysubtablename(
-                                                    nom))[chiffre].dropna()
+                                                    place))[criterion].dropna()
     if evo:
         if average:
-            fig = px.line(series.diff().rolling(window=7).mean())
+            axis = 'Average number'
+            title = f'Evolution of the number of {key_legend} in {place} on a 7 day moving average'
+            fig = px.line(series.diff().rolling(window=7).mean(),
+                          title=title)
+            fig = fig.update_yaxes(title_text=axis)
             fig.show()
-
+            end = time.time()
+            print("Time to execute: {0:.5f} s.".format(end - start))
             return
-        fig = px.line(series.diff())
+        axis = 'Number'
+        title = f'Evolution of the number of {key_legend} in {place}'
+        fig = px.line(series.diff(), title=title)
+        fig = fig.update_yaxes(title_text=axis)
         fig.show()
-
+        end = time.time()
+        print("Time to execute: {0:.5f} s.".format(end - start))
         return
     else:
         if average:
-            fig = px.line(series.rolling(window=7).mean())
+            axis = 'Cumulated average number'
+            title = f'Evolution of the cumulated number of {key_legend} in {place} on a 7 day moving average'
+            fig = px.line(series.rolling(window=7).mean(), title=title)
+            fig = fig.update_yaxes(title_text=axis)
             fig.show()
-
+            end = time.time()
+            print("Time to execute: {0:.5f} s.".format(end - start))
             return
-        fig = px.line(series)
+        axis = 'Cumulated number'
+        title = f'Evolution of the cumulated number of {key_legend} in {place}'
+        fig = px.line(series, title=title)
+        fig = fig.update_yaxes(title_text=axis)
         fig.show()
-
+        end = time.time()
+        print("Time to execute: {0:.5f} s.".format(end - start))
         return
-    fig.show()
-
-
-# preprocess_chiffres_cles.gooddates(Load_chiffres_fr().save_as_df())
-keyseries(nom='France', chiffre="hospitalisation", evo=True)
-
-
-# Not useful anymore but we keep track of it
-#def plotseries(series, average=True):
-#    """
-#    Allows you to plot a seaborn Series , on a seven-day moving average
-#    or not
-#
-#    Parameters
-#    ----------
-#    :param series: Any series
-#    :type series: 'pandas.Series'
-#
-#    :param average: moving average on seven days
-#    :type average: bool, optional, default=True
-#
-#    Returns
-#    -------
-#    :return: A plot
-#
-#
-#    :Examples:
-#    >>> plotseries(keyseries("France","cas",evo=True),average=True)
-#
-#    """
-#    sns.set(rc={'figure.figsize': (11, 4)})
-#    if average:
-#        ax = series.rolling(window=7).mean().plot()
-#    else:
-#        ax = series.plot()
-#        plt.show()
-#    return ax
-#
-#
-#def keyplot(nom, chiffre, evo=True, average=True):
-#
-#    """
-#
-#    From the descirption of a time series, display the corresponding
-#    with a correct title
-#    Plot the time series associates with figures of Covid-19.
-#    Take in acount the scale (country, region, ...)
-#
-#
-#    Parameters
-#    ----------
-#
-#    :param nom: A name in French of a department, or region ,
-#        or the whole territory
-#    :type nom: str
-#    :param chiffre: The figure of interest in French suc as "deces" , "cas"
-#
-#        - 'cas_confirmes':
-#            number of confirmed cases
-#        - 'cas_ehpad':
-#            number of confirmed cases in EHPADs
-#        - 'deces':
-#            display the cumulated number of death due to
-#            the Covid-19 in France from the beginning of the pandemic, up to
-#            the given date
-#        - 'deces_ephad':
-#            number of death that occured in EHPADs due to the pandemic
-#        - 'reanimation':
-#            current number of people in intensive care
-#        - 'hospitalises':
-#            current number of people hospitalized
-#        - 'gueris':
-#            number of people cured
-#    :type chiffre: str
-#
-#    :param evo: New per day or cumulative
-#    :type evo: bool, optional, default=True
-#
-#    :param average: moving average on seven days
-#    :type average: bool, optional, default=True
-#
-#
-#    Returns
-#    -------
-#    :return: A plot
-#
-#    :Examples:
-#    >>> keyplot("France","cas",evo=True,average=True)
-#
-#
-#    """
-#
-#    ax=plotseries(keyseries(nom,chiffre,evo),average)
-#
-#    if chiffre in ["cas","nombre_de_cas","cas_confirmes"] and not evo :
-#
-#        ax.set(title= "Prevalence of Covid-19 in "+nom,ylabel="case")
-#
-#    elif chiffre in ["cas","nombre_de_cas","cas_confirmes"] and evo:
-#
-#        ax.set(title= "Daily cases of Covid-19 in "+nom,ylabel="case")
-#
-#    elif chiffre in ["hospitalisation","hôpital","hospitalises"] and evo:
-#
-#        ax.set(title= "Daily extra patients of Covid-19\
-#             at the hospital in "+nom,ylabel="people hospitalized")
-#
-#    elif chiffre in ["hospitalisation","hôpital","hospitalises"] and not evo:
-#
-#        ax.set(title= "Number of patients of Covid-19\
-#         at the hospital in "+nom,ylabel="people hospitalized")
-#
-#    elif chiffre in["deces_ehpad"] and not evo:
-#
-#        ax.set(title= "Number of death of Covid-19 \
-#            in EHPADs in "+nom,ylabel="death")
-#
-#    elif chiffre in["deces_ehpad"] and  evo:
-#
-#        ax.set(title= "Number of death of Covid-19 in\
-#             EHPADs in "+nom,ylabel="death")
-#
-#    elif chiffre in["deces","morts"] and  not evo:
-#
-#        ax.set(title= "Number of deaths of Covid-19 \
-#             in "+nom,ylabel="death")
-#
-#    elif chiffre in["deces","morts"] and   evo:
-#
-#        ax.set(title= "New deaths of Covid-19\
-#              in "+nom,ylabel="death")
-#
-#    elif chiffre in["reanimation"] and   evo:
-#
-#        ax.set(title= "Daily extra patients in\
-#             intensive care because of Covid-19  in \
-#                 "+nom,ylabel="patients")
-#
-#    elif chiffre in ["reanimation"] and not  evo:
-#
-#        ax.set(title="Number of patients in intensive\
-#         care because of Covid-19 in"+nom,ylabel="patients")
-#
-#    elif chiffre in ["cas_confirmes_ehpad"] and evo:
-#
-#        ax.set(title="Daily cases of Covid-19 in\
-#         EHPADs"+nom,ylabel="cases")
-#
-#    elif chiffre in ["cas_confirmes_ehpad"] and  not evo:
-#
-#        ax.set(title="Prevalence of Covid-19 in\
-#             EHPADs"+nom,ylabel="cases")
-#
-#    elif chiffre in ["gueris"] and  not evo:
-#
-#        ax.set(title="Number of people cured from \
-#            Covid-19 "+nom,ylabel="people")
-#
-#    elif chiffre in ["gueris"] and   evo:
-#
-#        ax.set(title="Daily number of people \
-#            cured from Covid-19 "+nom,ylabel="people")
-#    plt.show()
-#

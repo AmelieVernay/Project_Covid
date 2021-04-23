@@ -1,24 +1,14 @@
 # ---------- requirements ----------
-#%%
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
 # local reqs
-#from vizcovidfr.loads.load_datasets import Load_posquotfr
-#from vizcovidfr.loads.load_datasets import Load_posquotreg
-#from vizcovidfr.loads.load_datasets import Load_posquotdep
-#from vizcovidfr.loads.load_datasets import Load_poshebreg, Load_poshebfr
-#from vizcovidfr.loads.load_datasets import Load_incregrea, Load_hopage
-from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
-from vizcovidfr.preprocesses import preprocess_classe_age as pca
-
-# ---
 from vizcovidfr.loads import load_datasets
 from vizcovidfr.preprocesses import preprocess_heatmaps
-# ---
+from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
+from vizcovidfr.preprocesses import preprocess_classe_age as pca
 
 
 def heatmap_age(start, end=None, granularity='France', num_reg=1,
@@ -195,7 +185,7 @@ def heatmap_reg_age(weekday):
         df = load_datasets.Load_posquotreg().save_as_df()
     if   (len(weekday) <= 8):
         df = load_datasets.Load_poshebreg().save_as_df()
-      
+
     if len(weekday) > 8:
         df = df.loc[df["jour"]==weekday]
     else:

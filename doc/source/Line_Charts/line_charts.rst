@@ -13,17 +13,7 @@ vacdoses
 .. autofunction:: vizcovidfr.line_charts.line_charts.vacdoses
 
 
-keyseries
+keytimeseries
 ---------
 
-.. autofunction:: vizcovidfr.line_charts.keyseries
-
-plotseries
----------
-
-.. autofunction:: vizcovidfr.line_charts.plotseries
-
-
-keyplot
----------
-.. autofunction:: vizcovidfr.line_charts.keyplot
+.. autofunction:: vizcovidfr.line_charts.keytimeseries
