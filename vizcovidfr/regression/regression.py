@@ -1,4 +1,5 @@
 # ---------- requirements ----------
+#%%
 import time
 import numpy as np
 import pandas as pd
@@ -126,6 +127,12 @@ def scatter_reg(num_var, num_reg, save=False):
     :return: Scatter plot of one of the Covid variable in a specific
         region of France.
     :rtype: Figure
+
+    :Example:
+
+    **Scatter plot of hospitalization in Île-de-France**
+
+    >>> scatter_reg(1,11) 
 
     """
     # Test execution time
@@ -267,9 +274,18 @@ def poly_fit(num_var, num_reg, save=False):
     Returns
     ----------
 
-    :return: Scatter plot of one of the Covid variable in a specific region of
-        France with the regression curve.
+    :return: Scatter plot of one of the Covid variable in a specific region of France with the regression curve.
     :rtype: Figure
+
+    :Example:
+
+    **Polynomial regression of hospitalization in Île-de-France**
+
+    >>> poly_fit(1,11) 
+
+    **Polynomial regression of hospitalization in Provence**
+
+    >>> poly_fit(1,93) 
 
     """
     # Testing execution time
@@ -426,6 +442,12 @@ def R2(num_var, num_reg):
     :return: R2 of the polynomial regression of one of the Covid variable in
         a specific region of France.
     :rtype: float
+
+    :Example:
+
+    **R2 of polynomial regression of hospitalization in Île-de-France**
+
+    >>> R2(1,11) 
 
     """
     # Testing execution time
