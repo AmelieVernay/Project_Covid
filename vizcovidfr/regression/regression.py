@@ -20,7 +20,6 @@ from vizcovidfr.preprocesses import preprocess_classe_age as pca
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
 
-T = load_datasets.Load_classe_age().save_as_df()
 
 
 def scatter_reg(num_var, num_reg, save=False):
@@ -136,6 +135,8 @@ def scatter_reg(num_var, num_reg, save=False):
     """
     # Test execution time
     start = time.time()
+    # Loading dataframe
+    T = load_datasets.Load_classe_age().save_as_df()
     # Extracting chosen region
     T2 = pca.reg(num_reg, T)
     # Converting to datetime format
@@ -289,6 +290,8 @@ def poly_fit(num_var, num_reg, save=False):
     """
     # Testing execution time
     start = time.time()
+    # Loading dataframe
+    T = load_datasets.Load_classe_age().save_as_df()
     # Extracting chosen region
     R = pca.reg(num_reg, T)
     # Converting to datetime format
@@ -451,6 +454,8 @@ def R2(num_var, num_reg):
     """
     # Testing execution time
     start = time.time()
+    # Loading dataframe
+    T = load_datasets.Load_classe_age().save_as_df()
     # Extracting chosen region
     R = pca.reg(num_reg, T)
     # Converting to format datetime
