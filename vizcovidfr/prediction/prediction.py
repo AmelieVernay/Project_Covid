@@ -124,6 +124,16 @@ def predict_curve(num_var, num_reg, date = 'date', save = False):
     :return: Prediction graph of one of the Covid variable in a specific region of France.
     :rtype: Figure
 
+    :Example:
+
+    **Prediction curve of hospitalization in Île-de-France until 2021-04-30 (with data until 2021-04-22)**
+
+    >>> predict_curve(1,11,'2021-04-30') 
+
+    **Prediction curve of hospitalization in Provence until 2021-04-30 (with data until 2021-04-22)**
+
+    >>> predict_curve(1,93,'2021-04-30') 
+
     """
     start = time.time()
     #Choose region
@@ -171,8 +181,9 @@ def predict_curve(num_var, num_reg, date = 'date', save = False):
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
     plt.show()
-    
 
+predict_curve(1,93,'2021-04-30')    
+#%%
 
 def predict_value(num_var, num_reg, date = 'date'):
     """
@@ -273,6 +284,16 @@ def predict_value(num_var, num_reg, date = 'date'):
 
     :return: Prediction of one of the Covid variable in a specific region of France on the given date.
     :rtype: str
+
+    :Example:
+
+    **Predicted value of hospitalization in Île-de-France on 2021-04-30 (with data until 2021-04-22)**
+
+    >>> predict_value(1,11,'2021-04-30') 
+
+    **Prediction value of hospitalization in Provence on 2021-04-30 (with data until 2021-04-22)**
+
+    >>> predict_value(1,93,'2021-04-30') 
 
     """
     start = time.time()
