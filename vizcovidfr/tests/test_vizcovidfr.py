@@ -200,9 +200,9 @@ def test_compareMF():
     and an AssertionError will raise.
     """
     result = (type(
-                compareMF(date='2020-11-12',
-                          criterion='P',
-                          granularity='France')) != int)
+                barplots.compareMF(date='2020-11-12',
+                                   criterion='P',
+                                   granularity='France')) != int)
     assert result
 
 
