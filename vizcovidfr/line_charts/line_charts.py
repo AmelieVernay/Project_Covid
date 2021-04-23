@@ -292,9 +292,6 @@ def keyseries(nom, chiffre, evo=True, average=True):
     >>> keyseries("France","cas",evo=False)
     """
     fr = (nom == "France")
-    if chiffre in ["deces_à_l'hôpital", "deceshop"]:
-        chiffre = "total_deces_hopital"
-        fr = True  # no big difference with only "deces"
     if fr:
         df_covid = preprocess_chiffres_cles.gooddates(
                                         Load_chiffres_fr().save_as_df())
@@ -309,8 +306,10 @@ def keyseries(nom, chiffre, evo=True, average=True):
     elif chiffre in ["deces_ehpad"]:
         if fr:
             chiffre = "total_deces_ehpad"
-    elif chiffre in ["morts"]:
+    elif chiffre in ["morts","deces","deces_à_l'hôpital"]:
         chiffre = "deces"
+        if fr:
+            chiffre="total_deces_hopital"
     elif chiffre in ["reanimation"]:
         if fr:
             chiffre = "patients_reanimation"
@@ -324,34 +323,58 @@ def keyseries(nom, chiffre, evo=True, average=True):
             # different expressions for a same argument
     if fr:
         if evo:
-            fig = px.line(df_covid[chiffre].diff())
-        fig = px.line(df_covid[chiffre])
+            if average:
+                fig = px.line(df_covid[chiffre].diff().rolling(window=7).mean()) 
+                fig.show() 
+                return
+            fig=px.line(df_covid[chiffre].diff())
+            fig.show()
+            return
+        else:
+            if average:
+                fig = px.line(df_covid[chiffre].rolling(window=7).mean()) 
+                fig.show() 
+                return
+            fig=px.line(df_covid[chiffre])
+            fig.show()
+            return
+
     elif chiffre in ["cas_confirmes"]:  # need specific datasets
         if nom in REGIONS.keys():
             df = preprocess_positivity.granupositivity(Load_posquotreg().save_as_df(), nom)
         elif nom in DEPARTMENTS.keys():
             df = preprocess_positivity.granupositivity(Load_posquotdep().save_as_df(), nom)
-        if evo:
-            fig = px.line(df['P'])
-        else:
-            fig = px.line(df['P'].cumsum())
-    series = preprocess_chiffres_cles.gooddates(preprocess_chiffres_cles.keysubtablename(nom))[chiffre].dropna()
+        series = df['P']
+
+    else:
+        series = preprocess_chiffres_cles.gooddates(preprocess_chiffres_cles.keysubtablename(nom))[chiffre].dropna()
     if evo:
         if average:
             fig = px.line(series.diff().rolling(window=7).mean())
+            fig.show()
+
+            return
         fig = px.line(series.diff())
+        fig.show()
+
+        return
     else:
         if average:
             fig = px.line(series.rolling(window=7).mean())
+            fig.show()
+
+            return
         fig = px.line(series)
+        fig.show()
+
+        return
     fig.show()
 
 ######################
 
 ######################
-
-keyseries(nom='France', chiffre="deces_à_l'hôpital", evo=True)
-
+preprocess_chiffres_cles.gooddates(Load_chiffres_fr().save_as_df())
+keyseries(nom='Hérault', chiffre="hospitalises", evo=False)
 
 def plotseries(series, average=True):
     """
