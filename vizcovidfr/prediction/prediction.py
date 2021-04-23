@@ -181,9 +181,7 @@ def predict_curve(num_var, num_reg, date = 'date', save = False):
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
     plt.show()
-
-predict_curve(1,93,'2021-04-30')    
-#%%
+  
 
 def predict_value(num_var, num_reg, date = 'date'):
     """
