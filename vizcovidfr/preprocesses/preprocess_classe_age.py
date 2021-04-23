@@ -92,13 +92,13 @@ def rename_cl(T):
     return T
 
 
-# Creation of some dictionnaries
+# Creation of some dictionaries
 def dico_column(T):
     '''
-    Create dictionnary of variables with column of T.
+    Create dictionary of variables with column of T.
     :param T: classe_age dataframe.
     :type T: Pandas dataframe
-    :return: dictionnary of variables
+    :return: dictionary of variables
     :rtype: dict
     '''
     dico_col = {}
@@ -109,10 +109,10 @@ def dico_column(T):
 
 def dico_day(T):
     '''
-    Create dictionnary of days with rows of T.
+    Create dictionary of days with rows of T.
     :param T: classe_age dataframe.
     :type T: Pandas dataframe
-    :return: dictionnary of days
+    :return: dictionary of days
     :rtype: dict
     '''
     dico_day = {}
@@ -123,8 +123,8 @@ def dico_day(T):
 
 def dico_var():
     '''
-    Create dictionnary for title.
-    :return: dictionnary
+    Create dictionary for title.
+    :return: dictionary
     :rtype: dict
     '''
     dico_var = {'hosp': 'Hospitalization', 'rea': 'Reanimation',
@@ -136,8 +136,8 @@ def dico_var():
 
 def dico_reg():
     '''
-    Create dictionnary for region.
-    :return: dictionnary of region
+    Create dictionary for region.
+    :return: dictionary of region
     :rtype: dict
     '''
     dico_reg = {1: 'Guadeloupe', 2: 'Martinique', 3: 'Guyane', 4: 'La Reunion',
@@ -152,8 +152,8 @@ def dico_reg():
 
 def dico_file():
     '''
-    Create dictionnary for saving file.
-    :return: dictionnary
+    Create dictionary for saving file.
+    :return: dictionary
     :rtype: dict
     '''
     dico_file = {1: 'hospitalization', 2: 'reanimation', 3: 'hosp_conv',
