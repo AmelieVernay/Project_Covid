@@ -41,7 +41,7 @@ def scatter_reg(num_var, num_reg, save=False):
     :type num_reg: int
     :param save: True if you want to save the graph in pdf file,
         False otherwise.
-    :type save: bool, optionnal, default = False
+    :type save: bool, optional, default = False
 
     Variable dictionary :
 
