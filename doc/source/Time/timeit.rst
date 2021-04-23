@@ -42,6 +42,7 @@ vactypedoses                  0.42227 s.
 predict_curve                 0.53564 s.
 bar_age                       0.16586 s.
 bar_reg                       0.18026 s.
+compareMF                     0.75908 s.
 keytimeseries                 0.56544 s.
 heatmap_age                   0.79060 s.
 heatmap_reg_age               0.94263 s.

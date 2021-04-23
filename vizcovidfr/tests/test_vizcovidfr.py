@@ -6,8 +6,7 @@ from vizcovidfr.maps import maps
 from vizcovidfr.sparse import sparse
 from vizcovidfr.regression import regression
 from vizcovidfr.line_charts import line_charts
-
-from vizcovidfr.barplots import barplots_cl_age, barplots
+from vizcovidfr.barplots import barplots
 from vizcovidfr.pie_charts import pie_chart
 from vizcovidfr.prediction import prediction
 from vizcovidfr.heatmaps import heatmap
@@ -180,7 +179,7 @@ def test_bar_age():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(barplots_cl_age.bar_age(1, 1)) != int)
+    result = (type(barplots.bar_age(1, 1)) != int)
     assert result
 
 
@@ -190,7 +189,20 @@ def test_bar_reg():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(barplots_cl_age.bar_reg(1)) != int)
+    result = (type(barplots.bar_reg(1)) != int)
+    assert result
+
+
+def test_compareMF():
+    """
+    Test compareMF by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type(
+                compareMF(date='2020-11-12',
+                          criterion='P',
+                          granularity='France')) != int)
     assert result
 
 
