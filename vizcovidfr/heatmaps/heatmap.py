@@ -1,4 +1,5 @@
 # ---------- requirements ----------
+#%%
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -12,7 +13,7 @@ import seaborn as sns
 #from vizcovidfr.loads.load_datasets import Load_poshebreg, Load_poshebfr
 #from vizcovidfr.loads.load_datasets import Load_incregrea, Load_hopage
 from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
-
+from vizcovidfr.preprocesses import preprocess_classe_age as pca
 
 # ---
 from vizcovidfr.loads import load_datasets
@@ -23,7 +24,7 @@ from vizcovidfr.preprocesses import preprocess_heatmaps
 def heatmap_age(start, end=None, granularity='France', num_reg=1,
                 frequency='daily'):
     """
-    Give the heatmap by age class and day for incidence rate
+    Make a heatmap by age class and the given frequency for incidence rate.
 
     Parameters
     ----------
@@ -35,7 +36,10 @@ def heatmap_age(start, end=None, granularity='France', num_reg=1,
             must be the week of a year on the format 'YYYY-SWW',
             and end is **not** optional and must be of the same format
     :type start: str
-    :param end: a day the end of the interval
+    :param end: date when the heatmap stops.
+        Only if start is on format 'YYYY-MM-DD' or 'YYYY-SWW'.
+        Must be on format 'YYYY-MM-DD' or 'YYYY-SWW', same than start.
+        Must be a date later than start.
     :type end: NoneType or str, optional only if frequency='daily' and if
         start is of the format 'YYYY-MM'
     :param granularity: the granularity we want the heatmap to be based on.
@@ -96,7 +100,22 @@ def heatmap_age(start, end=None, granularity='France', num_reg=1,
     :rtype: seaborn heatmap
 
     :Example:
-    >>>
+
+    **Heatmap for the month of March 2021 in France**
+
+    >>> heatmap_age(start='2021-03')
+
+    **Heatmap between 2021-03-12 and 2021-04-10 in France**
+
+    >>> heatmap_age(start='2021-03-12', end='2021-04-10')
+
+    **Heatmap between week 3 and week 10 of the year 2021 in France**
+
+    >>> heatmap_age(start='2021-S03', end='2021-S10', frequency='weekly')
+
+    **Heatmap for the month of March 2021 in Martinique**
+
+    >>> heatmap_age(start='2021-03', granularity='region', num_reg=2)
 
     """
     if ((granularity == 'France') & (frequency == 'weekly')):
@@ -114,8 +133,6 @@ def heatmap_age(start, end=None, granularity='France', num_reg=1,
                              num_reg, "reg")
         freq = 'week'
 
-    # df[freq] = pd.to_datetime(df[freq])
-    # df = df.set_index(freq)
     df["incid"] = df["P"]/df['pop']*100000
     if (freq == "jour"):
         df[freq] = pd.to_datetime(df[freq])
@@ -130,47 +147,74 @@ def heatmap_age(start, end=None, granularity='France', num_reg=1,
         df = df[df[freq].isin(a)]
 
     df.drop(df.loc[df["cl_age90"] == 0].index, inplace=True)
-    sns.heatmap(df.pivot(freq, "cl_age90", "incid"))
+    dico_reg = pca.dico_reg()
+    if (granularity == 'region'):
+        sns.heatmap(df.pivot(freq, "cl_age90", "incid"))
+        plt.title(f'Incidence rate in ' + dico_reg[num_reg] + f' on a {frequency} time basis')
+        plt.xlabel('Age')
+        plt.ylabel('Time')
+        plt.show()
+    else:
+        sns.heatmap(df.pivot(freq, "cl_age90", "incid"))
+        plt.title(f'Incidence rate in France on a {frequency} time basis')
+        plt.xlabel('Age')
+        plt.ylabel('Time')
+        plt.show()
+
+
+heatmap_age(start='2020-05-02', end='2020-05-27')
+
+#%%
+
+def heatmap_reg_age(granu, weekday):
+    """
+    Give the heatmap by age class and regions for incidence rate
+
+    Parameters
+    ----------
+    :param df:  A dataframe of positivity for a territory
+
+    :param granu: "reg " or "dep" (by departments it's difficult to read)
+    :type granu: str
+
+
+    :param weekday: a specific day
+    :type weekday: str
+
+    Returns
+    -------
+    :return: A heatmap with two axis: one for age and one for day
+
+
+    :Examples:
+    >>> heatmapregage(Load_posquotreg().save_as_df(),"reg","2020-11-06")
+
+
+    """
+    if ((granularity == 'France') & (frequency == 'weekly')):
+        df = load_datasets.Load_poshebfr().save_as_df()
+        freq = 'week'
+    if ((granularity == 'France') & (frequency == 'daily')):
+        df = load_datasets.Load_posquotfr().save_as_df()
+        freq = 'jour'
+    if ((granularity == 'region') & (frequency == 'daily')):
+        df = load_datasets.Load_posquotreg().save_as_df()
+        freq = 'jour'
+    if ((granularity == 'region') & (frequency == 'weekly')):
+        df = load_datasets.Load_poshebreg().save_as_df()
+        freq = 'week'
+    
+    if len(weekday) > 8:
+        df = df.loc[df["jour"]==weekday]
+    else:
+        df = df.loc[df["week"]==weekday]
+    df["incid"] = df["P"]/df['pop']*100000
+    df.drop(df.loc[df["cl_age90"] == 0].index,inplace=True)
+    sns.heatmap(df.pivot(granu,"cl_age90","incid"))
     plt.show()
 
 
-heatmap_age(granularity='region', num_reg=76, frequency='weekly', start='2020-S21', end='2020-S51')
-
-
-#def heatmapregage(df, granu, weekday):
-#    """
-#    Give the heatmap by age class and regions for incidence rate
-#
-#    Parameters
-#    ----------
-#    :param df:  A dataframe of positivity for a territory
-#
-#    :param granu: "reg " or "dep" (by departments it's difficult to read)
-#    :type granu: str
-#
-#
-#    :param weekday: a specific day
-#    :type weekday: str
-#
-#    Returns
-#    -------
-#    :return: A heatmap with two axis: one for age and one for day
-#
-#
-#    :Examples:
-#    >>> heatmapregage(Load_posquotreg().save_as_df(),"reg","2020-11-06")
-#
-#
-#    """
-#    if len(weekday)>8:
-#        df=df.loc[df["jour"]==weekday]
-#    else:
-#        df=df.loc[df["week"]==weekday]
-#    df["incid"]=df["P"]/df['pop']*100000
-#    df.drop(df.loc[df["cl_age90"]==0].index,inplace=True)
-#    sns.heatmap(df.pivot(granu,"cl_age90","incid"))
-#    plt.show()
-#
+#%%
 #def heatmapregday(df,age,debut,granu="reg",weekday="jour",fin=None):
 #    """
 #
