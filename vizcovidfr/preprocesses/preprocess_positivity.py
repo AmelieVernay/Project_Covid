@@ -1,6 +1,7 @@
 import pandas as pd
 
-DEPARTMENTS = { #match between number and territory
+# match between number and territory
+DEPARTMENTS = {
     '01': 'Ain',
     '02': 'Aisne',
     '03': 'Allier',
@@ -110,7 +111,7 @@ REGIONS = {
     'Bretagne': 53,
     'Centre-Val de Loire': 24,
     'Corse': 94,
-    'Grand Est':44 ,
+    'Grand Est': 44,
     'Guadeloupe': 1,
     'Guyane': 3,
     'Hauts-de-France': 32,
@@ -121,16 +122,16 @@ REGIONS = {
     'Nouvelle-Aquitaine': 75,
     'Occitanie': 76,
     'Pays de la Loire': 52,
-    'Provence-Alpes-Côte d\'Azur': 93,}
-DEPARTMENTS=dict(zip(DEPARTMENTS.values(),DEPARTMENTS.keys()))
-REGIONS=dict(REGIONS)
+    'Provence-Alpes-Côte d\'Azur': 93, }
+
+DEPARTMENTS = dict(zip(DEPARTMENTS.values(), DEPARTMENTS.keys()))
+REGIONS = dict(REGIONS)
 
 
-
-def ignoreage(df,weekday="jour"):
+def ignoreage(df, weekday="jour"):
     """
-
-    Extract the dataframe and ignore the age component by selecting the 0 age class
+    Extract the dataframe and ignore the age component by selecting
+    the 0 age class.
 
     Parameters
     ----------
@@ -141,20 +142,18 @@ def ignoreage(df,weekday="jour"):
 
     Returns
     -------
-    :return: A dataframe of incidence ignoring age 
-    :rtype: 'pandas.dataframe' 
+    :return: A dataframe of incidence ignoring age
+    :rtype: 'pandas.dataframe'
 
     :Examples:
     >>> ignoreage(Load_posquotreg().save_as_df(),"jour")
-
-
     """
-    df.index=df[weekday]
+    df.index = df[weekday]
     del df[weekday]
-    return df.loc[df['cl_age90']==0]
+    return df.loc[df['cl_age90'] == 0]
 
 
-def granupositivity(df,nom,granularite=None):
+def granupositivity(df, nom, granularite=None):
 
     """
 
@@ -172,27 +171,17 @@ def granupositivity(df,nom,granularite=None):
     Returns
     -------
     :return: A dataframe of incidence for a region
-    :rtype: 'pandas.dataframe' 
+    :rtype: 'pandas.dataframe'
     :Examples:
     >>> granupositivity(ignoreage(Load_poshebreg().save_as_df(),"week"),2,"reg")
-
-
     """
-
     if granularite is not None:
-        return df.loc[df[granularite]==nom,:]
-
-    if nom in  REGIONS.keys():
-
-        number=REGIONS[nom]
-
-        df= df.loc[df["reg"]==number,:]
+        return df.loc[df[granularite] == nom, :]
+    if nom in REGIONS.keys():
+        number = REGIONS[nom]
+        df = df.loc[df["reg"] == number, :]
         return df
     if nom in DEPARTMENTS.keys():
-        number=DEPARTMENTS[nom]
-        df= df.loc[df["dep"]==number,:]
-
+        number = DEPARTMENTS[nom]
+        df = df.loc[df["dep"] == number, :]
         return df
-
-
-
