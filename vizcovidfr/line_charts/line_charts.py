@@ -24,7 +24,7 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
                  font_color='white', bgcolor='darkslategrey',
                  template='plotly_dark'):
     '''
-    Make an interactive line chart of France vaccine storage, 
+    Make an interactive line chart of France vaccine storage,
     according to the vaccine type.
 
     Parameters
@@ -79,13 +79,13 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     :Notes:
 
     **Manipulation tips:**
-    
-    - click on a vaccine type label on the top right of 
+
+    - click on a vaccine type label on the top right of
         the graph to remove it from the chart.
-    - click on the camera icon on the very top 
-        right of the chart to save the image as 
+    - click on the camera icon on the very top
+        right of the chart to save the image as
         a png.
-    - click on the 'zoom in' icon to zoom in, or on 
+    - click on the 'zoom in' icon to zoom in, or on
         the icon 'zoom out' to zoom out, on the chart.
     - click on the 'autoscale' icon to let plotly autoscale
         the chart.
@@ -157,6 +157,7 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     print("Time to execute: {0:.5f} s.".format(end - start))
     # display line chart according to vaccine_type argument
     fig.show()
+
 
 def vacdoses(unit='doses', font_size=16,
              font_family="Franklin Gothic Medium",
@@ -243,10 +244,14 @@ def vacdoses(unit='doses', font_size=16,
     # display line chart according to unit argument
     fig.show()
 
-def keyseries(nom,chiffre,evo=True):
+##
+A = preprocess_chiffres_cles.gooddates(
+                                Load_chiffres_fr().save_as_df())
+A.head()
+##
 
+def keyseries(nom, chiffre, evo=True, average=True):
     """
-
     Extract the main time series about information concerning
     the evolution of the deases COVID-19 in France or a sub-part of France
 
@@ -278,114 +283,77 @@ def keyseries(nom,chiffre,evo=True):
     :param evo: New per day or cumulative
     :type evo: bool, optional, default=True
 
-
-
     Returns
     -------
-    :return: A time series until today since the beginning of the records of the figure of interest 
-    :rtype: 'pandas.Series' 
-
+    :return: A time series until today since the beginning of the records of
+        the figure of interest
+    :rtype: 'pandas.Series'
     :Examples:
     >>> keyseries("France","cas",evo=False)
-
-
     """
-
-    fr= nom=="France"
-
-    if chiffre in ["deces_à_l'hôpital","deceshop"]:
-
-        chiffre="total_deces_hopital"
-        fr=True #no big difference with only "deces"
-
+    fr = (nom == "France")
+    if chiffre in ["deces_à_l'hôpital", "deceshop"]:
+        chiffre = "total_deces_hopital"
+        fr = True  # no big difference with only "deces"
     if fr:
-
-
-        df_covid=preprocess_chiffres_cles.gooddates(Load_chiffres_fr().save_as_df())
-
-    if chiffre in ["cas","nombre_de_cas","cas_confirmes"]:
-
-        chiffre="cas_confirmes"
-
+        df_covid = preprocess_chiffres_cles.gooddates(
+                                        Load_chiffres_fr().save_as_df())
+    if chiffre in ["cas", "nombre_de_cas", "cas_confirmes"]:
+        chiffre = "cas_confirmes"
         if fr:
-
-            chiffre="total_cas_confirmes"
-
-    elif chiffre in ["hospitalisation","hôpital","hospitalises"]:
-
-        chiffre="hospitalises"
-
+            chiffre = "total_cas_confirmes"
+    elif chiffre in ["hospitalisation", "hôpital", "hospitalises"]:
+        chiffre = "hospitalises"
         if fr:
-
-            chiffre="patients_hospitalises"
-
+            chiffre = "patients_hospitalises"
     elif chiffre in ["deces_ehpad"]:
-
         if fr:
-
-            chiffre="total_deces_ehpad"
-
+            chiffre = "total_deces_ehpad"
     elif chiffre in ["morts"]:
-
-        chiffre="deces"
-
+        chiffre = "deces"
     elif chiffre in ["reanimation"]:
-
         if fr:
-
-            chiffre="patients_reanimation"
+            chiffre = "patients_reanimation"
 
     elif chiffre in ["cas_confirmes_ehpad"]:
-
         if fr:
-
-            chiffre="total_cas_confirmes_ephad"
-
+            chiffre = "total_cas_confirmes_ephad"
     elif chiffre in ["gueris"]:
-
         if fr:
-
-            chiffre="total_patients_gueris" #options with
+            chiffre = "total_patients_gueris"  # options with
             # different expressions for a same argument
-
     if fr:
-
         if evo:
-
-            return df_covid[chiffre].diff()
-
-        return df_covid[chiffre]
-
-    elif chiffre in ["cas_confirmes"]: #need specific datasets
-
+            fig = px.line(df_covid[chiffre].diff())
+        fig = px.line(df_covid[chiffre])
+    elif chiffre in ["cas_confirmes"]:  # need specific datasets
         if nom in REGIONS.keys():
-            df=preprocess_positivity.granupositivity(Load_posquotreg().save_as_df(),nom)
-
+            df = preprocess_positivity.granupositivity(Load_posquotreg().save_as_df(), nom)
         elif nom in DEPARTMENTS.keys():
-            df=preprocess_positivity.granupositivity(Load_posquotdep().save_as_df(),nom)
-
-
+            df = preprocess_positivity.granupositivity(Load_posquotdep().save_as_df(), nom)
         if evo:
-
-            return df['P']
-
+            fig = px.line(df['P'])
         else:
-
-            return df['P'].cumsum()
-
-
-
-
-
+            fig = px.line(df['P'].cumsum())
+    series = preprocess_chiffres_cles.gooddates(preprocess_chiffres_cles.keysubtablename(nom))[chiffre].dropna()
     if evo:
+        if average:
+            fig = px.line(series.diff().rolling(window=7).mean())
+        fig = px.line(series.diff())
+    else:
+        if average:
+            fig = px.line(series.rolling(window=7).mean())
+        fig = px.line(series)
+    fig.show()
 
-        return preprocess_chiffres_cles.keysubtablename(nom)[chiffre].dropna().diff()
+######################
 
-    return preprocess_chiffres_cles.keysubtablename(nom)[chiffre].dropna()
+######################
+
+keyseries(nom='France', chiffre="deces_à_l'hôpital", evo=True)
 
 
-def plotseries(series,average=True):
-
+def plotseries(series, average=True):
     """
     Allows you to plot a seaborn Series , on a seven-day moving average
     or not
@@ -393,13 +361,10 @@ def plotseries(series,average=True):
     Parameters
     ----------
     :param series: Any series
-    :type series: 'pandas.Series' 
+    :type series: 'pandas.Series'
 
     :param average: moving average on seven days
     :type average: bool, optional, default=True
-
-
-
 
     Returns
     -------
@@ -410,19 +375,16 @@ def plotseries(series,average=True):
     >>> plotseries(keyseries("France","cas",evo=True),average=True)
 
     """
-    sns.set(rc={'figure.figsize':(11, 4)})
-
+    sns.set(rc={'figure.figsize': (11, 4)})
     if average:
-
-        ax=series.rolling(window=7).mean().plot()
-
+        ax = series.rolling(window=7).mean().plot()
     else:
-
-        ax=series.plot()
+        ax = series.plot()
         plt.show()
     return ax
 
-def keyplot(nom,chiffre,evo=True,average=True):
+
+def keyplot(nom, chiffre, evo=True, average=True):
 
     """
 
@@ -435,10 +397,10 @@ def keyplot(nom,chiffre,evo=True,average=True):
     Parameters
     ----------
 
-    :param nom: A name in French of a department, or region , 
+    :param nom: A name in French of a department, or region ,
         or the whole territory
     :type nom: str
-    :param chiffre: The figure of interest in French suc as "deces" , "cas" 
+    :param chiffre: The figure of interest in French suc as "deces" , "cas"
 
         - 'cas_confirmes':
             number of confirmed cases
@@ -522,12 +484,12 @@ def keyplot(nom,chiffre,evo=True,average=True):
                  "+nom,ylabel="patients")
 
     elif chiffre in ["reanimation"] and not  evo:
-    
+
         ax.set(title="Number of patients in intensive\
          care because of Covid-19 in"+nom,ylabel="patients")
 
     elif chiffre in ["cas_confirmes_ehpad"] and evo:
-     
+
         ax.set(title="Daily cases of Covid-19 in\
          EHPADs"+nom,ylabel="cases")
 
