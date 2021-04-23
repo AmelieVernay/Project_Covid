@@ -100,48 +100,52 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     if (vaccine_type == 'Pfizer'):
         df = pfizer.copy()
         vac_type = 'Pfizer'
+        df.rename(columns={'nb_doses': 'Number of doses', 'date': 'Date'}, inplace=True)
         fig = px.line(df,
-                      x='date',
-                      y='nb_doses',
+                      x='Date',
+                      y='Number of doses',
                       color='type_de_vaccin',
                       labels={'type_de_vaccin': 'Vaccine type'},
                       color_discrete_map={'Pfizer': color_pal},
-                      title='Pfizer vaccine storage in France',
+                      title='Evolution of Pfizer vaccine storage in France',
                       template=template)
     elif (vaccine_type == 'Moderna'):
         df = mdn.copy()
         vac_type = 'Moderna'
+        df.rename(columns={'nb_doses': 'Number of doses', 'date': 'Date'}, inplace=True)
         fig = px.line(df,
-                      x='date',
-                      y='nb_doses',
+                      x='Date',
+                      y='Number of doses',
                       color='type_de_vaccin',
                       labels={'type_de_vaccin': 'Vaccine type'},
                       color_discrete_map={'Moderna': color_pal},
-                      title='Moderna vaccine storage in France',
+                      title='Evolution of Moderna vaccine storage in France',
                       template=template)
     elif (vaccine_type == 'AstraZeneca'):
         df = astra.copy()
         vac_type = 'AstraZeneca'
+        df.rename(columns={'nb_doses': 'Number of doses', 'date': 'Date'}, inplace=True)
         fig = px.line(df,
-                      x='date',
-                      y='nb_doses',
+                      x='Date',
+                      y='Number of doses',
                       color='type_de_vaccin',
                       labels={'type_de_vaccin': 'Vaccine type'},
                       color_discrete_map={'AstraZeneca': color_pal},
-                      title='AstraZeneca vaccine storage in France',
+                      title='Evolution of AstraZeneca vaccine storage in France',
                       template=template)
     elif (vaccine_type == 'All vaccines'):
         df = df_Vac_type.copy()
         vac_type = 'ALL'
+        df.rename(columns={'nb_doses': 'Number of doses', 'date': 'Date'}, inplace=True)
         fig = px.line(df,
-                      x='date',
-                      y='nb_doses',
+                      x='Date',
+                      y='Number of doses',
                       color='type_de_vaccin',
                       labels={'type_de_vaccin': 'Vaccine type'},
                       color_discrete_map={'Pfizer': color_pal,
                                           'Moderna': color_pal2,
                                           'AstraZeneca': color_pal3},
-                      title='Vaccine storage in France',
+                      title='Evolution of vaccine storage in France',
                       template=template)
     fig.update_traces(mode="markers + lines", hovertemplate=None)
     fig.update_layout(hovermode="x unified")
@@ -207,6 +211,19 @@ def vacdoses(unit='doses', font_size=16,
     :return: An interactive line chart representing the actual
         amount in storage of vaccine doses, according to the chosen unit.
     :rtype: plotly.graph_objects.Figure
+
+    :Notes:
+
+    **Manipulation tips:**
+
+    - click on the camera icon on the very top
+        right of the chart to save the image as
+        a png.
+    - click on the 'zoom in' icon to zoom in, or on
+        the icon 'zoom out' to zoom out, on the chart.
+    - click on the 'autoscale' icon to let plotly autoscale
+        the chart.
+
     '''
     start = time.time()
     df_Vac_type = load_datasets.Load_Vaccine_storage().save_as_df()
@@ -215,18 +232,20 @@ def vacdoses(unit='doses', font_size=16,
     doses = df.groupby(['date'])['nb_doses'].size().reset_index()
     ucd = df.groupby(['date'])['nb_ucd'].size().reset_index()
     doses['nb_doses'] = df['nb_doses']
+    doses.rename(columns={'nb_doses': 'Number of doses with basic unit', 'date': 'Date'}, inplace=True)
     ucd['nb_ucd'] = df['nb_ucd']
+    ucd.rename(columns={'nb_doses': 'Number of doses with ucd unit', 'date': 'Date'}, inplace=True)
     if (unit == 'doses'):
         df = doses.copy()
-        nbr = 'nb_doses'
+        nbr = 'Number of doses with basic unit'
         a = 'dose'
     else:
         df = ucd.copy()
-        nbr = 'nb_ucd'
+        nbr = 'Number of doses with ucd unit'
         a = 'cdu'
     fig = px.line(
                 df,
-                x='date',
+                x='Date',
                 y=nbr,
                 title=f"Evolution of vaccine {a} number in storage in France",
                 template=template)
