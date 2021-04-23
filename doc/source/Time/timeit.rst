@@ -38,4 +38,7 @@ regression.poly_fit           0.42157 s.
 regression.scatter_reg        0.35140 s.
 vacdoses                      0.76860 s.
 vactypedoses                  0.42227 s.
+predict_curve                 0.53564 s.
+bar_age                       0.16586 s.
+bar_reg                       0.18026 s.
 ============================  ==================

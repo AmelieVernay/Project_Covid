@@ -166,7 +166,7 @@ heatmap_age(start='2020-05-02', end='2020-05-27')
 
 #%%
 
-def heatmap_reg_age(granu, weekday):
+def heatmap_reg_age(weekday):
     """
     Give the heatmap by age class and regions for incidence rate
 
@@ -191,177 +191,80 @@ def heatmap_reg_age(granu, weekday):
 
 
     """
-    if ((granularity == 'France') & (frequency == 'weekly')):
-        df = load_datasets.Load_poshebfr().save_as_df()
-        freq = 'week'
-    if ((granularity == 'France') & (frequency == 'daily')):
-        df = load_datasets.Load_posquotfr().save_as_df()
-        freq = 'jour'
-    if ((granularity == 'region') & (frequency == 'daily')):
+    if  (len(weekday) > 8):
         df = load_datasets.Load_posquotreg().save_as_df()
-        freq = 'jour'
-    if ((granularity == 'region') & (frequency == 'weekly')):
+    if   (len(weekday) <= 8):
         df = load_datasets.Load_poshebreg().save_as_df()
-        freq = 'week'
-    
+      
     if len(weekday) > 8:
         df = df.loc[df["jour"]==weekday]
     else:
         df = df.loc[df["week"]==weekday]
     df["incid"] = df["P"]/df['pop']*100000
     df.drop(df.loc[df["cl_age90"] == 0].index,inplace=True)
-    sns.heatmap(df.pivot(granu,"cl_age90","incid"))
+    sns.heatmap(df.pivot("reg","cl_age90","incid"))
     plt.show()
 
-
+heatmap_reg_age("2020-11-12")
 #%%
-#def heatmapregday(df,age,debut,granu="reg",weekday="jour",fin=None):
-#    """
-#
-#    Give the heatmap by age class and regions for incidence rate
-#
-#    Parameters
-#    ----------
-#    :param df:  A dataframe of positivity for a territory
-#
-#    :param granu: "reg " or "dep" (by departments it's difficult to read)
-#    :type granu: str
-#
-#    :param debut: a month or a day ('2020-11')
-#    :type debut: str
-#
-#    :param fin: a day the end of the interval
-#    :type fin: str,optional,default=None
-#
-#
-#    :param weekday: frequency "jour" or "week"
-#    :type weekday: str,optional,default="jour"
-#    :param age: a age class
-#    :type age: int
-#
-#
-#    Returns
-#    -------
-#    :return: A heatmap with two axis: one for age and one for day
-#
-#
-#    :Examples:
-#    >>> heatmapregday(Load_posquotreg().save_as_df(),0,"2020-11")
-#
-#
-#    """
-#    df=df.loc[df["cl_age90"]==age]
-#    df['incid']=df['P']/df['pop']*100000
-#    if weekday =="jour":
-#
-#        df[weekday] = pd.to_datetime(df[weekday])
-#        df=df.set_index(weekday)
-#        if fin is None:
-#            df=df[debut][['incid',granu,'cl_age90']].reset_index()
-#        else:
-#
-#            df=df[debut:fin][['incid',granu,'cl_age90']].reset_index()
-#
-#        df[weekday] = pd.to_datetime(df['jour']).dt.date
-#    elif weekday =="week":
-#        a=[preprocess_heatmaps.W2020_2021(i) for i in range(preprocess_heatmaps.S2020_2021(debut),preprocess_heatmaps.S2020_2021(fin)+1)]
-#        df=df[df['week'].isin(a)]
-#    sns.heatmap(df.pivot(weekday,granu,"incid"))
-#    plt.show()
-#
-## def incregrea(debut,fin=None):
-#     """
-#
-#     Give the heatmap by age class and regions for incidence in intesive care
-#
-#     Parameters
-#     ----------
-#     :param debut: a month or a day ('2020-11')
-#     :type debut: str
-#
-#     :param fin: a day the end of the interval
-#     :type fin: str,optional,default=None
-#
-#
-#
-#
-#     Returns
-#     -------
-#     :return: A heatmap with two axis: one for age and one for regions
-#
-#
-#     :Examples:
-#     >>> incregrea("2020-11")
-#
-#     """
-#     df=Load_incregrea().save_as_df()
-#
-#     df["jour"] = pd.to_datetime(df["jour"])
-#     df= df.set_index('jour')
-#     if fin is None:
-#         df=df[debut].reset_index()
-#     else:
-#         df=df[debut:fin].reset_index()
-#     df["jour"] = pd.to_datetime(df['jour']).dt.date
-#
-#     sns.heatmap(df.pivot("jour","numReg","incid_rea"))
-#     plt.show()
-# #%%
-#
-# def hopage(chiffre,modes,debut):
-#     """
-#
-#     Give the heatmap that you chose between "reg-age","reg-jour",
-#     "age-jour"
-#
-#     Parameters
-#     ----------
-#     :param chiffre: to chose between "hosp","rea", "rad","dc"
-#     :type chiffre: str
-#
-#     :param debut: a month or a day
-#     :type debut: str
-#
-#     :param modes: to chose between "reg-age","reg-jour",
-#     "age-jour"
-#     :type modes: str
-#
-#
-#
-#
-#     Returns
-#     -------
-#     :return: the heatmap that you chose between "reg-age","reg-jour",
-#     "age-jour" for a certain period of time
-#
-#     :Examples:
-#     >>> incregrea("2020-11")
-#
-#     """
-#     dfhopage=Load_hopage().save_as_df()
-#     if modes=="reg-age":
-#         dfhopage=dfhopage.loc[dfhopage["jour"]==debut]
-#         dfhopage.drop(dfhopage.loc[dfhopage["cl_age90"]==0].index,inplace=True)
-#
-#         sns.heatmap(dfhopage.pivot("cl_age90","reg",chiffre))
-#
-#     if modes=="reg-jour":
-#         dfhopage["jour"] = pd.to_datetime(dfhopage["jour"])
-#         dfhopage= dfhopage.set_index('jour')
-#         dfhopage=dfhopage[debut].reset_index()
-#         dfhopage["jour"] = pd.to_datetime(dfhopage['jour']).dt.date
-#         dfhopage=dfhopage.loc[dfhopage["cl_age90"]==0]
-#
-#         sns.heatmap(dfhopage.pivot("jour","reg",chiffre))
-#
-#     if modes=="age-jour":
-#         dfhopage["jour"] = pd.to_datetime(dfhopage["jour"])
-#         dfhopage.drop(dfhopage.loc[dfhopage["cl_age90"]==0].index,inplace=True)
-#
-#         dfhopage= dfhopage.set_index('jour')
-#         dfhopage=dfhopage[debut].reset_index()
-#         dfhopage["jour"] = pd.to_datetime(dfhopage['jour']).dt.date
-#         dfhopage=dfhopage.groupby(["jour","cl_age90"]).sum().reset_index()
-#         sns.heatmap(dfhopage.pivot("cl_age90","jour",chiffre))
-#     plt.show()
-#
+def heatmapregday(age,debut,fin=None,weekday="jour"):
+    """
+
+    Give the heatmap by age class and regions for incidence rate
+
+    Parameters
+    ----------
+    :param df:  A dataframe of positivity for a territory
+
+    :param granu: "reg " or "dep" (by departments it's difficult to read)
+    :type granu: str
+
+    :param debut: a month or a day ('2020-11')
+    :type debut: str
+
+    :param fin: a day the end of the interval
+    :type fin: str,optional,default=None
+
+
+    :param weekday: frequency "jour" or "week"
+    :type weekday: str,optional,default="jour"
+    :param age: a age class
+    :type age: int
+
+
+    Returns
+    -------
+    :return: A heatmap with two axis: one for age and one for day
+
+
+    :Examples:
+    >>> heatmapregday(Load_posquotreg().save_as_df(),0,"2020-11")
+
+
+    """
+    if weekday=="jour":
+        df=load_datasets.Load_posquotreg().save_as_df()
+    if weekday=="week":
+        df=load_datasets.Load_poshebreg().save_as_df()
+
+    df=df.loc[df["cl_age90"]==age]
+    df['incid']=df['P']/df['pop']*100000
+    if weekday =="jour":
+
+        df[weekday] = pd.to_datetime(df[weekday])
+        df=df.set_index(weekday)
+        if fin is None:
+            df=df[debut][['incid',"reg",'cl_age90']].reset_index()
+        else:
+
+            df=df[debut:fin][['incid',"reg",'cl_age90']].reset_index()
+
+        df[weekday] = pd.to_datetime(df['jour']).dt.date
+    elif weekday =="week":
+        a=[preprocess_heatmaps.W2020_2021(i) for i in range(preprocess_heatmaps.S2020_2021(debut),preprocess_heatmaps.S2020_2021(fin)+1)]
+        df=df[df['week'].isin(a)]
+    sns.heatmap(df.pivot(weekday,"reg","incid"))
+    plt.show()
+
+heatmapregday(0,"2020-S36","2020-S52","week")
+# %%

@@ -60,20 +60,20 @@ def reg_depts_code_format(df):
     return df
 
 
-def keysubtablename(nom):
+def keysubtablename(name):
     '''
-    Extract the data frame that contains the infoormation for
+    Extract the data frame that contains the information for
     a certain granularity or territory
 
-    :param nom: A territory or a granularity
+    :param name: A territory or a granularity
     :return: 'chiffres-cles' for only a region or a specific granularity
     :rtype: Pandas dataframe
     '''
     df_covid = load_datasets.Load_chiffres_cles().save_as_df()
-    if nom in ["departements", "pays", "region"]:
-        dfsub = df_covid.loc[df_covid['granularite'] == nom]
+    if name in ["departements", "pays", "region"]:
+        dfsub = df_covid.loc[df_covid['granularite'] == name]
     else:
-        dfsub = df_covid.loc[df_covid['maille_nom'] == nom]
+        dfsub = df_covid.loc[df_covid['maille_nom'] == name]
     dfsub = dfsub[~dfsub.index.duplicated(keep='first')]  # have an
     # information once
     return dfsub
