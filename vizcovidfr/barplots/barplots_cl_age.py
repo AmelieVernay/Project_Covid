@@ -11,8 +11,6 @@ from vizcovidfr.loads import load_datasets
 from vizcovidfr.preprocesses import preprocess_classe_age as pca
 
 
-T = load_datasets.Load_classe_age().save_as_df()
-
 def bar_age(num_var, num_reg, save=False):
     """
     Display the bar plot of the given variable in the given region by age group today. Each variable and region have a special code that you can see in function parameters for details.
@@ -128,6 +126,8 @@ def bar_age(num_var, num_reg, save=False):
     """
     # Testing execution time
     start = time.time()
+    # Loading dataframe
+    T = load_datasets.Load_classe_age().save_as_df()
     # Dropping rows where cl_age90 = 0
     T2 = pca.drop0(T)
     # Come back home and deaths are cumulative numbers, so we preprocess them in another dataframe
@@ -167,7 +167,7 @@ def bar_age(num_var, num_reg, save=False):
             fig.write_image(f"bar_age_{dico_file[num_var]}_{dico_reg[num_reg]}.pdf")
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
-bar_age(1,94)
+
 
 def bar_reg(num_var, save=False):
     """
@@ -279,6 +279,8 @@ def bar_reg(num_var, save=False):
     """
     # Testing execution time
     start = time.time()
+    # Loading dataframe
+    T = load_datasets.Load_classe_age().save_as_df()
     # Drop rows where cl_age90 = 0
     T2 = pca.drop0(T)
     # Come back home and deaths are cumulative numbers, so we preprocess them in another dataframe
