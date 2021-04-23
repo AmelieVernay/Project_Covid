@@ -306,10 +306,10 @@ def keyseries(nom, chiffre, evo=True, average=True):
     elif chiffre in ["deces_ehpad"]:
         if fr:
             chiffre = "total_deces_ehpad"
-    elif chiffre in ["morts","deces","deces_à_l'hôpital"]:
+    elif chiffre in ["morts", "deces", "deces_à_l'hôpital"]:
         chiffre = "deces"
         if fr:
-            chiffre="total_deces_hopital"
+            chiffre = "total_deces_hopital"
     elif chiffre in ["reanimation"]:
         if fr:
             chiffre = "patients_reanimation"
@@ -324,30 +324,34 @@ def keyseries(nom, chiffre, evo=True, average=True):
     if fr:
         if evo:
             if average:
-                fig = px.line(df_covid[chiffre].diff().rolling(window=7).mean()) 
-                fig.show() 
+                fig = px.line(df_covid[chiffre].diff().rolling(window=7).mean())
+                fig.show()
                 return
-            fig=px.line(df_covid[chiffre].diff())
+            fig = px.line(df_covid[chiffre].diff())
             fig.show()
             return
         else:
             if average:
-                fig = px.line(df_covid[chiffre].rolling(window=7).mean()) 
-                fig.show() 
+                fig = px.line(df_covid[chiffre].rolling(window=7).mean())
+                fig.show()
                 return
-            fig=px.line(df_covid[chiffre])
+            fig = px.line(df_covid[chiffre])
             fig.show()
             return
 
     elif chiffre in ["cas_confirmes"]:  # need specific datasets
         if nom in REGIONS.keys():
-            df = preprocess_positivity.granupositivity(Load_posquotreg().save_as_df(), nom)
+            df = preprocess_positivity.granupositivity(
+                                        Load_posquotreg().save_as_df(), nom)
         elif nom in DEPARTMENTS.keys():
-            df = preprocess_positivity.granupositivity(Load_posquotdep().save_as_df(), nom)
+            df = preprocess_positivity.granupositivity(
+                                        Load_posquotdep().save_as_df(), nom)
         series = df['P']
 
     else:
-        series = preprocess_chiffres_cles.gooddates(preprocess_chiffres_cles.keysubtablename(nom))[chiffre].dropna()
+        series = preprocess_chiffres_cles.gooddates(
+                    preprocess_chiffres_cles.keysubtablename(
+                                                    nom))[chiffre].dropna()
     if evo:
         if average:
             fig = px.line(series.diff().rolling(window=7).mean())
@@ -370,12 +374,12 @@ def keyseries(nom, chiffre, evo=True, average=True):
         return
     fig.show()
 
-#######################
-#
-#######################
-preprocess_chiffres_cles.gooddates(Load_chiffres_fr().save_as_df())
-keyseries(nom='Hérault', chiffre="hospitalises", evo=False)
-#
+
+# preprocess_chiffres_cles.gooddates(Load_chiffres_fr().save_as_df())
+keyseries(nom='France', chiffre="hospitalisation", evo=True)
+
+
+# Not useful anymore but we keep track of it
 #def plotseries(series, average=True):
 #    """
 #    Allows you to plot a seaborn Series , on a seven-day moving average
