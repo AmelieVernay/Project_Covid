@@ -335,7 +335,8 @@ def predict_value(num_var, num_reg, date = 'date'):
         res = 'The cumulative number of ' + dico_var[dico_col[num_var]] + " in " + dico_reg[num_reg] + " on " + date + f' will be {round(pred)}.' 
     else:
         res = 'The number of ' + dico_var[dico_col[num_var]] + " in " + dico_reg[num_reg] + " on " + date + f' will be {round(pred)}.'
-    return res
-    end = time.time()
+        end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
+    return res
+
 
