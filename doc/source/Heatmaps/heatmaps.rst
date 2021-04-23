@@ -1,27 +1,17 @@
 Functions to generate heatmaps
-==================================
+===============================
 
-heatmapageday
--------------
+heatmap_age
+-----------
 
-.. autofunction:: vizcovidfr.heatmaps.heatmap.heatmapageday
+.. autofunction:: vizcovidfr.heatmaps.heatmap.heatmap_age
 
-heatmapregage
--------------
+heatmap_reg_age
+---------------
 
-.. autofunction:: vizcovidfr.heatmaps.heatmap.heatmapregage
+.. autofunction:: vizcovidfr.heatmaps.heatmap.heatmap_reg_age
 
-heatmapregday
--------------
+heatmap_reg_day
+---------------
 
-.. autofunction:: vizcovidfr.heatmaps.heatmap.heatmapregday
-
-incregrea
--------------
-
-.. autofunction:: vizcovidfr.heatmaps.heatmap.incregrea
-
-hopage
--------------
-
-.. autofunction:: vizcovidfr.heatmaps.heatmap.hopage
+.. autofunction:: vizcovidfr.heatmaps.heatmap.heatmap_reg_day

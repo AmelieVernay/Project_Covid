@@ -43,6 +43,9 @@ predict_curve                 0.53564 s.
 bar_age                       0.16586 s.
 bar_reg                       0.18026 s.
 keytimeseries                 0.56544 s.
+heatmap_age                   0.79060 s.
+heatmap_reg_age               0.94263 s.
+heatmap_reg_day               0.86056 s. 503k
 ============================  ==================
 
 .. [1] A numerical footnote.

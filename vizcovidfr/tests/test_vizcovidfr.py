@@ -12,11 +12,6 @@ from vizcovidfr.pie_charts import pie_chart
 from vizcovidfr.prediction import prediction
 from vizcovidfr.heatmaps import heatmap
 
-#from vizcovidfr.preprocesses.preprocess_positivity import ignoreage
-#from vizcovidfr.preprocesses.preprocess_positivity import granupositivity
-#from vizcovidfr.loads.load_datasets import Load_posquotreg
-#from vizcovidfr.loads.load_datasets import Load_incquotreg
-
 
 # ---------- maps ----------
 def test_viz2Dmap():
@@ -239,9 +234,30 @@ def test_predict_value():
 # --------------heatmaps--------------
 def test_heatmap_age():
     """
-    Test heatmapregage by running the function.
+    Test heatmap_age by running the function.
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
     result = (type(heatmap.heatmap_age(start='2021-03')) != int)
+    assert result
+
+
+def test_heatmap_reg_age():
+    """
+    Test heatmap_reg_age by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type(heatmap.heatmap_reg_age("2020-S35")) != int)
+    assert result
+
+
+def test_heatmap_reg_day():
+    """
+    Test heatmap_reg_day by running the function.
+    If something fails while running it, result won't be defined,
+    and an AssertionError will raise.
+    """
+    result = (type(heatmap.heatmap_reg_day(0, '2020-11-11',
+                                           '2020-11-30', 'daily')) != int)
     assert result

@@ -165,6 +165,3 @@ def piechart(criterion='reanimation', date='2021-04-20',
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
     fig.show()
-
-
-piechart(criterion='vaccination')
