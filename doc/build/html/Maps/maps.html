@@ -14,6 +14,8 @@
 
   
   
+    <link rel="shortcut icon" href="../_static/images/favicon.ico"/>
+  
   
   
 
@@ -38,6 +40,8 @@
   <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
   <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/faculty.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Roboto:400,700|Roboto+Mono:400,700&display=swap" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="vactypedoses" href="../Line_Charts/line_charts.html" />
@@ -54,22 +58,23 @@
         <div class="wy-side-nav-search" >
           
 
-          
-            <a href="../index.html" class="icon icon-home"> vizcovidfr
-          
+  
+    <a class="heading heading-extra-margin" href="../index.html">
+      <div class="logo-box logo-box-large">
+        <img class="logo" src="../_static/light_transfer_map.png"/>
+      </div>
+      
+        <span class="icon icon-home"> vizcovidfr</span>
+      
+    </a>
+  
 
-          
-            
-            <img src="../_static/light_transfer_map.png" class="logo" alt="Logo"/>
-          
-          </a>
+  
+    
+    
+  
 
-          
-            
-            
-          
-
-          
+  
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -78,7 +83,7 @@
   </form>
 </div>
 
-          
+
         </div>
 
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
@@ -172,6 +177,10 @@
 
 
       <div class="wy-nav-content">
+
+  
+
+  
         
         <div class="rst-content">
         
@@ -195,10 +204,10 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../index.html">Docs</a> &raquo;</li>
-        
-      <li>viz2Dmap</li>
+  <li class="breadcrumb"><a href="../index.html">vizcovidfr</a> &raquo;</li>
     
+  <li class="breadcrumb">viz2Dmap</li>
+
     
       <li class="wy-breadcrumbs-aside">
         
@@ -220,7 +229,7 @@
 <h1>viz2Dmap<a class="headerlink" href="#viz2dmap" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.maps.maps.viz2Dmap">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz2Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2021-04-23'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'YlGnBu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'~/Desktop/vizcovidfr_files/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid2Dmap'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz2Dmap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz2Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2021-04-24'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'YlGnBu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'~/Desktop/vizcovidfr_files/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid2Dmap'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz2Dmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make interactive choropleth map to visualize different aspects of the
 Covid-19 pandemic in France. The map is saved on an html file at a given
 path on a given name, see function parameters for details.</p>
@@ -588,6 +597,8 @@ the chosen argument.</p>
 </footer>
 
         </div>
+
+
       </div>
 
     </section>
