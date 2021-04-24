@@ -14,7 +14,7 @@
 # import sys
 import sphinx_rtd_theme
 # sys.path.insert(0, os.path.abspath('.'))
-
+master_doc = 'index'
 
 # -- Project information -----------------------------------------------------
 
@@ -83,4 +83,3 @@ sphinx_gallery_conf = {
 	'capture_repr': ('_repr_html_', '__repr__'),
 	'image_scrapers': image_scrapers,
 }
-
