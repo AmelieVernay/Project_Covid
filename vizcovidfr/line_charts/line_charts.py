@@ -79,15 +79,10 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
 
     **Manipulation tips:**
 
-    - click on a vaccine type label on the top right of
-        the graph to remove it from the chart.
-    - click on the camera icon on the very top
-        right of the chart to save the image as
-        a png.
-    - click on the 'zoom in' icon to zoom in, or on
-        the icon 'zoom out' to zoom out, on the chart.
-    - click on the 'autoscale' icon to let plotly autoscale
-        the chart.
+    - click on a vaccine type label on the top right of the graph to remove it from the chart.
+    - click on the camera icon on the very top right of the chart to save the image as a png.
+    - click on the 'zoom in' icon to zoom in, or on the icon 'zoom out' to zoom out, on the chart.
+    - click on the 'autoscale' icon to let plotly autoscale the chart.
     '''
     start = time.time()
     df_Vac_type = load_datasets.Load_Vaccine_storage().save_as_df()
@@ -215,13 +210,11 @@ def vacdoses(unit='doses', font_size=16,
 
     **Manipulation tips:**
 
-    - click on the camera icon on the very top
-        right of the chart to save the image as
-        a png.
-    - click on the 'zoom in' icon to zoom in, or on
-        the icon 'zoom out' to zoom out, on the chart.
-    - click on the 'autoscale' icon to let plotly autoscale
-        the chart.
+    - click on the camera icon on the very top right of the chart to save the image as a png.
+
+    - click on the 'zoom in' icon to zoom in, or on the icon 'zoom out' to zoom out, on the chart.
+
+    - click on the 'autoscale' icon to let plotly autoscale the chart.
 
     '''
     start = time.time()
@@ -288,6 +281,7 @@ def keytimeseries(place='France', criterion='hospitalisation',
             number of hospitalized people
         - 'gueris':
             number of cured people
+
     :type criterion: str, optional, default='hospitalisation'
 
     :param evo:
@@ -310,6 +304,7 @@ def keytimeseries(place='France', criterion='hospitalisation',
 
     >>> keytimeseries(place='France', criterion='cas_confirmes',
     ...               evo=True, average=False)
+
     """
     start = time.time()
     fr = (place == "France")
@@ -393,7 +388,7 @@ def keytimeseries(place='France', criterion='hospitalisation',
         if place in REGIONS.keys():
             df = preprocess_positivity.ignoreage(
                             preprocess_positivity.granupositivity(
-                                        Load_posquotreg().save_as_df(), place))
+                                        Load_posquotreg().save_as_df(), place)).cumsum()
             series = df['P']
         elif place in DEPARTMENTS.keys():
             df = preprocess_positivity.granupositivity(

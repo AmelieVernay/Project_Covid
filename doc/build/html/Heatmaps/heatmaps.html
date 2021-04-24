@@ -1,0 +1,453 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>heatmap_age &mdash; vizcovidfr 0.0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/images/favicon.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-rendered-html.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/faculty.css" type="text/css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Roboto:400,700|Roboto+Mono:400,700&display=swap" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="scatter_reg" href="../Regression/regression.html" />
+    <link rel="prev" title="bar_age" href="../Barplots/barplots.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+  
+    <a class="heading heading-extra-margin" href="../index.html">
+      <div class="logo-box logo-box-large">
+        <img class="logo" src="../_static/light_transfer_map.png"/>
+      </div>
+      
+        <span class="icon icon-home"> vizcovidfr</span>
+      
+    </a>
+  
+
+  
+    
+    
+  
+
+  
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Getting_Started/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Getting_Started/install.html">Installation guide</a></li>
+</ul>
+<p><span class="caption-text">Maps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">viz2Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#viz3dmap">viz3Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#transfer-map">transfer_map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#vacmap">vacmap</a></li>
+</ul>
+<p><span class="caption-text">Line charts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">vactypedoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#vacdoses">vacdoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#keytimeseries">keytimeseries</a></li>
+</ul>
+<p><span class="caption-text">Pie chart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Pie_charts/pie_charts.html">piechart</a></li>
+</ul>
+<p><span class="caption-text">Barplots</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">bar_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#bar-reg">bar_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#comparemf">compareMF</a></li>
+</ul>
+<p><span class="caption-text">Heatmaps</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">heatmap_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#heatmap-reg-age">heatmap_reg_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#heatmap-reg-day">heatmap_reg_day</a></li>
+</ul>
+<p><span class="caption-text">Regression</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">scatter_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html#poly-fit">poly_fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html#r2">R2</a></li>
+</ul>
+<p><span class="caption-text">Prediction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">predict_curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html#predict-value">predict_value</a></li>
+</ul>
+<p><span class="caption-text">Sparse</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html">sparse_graph</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html#sparse-matrix">sparse_matrix</a></li>
+</ul>
+<p><span class="caption-text">Example gallery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../auto_examples/index.html">Welcome to vizcovidfr’s gallery!</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../staticexamples/vizvaccine.html">What about vaccines?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../staticexamples/transfer.html">3D maps</a></li>
+</ul>
+<p><span class="caption-text">Time efficiency</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Time/timeit.html">Time efficiency</a></li>
+</ul>
+<p><span class="caption-text">Sources and references</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sources_ref/sources.html">Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sources_ref/refs.html">References</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">vizcovidfr</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+
+  
+
+  
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+  <li class="breadcrumb"><a href="../index.html">vizcovidfr</a> &raquo;</li>
+    
+  <li class="breadcrumb">heatmap_age</li>
+
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Heatmaps/heatmaps.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="heatmap-age">
+<h1>heatmap_age<a class="headerlink" href="#heatmap-age" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="vizcovidfr.heatmaps.heatmap.heatmap_age">
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.heatmaps.heatmap.</span></code><code class="sig-name descname"><span class="pre">heatmap_age</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'France'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'daily'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.heatmaps.heatmap.heatmap_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a heatmap by age class and the given frequency for incidence rate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>str</em>) – <dl class="simple">
+<dt>if frequency=’daily’:</dt><dd><p>if end=None, must be a year and a month on the format ‘YYYY-MM’
+else, must be a day on the format ‘YYYY-MM-DD’</p>
+</dd>
+<dt>if frequency=’weekly’:</dt><dd><p>must be the week of a year on the format ‘YYYY-SWW’,
+and end is <strong>not</strong> optional and must be of the same format</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>end</strong> (<em>NoneType</em><em> or </em><em>str</em><em>, </em><em>optional only if frequency='daily' and if
+start is of the format 'YYYY-MM'</em>) – date when the heatmap stops.
+Only if start is on format ‘YYYY-MM-DD’ or ‘YYYY-SWW’.
+Must be on format ‘YYYY-MM-DD’ or ‘YYYY-SWW’, same than start.
+Must be a date later than start.</p></li>
+<li><p><strong>granularity</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='France'</em>) – the granularity we want the heatmap to be based on.
+Should be either ‘region’ or ‘France’.</p></li>
+<li><p><strong>num_reg</strong> (<em>int</em><em>, </em><em>optional</em><em> (</em><em>useful only if granularity='region'</em><em>)</em><em>,
+</em><em>default=Guadeloupe</em>) – code of the region you want to display.
+Codes are the official INSAA code region and are given in the
+dictionary below.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Region dictionary :</p>
+<blockquote>
+<div><p>1 : Guadeloupe</p>
+<p>2 : Martinique</p>
+<p>3 : Guyane</p>
+<p>4 : La Reunion</p>
+<p>6 : Mayotte</p>
+<p>11 : Île-de-France</p>
+<p>24 : Centre-Val de Loire</p>
+<p>27 : Bourgogne-Franche-Comte</p>
+<p>28 : Normandie</p>
+<p>32 : Hauts-de-France</p>
+<p>44 : Grand Est</p>
+<p>52 : Pays de la Loire</p>
+<p>53 : Bretagne</p>
+<p>75 : Nouvelle-Aquitaine</p>
+<p>76 : Occitanie</p>
+<p>84 : Auvergne-Rhône-Alpes</p>
+<p>93 : Provence-Alpes Côte d’Azur</p>
+<p>94 : Corse</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>frequency</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='daily'</em>) – the time frequency to show on the heatmap
+should be ‘weekly’ or ‘daily’</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A heatmap with two axis: one for age and one for day</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>seaborn heatmap</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p><strong>Heatmap for the month of March 2021 in France</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">heatmap_age</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2021-03&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Heatmap between 2021-03-12 and 2021-04-10 in France</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">heatmap_age</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2021-03-12&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2021-04-10&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Heatmap between week 3 and week 10 of the year 2021 in France</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">heatmap_age</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2021-S03&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;2021-S10&#39;</span><span class="p">,</span> <span class="n">frequency</span><span class="o">=</span><span class="s1">&#39;weekly&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Heatmap for the month of March 2021 in Martinique</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">heatmap_age</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="s1">&#39;2021-03&#39;</span><span class="p">,</span> <span class="n">granularity</span><span class="o">=</span><span class="s1">&#39;region&#39;</span><span class="p">,</span> <span class="n">num_reg</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="heatmap-reg-age">
+<h1>heatmap_reg_age<a class="headerlink" href="#heatmap-reg-age" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="vizcovidfr.heatmaps.heatmap.heatmap_reg_age">
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.heatmaps.heatmap.</span></code><code class="sig-name descname"><span class="pre">heatmap_reg_age</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.heatmaps.heatmap.heatmap_reg_age" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make the heatmap for one given date between regions and age ranges
+for incidence rate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>date</strong> (<em>str</em>) – a day on the format ‘YYYY-MM-DD’ or a week on the format ‘YYYY-SWW’</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A heatmap with two axis: one for age range and one for region</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>seaborn heatmap</p>
+</dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">heatmap_reg_age</span><span class="p">(</span><span class="s2">&quot;2020-S35&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="heatmap-reg-day">
+<h1>heatmap_reg_day<a class="headerlink" href="#heatmap-reg-day" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="vizcovidfr.heatmaps.heatmap.heatmap_reg_day">
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.heatmaps.heatmap.</span></code><code class="sig-name descname"><span class="pre">heatmap_reg_day</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jour'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.heatmaps.heatmap.heatmap_reg_day" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make the heatmap for one given age range between regions and date interval
+for incidence rate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>str</em>) – <dl class="simple">
+<dt>if frequency=’daily’:</dt><dd><p>if end=None, must be a year and a month on the format ‘YYYY-MM’
+else, must be a day on the format ‘YYYY-MM-DD’</p>
+</dd>
+<dt>if frequency=’weekly’:</dt><dd><p>must be the week of a year on the format ‘YYYY-SWW’,
+and end is <strong>not</strong> optional and must be of the same format</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>end</strong> (<em>NoneType</em><em> or </em><em>str</em><em>, </em><em>optional only if frequency='daily' and if
+start is of the format 'YYYY-MM'</em>) – date when the heatmap stops.
+Only if start is on format ‘YYYY-MM-DD’ or ‘YYYY-SWW’.
+Must be on format ‘YYYY-MM-DD’ or ‘YYYY-SWW’, same than start.
+Must be a date later than start.</p></li>
+<li><p><strong>age</strong> (<em>int</em>) – integer in the following list:
+0: all ages
+9: from 0 to 9 years old
+19: from 10 to 19 years old
+29: from 20 to 29 years old
+39: from 30 to 39 years old
+49: from 40 to 49 years old
+59: from 50 to 59 years old
+69: from 60 to 69 years old
+79: from 70 to 79 years old
+89: 80 or older</p></li>
+<li><p><strong>frequency</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='daily'</em>) – the time frequency to show on the heatmap
+should be ‘weekly’ or ‘daily’</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A heatmap with two axis: one for time and one for regions</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>seaborn heatmap</p>
+</dd>
+<dt class="field-odd">Examples</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p><strong>Heatmap between week 36 and week 52 of the year 2020 for all ages</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">heatmap_reg_day</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;2020-S36&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-S52&quot;</span><span class="p">,</span> <span class="s2">&quot;week&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Regression/regression.html" class="btn btn-neutral float-right" title="scatter_reg" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../Barplots/barplots.html" class="btn btn-neutral float-left" title="bar_age" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2021, Foux Quentin ; Llinares Laurent ; Nicolas Alexandre ; Vernay Amelie
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

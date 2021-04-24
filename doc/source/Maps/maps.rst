@@ -1,6 +1,3 @@
-Functions to generate maps
-==========================
-
 viz2Dmap
 ---------
 

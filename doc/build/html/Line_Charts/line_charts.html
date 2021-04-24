@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Functions to generate line charts &mdash; vizcovidfr 0.0.1 documentation</title>
+  <title>vactypedoses &mdash; vizcovidfr 0.0.1 documentation</title>
   
 
   
@@ -44,8 +44,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Roboto:400,700|Roboto+Mono:400,700&display=swap" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Functions to generate scatter plot and polynomial regression" href="../Regression/regression.html" />
-    <link rel="prev" title="sparse_graph" href="../Sparse/sparse.html" /> 
+    <link rel="next" title="piechart" href="../Pie_charts/pie_charts.html" />
+    <link rel="prev" title="viz2Dmap" href="../Maps/maps.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -100,32 +100,48 @@
 </ul>
 <p><span class="caption-text">Maps</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">Functions to generate maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">viz2Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#viz3dmap">viz3Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#transfer-map">transfer_map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#vacmap">vacmap</a></li>
+</ul>
+<p><span class="caption-text">Line charts</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">vactypedoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#vacdoses">vacdoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#keytimeseries">keytimeseries</a></li>
+</ul>
+<p><span class="caption-text">Pie chart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Pie_charts/pie_charts.html">piechart</a></li>
+</ul>
+<p><span class="caption-text">Barplots</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">bar_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#bar-reg">bar_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#comparemf">compareMF</a></li>
+</ul>
+<p><span class="caption-text">Heatmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html">heatmap_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html#heatmap-reg-age">heatmap_reg_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html#heatmap-reg-day">heatmap_reg_day</a></li>
+</ul>
+<p><span class="caption-text">Regression</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">scatter_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html#poly-fit">poly_fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html#r2">R2</a></li>
+</ul>
+<p><span class="caption-text">Prediction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">predict_curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html#predict-value">predict_value</a></li>
 </ul>
 <p><span class="caption-text">Sparse</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html">sparse_graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html#sparse-matrix">sparse_matrix</a></li>
-</ul>
-<p><span class="caption-text">Line charts</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions to generate line charts</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#vactypedoses">vactypedoses</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#vacdoses">vacdoses</a></li>
-</ul>
-</li>
-</ul>
-<p><span class="caption-text">Regression</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions to generate scatter plot and polynomial regression</a></li>
-</ul>
-<p><span class="caption-text">Barplots</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Functions to generate bar plots</a></li>
-</ul>
-<p><span class="caption-text">Prediction</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">Functions for prediction</a></li>
 </ul>
 <p><span class="caption-text">Example gallery</span></p>
 <ul>
@@ -190,7 +206,7 @@
     
   <li class="breadcrumb"><a href="../index.html">vizcovidfr</a> &raquo;</li>
     
-  <li class="breadcrumb">Functions to generate line charts</li>
+  <li class="breadcrumb">vactypedoses</li>
 
     
       <li class="wy-breadcrumbs-aside">
@@ -209,14 +225,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="functions-to-generate-line-charts">
-<h1>Functions to generate line charts<a class="headerlink" href="#functions-to-generate-line-charts" title="Permalink to this headline">¶</a></h1>
-<section id="vactypedoses">
-<h2>vactypedoses<a class="headerlink" href="#vactypedoses" title="Permalink to this headline">¶</a></h2>
+  <section id="vactypedoses">
+<h1>vactypedoses<a class="headerlink" href="#vactypedoses" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.line_charts.line_charts.vactypedoses">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.line_charts.line_charts.</span></code><code class="sig-name descname"><span class="pre">vactypedoses</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vaccine_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'All</span> <span class="pre">vaccines'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'darkblue'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'crimson'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'darkgreen'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_family</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Franklin</span> <span class="pre">Gothic</span> <span class="pre">Medium'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'white'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bgcolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'darkslategrey'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'plotly_dark'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.line_charts.line_charts.vactypedoses" title="Permalink to this definition">¶</a></dt>
-<dd><p>Make an interactive line chart of France vaccine storage, 
+<dd><p>Make an interactive line chart of France vaccine storage,
 according to the vaccine type.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -268,33 +282,16 @@ dose number of the chosen vaccine type (in storage).</p>
 </dl>
 <p><strong>Manipulation tips:</strong></p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>click on a vaccine type label on the top right of </dt><dd><p>the graph to remove it from the chart.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>click on the camera icon on the very top </dt><dd><p>right of the chart to save the image as 
-a png.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>click on the ‘zoom in’ icon to zoom in, or on </dt><dd><p>the icon ‘zoom out’ to zoom out, on the chart.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>click on the ‘autoscale’ icon to let plotly autoscale</dt><dd><p>the chart.</p>
-</dd>
-</dl>
-</li>
+<li><p>click on a vaccine type label on the top right of the graph to remove it from the chart.</p></li>
+<li><p>click on the camera icon on the very top right of the chart to save the image as a png.</p></li>
+<li><p>click on the ‘zoom in’ icon to zoom in, or on the icon ‘zoom out’ to zoom out, on the chart.</p></li>
+<li><p>click on the ‘autoscale’ icon to let plotly autoscale the chart.</p></li>
 </ul>
 </dd></dl>
 
 </section>
 <section id="vacdoses">
-<h2>vacdoses<a class="headerlink" href="#vacdoses" title="Permalink to this headline">¶</a></h2>
+<h1>vacdoses<a class="headerlink" href="#vacdoses" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.line_charts.line_charts.vacdoses">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.line_charts.line_charts.</span></code><code class="sig-name descname"><span class="pre">vacdoses</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'doses'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_family</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Franklin</span> <span class="pre">Gothic</span> <span class="pre">Medium'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'white'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bgcolor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'darkslategrey'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'plotly_dark'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.line_charts.line_charts.vacdoses" title="Permalink to this definition">¶</a></dt>
@@ -347,10 +344,88 @@ amount in storage of vaccine doses, according to the chosen unit.</p>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>plotly.graph_objects.Figure</p>
 </dd>
+<dt class="field-odd">Notes</dt>
+<dd class="field-odd"><p></p></dd>
 </dl>
+<p><strong>Manipulation tips:</strong></p>
+<ul class="simple">
+<li><p>click on the camera icon on the very top right of the chart to save the image as a png.</p></li>
+<li><p>click on the ‘zoom in’ icon to zoom in, or on the icon ‘zoom out’ to zoom out, on the chart.</p></li>
+<li><p>click on the ‘autoscale’ icon to let plotly autoscale the chart.</p></li>
+</ul>
 </dd></dl>
 
 </section>
+<section id="keytimeseries">
+<h1>keytimeseries<a class="headerlink" href="#keytimeseries" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="vizcovidfr.line_charts.line_charts.keytimeseries">
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.line_charts.line_charts.</span></code><code class="sig-name descname"><span class="pre">keytimeseries</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">place</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'France'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalisation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">average</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.line_charts.line_charts.keytimeseries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a time series about information concerning
+the evolution of the COVID-19 in France or a sub-part of France.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>place</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='France'</em>) – ‘France’ for the whole territory or the (french)
+name of a region,
+for reference,
+see <a class="reference external" href="https://www.regions-et-departements.fr/regions-francaises">https://www.regions-et-departements.fr/regions-francaises</a></p></li>
+<li><p><strong>criterion</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='hospitalisation'</em>) – <p>The figure of interest in French suc as “deces” , “cas”</p>
+<ul>
+<li><dl class="simple">
+<dt>’cas_confirmes’:</dt><dd><p>number of confirmed cases</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’deces’:</dt><dd><p>cumulated number of deaths</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’reanimation’:</dt><dd><p>number of people in intensive care</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’hospitalisation’:</dt><dd><p>number of hospitalized people</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’gueris’:</dt><dd><p>number of cured people</p>
+</dd>
+</dl>
+</li>
+</ul>
+</p></li>
+<li><p><strong>evo</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=True</em>) – if True: new per day
+if False: cumulative</p></li>
+<li><p><strong>average</strong> – if True: evolution on a 7 day moving average</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A time series until today since the beginning of the records of
+the figure of interest</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>plotly.graph_objects.Figure</p>
+</dd>
+<dt class="field-odd">Examples</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">keytimeseries</span><span class="p">(</span><span class="n">place</span><span class="o">=</span><span class="s1">&#39;Occitanie&#39;</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;gueris&#39;</span><span class="p">,</span>
+<span class="gp">... </span>              <span class="n">evo</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">keytimeseries</span><span class="p">(</span><span class="n">place</span><span class="o">=</span><span class="s1">&#39;France&#39;</span><span class="p">,</span> <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;cas_confirmes&#39;</span><span class="p">,</span>
+<span class="gp">... </span>              <span class="n">evo</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
 </section>
 
 
@@ -361,10 +436,10 @@ amount in storage of vaccine doses, according to the chosen unit.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Regression/regression.html" class="btn btn-neutral float-right" title="Functions to generate scatter plot and polynomial regression" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../Pie_charts/pie_charts.html" class="btn btn-neutral float-right" title="piechart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../Sparse/sparse.html" class="btn btn-neutral float-left" title="sparse_graph" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../Maps/maps.html" class="btn btn-neutral float-left" title="viz2Dmap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

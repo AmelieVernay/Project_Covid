@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Functions to generate scatter plot and polynomial regression &mdash; vizcovidfr 0.0.1 documentation</title>
+  <title>scatter_reg &mdash; vizcovidfr 0.0.1 documentation</title>
   
 
   
@@ -44,8 +44,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Roboto:400,700|Roboto+Mono:400,700&display=swap" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Functions to generate bar plots" href="../Barplots/barplots.html" />
-    <link rel="prev" title="Functions to generate line charts" href="../Line_Charts/line_charts.html" /> 
+    <link rel="next" title="predict_curve" href="../Prediction/prediction.html" />
+    <link rel="prev" title="heatmap_age" href="../Heatmaps/heatmaps.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -100,33 +100,48 @@
 </ul>
 <p><span class="caption-text">Maps</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">Functions to generate maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">viz2Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#viz3dmap">viz3Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#transfer-map">transfer_map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#vacmap">vacmap</a></li>
+</ul>
+<p><span class="caption-text">Line charts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">vactypedoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#vacdoses">vacdoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#keytimeseries">keytimeseries</a></li>
+</ul>
+<p><span class="caption-text">Pie chart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Pie_charts/pie_charts.html">piechart</a></li>
+</ul>
+<p><span class="caption-text">Barplots</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">bar_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#bar-reg">bar_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#comparemf">compareMF</a></li>
+</ul>
+<p><span class="caption-text">Heatmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html">heatmap_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html#heatmap-reg-age">heatmap_reg_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html#heatmap-reg-day">heatmap_reg_day</a></li>
+</ul>
+<p><span class="caption-text">Regression</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">scatter_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#poly-fit">poly_fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#r2">R2</a></li>
+</ul>
+<p><span class="caption-text">Prediction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">predict_curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html#predict-value">predict_value</a></li>
 </ul>
 <p><span class="caption-text">Sparse</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html">sparse_graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html#sparse-matrix">sparse_matrix</a></li>
-</ul>
-<p><span class="caption-text">Line charts</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">Functions to generate line charts</a></li>
-</ul>
-<p><span class="caption-text">Regression</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions to generate scatter plot and polynomial regression</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#scatter-reg">scatter_reg</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#poly-fit">poly_fit</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#r2">R2</a></li>
-</ul>
-</li>
-</ul>
-<p><span class="caption-text">Barplots</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Functions to generate bar plots</a></li>
-</ul>
-<p><span class="caption-text">Prediction</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">Functions for prediction</a></li>
 </ul>
 <p><span class="caption-text">Example gallery</span></p>
 <ul>
@@ -191,7 +206,7 @@
     
   <li class="breadcrumb"><a href="../index.html">vizcovidfr</a> &raquo;</li>
     
-  <li class="breadcrumb">Functions to generate scatter plot and polynomial regression</li>
+  <li class="breadcrumb">scatter_reg</li>
 
     
       <li class="wy-breadcrumbs-aside">
@@ -210,10 +225,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="functions-to-generate-scatter-plot-and-polynomial-regression">
-<h1>Functions to generate scatter plot and polynomial regression<a class="headerlink" href="#functions-to-generate-scatter-plot-and-polynomial-regression" title="Permalink to this headline">¶</a></h1>
-<section id="scatter-reg">
-<h2>scatter_reg<a class="headerlink" href="#scatter-reg" title="Permalink to this headline">¶</a></h2>
+  <section id="scatter-reg">
+<h1>scatter_reg<a class="headerlink" href="#scatter-reg" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.regression.regression.scatter_reg">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.regression.regression.</span></code><code class="sig-name descname"><span class="pre">scatter_reg</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.regression.regression.scatter_reg" title="Permalink to this definition">¶</a></dt>
@@ -223,15 +236,17 @@ see in function parameters for details.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>num_var</strong> (<em>int</em>) – code of the variable you want to display. 
-Codes are in the following dictionnary.</p></li>
-<li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display. 
-Codes are the official INSAA code region and are given in the dictionnary below.</p></li>
-<li><p><strong>save</strong> (<em>bool</em><em>, </em><em>optionnal</em><em>, </em><em>default = False</em>) – True if you want to save the graph in pdf file, False otherwise.</p></li>
+<li><p><strong>num_var</strong> (<em>int</em>) – code of the variable you want to display.
+Codes are in the following dictionary.</p></li>
+<li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display.
+Codes are the official INSAA code region and are given in the
+dictionary below.</p></li>
+<li><p><strong>save</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default = False</em>) – True if you want to save the graph in pdf file,
+False otherwise.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Variable dictionnary :</p>
+<p>Variable dictionary :</p>
 <blockquote>
 <div><p>1 : Hospitalization</p>
 <p>2 : Reanimation</p>
@@ -248,7 +263,7 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Reanimation :</dt><dd><p>number of people currently in intensive care or intensive care.</p>
+<dt>Reanimation :</dt><dd><p>number of people currently in intensive care.</p>
 </dd>
 </dl>
 </li>
@@ -258,7 +273,8 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </dl>
 </li>
 <li><dl class="simple">
-<dt>SSR and USLD :</dt><dd><p>number of people currently in Aftercare and Rehabilitation (SSR in french) or Long-Term Care Units (USLD in french).</p>
+<dt>SSR and USLD :</dt><dd><p>number of people currently in Aftercare and Rehabilitation
+(SSR in french) or Long-Term Care Units (USLD in french).</p>
 </dd>
 </dl>
 </li>
@@ -278,7 +294,7 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </dl>
 </li>
 </ul>
-<p>Region dictionnary :</p>
+<p>Region dictionary :</p>
 <blockquote>
 <div><p>1 : Guadeloupe</p>
 <p>2 : Martinique</p>
@@ -288,7 +304,7 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 <p>11 : Île-de-France</p>
 <p>24 : Centre-Val de Loire</p>
 <p>27 : Bourgogne-Franche-Comte</p>
-<p>28 : Normmandie</p>
+<p>28 : Normandie</p>
 <p>32 : Hauts-de-France</p>
 <p>44 : Grand Est</p>
 <p>52 : Pays de la Loire</p>
@@ -301,17 +317,24 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>Scatter plot of one of the Covid variable in a specific region of France.</p>
+<dd class="field-odd"><p>Scatter plot of one of the Covid variable in a specific
+region of France.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>Figure</p>
 </dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
 </dl>
+<p><strong>Scatter plot of hospitalization in Île-de-France</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scatter_reg</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span> 
+</pre></div>
+</div>
 </dd></dl>
 
 </section>
 <section id="poly-fit">
-<h2>poly_fit<a class="headerlink" href="#poly-fit" title="Permalink to this headline">¶</a></h2>
+<h1>poly_fit<a class="headerlink" href="#poly-fit" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.regression.regression.poly_fit">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.regression.regression.</span></code><code class="sig-name descname"><span class="pre">poly_fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.regression.regression.poly_fit" title="Permalink to this definition">¶</a></dt>
@@ -323,15 +346,17 @@ and is displayed as well.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>num_var</strong> (<em>int</em>) – code of the variable you want to display. 
-Codes are in the following dictionnary.</p></li>
-<li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display. 
-Codes are the official INSAA code region and are given in the dictionnary below.</p></li>
-<li><p><strong>save</strong> (<em>bool</em><em>, </em><em>optionnal</em><em>, </em><em>default = False</em>) – True if you want to save the graph in pdf file, False otherwise.</p></li>
+<li><p><strong>num_var</strong> (<em>int</em>) – code of the variable you want to display.
+Codes are in the following dictionary.</p></li>
+<li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display.
+Codes are the official INSAA code region and are given in the
+dictionary below.</p></li>
+<li><p><strong>save</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default=False</em>) – True if you want to save the graph in pdf file,
+False otherwise.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Variable dictionnary :</p>
+<p>Variable dictionary :</p>
 <blockquote>
 <div><p>1 : Hospitalization</p>
 <p>2 : Reanimation</p>
@@ -348,7 +373,7 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Reanimation :</dt><dd><p>number of people currently in intensive care or intensive care.</p>
+<dt>Reanimation :</dt><dd><p>number of people currently in intensive care.</p>
 </dd>
 </dl>
 </li>
@@ -358,7 +383,8 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </dl>
 </li>
 <li><dl class="simple">
-<dt>SSR and USLD :</dt><dd><p>number of people currently in Aftercare and Rehabilitation (SSR in french) or Long-Term Care Units (USLD in french).</p>
+<dt>SSR and USLD :</dt><dd><p>number of people currently in Aftercare and Rehabilitation
+(SSR in french) or Long-Term Care Units (USLD in french).</p>
 </dd>
 </dl>
 </li>
@@ -378,7 +404,7 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </dl>
 </li>
 </ul>
-<p>Region dictionnary :</p>
+<p>Region dictionary :</p>
 <blockquote>
 <div><p>1 : Guadeloupe</p>
 <p>2 : Martinique</p>
@@ -388,7 +414,7 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 <p>11 : Île-de-France</p>
 <p>24 : Centre-Val de Loire</p>
 <p>27 : Bourgogne-Franche-Comte</p>
-<p>28 : Normmandie</p>
+<p>28 : Normandie</p>
 <p>32 : Hauts-de-France</p>
 <p>44 : Grand Est</p>
 <p>52 : Pays de la Loire</p>
@@ -406,12 +432,22 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>Figure</p>
 </dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
 </dl>
+<p><strong>Polynomial regression of hospitalization in Île-de-France</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">poly_fit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p><strong>Polynomial regression of hospitalization in Provence</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">poly_fit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">93</span><span class="p">)</span> 
+</pre></div>
+</div>
 </dd></dl>
 
 </section>
 <section id="r2">
-<h2>R2<a class="headerlink" href="#r2" title="Permalink to this headline">¶</a></h2>
+<h1>R2<a class="headerlink" href="#r2" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.regression.regression.R2">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.regression.regression.</span></code><code class="sig-name descname"><span class="pre">R2</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.regression.regression.R2" title="Permalink to this definition">¶</a></dt>
@@ -419,14 +455,15 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>num_var</strong> (<em>int</em>) – code of the variable you want to display. 
-Codes are in the following dictionnary.</p></li>
-<li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display. 
-Codes are the official INSAA code region and are given in the dictionnary below.</p></li>
+<li><p><strong>num_var</strong> (<em>int</em>) – code of the variable you want to display.
+Codes are in the following dictionary.</p></li>
+<li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display.
+Codes are the official INSAA code region and are given in the
+dictionary below.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Variable dictionnary :</p>
+<p>Variable dictionary :</p>
 <blockquote>
 <div><p>1 : Hospitalization</p>
 <p>2 : Reanimation</p>
@@ -443,7 +480,7 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Reanimation :</dt><dd><p>number of people currently in intensive care or intensive care.</p>
+<dt>Reanimation :</dt><dd><p>number of people currently in intensive care.</p>
 </dd>
 </dl>
 </li>
@@ -453,7 +490,8 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </dl>
 </li>
 <li><dl class="simple">
-<dt>SSR and USLD :</dt><dd><p>number of people currently in Aftercare and Rehabilitation (SSR in french) or Long-Term Care Units (USLD in french).</p>
+<dt>SSR and USLD :</dt><dd><p>number of people currently in Aftercare and Rehabilitation
+(SSR in french) or Long-Term Care Units (USLD in french).</p>
 </dd>
 </dl>
 </li>
@@ -473,7 +511,7 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </dl>
 </li>
 </ul>
-<p>Region dictionnary :</p>
+<p>Region dictionary :</p>
 <blockquote>
 <div><p>1 : Guadeloupe</p>
 <p>2 : Martinique</p>
@@ -483,7 +521,7 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 <p>11 : Île-de-France</p>
 <p>24 : Centre-Val de Loire</p>
 <p>27 : Bourgogne-Franche-Comte</p>
-<p>28 : Normmandie</p>
+<p>28 : Normandie</p>
 <p>32 : Hauts-de-France</p>
 <p>44 : Grand Est</p>
 <p>52 : Pays de la Loire</p>
@@ -496,15 +534,21 @@ Codes are the official INSAA code region and are given in the dictionnary below.
 </div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>R2 of the polynomial regression of one of the Covid variable in a specific region of France.</p>
+<dd class="field-odd"><p>R2 of the polynomial regression of one of the Covid variable in
+a specific region of France.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>float</p>
 </dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
 </dl>
+<p><strong>R2 of polynomial regression of hospitalization in Île-de-France</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">R2</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span> 
+</pre></div>
+</div>
 </dd></dl>
 
-</section>
 </section>
 
 
@@ -515,10 +559,10 @@ Codes are the official INSAA code region and are given in the dictionnary below.
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Barplots/barplots.html" class="btn btn-neutral float-right" title="Functions to generate bar plots" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../Prediction/prediction.html" class="btn btn-neutral float-right" title="predict_curve" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../Line_Charts/line_charts.html" class="btn btn-neutral float-left" title="Functions to generate line charts" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../Heatmaps/heatmaps.html" class="btn btn-neutral float-left" title="heatmap_age" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

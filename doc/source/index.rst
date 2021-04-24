@@ -28,21 +28,15 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
 
 .. toctree::
    :maxdepth: 2
-   :caption: Sparse
-
-   Sparse/sparse
-
-.. toctree::
-   :maxdepth: 2
    :caption: Line charts
 
    Line_Charts/line_charts
 
 .. toctree::
    :maxdepth: 2
-   :caption: Regression
+   :caption: Pie chart
 
-   Regression/regression
+   Pie_charts/pie_charts
 
 .. toctree::
    :maxdepth: 2
@@ -52,15 +46,30 @@ A python package to visualize spatial evolution of the Covid-19 pandemic in Fran
 
 .. toctree::
    :maxdepth: 2
+   :caption: Heatmaps
+
+   Heatmaps/heatmaps
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Regression
+
+   Regression/regression
+
+
+.. toctree::
+   :maxdepth: 2
    :caption: Prediction
 
    Prediction/prediction
 
+
 .. toctree::
    :maxdepth: 2
-   :caption: Heatmaps
+   :caption: Sparse
 
-   Heatmaps/heatmaps
+   Sparse/sparse
+
 
 .. toctree::
    :maxdepth: 2
