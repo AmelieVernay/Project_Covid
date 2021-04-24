@@ -436,4 +436,3 @@ def keytimeseries(place='France', criterion='hospitalisation', evo=True, average
         print("Time to execute: {0:.5f} s.".format(end - start))
         return
 
-keytimeseries("Occitanie","cas_ehpad")
