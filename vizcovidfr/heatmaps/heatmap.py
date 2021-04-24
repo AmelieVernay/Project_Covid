@@ -199,7 +199,7 @@ def heatmap_reg_age(date):
     plt.show()
 
 
-def heatmap_reg_day(age, start, end=None, frequency="jour"):
+def heatmap_reg_day(age, start, end=None, frequency='daily'):
     """
     Make the heatmap for one given age range between regions and date interval
     for incidence rate.
@@ -222,16 +222,27 @@ def heatmap_reg_day(age, start, end=None, frequency="jour"):
         start is of the format 'YYYY-MM'
 
     :param age: integer in the following list:
+
         0: all ages
+
         9: from 0 to 9 years old
+
         19: from 10 to 19 years old
+
         29: from 20 to 29 years old
+
         39: from 30 to 39 years old
+
         49: from 40 to 49 years old
+
         59: from 50 to 59 years old
+
         69: from 60 to 69 years old
+
         79: from 70 to 79 years old
+
         89: 80 or older
+
     :type age: int
 
     :param frequency: the time frequency to show on the heatmap
@@ -246,9 +257,13 @@ def heatmap_reg_day(age, start, end=None, frequency="jour"):
 
     :Examples:
 
+    **Heatmap for incidence rate between march 2021 and today for 80 years old or older people**
+
+    >>> heatmap_reg_day(89, start='2021-03')
+
     **Heatmap between week 36 and week 52 of the year 2020 for all ages**
 
-    >>> heatmap_reg_day(0, "2020-S36", "2020-S52", "week")
+    >>> heatmap_reg_day(0, '2020-S36', '2020-S52', 'weekly')
 
     """
     starting = time.time()
@@ -269,7 +284,7 @@ def heatmap_reg_day(age, start, end=None, frequency="jour"):
             df = df[start:end][['incid', 'reg', 'cl_age90']].reset_index()
         df[freq] = pd.to_datetime(df['jour']).dt.date
     elif frequency == "weekly":
-        a = [preprocess_heatmaps.W2020_2021(i) for i in range(preprocess_heatmaps.S2020_2021(start),preprocess_heatmaps.S2020_2021(end)+1)]
+        a = [preprocess_heatmaps.W2020_2021(i) for i in range(preprocess_heatmaps.S2020_2021(start), preprocess_heatmaps.S2020_2021(end)+1)]
         df = df[df['week'].isin(a)]
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - starting))
