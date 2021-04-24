@@ -345,7 +345,7 @@ for incidence rate.</p>
 <h1>heatmap_reg_day<a class="headerlink" href="#heatmap-reg-day" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.heatmaps.heatmap.heatmap_reg_day">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.heatmaps.heatmap.</span></code><code class="sig-name descname"><span class="pre">heatmap_reg_day</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'jour'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.heatmaps.heatmap.heatmap_reg_day" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.heatmaps.heatmap.</span></code><code class="sig-name descname"><span class="pre">heatmap_reg_day</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'daily'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.heatmaps.heatmap.heatmap_reg_day" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make the heatmap for one given age range between regions and date interval
 for incidence rate.</p>
 <dl class="field-list simple">
@@ -365,17 +365,18 @@ start is of the format 'YYYY-MM'</em>) – date when the heatmap stops.
 Only if start is on format ‘YYYY-MM-DD’ or ‘YYYY-SWW’.
 Must be on format ‘YYYY-MM-DD’ or ‘YYYY-SWW’, same than start.
 Must be a date later than start.</p></li>
-<li><p><strong>age</strong> (<em>int</em>) – integer in the following list:
-0: all ages
-9: from 0 to 9 years old
-19: from 10 to 19 years old
-29: from 20 to 29 years old
-39: from 30 to 39 years old
-49: from 40 to 49 years old
-59: from 50 to 59 years old
-69: from 60 to 69 years old
-79: from 70 to 79 years old
-89: 80 or older</p></li>
+<li><p><strong>age</strong> (<em>int</em>) – <p>integer in the following list:</p>
+<p>0: all ages</p>
+<p>9: from 0 to 9 years old</p>
+<p>19: from 10 to 19 years old</p>
+<p>29: from 20 to 29 years old</p>
+<p>39: from 30 to 39 years old</p>
+<p>49: from 40 to 49 years old</p>
+<p>59: from 50 to 59 years old</p>
+<p>69: from 60 to 69 years old</p>
+<p>79: from 70 to 79 years old</p>
+<p>89: 80 or older</p>
+</p></li>
 <li><p><strong>frequency</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='daily'</em>) – the time frequency to show on the heatmap
 should be ‘weekly’ or ‘daily’</p></li>
 </ul>
@@ -391,8 +392,12 @@ should be ‘weekly’ or ‘daily’</p></li>
 <dt class="field-odd">Examples</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
+<p><strong>Heatmap for incidence rate between march 2021 and today for 80 years old or older people</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">heatmap_reg_day</span><span class="p">(</span><span class="mi">89</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="s1">&#39;2021-03&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
 <p><strong>Heatmap between week 36 and week 52 of the year 2020 for all ages</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">heatmap_reg_day</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;2020-S36&quot;</span><span class="p">,</span> <span class="s2">&quot;2020-S52&quot;</span><span class="p">,</span> <span class="s2">&quot;week&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">heatmap_reg_day</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;2020-S36&#39;</span><span class="p">,</span> <span class="s1">&#39;2020-S52&#39;</span><span class="p">,</span> <span class="s1">&#39;weekly&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
