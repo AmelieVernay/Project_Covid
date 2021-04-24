@@ -69,13 +69,11 @@ def piechart(criterion='reanimation', date='2021-04-20',
 
     :Examples:
 
-    **Pie chart of first dose vaccination rate until today
-        per region**
+    **Pie chart of first dose vaccination rate until today per region**
 
     >>> piechart(criterion='vaccination', num_dose='1')
 
-    **Pie chart of hospitalization rate per region
-        on the 2021-04-20**
+    **Pie chart of hospitalization rate per region on the 2021-04-20**
 
     >>> piechart(criterion='hospitalises', date='2021-04-20')
 
