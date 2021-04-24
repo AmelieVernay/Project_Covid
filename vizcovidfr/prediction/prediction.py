@@ -336,9 +336,9 @@ def predict_value(num_var, num_reg, date = 'date'):
     # Predicted value
     pred = np.polyval(coefs, num_date+1)[0]
     if num_var == 6 or num_var == 7:
-        res = 'The cumulative number of ' + dico_var[dico_col[num_var]] + " in " + dico_reg[num_reg] + " on " + date + f' will be {round(pred)}.' 
+        res = 'According to the model, the cumulative number of ' + dico_var[dico_col[num_var]] + " in " + dico_reg[num_reg] + " on " + date + f' sould be {round(pred)}.' 
     else:
-        res = 'The number of ' + dico_var[dico_col[num_var]] + " in " + dico_reg[num_reg] + " on " + date + f' will be {round(pred)}.'
+        res = 'According to the model, the number of ' + dico_var[dico_col[num_var]] + " in " + dico_reg[num_reg] + " on " + date + f' sould be {round(pred)}.'
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
     return res
