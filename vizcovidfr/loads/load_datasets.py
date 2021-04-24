@@ -73,7 +73,7 @@ class Load_Vaccine_storage:
         return df
 
 # ---------- covid-19-france-vaccinations-age-dep ----------
-url_vac = "https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/download/?format=csv&disjunctive.variable_label=true&refine.date=2021&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B"
+url_vac = 'https://public.opendatasoft.com/explore/dataset/covid-19-france-vaccinations-age-sexe-dep/download/?format=csv&disjunctive.variable_label=true&refine.variable=Par+tranche+d%E2%80%99%C3%A2ge&refine.date=2021&timezone=Europe/Berlin&lang=fr&use_labels_for_header=true&csv_separator=%3B'
 path_target_vac = os.path.join(
                     path_target, "./covid-19-france-vaccinations-age-dep.csv")
 
