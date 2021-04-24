@@ -1,3 +1,4 @@
+# ---------- requirements ----------
 from download import download
 import pandas as pd
 import os
@@ -32,7 +33,6 @@ class Load_chiffres_cles:
         df_covid = pd.read_csv(path_target_cc, converters=converters)
         return df_covid
 
-
 # ---------- transfer ----------
 url_tr = "https://www.data.gouv.fr/fr/datasets/r/70cf1fd0-60b3-4584-b261-63fb2281359e"
 path_target_tr = os.path.join(path_target, "transfer.csv")
@@ -52,9 +52,7 @@ class Load_transfer:
         df_tr = pd.read_csv(path_target_tr)
         return df_tr
 
-
 # ---------- stocks-es-national ----------
-#url_sen = "https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-stocks-des-doses-de-vaccins-contre-la-covid-19/#_"
 url_sen = "https://www.data.gouv.fr/fr/datasets/r/519e2699-27d2-47c0-840b-81dbb30d4318"
 path_target_sen = os.path.join(path_target, "./stocks-es-national.csv")
 
@@ -91,7 +89,6 @@ class Load_vaccination:
         df = pd.read_csv(path_target_vac,sep=";")
         return df
 
-
 # ---------- chiffres-fr ----------
 url_cfr = "https://www.data.gouv.fr/fr/datasets/r/d3a98a30-893f-47f7-96c5-2f4bcaaa0d71"
 path_target_cfr = os.path.join(path_target, "./chiffres-fr.csv")
@@ -109,7 +106,6 @@ class Load_chiffres_fr:
     def save_as_df():
         df_covid = pd.read_csv(path_target_cfr)
         return df_covid
-
 
 # ---------- posquotreg ----------
 url_posreg = "https://www.data.gouv.fr/fr/datasets/r/001aca18-df6a-45c8-89e6-f82d689e6c01"
@@ -129,29 +125,9 @@ class Load_posquotreg:
         df = pd.read_csv(path_target_posreg, sep=";")
         return df
 
-
-# ---------- posquotdep ----------
-url_posdep = "https://www.data.gouv.fr/fr/datasets/r/406c6a23-e283-4300-9484-54e78c8ae675"
-path_target_posdep = os.path.join(path_target, "./posquotdep.csv")
-
-
-class Load_posquotdep:
-    """
-    Download and save 'posquotdep.csv',
-    a dataset containing positivity information by departments
-    """
-    def __init__(self, url=url_posdep, target_name=path_target_posdep):
-        download(url, target_name, replace=True)
-
-    @staticmethod
-    def save_as_df():
-        df = pd.read_csv(path_target_posdep, sep=";")
-        return df
-
 # ---------- posquotfr ----------
 url_posfr = "https://www.data.gouv.fr/fr/datasets/r/dd0de5d9-b5a5-4503-930a-7b08dc0adc7c"
 path_target_posfr = os.path.join(path_target, "./posquotfr.csv")
-
 
 
 class Load_posquotfr:
@@ -167,25 +143,6 @@ class Load_posquotfr:
         df = pd.read_csv(path_target_posfr, sep=";")
         return df
     
-   
-# ---------- poshebdep ----------
-url_poshebdep = "https://www.data.gouv.fr/fr/datasets/r/dd3ac13c-e87f-4b33-8897-07baff4e1783"
-path_target_poshebdep = os.path.join(path_target, "./poshebdep.csv")
-
-
-class Load_poshebdep:
-    """
-    Download and save 'poshebdep.csv',
-    a dataset containing positivity informations by departments weekly
-    """
-    def __init__(self, url=url_poshebdep, target_name=path_target_poshebdep):
-        download(url, target_name, replace=True)
-
-    @staticmethod
-    def save_as_df():
-        df = pd.read_csv(path_target_poshebdep, sep=";")
-        return df
-
 # ---------- poshebreg ----------
 url_poshebreg = "https://www.data.gouv.fr/fr/datasets/r/1ff7af5f-88d6-44bd-b8b6-16308b046afc"
 path_target_poshebreg = os.path.join(path_target, "./poshebreg.csv")
@@ -220,24 +177,6 @@ class Load_poshebfr:
     @staticmethod
     def save_as_df():
         df = pd.read_csv(path_target_poshebfr, sep=";")
-        return df
-
-# ---------- incquotdep ----------
-url_incdep = "https://www.data.gouv.fr/fr/datasets/r/19a91d64-3cd3-42fc-9943-d635491a4d76"
-path_target_incdep = os.path.join(path_target, "./incquotdep.csv")
-
-
-class Load_incquotdep:
-    """
-    Download and save 'incquotdep.csv',
-    a dataset containing incidence informations by departments 
-    """
-    def __init__(self, url=url_incdep, target_name=path_target_incdep):
-        download(url, target_name, replace=True)
-
-    @staticmethod
-    def save_as_df():
-        df = pd.read_csv(path_target_incdep, sep=";")
         return df
 
 # ---------- incquotreg ----------
@@ -276,24 +215,6 @@ class Load_incquotfr:
         df = pd.read_csv(path_target_incfr, sep=";")
         return df
 
-# ---------- inchebdep ----------
-url_incdepheb = "https://www.data.gouv.fr/fr/datasets/r/bb2a18f3-bdd5-4101-8687-945d6e4e435f"
-path_target_incdepheb = os.path.join(path_target, "./inchebdep.csv")
-
-
-class Load_inchebdep:
-    """
-    Download and save 'inchebdep.csv',
-    a dataset containing incidence information by departments weekly
-    """
-    def __init__(self, url=url_incdepheb, target_name=path_target_incdepheb):
-        download(url, target_name, replace=True)
-
-    @staticmethod
-    def save_as_df():
-        df = pd.read_csv(path_target_incdepheb, sep=";")
-        return df
-
 # ---------- inchebreg ----------
 url_incregheb = "https://www.data.gouv.fr/fr/datasets/r/66b09e9a-41b5-4ed6-b03c-9aef93a4b559"
 path_target_incregheb = os.path.join(path_target, "./inchebreg.csv")
@@ -330,78 +251,7 @@ class Load_inchebfr:
         df = pd.read_csv(path_target_incfrheb, sep=";")
         return df
 
-# ---------- incregrea ----------
-url_incregrea = "https://www.data.gouv.fr/fr/datasets/r/a1466f7f-4ece-4158-a373-f5d4db167eb0"
-path_target_incregrea = os.path.join(path_target, "./incregrea.csv")
-
-
-class Load_incregrea:
-    """
-    Download and save 'incregrea.csv',
-    a dataset containing  information about intensive care incidence
-    """
-    def __init__(self, url=url_incregrea, target_name=path_target_incregrea):
-        download(url, target_name, replace=True)
-
-    @staticmethod
-    def save_as_df():
-        df = pd.read_csv(path_target_incregrea, sep=";",encoding="latin-1")
-        return df
-
-# ---------- hopdep ----------
-url_hopdep ="https://www.data.gouv.fr/fr/datasets/r/6fadff46-9efd-4c53-942a-54aca783c30c"
-path_target_hopdep = os.path.join(path_target, "./hopdep.csv")
-
-
-class Load_hopdep:
-    """
-    Download and save 'hopdep.csv',
-    a dataset containing  information about hospitals by departments
-    """
-    def __init__(self, url=url_hopdep, target_name=path_target_hopdep):
-        download(url, target_name, replace=True)
-
-    @staticmethod
-    def save_as_df():
-        df = pd.read_csv(path_target_hopdep, sep=";",encoding="latin-1")
-        return df
-
-# ---------- hopage ----------
-url_hopage ="https://www.data.gouv.fr/fr/datasets/r/08c18e08-6780-452d-9b8c-ae244ad529b3"
-path_target_hopage = os.path.join(path_target, "./hopage.csv")
-
-
-class Load_hopage:
-    """
-    Download and save 'hopage.csv',
-    a dataset containing information about hospital by age
-    """
-    def __init__(self, url=url_hopage, target_name=path_target_hopage):
-        download(url, target_name, replace=True)
-
-    @staticmethod
-    def save_as_df():
-        df = pd.read_csv(path_target_hopage, sep=";",encoding="latin-1")
-        return df
-
-# ---------- hopage ----------
-url_hopsex ="https://www.data.gouv.fr/fr/datasets/r/63352e38-d353-4b54-bfd1-f1b3ee1cabd7"
-path_target_hopsex = os.path.join(path_target, "./hopsex.csv")
-
-
-class Load_hopsex:
-    """
-    Download and save 'hopsex.csv',
-    a dataset containing information about hospital by sex
-    """
-    def __init__(self, url=url_hopsex, target_name=path_target_hopsex):
-        download(url, target_name, replace=True)
-
-    @staticmethod
-    def save_as_df():
-        df = pd.read_csv(path_target_hopsex, sep=";",encoding="latin-1")
-        return df
-
+# ---------- classe age ----------
 url_classe_age = "https://www.data.gouv.fr/fr/datasets/r/08c18e08-6780-452d-9b8c-ae244ad529b3"
 path_target6 = os.path.join(
                 os.path.dirname(
