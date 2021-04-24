@@ -125,26 +125,6 @@ class Load_posquotreg:
         df = pd.read_csv(path_target_posreg, sep=";")
         return df
 
-
-# ---------- posquotdep ----------
-url_posdep = "https://www.data.gouv.fr/fr/datasets/r/406c6a23-e283-4300-9484-54e78c8ae675"
-path_target_posdep = os.path.join(path_target, "./posquotdep.csv")
-
-
-class Load_posquotdep:
-    """
-    Download and save 'posquotdep.csv',
-    a dataset containing positivity information by departments
-    """
-    def __init__(self, url=url_posdep, target_name=path_target_posdep):
-        download(url, target_name, replace=True)
-
-    @staticmethod
-    def save_as_df():
-        df = pd.read_csv(path_target_posdep, sep=";")
-        return df
-
-
 # ---------- posquotfr ----------
 url_posfr = "https://www.data.gouv.fr/fr/datasets/r/dd0de5d9-b5a5-4503-930a-7b08dc0adc7c"
 path_target_posfr = os.path.join(path_target, "./posquotfr.csv")
@@ -162,7 +142,7 @@ class Load_posquotfr:
     def save_as_df():
         df = pd.read_csv(path_target_posfr, sep=";")
         return df
-
+    
 # ---------- poshebreg ----------
 url_poshebreg = "https://www.data.gouv.fr/fr/datasets/r/1ff7af5f-88d6-44bd-b8b6-16308b046afc"
 path_target_poshebreg = os.path.join(path_target, "./poshebreg.csv")
@@ -207,7 +187,7 @@ path_target_increg = os.path.join(path_target, "./incquotreg.csv")
 class Load_incquotreg:
     """
     Download and save 'incquotreg.csv',
-    a dataset containing incidence information by regions
+    a dataset containing incidence information by regions 
     """
     def __init__(self, url=url_increg, target_name=path_target_increg):
         download(url, target_name, replace=True)
@@ -271,13 +251,12 @@ class Load_inchebfr:
         df = pd.read_csv(path_target_incfrheb, sep=";")
         return df
 
-# ---------- classe_age ----------
+# ---------- classe age ----------
 url_classe_age = "https://www.data.gouv.fr/fr/datasets/r/08c18e08-6780-452d-9b8c-ae244ad529b3"
 path_target6 = os.path.join(
                 os.path.dirname(
                     os.path.realpath(__file__)),
                 "..", "data", "./classe_age.csv")
-
 
 class Load_classe_age:
     def __init__(self, url=url_classe_age, target_name=path_target6):
