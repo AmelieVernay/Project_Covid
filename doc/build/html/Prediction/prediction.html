@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Functions for prediction &mdash; vizcovidfr 0.0.1 documentation</title>
+  <title>predict_curve &mdash; vizcovidfr 0.0.1 documentation</title>
   
 
   
@@ -44,8 +44,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Roboto:400,700|Roboto+Mono:400,700&display=swap" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Welcome to vizcovidfr’s gallery!" href="../auto_examples/index.html" />
-    <link rel="prev" title="Functions to generate bar plots" href="../Barplots/barplots.html" /> 
+    <link rel="next" title="sparse_graph" href="../Sparse/sparse.html" />
+    <link rel="prev" title="scatter_reg" href="../Regression/regression.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -100,32 +100,48 @@
 </ul>
 <p><span class="caption-text">Maps</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">Functions to generate maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">viz2Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#viz3dmap">viz3Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#transfer-map">transfer_map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#vacmap">vacmap</a></li>
+</ul>
+<p><span class="caption-text">Line charts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">vactypedoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#vacdoses">vacdoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#keytimeseries">keytimeseries</a></li>
+</ul>
+<p><span class="caption-text">Pie chart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Pie_charts/pie_charts.html">piechart</a></li>
+</ul>
+<p><span class="caption-text">Barplots</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">bar_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#bar-reg">bar_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#comparemf">compareMF</a></li>
+</ul>
+<p><span class="caption-text">Heatmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html">heatmap_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html#heatmap-reg-age">heatmap_reg_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html#heatmap-reg-day">heatmap_reg_day</a></li>
+</ul>
+<p><span class="caption-text">Regression</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">scatter_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html#poly-fit">poly_fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html#r2">R2</a></li>
+</ul>
+<p><span class="caption-text">Prediction</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">predict_curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#predict-value">predict_value</a></li>
 </ul>
 <p><span class="caption-text">Sparse</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html">sparse_graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html#sparse-matrix">sparse_matrix</a></li>
-</ul>
-<p><span class="caption-text">Line charts</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">Functions to generate line charts</a></li>
-</ul>
-<p><span class="caption-text">Regression</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions to generate scatter plot and polynomial regression</a></li>
-</ul>
-<p><span class="caption-text">Barplots</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Functions to generate bar plots</a></li>
-</ul>
-<p><span class="caption-text">Prediction</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions for prediction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#predict-curve">predict_curve</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#predict-value">predict_value</a></li>
-</ul>
-</li>
 </ul>
 <p><span class="caption-text">Example gallery</span></p>
 <ul>
@@ -190,7 +206,7 @@
     
   <li class="breadcrumb"><a href="../index.html">vizcovidfr</a> &raquo;</li>
     
-  <li class="breadcrumb">Functions for prediction</li>
+  <li class="breadcrumb">predict_curve</li>
 
     
       <li class="wy-breadcrumbs-aside">
@@ -209,10 +225,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="functions-for-prediction">
-<h1>Functions for prediction<a class="headerlink" href="#functions-for-prediction" title="Permalink to this headline">¶</a></h1>
-<section id="predict-curve">
-<h2>predict_curve<a class="headerlink" href="#predict-curve" title="Permalink to this headline">¶</a></h2>
+  <section id="predict-curve">
+<h1>predict_curve<a class="headerlink" href="#predict-curve" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.prediction.prediction.predict_curve">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.prediction.prediction.</span></code><code class="sig-name descname"><span class="pre">predict_curve</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'date'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.prediction.prediction.predict_curve" title="Permalink to this definition">¶</a></dt>
@@ -221,16 +235,17 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>num_var</strong> (<em>int</em>) – code of the variable you want to display. 
-Codes are in the following dictionnary.</p></li>
+Codes are in the following dictionary.</p></li>
 <li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display. 
-Codes are the official INSAA code region and are given in the dictionnary below.</p></li>
+Codes are the official INSAA code region and are given in the dictionary below.</p></li>
 <li><p><strong>date</strong> (<em>str</em>) – date where regression line will stop.
+Must be on YYYY/MM/DD format.
 Must be a future date, not a date from the past.</p></li>
-<li><p><strong>save</strong> (<em>bool</em><em>, </em><em>optionnal</em><em>, </em><em>default = False</em>) – True if you want to save the graph in pdf file, False otherwise.</p></li>
+<li><p><strong>save</strong> (<em>bool</em><em>, </em><em>optional</em><em>, </em><em>default = False</em>) – True if you want to save the graph in pdf file, False otherwise.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Variable dictionnary :</p>
+<p>Variable dictionary :</p>
 <blockquote>
 <div><p>1 : Hospitalization</p>
 <p>2 : Reanimation</p>
@@ -247,7 +262,7 @@ Must be a future date, not a date from the past.</p></li>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Reanimation :</dt><dd><p>number of people currently in intensive care or intensive care.</p>
+<dt>Reanimation :</dt><dd><p>number of people currently in intensive care.</p>
 </dd>
 </dl>
 </li>
@@ -277,7 +292,7 @@ Must be a future date, not a date from the past.</p></li>
 </dl>
 </li>
 </ul>
-<p>Region dictionnary :</p>
+<p>Region dictionary :</p>
 <blockquote>
 <div><p>1 : Guadeloupe</p>
 <p>2 : Martinique</p>
@@ -287,7 +302,7 @@ Must be a future date, not a date from the past.</p></li>
 <p>11 : Île-de-France</p>
 <p>24 : Centre-Val de Loire</p>
 <p>27 : Bourgogne-Franche-Comte</p>
-<p>28 : Normmandie</p>
+<p>28 : Normandie</p>
 <p>32 : Hauts-de-France</p>
 <p>44 : Grand Est</p>
 <p>52 : Pays de la Loire</p>
@@ -305,12 +320,22 @@ Must be a future date, not a date from the past.</p></li>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>Figure</p>
 </dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
 </dl>
+<p><strong>Prediction curve of hospitalization in Île-de-France until 2021-04-30 (with data until 2021-04-22)</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">predict_curve</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="s1">&#39;2021-04-30&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p><strong>Prediction curve of hospitalization in Provence until 2021-04-30 (with data until 2021-04-22)</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">predict_curve</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">93</span><span class="p">,</span><span class="s1">&#39;2021-04-30&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
 </dd></dl>
 
 </section>
 <section id="predict-value">
-<h2>predict_value<a class="headerlink" href="#predict-value" title="Permalink to this headline">¶</a></h2>
+<h1>predict_value<a class="headerlink" href="#predict-value" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.prediction.prediction.predict_value">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.prediction.prediction.</span></code><code class="sig-name descname"><span class="pre">predict_value</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_var</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_reg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'date'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.prediction.prediction.predict_value" title="Permalink to this definition">¶</a></dt>
@@ -319,15 +344,16 @@ Must be a future date, not a date from the past.</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>num_var</strong> (<em>int</em>) – code of the variable you want to display. 
-Codes are in the following dictionnary.</p></li>
+Codes are in the following dictionary.</p></li>
 <li><p><strong>num_reg</strong> (<em>int</em>) – code of the region you want to display. 
-Codes are the official INSAA code region and are given in the dictionnary below.</p></li>
+Codes are the official INSAA code region and are given in the dictionary below.</p></li>
 <li><p><strong>date</strong> (<em>str</em>) – date when you want to predict the variable.
+Must be on YYYY/MM/DD format.
 Must be a future date, not a date from the past.</p></li>
 </ul>
 </dd>
 </dl>
-<p>Variable dictionnary :</p>
+<p>Variable dictionary :</p>
 <blockquote>
 <div><p>1 : Hospitalization</p>
 <p>2 : Reanimation</p>
@@ -344,7 +370,7 @@ Must be a future date, not a date from the past.</p></li>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>Reanimation :</dt><dd><p>number of people currently in intensive care or intensive care.</p>
+<dt>Reanimation :</dt><dd><p>number of people currently in intensive care.</p>
 </dd>
 </dl>
 </li>
@@ -374,7 +400,7 @@ Must be a future date, not a date from the past.</p></li>
 </dl>
 </li>
 </ul>
-<p>Region dictionnary :</p>
+<p>Region dictionary :</p>
 <blockquote>
 <div><p>1 : Guadeloupe</p>
 <p>2 : Martinique</p>
@@ -384,7 +410,7 @@ Must be a future date, not a date from the past.</p></li>
 <p>11 : Île-de-France</p>
 <p>24 : Centre-Val de Loire</p>
 <p>27 : Bourgogne-Franche-Comte</p>
-<p>28 : Normmandie</p>
+<p>28 : Normandie</p>
 <p>32 : Hauts-de-France</p>
 <p>44 : Grand Est</p>
 <p>52 : Pays de la Loire</p>
@@ -402,10 +428,19 @@ Must be a future date, not a date from the past.</p></li>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>str</p>
 </dd>
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
 </dl>
+<p><strong>Predicted value of hospitalization in Île-de-France on 2021-04-30 (with data until 2021-04-22)</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">predict_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="s1">&#39;2021-04-30&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p><strong>Prediction value of hospitalization in Provence on 2021-04-30 (with data until 2021-04-22)</strong></p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">predict_value</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">93</span><span class="p">,</span><span class="s1">&#39;2021-04-30&#39;</span><span class="p">)</span> 
+</pre></div>
+</div>
 </dd></dl>
 
-</section>
 </section>
 
 
@@ -416,10 +451,10 @@ Must be a future date, not a date from the past.</p></li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../auto_examples/index.html" class="btn btn-neutral float-right" title="Welcome to vizcovidfr’s gallery!" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../Sparse/sparse.html" class="btn btn-neutral float-right" title="sparse_graph" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../Barplots/barplots.html" class="btn btn-neutral float-left" title="Functions to generate bar plots" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../Regression/regression.html" class="btn btn-neutral float-left" title="scatter_reg" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

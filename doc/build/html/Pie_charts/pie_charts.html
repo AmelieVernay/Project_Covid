@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation guide &mdash; vizcovidfr 0.0.1 documentation</title>
+  <title>piechart &mdash; vizcovidfr 0.0.1 documentation</title>
   
 
   
@@ -44,8 +44,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Roboto:400,700|Roboto+Mono:400,700&display=swap" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="viz2Dmap" href="../Maps/maps.html" />
-    <link rel="prev" title="Introduction" href="introduction.html" /> 
+    <link rel="next" title="bar_age" href="../Barplots/barplots.html" />
+    <link rel="prev" title="vactypedoses" href="../Line_Charts/line_charts.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -94,9 +94,9 @@
             
             
               <p><span class="caption-text">Getting started</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation guide</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Getting_Started/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Getting_Started/install.html">Installation guide</a></li>
 </ul>
 <p><span class="caption-text">Maps</span></p>
 <ul>
@@ -112,8 +112,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#keytimeseries">keytimeseries</a></li>
 </ul>
 <p><span class="caption-text">Pie chart</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Pie_charts/pie_charts.html">piechart</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">piechart</a></li>
 </ul>
 <p><span class="caption-text">Barplots</span></p>
 <ul>
@@ -206,13 +206,13 @@
     
   <li class="breadcrumb"><a href="../index.html">vizcovidfr</a> &raquo;</li>
     
-  <li class="breadcrumb">Installation guide</li>
+  <li class="breadcrumb">piechart</li>
 
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/Getting_Started/install.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Pie_charts/pie_charts.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -225,21 +225,133 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="installation-guide">
-<h1>Installation guide<a class="headerlink" href="#installation-guide" title="Permalink to this headline">¶</a></h1>
-<p>For many good reasons, it is recommended to use virtual environments to install packages. To do so, one can follow <a class="reference external" href="https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">this tutorial</a>.</p>
-<p>To install vizcovidfr, enter the following command in your terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install vizcovidfr
+  <section id="piechart">
+<h1>piechart<a class="headerlink" href="#piechart" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="vizcovidfr.pie_charts.pie_chart.piechart">
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.pie_charts.pie_chart.</span></code><code class="sig-name descname"><span class="pre">piechart</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'reanimation'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2021-04-20'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'plotly_dark'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_dose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'1'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.pie_charts.pie_chart.piechart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a pie chart of France covid-19 data, per region.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>criterion</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='reanimation'</em>) – <p>the criterion we want information about.
+Either ‘deces’, ‘hospitalises’, ‘reanimation’ or ‘vaccination’:</p>
+<blockquote>
+<div><ul>
+<li><dl class="simple">
+<dt>’deces’:</dt><dd><p>give the cumulated number of deaths
+and the death rate, per region,
+from the beginning of covid-19
+to the chosen date, due to covid-19.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’hospitalises’:</dt><dd><p>give the number of persons in hospitalization
+and the hospitalization rate, per region,
+on the chosen date, due to covid-19.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’reanimation’:</dt><dd><p>give the number of persons in intensive care
+and the intensive care rate, per region,
+on the chosen date, due to covid-19.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’vaccination’:</dt><dd><p>give the cumulated number of first or second
+vaccination doses according to the chosen
+num_dose argument and its vaccination rate,
+per region.
+The rate per region represents the number of
+doses (first or second) out of the total number
+of French people vaccinated (first or second).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</p></li>
+<li><p><strong>date</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='2021-04-20'</em>) – only needed if criterion argument is ‘hospitalises’
+or ‘reanimation’.
+Set the date which we want to have information on.
+The date format must be the following one: ‘YY-mm-dd’.
+The chosen date must be between ‘2020-04-04’ and
+today’s date.</p></li>
+<li><p><strong>template</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='plotly_dark'</em>) – the visual style we want the graph to be
+based on.
+For reference, see <a class="reference external" href="https://plotly.com/python/templates/">https://plotly.com/python/templates/</a>.</p></li>
+<li><p><strong>num_dose</strong> (<em>str</em><em>, </em><em>optional</em><em>, </em><em>default='1'</em>) – <p>only if criterion argument is ‘vaccination’.
+The dose number of the vaccine.
+Should be either ‘1’ or ‘2’:</p>
+<blockquote>
+<div><ul>
+<li><dl class="simple">
+<dt>’1’:</dt><dd><p>display only the number of first doses</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>’2’:</dt><dd><p>display only the number of second doses.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>An interactive pie chart</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>plotly.graph_objects.Figure</p>
+</dd>
+<dt class="field-odd">Examples</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<dl class="simple">
+<dt><a href="#id1"><span class="problematic" id="id2">**</span></a>Pie chart of first dose vaccination rate until today</dt><dd><p>per region**</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">piechart</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;vaccination&#39;</span><span class="p">,</span> <span class="n">num_dose</span><span class="o">=</span><span class="s1">&#39;1&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Note</strong></p>
-<p>You might need to use pip3 instead of pip depending on your system. You can use the following command to know which pip to use:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip --version
-$ pip3 --version
+<dl class="simple">
+<dt><a href="#id3"><span class="problematic" id="id4">**</span></a>Pie chart of hospitalization rate per region</dt><dd><p>on the 2021-04-20**</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">piechart</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;hospitalises&#39;</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="s1">&#39;2021-04-20&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The one that does not give you a <em>Command not found</em> message is the one you should use.</p>
-<p>Alright! You are now ready to use <strong>vizcovidfr</strong>. Don’t know where to start? Why not choose any function in the documentation and start with one of the examples provided?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Notes</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<p><strong>Manipulation tips:</strong></p>
+<ul class="simple">
+<li><p>click on a region icon on the right to remove it from the pie chart till further notice: the rate per region</p></li>
+</ul>
+<p>will get adjusted.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Double click on a region icon to remove</dt><dd><p>all the others from the pie chart.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>click on the camera icon on the very top right of the chart to save the image as</dt><dd><p>a png.</p>
+</dd>
+</dl>
+</li>
+<li><p>pass mouse on the pie chart slices to get thorough information.</p></li>
+</ul>
+</dd></dl>
+
 </section>
 
 
@@ -250,10 +362,10 @@ $ pip3 --version
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Maps/maps.html" class="btn btn-neutral float-right" title="viz2Dmap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../Barplots/barplots.html" class="btn btn-neutral float-right" title="bar_age" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../Line_Charts/line_charts.html" class="btn btn-neutral float-left" title="vactypedoses" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

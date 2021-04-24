@@ -100,28 +100,48 @@
 </ul>
 <p><span class="caption-text">Maps</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">Functions to generate maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html">viz2Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#viz3dmap">viz3Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#transfer-map">transfer_map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Maps/maps.html#vacmap">vacmap</a></li>
+</ul>
+<p><span class="caption-text">Line charts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">vactypedoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#vacdoses">vacdoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#keytimeseries">keytimeseries</a></li>
+</ul>
+<p><span class="caption-text">Pie chart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Pie_charts/pie_charts.html">piechart</a></li>
+</ul>
+<p><span class="caption-text">Barplots</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">bar_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#bar-reg">bar_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#comparemf">compareMF</a></li>
+</ul>
+<p><span class="caption-text">Heatmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html">heatmap_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html#heatmap-reg-age">heatmap_reg_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html#heatmap-reg-day">heatmap_reg_day</a></li>
+</ul>
+<p><span class="caption-text">Regression</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">scatter_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html#poly-fit">poly_fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html#r2">R2</a></li>
+</ul>
+<p><span class="caption-text">Prediction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">predict_curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html#predict-value">predict_value</a></li>
 </ul>
 <p><span class="caption-text">Sparse</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html">sparse_graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html#sparse-matrix">sparse_matrix</a></li>
-</ul>
-<p><span class="caption-text">Line charts</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">Functions to generate line charts</a></li>
-</ul>
-<p><span class="caption-text">Regression</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions to generate scatter plot and polynomial regression</a></li>
-</ul>
-<p><span class="caption-text">Barplots</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Functions to generate bar plots</a></li>
-</ul>
-<p><span class="caption-text">Prediction</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">Functions for prediction</a></li>
 </ul>
 <p><span class="caption-text">Example gallery</span></p>
 <ul>
@@ -224,11 +244,11 @@ different functions. Time might differ according to computers, background
 processes, and so on. These values have all been calculated on the same
 machine, under the same conditions.</p>
 <p>The execution time is also provided as a message in the terminal when running
-any of <strong>vizcodifr</strong>’s functions.</p>
+any of <strong>vizcovidfr</strong>’s functions.</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 61%" />
-<col style="width: 39%" />
+<col style="width: 48%" />
+<col style="width: 52%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>function</p></th>
@@ -236,38 +256,71 @@ any of <strong>vizcodifr</strong>’s functions.</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>vacmap</p></td>
+<tr class="row-even"><td><p>piechart[1]_</p></td>
+<td><p>from 4.80991 s. to 81.64569 s.</p></td>
+</tr>
+<tr class="row-odd"><td><p>vacmap</p></td>
 <td><p>74.86038 s.</p></td>
 </tr>
-<tr class="row-odd"><td><p>viz2Dmap</p></td>
+<tr class="row-even"><td><p>viz2Dmap</p></td>
 <td><p>21.74077 s.</p></td>
 </tr>
-<tr class="row-even"><td><p>viz3Dmap</p></td>
+<tr class="row-odd"><td><p>viz3Dmap</p></td>
 <td><p>19.54393 s.</p></td>
 </tr>
-<tr class="row-odd"><td><p>sparse_graph</p></td>
+<tr class="row-even"><td><p>sparse_graph</p></td>
 <td><p>0.50041 s.</p></td>
 </tr>
-<tr class="row-even"><td><p>sparse_matrix</p></td>
+<tr class="row-odd"><td><p>sparse_matrix</p></td>
 <td><p>0.43385 s.</p></td>
 </tr>
-<tr class="row-odd"><td><p>regression.R2</p></td>
+<tr class="row-even"><td><p>regression.R2</p></td>
 <td><p>0.53918 s.</p></td>
 </tr>
-<tr class="row-even"><td><p>regression.poly_fit</p></td>
+<tr class="row-odd"><td><p>regression.poly_fit</p></td>
 <td><p>0.42157 s.</p></td>
 </tr>
-<tr class="row-odd"><td><p>regression.scatter_reg</p></td>
+<tr class="row-even"><td><p>regression.scatter_reg</p></td>
 <td><p>0.35140 s.</p></td>
 </tr>
-<tr class="row-even"><td><p>vacdoses</p></td>
+<tr class="row-odd"><td><p>vacdoses</p></td>
 <td><p>0.76860 s.</p></td>
 </tr>
-<tr class="row-odd"><td><p>vactypedoses</p></td>
+<tr class="row-even"><td><p>vactypedoses</p></td>
 <td><p>0.42227 s.</p></td>
+</tr>
+<tr class="row-odd"><td><p>predict_curve</p></td>
+<td><p>0.53564 s.</p></td>
+</tr>
+<tr class="row-even"><td><p>bar_age</p></td>
+<td><p>0.16586 s.</p></td>
+</tr>
+<tr class="row-odd"><td><p>bar_reg</p></td>
+<td><p>0.18026 s.</p></td>
+</tr>
+<tr class="row-even"><td><p>compareMF</p></td>
+<td><p>0.75908 s.</p></td>
+</tr>
+<tr class="row-odd"><td><p>keytimeseries</p></td>
+<td><p>0.56544 s.</p></td>
+</tr>
+<tr class="row-even"><td><p>heatmap_age</p></td>
+<td><p>0.79060 s.</p></td>
+</tr>
+<tr class="row-odd"><td><p>heatmap_reg_age</p></td>
+<td><p>0.94263 s.</p></td>
+</tr>
+<tr class="row-even"><td><p>heatmap_reg_day</p></td>
+<td><p>0.86056 s. 503k</p></td>
 </tr>
 </tbody>
 </table>
+<dl class="footnote brackets">
+<dt class="label" id="id1"><span class="brackets">1</span></dt>
+<dd><p>A numerical footnote.</p>
+</dd>
+</dl>
+<p>from 6.5 MB to 6.77M</p>
 </section>
 
 

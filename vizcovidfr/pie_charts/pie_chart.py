@@ -69,12 +69,12 @@ def piechart(criterion='reanimation', date='2021-04-20',
 
     :Examples:
 
-    **Pie chart of first dose vaccination rate until today 
+    **Pie chart of first dose vaccination rate until today
         per region**
 
     >>> piechart(criterion='vaccination', num_dose='1')
 
-    **Pie chart of hospitalization rate per region 
+    **Pie chart of hospitalization rate per region
         on the 2021-04-20**
 
     >>> piechart(criterion='hospitalises', date='2021-04-20')
@@ -84,17 +84,16 @@ def piechart(criterion='reanimation', date='2021-04-20',
 
     **Manipulation tips:**
 
-    - click on a region icon on the right
-        to remove it from the pie chart
-        till further notice: the rate per region
-        will get adjusted.
-        Double click on a region icon to remove
+    - click on a region icon on the right to remove it from the pie chart till further notice: the rate per region
+    will get adjusted.
+
+    - Double click on a region icon to remove
         all the others from the pie chart.
-    - click on the camera icon on the very top
-        right of the chart to save the image as
+
+    - click on the camera icon on the very top right of the chart to save the image as
         a png.
-    - pass mouse on the pie chart slices to get
-        thorough information.
+
+    - pass mouse on the pie chart slices to get thorough information.
     '''
     start = time.time()
     df_covid = load_datasets.Load_chiffres_cles().save_as_df()

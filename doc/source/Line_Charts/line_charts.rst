@@ -1,6 +1,3 @@
-Functions to generate line charts
-==================================
-
 vactypedoses
 -------------
 
@@ -14,6 +11,6 @@ vacdoses
 
 
 keytimeseries
----------
+--------------
 
-.. autofunction:: vizcovidfr.line_charts.keytimeseries
+.. autofunction:: vizcovidfr.line_charts.line_charts.keytimeseries

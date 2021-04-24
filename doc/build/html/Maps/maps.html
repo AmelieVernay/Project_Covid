@@ -9,7 +9,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Functions to generate maps &mdash; vizcovidfr 0.0.1 documentation</title>
+  <title>viz2Dmap &mdash; vizcovidfr 0.0.1 documentation</title>
   
 
   
@@ -44,7 +44,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans|Roboto:400,700|Roboto+Mono:400,700&display=swap" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="sparse_graph" href="../Sparse/sparse.html" />
+    <link rel="next" title="vactypedoses" href="../Line_Charts/line_charts.html" />
     <link rel="prev" title="Installation guide" href="../Getting_Started/install.html" /> 
 </head>
 
@@ -100,34 +100,48 @@
 </ul>
 <p><span class="caption-text">Maps</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions to generate maps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#viz2dmap">viz2Dmap</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#viz3dmap">viz3Dmap</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transfer-map">transfer_map</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#vacmap">vacmap</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">viz2Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#viz3dmap">viz3Dmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#transfer-map">transfer_map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#vacmap">vacmap</a></li>
 </ul>
-</li>
+<p><span class="caption-text">Line charts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">vactypedoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#vacdoses">vacdoses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html#keytimeseries">keytimeseries</a></li>
+</ul>
+<p><span class="caption-text">Pie chart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Pie_charts/pie_charts.html">piechart</a></li>
+</ul>
+<p><span class="caption-text">Barplots</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">bar_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#bar-reg">bar_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html#comparemf">compareMF</a></li>
+</ul>
+<p><span class="caption-text">Heatmaps</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html">heatmap_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html#heatmap-reg-age">heatmap_reg_age</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Heatmaps/heatmaps.html#heatmap-reg-day">heatmap_reg_day</a></li>
+</ul>
+<p><span class="caption-text">Regression</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">scatter_reg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html#poly-fit">poly_fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html#r2">R2</a></li>
+</ul>
+<p><span class="caption-text">Prediction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">predict_curve</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html#predict-value">predict_value</a></li>
 </ul>
 <p><span class="caption-text">Sparse</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html">sparse_graph</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sparse/sparse.html#sparse-matrix">sparse_matrix</a></li>
-</ul>
-<p><span class="caption-text">Line charts</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Line_Charts/line_charts.html">Functions to generate line charts</a></li>
-</ul>
-<p><span class="caption-text">Regression</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Regression/regression.html">Functions to generate scatter plot and polynomial regression</a></li>
-</ul>
-<p><span class="caption-text">Barplots</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Barplots/barplots.html">Functions to generate bar plots</a></li>
-</ul>
-<p><span class="caption-text">Prediction</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../Prediction/prediction.html">Functions for prediction</a></li>
 </ul>
 <p><span class="caption-text">Example gallery</span></p>
 <ul>
@@ -192,7 +206,7 @@
     
   <li class="breadcrumb"><a href="../index.html">vizcovidfr</a> &raquo;</li>
     
-  <li class="breadcrumb">Functions to generate maps</li>
+  <li class="breadcrumb">viz2Dmap</li>
 
     
       <li class="wy-breadcrumbs-aside">
@@ -211,13 +225,11 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="functions-to-generate-maps">
-<h1>Functions to generate maps<a class="headerlink" href="#functions-to-generate-maps" title="Permalink to this headline">¶</a></h1>
-<section id="viz2dmap">
-<h2>viz2Dmap<a class="headerlink" href="#viz2dmap" title="Permalink to this headline">¶</a></h2>
+  <section id="viz2dmap">
+<h1>viz2Dmap<a class="headerlink" href="#viz2dmap" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.maps.maps.viz2Dmap">
-<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz2Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2021-04-21'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'YlGnBu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'~/Desktop/vizcovidfr_files/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid2Dmap'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz2Dmap" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz2Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">date</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2021-04-23'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_pal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'YlGnBu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'~/Desktop/vizcovidfr_files/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid2Dmap'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz2Dmap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Make interactive choropleth map to visualize different aspects of the
 Covid-19 pandemic in France. The map is saved on an html file at a given
 path on a given name, see function parameters for details.</p>
@@ -241,7 +253,7 @@ on the given date due to Covid-19</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>’reanimation’:</dt><dd><p>display the number of persons in resuscitation
+<dt>’reanimation’:</dt><dd><p>display the number of persons in intensive care
 on the given date due to Covid-19</p>
 </dd>
 </dl>
@@ -316,7 +328,7 @@ your favorite web browser</p>
 
 </section>
 <section id="viz3dmap">
-<h2>viz3Dmap<a class="headerlink" href="#viz3dmap" title="Permalink to this headline">¶</a></h2>
+<h1>viz3Dmap<a class="headerlink" href="#viz3dmap" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.maps.maps.viz3Dmap">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">viz3Dmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'departement'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">criterion</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'hospitalises'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'~/Desktop/vizcovidfr_files/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid3Dmap'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[255,</span> <span class="pre">165,</span> <span class="pre">0,</span> <span class="pre">80]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.viz3Dmap" title="Permalink to this definition">¶</a></dt>
@@ -340,7 +352,7 @@ on a given date due to Covid-19</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt>’reanimation’:</dt><dd><p>display the number of persons in resuscitation
+<dt>’reanimation’:</dt><dd><p>display the number of persons in intensive care
 on a given date due to Covid-19</p>
 </dd>
 </dl>
@@ -417,7 +429,7 @@ of the columns corresponds to now.</p>
 
 </section>
 <section id="transfer-map">
-<h2>transfer_map<a class="headerlink" href="#transfer-map" title="Permalink to this headline">¶</a></h2>
+<h1>transfer_map<a class="headerlink" href="#transfer-map" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.maps.maps.transfer_map">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">transfer_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'~/Desktop/vizcovidfr_files/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Covid_transfer_map'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_d</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[243,</span> <span class="pre">31,</span> <span class="pre">44,</span> <span class="pre">80]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[230,</span> <span class="pre">190,</span> <span class="pre">37,</span> <span class="pre">80]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.transfer_map" title="Permalink to this definition">¶</a></dt>
@@ -489,7 +501,7 @@ your favorite web browser</p>
 
 </section>
 <section id="vacmap">
-<h2>vacmap<a class="headerlink" href="#vacmap" title="Permalink to this headline">¶</a></h2>
+<h1>vacmap<a class="headerlink" href="#vacmap" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="vizcovidfr.maps.maps.vacmap">
 <code class="sig-prename descclassname"><span class="pre">vizcovidfr.maps.maps.</span></code><code class="sig-name descname"><span class="pre">vacmap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">granularity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'region'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">age_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'all</span> <span class="pre">ages'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'~/Desktop/vizcovidfr_files/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vacmap'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color_rgb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[255,</span> <span class="pre">69,</span> <span class="pre">0,</span> <span class="pre">150]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#vizcovidfr.maps.maps.vacmap" title="Permalink to this definition">¶</a></dt>
@@ -555,7 +567,6 @@ the chosen argument.</p>
 </dd></dl>
 
 </section>
-</section>
 
 
            </div>
@@ -565,7 +576,7 @@ the chosen argument.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Sparse/sparse.html" class="btn btn-neutral float-right" title="sparse_graph" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../Line_Charts/line_charts.html" class="btn btn-neutral float-right" title="vactypedoses" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../Getting_Started/install.html" class="btn btn-neutral float-left" title="Installation guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
