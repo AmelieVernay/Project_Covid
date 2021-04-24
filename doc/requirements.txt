@@ -1,4 +1,3 @@
-vizcovidfr.egg==info
 plotly==4.14.3
 sphinx_rtd_theme==0.4.3
 vizcovidfr==0.0.1
