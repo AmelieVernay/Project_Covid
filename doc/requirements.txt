@@ -1,4 +1,7 @@
 plotly==4.14.3
 sphinx_rtd_theme==0.4.3
 sphinx-gallery==0.8.2
+pandas==1.2.3
+numpy==1.20.2
+matplotlib==3.4.1
 vizcovidfr==0.0.1
