@@ -195,9 +195,22 @@ Advice :
 - Proportionality between dataset size and execution time (the bigger the dataset is, the longer it will be loaded).
 \pause
 
-## Conclusion/Doorway/Examples: 
+## Conclusion / Doorway / Examples 
 
 - Watch the documentation to get thorough information about vizcovidfr's functions.
 \pause
 - Here are some examples taken from our notebook (in 'report') to inspire you ! 
+\pause
+![Caption for the picture.](line_chart_guadeloupe_hosp.pdf)
 
+## Conclusion / Doorway / Examples 
+
+![Caption for the picture.](piechart.pdf)
+
+## Conclusion / Doorway / Examples 
+
+![Caption for the picture.](heatmap_la_reunion_day.pdf)
+
+## Conclusion / Doorway / Examples 
+
+SPARSE
