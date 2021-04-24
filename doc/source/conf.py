@@ -12,8 +12,7 @@
 #
 # import os
 # import sys
-# pip install faculty-sphinx-theme
-# import faculty_sphinx_theme
+# import faculty-sphinx-theme
 # sys.path.insert(0, os.path.abspath('.'))
 
 
