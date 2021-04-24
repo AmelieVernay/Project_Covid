@@ -274,6 +274,11 @@ def keytimeseries(place='France', criterion='hospitalisation', evo=True, average
         name of a region,
         for reference,
         see https://www.regions-et-departements.fr/regions-francaises
+        
+        or the name of a department
+        for reference,
+        see https://www.regions-et-departements.fr/departements-francais
+
     :type place: str, optional, default='France'
     :param criterion: The figure of interest in French suc as "deces" , "cas"
 
@@ -388,16 +393,7 @@ def keytimeseries(place='France', criterion='hospitalisation', evo=True, average
             end = time.time()
             print("Time to execute: {0:.5f} s.".format(end - start))
             return
-    elif criterion in ["cas_confirmes"]:  # need specific datasets
-        if place in REGIONS.keys():
-            df = preprocess_positivity.ignoreage(
-                            preprocess_positivity.granupositivity(
-                                        Load_posquotreg().save_as_df(), place))
-            series = df['P']
-        elif place in DEPARTMENTS.keys():
-            df = preprocess_positivity.granupositivity(
-                                        Load_posquotdep().save_as_df(), place)
-            series = df['P']
+
     else:
         series = preprocess_chiffres_cles.gooddates(
                     preprocess_chiffres_cles.keysubtablename(
@@ -439,3 +435,5 @@ def keytimeseries(place='France', criterion='hospitalisation', evo=True, average
         end = time.time()
         print("Time to execute: {0:.5f} s.".format(end - start))
         return
+
+keytimeseries("Occitanie","cas_ehpad")
