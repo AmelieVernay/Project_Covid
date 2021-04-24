@@ -12,6 +12,8 @@ setup(
                 laurent.llinares@etu.umontpellier.fr ;\
                 alexandre.nicolas@etu.umontpellier.fr ;\
                 amelie.vernay@etu.umontpellier.fr',
+  license='MIT',
+  zip_safe=False,
   packages=find_packages(include=['vizcovidfr',
                                   'vizcovidfr.loads',
                                   'vizcovidfr.preprocesses',
