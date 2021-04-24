@@ -18,7 +18,7 @@ pd.options.mode.chained_assignment = None  # default='warn'
 
 
 def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
-                 color_pal2='crimson', color_pal3='darkgreen',
+                 color_pal2='orangered', color_pal3='green',
                  font_size=16, font_family="Franklin Gothic Medium",
                  font_color='white', bgcolor='darkslategrey',
                  template='plotly_dark'):
@@ -44,12 +44,12 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
         Set the color of 'Moderna' curve.
 
         For reference, see http://www.python-simple.com/img/img45.png.
-    :type color_pal2: str, optional, default='crimson'
+    :type color_pal2: str, optional, default='orangered'
     :param color_pal3: Only if 'All vaccines' vaccine_type is chosen.
         Set the color of 'AstraZeneca' curve.
 
         For reference, see http://www.python-simple.com/img/img45.png.
-    :type color_pal3: str, optional, default='darkgreen'
+    :type color_pal3: str, optional, default='green'
     :param font_size: the size of characters in hover labels
     :type font_size: int, optional, default=16
     :param font_family: the font family of the characters in hover labels.
@@ -83,6 +83,11 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     - click on the camera icon on the very top right of the chart to save the image as a png.
     - click on the 'zoom in' icon to zoom in, or on the icon 'zoom out' to zoom out, on the chart.
     - click on the 'autoscale' icon to let plotly autoscale the chart.
+
+    **For colorbind safe colors**
+
+    See https://colorbrewer2.org/#type=qualitative&scheme=Dark2&n=3. 
+    Default colors in that function are colorbind safe.
     '''
     start = time.time()
     df_Vac_type = load_datasets.Load_Vaccine_storage().save_as_df()
