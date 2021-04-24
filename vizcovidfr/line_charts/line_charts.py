@@ -150,10 +150,10 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     fig.update_layout(hovermode="x unified")
     fig.update_layout(
         hoverlabel=dict(
-            bgcolor=bgcolor,
-            font_color=font_color,
-            font_size=font_size,
-            font_family=font_family
+            bgcolor='lightslategrey',
+            font_color='white',
+            font_size=16,
+            font_family="Franklin Gothic Medium"
             )
         )
     end = time.time()
@@ -263,7 +263,8 @@ def vacdoses(unit='doses', font_size=16,
     fig.show()
 
 
-def keytimeseries(place='France', criterion='hospitalisation', evo=True, average=True):
+def keytimeseries(place='France', criterion='hospitalisation',
+                  evo=True, average=True):
     """
     Make a time series about information concerning
     the evolution of the COVID-19 in France or a sub-part of France.
@@ -274,11 +275,6 @@ def keytimeseries(place='France', criterion='hospitalisation', evo=True, average
         name of a region,
         for reference,
         see https://www.regions-et-departements.fr/regions-francaises
-        
-        or the name of a department
-        for reference,
-        see https://www.regions-et-departements.fr/departements-francais
-
     :type place: str, optional, default='France'
     :param criterion: The figure of interest in French suc as "deces" , "cas"
 
@@ -393,7 +389,16 @@ def keytimeseries(place='France', criterion='hospitalisation', evo=True, average
             end = time.time()
             print("Time to execute: {0:.5f} s.".format(end - start))
             return
-
+    elif criterion in ["cas_confirmes"]:  # need specific datasets
+        if place in REGIONS.keys():
+            df = preprocess_positivity.ignoreage(
+                            preprocess_positivity.granupositivity(
+                                        Load_posquotreg().save_as_df(), place))
+            series = df['P']
+        elif place in DEPARTMENTS.keys():
+            df = preprocess_positivity.granupositivity(
+                                        Load_posquotdep().save_as_df(), place)
+            series = df['P']
     else:
         series = preprocess_chiffres_cles.gooddates(
                     preprocess_chiffres_cles.keysubtablename(
@@ -435,4 +440,3 @@ def keytimeseries(place='France', criterion='hospitalisation', evo=True, average
         end = time.time()
         print("Time to execute: {0:.5f} s.".format(end - start))
         return
-
