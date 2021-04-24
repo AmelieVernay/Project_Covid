@@ -150,10 +150,10 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
     fig.update_layout(hovermode="x unified")
     fig.update_layout(
         hoverlabel=dict(
-            bgcolor='lightslategrey',
-            font_color='white',
-            font_size=16,
-            font_family="Franklin Gothic Medium"
+            bgcolor=bgcolor,
+            font_color=font_color,
+            font_size=font_size,
+            font_family=font_family
             )
         )
     end = time.time()
