@@ -1,3 +1,4 @@
 plotly==4.14.3
 sphinx_rtd_theme==0.4.3
+sphinx-gallery==0.8.2
 vizcovidfr==0.0.1
