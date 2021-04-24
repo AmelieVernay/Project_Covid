@@ -40,7 +40,7 @@ def piechart(criterion='reanimation', date='2021-04-20',
                 of French people vaccinated (first or second).
 
     :type criterion: str, optional, default='reanimation'
-    :param date: only if criterion argument is 'hospitalises'
+    :param date: only needed if criterion argument is 'hospitalises'
         or 'reanimation'.
         Set the date which we want to have information on.
         The date format must be the following one: 'YY-mm-dd'.
@@ -56,7 +56,7 @@ def piechart(criterion='reanimation', date='2021-04-20',
         Should be either '1' or '2':
 
             - '1':
-                display only the number of first doses.
+                display only the number of first doses
             - '2':
                 display only the number of second doses.
 
@@ -66,6 +66,19 @@ def piechart(criterion='reanimation', date='2021-04-20',
     -------
     :return: An interactive pie chart
     :rtype: plotly.graph_objects.Figure
+
+    :Examples:
+
+    **Pie chart of first dose vaccination rate until today 
+        per region**
+
+    >>> piechart(criterion='vaccination', num_dose='1')
+
+    **Pie chart of hospitalization rate per region 
+        on the 2021-04-20**
+
+    >>> piechart(criterion='hospitalises', date='2021-04-20')
+
 
     :Notes:
 
@@ -102,7 +115,7 @@ def piechart(criterion='reanimation', date='2021-04-20',
         a = 'Death'
         fig = px.pie(df, values='Number of deaths', names='Region name',
                      color_discrete_sequence=px.colors.sequential.thermal,
-                     title=f'{a} rate per region', template=template)
+                     title=f'{a} rate per region until today', template=template)
         # cool color palettes: solar, plasma, Turbo, Inferno, thermal
     elif (criterion == 'reanimation'):
         # before 2020-04-04, incorrect or missing reanimation data
@@ -146,7 +159,7 @@ def piechart(criterion='reanimation', date='2021-04-20',
                     labels={'Nom Officiel Région': 'Region name',
                             'Nombre cumulé de doses n°1': 'First vaccine doses administered till today',
                             'n_cum_dose2': 'Second vaccine doses administered till today'},
-                    title=f'{a} rate per region',
+                    title=f'{a} rate per region until today',
                     template=template)
         else:
             a = 'Second dose vaccination'
@@ -157,7 +170,7 @@ def piechart(criterion='reanimation', date='2021-04-20',
                     labels={'Nom Officiel Région': 'Region name',
                             'Nombre cumulé de doses n°1': 'First vaccine doses administered till today',
                             'n_cum_dose2': 'Second vaccine doses administered till today'},
-                    title=f'{a} rate per region',
+                    title=f'{a} rate per region until today',
                     template=template)
     fig.update_traces(textposition='inside',
                       textinfo='percent+label',
