@@ -85,7 +85,7 @@ def vactypedoses(vaccine_type='All vaccines', color_pal='darkblue',
 
     **For colorbind safe colors**
 
-    See https://colorbrewer2.org/#type=qualitative&scheme=Dark2&n=3. 
+    See https://colorbrewer2.org/#type=qualitative&scheme=Dark2&n=3.
     Default colors in that function are colorbind safe.
     '''
     start = time.time()
@@ -395,8 +395,9 @@ def keytimeseries(place='France', criterion='hospitalisation',
                                         Load_posquotreg().save_as_df(), place)).cumsum()
             series = df['P']
         elif place in DEPARTMENTS.keys():
-            df = preprocess_positivity.granupositivity(
-                                        Load_posquotdep().save_as_df(), place)
+            df = preprocess_positivity.ignoreage(
+                            preprocess_positivity.granupositivity(
+                                        Load_posquotreg().save_as_df(), place))
             series = df['P']
     else:
         series = preprocess_chiffres_cles.gooddates(
