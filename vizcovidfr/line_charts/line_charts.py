@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 
 # local reqs
 from vizcovidfr.loads import load_datasets
-from vizcovidfr.loads.load_datasets import Load_posquotdep
 from vizcovidfr.loads.load_datasets import Load_posquotreg
 from vizcovidfr.loads.load_datasets import Load_chiffres_fr
 from vizcovidfr.preprocesses import preprocess_chiffres_cles
