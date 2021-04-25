@@ -13,21 +13,21 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Our goals
 
-- Analyze the spreading of the Covid-19 disease in France.
+> - Analyze the spreading of the Covid-19 disease in France.
 \pause
-- Produce various charts to illustrate how the Covid-19 affects population.
+> - Produce various charts to illustrate how the Covid-19 affects population.
 \pause
-- Predict how the Covid-19 will evolve in the future.
+> - Predict how the Covid-19 will evolve in the future.
 \pause
-- Create a simple visualization tool as interactive as possible and easy to use for anyone.
+> - Create a simple visualization tool as interactive as possible and easy to use for anyone.
 
 ## Data (part 1/3)
 
-- All the datasets that we used are taken from <https://www.data.gouv.fr/fr/pages/donnees-coronavirus>.
+> - All the datasets that we used are taken from <https://www.data.gouv.fr/fr/pages/donnees-coronavirus>.
 \pause
-- Data is collected almost every day per region / department for different variables such as hospitalization or death for example.
+> - Data is collected almost every day per region / department for different variables such as hospitalization or death for example.
 \pause
-- Here is a summary table of every dataset used.
+> - Here is a summary table of every dataset used.
 \pause
 
 ## Data (part 2/3)
@@ -88,8 +88,7 @@ vizcovidfr
 |   |   tests
 |   |   README.md
 |   └── __init__.py
-│
-└───...
+
 ```
 
 ##  Module structure (part 3/3)
@@ -129,86 +128,63 @@ def test_viz3Dmap():
     assert
 ```
 
-## Essai Amélie 01:32
-
-![Caption for the picture.](scatter_hospitalization_Île-de-France.pdf)
-
-## essais Amélie 01:39 :/
-
-```{r pressure1, echo=FALSE, fig.cap="A caption", out.width = '100%'}
-knitr::include_graphics("scatter_hospitalization_Île-de-France.pdf")
-```
-
-## essais Amélie 01:42 :(
-
-<object data="scatter_hospitalization_Île-de-France.pdf" width="700px" height="700px"></object>
-
-## essais Amélie 01:45 :'(
-
-```{r, out.width="0.3\\linewidth", include=TRUE, fig.align="center", fig.cap=c("your caption"), echo=FALSE}
-knitr::include_graphics("scatter_hospitalization_Île-de-France.pdf")
-```
-
-## Essais Amélie 01:49 x@
-
-```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
-knitr::include_graphics("scatter_hospitalization_Île-de-France.jpg")
-```
-
-## Conclusion Amélie 01:51 :D
-
-J'ai cas tout convertir en .jpg !
 
 ## Workflow
 
-- Each contributor created a class to load the dataset he used.
+> - Each contributor created a class to load the dataset he used.
 \pause
-- Each contributor put as many functions as possible in preprocess to have a clear code, which allowed others to use them.
+> - Each contributor put as many functions as possible in preprocess to have a clear code, which allowed others to use them.
 \pause
-- Each contributor worked on his branch to avoid conflicts.
+> - Each contributor worked on his branch to avoid conflicts.
 \pause
-- Each contributor created his own modules, with its documentation and their unit tests associated.
+> - Each contributor created his own modules, with its documentation and their unit tests associated.
 
-## Regression and prediction (part 1/6)
+## Regression and prediction (part 1/7)
 
-- Because we had data relative to the time, we wanted to predict the evolution of Covid-19.
+> - Because we had data relative to the time, we wanted to predict the evolution of Covid-19.
 \pause
-Here is an example of scatter plot
+> - Here is an example of scatter plot.
 \pause
 ```{r scat, echo=FALSE, fig.align="center", out.width = '80%'}
 knitr::include_graphics("scatter_hospitalization_Île-de-France.jpg")
 ```
 
-## Regression and prediction (part 2/6)
+## Regression and prediction (part 2/7)
 
-Linear regression is not adapted to data. \pause How to make prediction then ? \pause
-$\implies$ Polynomial regression
+> - Linear regression is not adapted to data.
+> - How to make prediction then ? 
+> - $\implies$ Polynomial regression with poly_fit function
+
+> - poly_fit can make $7 \times 18 = 126$ polynomial regression.
+> - poly_fit minimizes the mean squared error to fit as good as it can.
+
+## Regression and prediction (part 3/7)
 
 Pros and cons :
 
-- Curve predicted follows well the data.
+  > - Curve predicted fits well with the data.
 \pause
-- Regression has a good R2 (lots of models have more than $90 \%$).
+  > - Regression has a good R2 (lots of models have more than $90 \%$).
 \pause
-- Good prediction of foreseeable future.
+  > - Good prediction of foreseeable future.
 \pause
-- Problem : impossible to predict in a far future
+  > - Problem : impossible to predict in a far future
 
-## Regression and prediction (part 3/6)
+## Regression and prediction (part 4/7)
 
 ```{r reg_hosp, echo=FALSE, fig.align="center", out.width = '100%'}
 knitr::include_graphics("regression_hospitalization_Île-de-France.jpg")
 ```
 
-## Regression and prediction (part 4/6)
+## Regression and prediction (part 5/7)
 
- Prediction for 2021-04-30 (with data until 2021-04-23) :
+Prediction for 2021-04-30 (with data until 2021-04-23) :
  
 ```{r predict_hosp, echo=FALSE, fig.align="center", out.width = '80%'}
 knitr::include_graphics("predict_hospitalization_Île-de-France_2021-04-30.jpg")
 ```
 
-## Regression and prediction (part 5/6)
+## Regression and prediction (part 6/7)
 
 Prediction for 2021-06-30 (with data until 2021-04-23) :
 
@@ -216,28 +192,32 @@ Prediction for 2021-06-30 (with data until 2021-04-23) :
 knitr::include_graphics("predict_hospitalization_Île-de-France_2021-06-30.jpg")
 ```
 
-## Regression and prediction (part 6/6)
+## Regression and prediction (part 7/7)
 
 Advice :
 
-- Use first poly_fit function to see how the model fits with data.
+> - Use first scatter_reg to see the scatter plot of the given variable for the given region.
+
+> - Then use poly_fit function to see how the model fits with data.
 \pause
-- Then use predict_curve to check if the predicted curve is going to infinite or not.
+> - Then use predict_curve to check if the predicted curve is going to infinite or not.
 \pause
-- If predicted curve looks good, then use predict_value to get the value you were looking for.
+> - If predicted curve looks good, then use predict_value to get the value you were looking for.
+
+> - Example : Number of hospitalization in Île-de-France estimated on 2021-04-30 : 16 376
 
 ## Time and memory
 
-- Each function displays its execution time and they're all calculated on the same machine.
+> - Each function displays its execution time and they're all calculated on the same machine.
 \pause
-- Proportionality between dataset size and execution time (the bigger the dataset is, the longer it will be loaded).
+> - Proportionality between dataset size and execution time (the bigger the dataset is, the longer it will be loaded).
 \pause
 
 ## Conclusion / Doorway / Examples 
 
-- Watch the documentation to get thorough information about vizcovidfr's functions.
+> - Watch the documentation to get thorough information about vizcovidfr's functions.
 \pause
-- Here are some examples taken from our notebook (in 'report') to inspire you ! 
+> - Here are some examples taken from our notebook (in 'report') to inspire you ! 
 \pause
 
 ```{r line_chart_hosp, echo=FALSE, fig.align="center", out.width = '80%'}
@@ -260,4 +240,6 @@ knitr::include_graphics("heatmap_la_reunion_day.jpg")
 
 ## Conclusion / Doorway / Examples 
 
-SPARSE
+```{r sparse, echo=FALSE, fig.align="center", out.width = '100%'}
+knitr::include_graphics("sphx_glr_plot_sparse_002.png")
+```
