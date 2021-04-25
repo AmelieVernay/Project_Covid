@@ -284,13 +284,15 @@ def heatmap_reg_day(age, start, end=None, frequency='daily'):
             df = df[start:end][['incid', 'reg', 'cl_age90']].reset_index()
         df[freq] = pd.to_datetime(df['jour']).dt.date
     elif frequency == "weekly":
-        a = [preprocess_heatmaps.W2020_2021(i) for i in range(preprocess_heatmaps.S2020_2021(start), preprocess_heatmaps.S2020_2021(end)+1)]
+        a = [preprocess_heatmaps.W2020_2021(i) for i in range(preprocess_heatmaps.S2020_2021(start),
+             preprocess_heatmaps.S2020_2021(end)+1)]
         df = df[df['week'].isin(a)]
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - starting))
     plt.figure(1, figsize=(11, 8))
     sns.heatmap(df.pivot(freq, "reg", "incid"))
-    plt.title(f'Incidence rate per region and per date for age range number {age}')
+    plt.title(
+        f'Incidence rate per region and per date for age range number {age}')
     plt.xlabel('Region number')
     plt.ylabel('Date')
     plt.show()

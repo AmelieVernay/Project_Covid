@@ -623,15 +623,15 @@ def vacmap(granularity='region', age_range='all ages',
     >>> import os
     >>> path_to_Documents = os.path.expanduser("~/Documents")
     >>> vacmap(granularity='region', age_range='all ages',
-    ...         file_path=path_to_Documents, file_name='vaccine_map',
-    ...         color=[245, 92, 245, 80])
+    ...        file_path=path_to_Documents, file_name='vaccine_map',
+    ...        color=[245, 92, 245, 80])
 
     **example using Windows path**
 
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> vacmap(granularity='department', age_range='18-24',
-    ...         file_path=path_to_desktop, file_name='vaccine_map',
-    ...         color = [207, 67, 80, 140])
+    ...        file_path=path_to_desktop, file_name='vaccine_map',
+    ...        color = [207, 67, 80, 140])
 
     '''
     start = time.time()

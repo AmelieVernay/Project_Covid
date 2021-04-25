@@ -11,7 +11,6 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import r2_score
 from sklearn.linear_model import LinearRegression
-model = LinearRegression()
 
 # local reqs
 from vizcovidfr.loads import load_datasets
@@ -20,6 +19,8 @@ from vizcovidfr.preprocesses import preprocess_classe_age as pca
 # add python option to avoid "false positive" warning:
 pd.options.mode.chained_assignment = None  # default='warn'
 
+# scikitlearn model
+model = LinearRegression()
 
 
 def scatter_reg(num_var, num_reg, save=False):
@@ -130,7 +131,7 @@ def scatter_reg(num_var, num_reg, save=False):
 
     **Scatter plot of hospitalization in Île-de-France**
 
-    >>> scatter_reg(1,11) 
+    >>> scatter_reg(1, 11)
 
     """
     # Test execution time
@@ -274,18 +275,19 @@ def poly_fit(num_var, num_reg, save=False):
     Returns
     ----------
 
-    :return: Scatter plot of one of the Covid variable in a specific region of France with the regression curve.
+    :return: Scatter plot of one of the Covid variable in a specific region
+        of France with the regression curve.
     :rtype: Figure
 
     :Example:
 
     **Polynomial regression of hospitalization in Île-de-France**
 
-    >>> poly_fit(1,11) 
+    >>> poly_fit(1, 11)
 
     **Polynomial regression of hospitalization in Provence**
 
-    >>> poly_fit(1,93) 
+    >>> poly_fit(1, 93)
 
     """
     # Testing execution time
@@ -449,7 +451,7 @@ def R2(num_var, num_reg):
 
     **R2 of polynomial regression of hospitalization in Île-de-France**
 
-    >>> R2(1,11) 
+    >>> R2(1, 11)
 
     """
     # Testing execution time

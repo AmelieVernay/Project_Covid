@@ -86,7 +86,7 @@ class Load_vaccination:
 
     @staticmethod
     def save_as_df():
-        df = pd.read_csv(path_target_vac,sep=";")
+        df = pd.read_csv(path_target_vac, sep=";")
         return df
 
 # ---------- chiffres-fr ----------

@@ -1,3 +1,3 @@
-# Project oral presentation
+# Oral presentation
 
-In this folder should be placed everything that deals with the short presentation of our work that will be orally presented in front of a jury.
+Here you will find the oral presentation of our work (`beamer_video_vizcovidfr.mp4`). The video is also available [here on YouTube](https://www.youtube.com/watch?v=8RLse3MGTMU).

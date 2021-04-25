@@ -132,15 +132,15 @@ def bar_age(num_var, num_reg, save=False):
 
     **Bar plot of hospitalization in Guadeloupe by age group today**
 
-    >>> bar_age(1,1)
+    >>> bar_age(1, 1)
 
     **Bar plot of hospitalization in Corse by age group today**
 
-    >>> bar_age(1,94)
+    >>> bar_age(1, 94)
 
     **Bar plot of deaths in Guadeloupe by age group today**
 
-    >>> bar_age(7,1)
+    >>> bar_age(7, 1)
 
     """
     # Testing execution time

@@ -33,7 +33,9 @@ def W2020_2021(number):
     :return: week of the year
 
     :Examples:
+
     >>> W200_2021("2020-S35")
+
     """
     if (number == 53):
         return "202"+str(number//54)+f"-S{number:02}"

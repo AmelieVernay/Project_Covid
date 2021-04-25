@@ -145,8 +145,6 @@ def ignoreage(df, weekday="jour"):
     :return: A dataframe of incidence ignoring age
     :rtype: 'pandas.dataframe'
 
-    :Examples:
-    >>> ignoreage(Load_posquotreg().save_as_df(),"jour")
     """
     df.index = df[weekday]
     del df[weekday]
@@ -172,8 +170,6 @@ def granupositivity(df, nom, granularite=None):
     -------
     :return: A dataframe of incidence for a region
     :rtype: 'pandas.dataframe'
-    :Examples:
-    >>> granupositivity(ignoreage(Load_poshebreg().save_as_df(),"week"),2,"reg")
     """
     if granularite is not None:
         return df.loc[df[granularite] == nom, :]

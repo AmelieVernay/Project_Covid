@@ -228,9 +228,11 @@ def vacdoses(unit='doses', font_size=16,
     doses = df.groupby(['date'])['nb_doses'].size().reset_index()
     ucd = df.groupby(['date'])['nb_ucd'].size().reset_index()
     doses['nb_doses'] = df['nb_doses']
-    doses.rename(columns={'nb_doses': 'Number of doses with basic unit', 'date': 'Date'}, inplace=True)
+    doses.rename(columns={'nb_doses': 'Number of doses with basic unit',
+                          'date': 'Date'}, inplace=True)
     ucd['nb_ucd'] = df['nb_ucd']
-    ucd.rename(columns={'nb_ucd': 'Number of doses with ucd unit', 'date': 'Date'}, inplace=True)
+    ucd.rename(columns={'nb_ucd': 'Number of doses with ucd unit',
+                        'date': 'Date'}, inplace=True)
     if (unit == 'doses'):
         df = doses.copy()
         nbr = 'Number of doses with basic unit'
