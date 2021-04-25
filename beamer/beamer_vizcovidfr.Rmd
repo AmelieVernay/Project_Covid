@@ -139,7 +139,7 @@ def test_viz3Dmap():
 \pause
 > - Each contributor created his own modules, with its documentation and their unit tests associated.
 
-## Regression and prediction (part 1/7)
+## Regression and prediction (part 1/8)
 
 > - Because we had data relative to the time, we wanted to predict the evolution of Covid-19.
 \pause
@@ -149,7 +149,7 @@ def test_viz3Dmap():
 knitr::include_graphics("scatter_hospitalization_Île-de-France.jpg")
 ```
 
-## Regression and prediction (part 2/7)
+## Regression and prediction (part 2/8)
 
 > - Linear regression is not adapted to data.
 > - How to make prediction then ? 
@@ -158,7 +158,7 @@ knitr::include_graphics("scatter_hospitalization_Île-de-France.jpg")
 > - poly_fit can make $7 \times 18 = 126$ polynomial regression.
 > - poly_fit minimizes the mean squared error to fit as good as it can.
 
-## Regression and prediction (part 3/7)
+## Regression and prediction (part 3/8)
 
 Pros and cons :
 
@@ -170,29 +170,34 @@ Pros and cons :
 \pause
   > - Problem : impossible to predict in a far future
 
-## Regression and prediction (part 4/7)
+## Regression and prediction (part 4/8)
 
 ```{r reg_hosp, echo=FALSE, fig.align="center", out.width = '100%'}
 knitr::include_graphics("regression_hospitalization_Île-de-France.jpg")
 ```
 
-## Regression and prediction (part 5/7)
+## Regression and prediction (part 5/8)
 
-Prediction for 2021-04-30 (with data until 2021-04-23) :
+Prediction with predict_curve for 2021-04-30 (with data until 2021-04-23) :
  
 ```{r predict_hosp, echo=FALSE, fig.align="center", out.width = '80%'}
 knitr::include_graphics("predict_hospitalization_Île-de-France_2021-04-30.jpg")
 ```
 
-## Regression and prediction (part 6/7)
+## Regression and prediction (part 6/8)
 
-Prediction for 2021-06-30 (with data until 2021-04-23) :
+> - predict_value gives the estimated number for the given date.
+> - Number of hospitalization in Île-de-France estimated on 2021-04-30 : 16 376
+
+## Regression and prediction (part 7/8)
+
+Prediction with predict_curve for 2021-06-30 (with data until 2021-04-23) :
 
 ```{r predict_hosp_IDF, echo=FALSE, fig.align="center", out.width = '80%'}
 knitr::include_graphics("predict_hospitalization_Île-de-France_2021-06-30.jpg")
 ```
 
-## Regression and prediction (part 7/7)
+## Regression and prediction (part 8/8)
 
 Advice :
 
@@ -203,8 +208,6 @@ Advice :
 > - Then use predict_curve to check if the predicted curve is going to infinite or not.
 \pause
 > - If predicted curve looks good, then use predict_value to get the value you were looking for.
-
-> - Example : Number of hospitalization in Île-de-France estimated on 2021-04-30 : 16 376
 
 ## Time and memory
 
