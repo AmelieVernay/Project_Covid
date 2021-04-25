@@ -206,19 +206,59 @@ Advice :
 
 > - Example : Number of hospitalization in Île-de-France estimated on 2021-04-30 : 16 376
 
-## Time and memory
+
+## Time and memory (part 1/4)
 
 > - Each function displays its execution time and they're all calculated on the same machine.
 \pause
 > - Proportionality between dataset size and execution time (the bigger the dataset is, the longer it will be loaded).
 \pause
 
+## Time/Memory (part 2/4)
+
+
+| Function                    |  Execution time(s)              |  Size of the loaded   |
+|:--------------------------: | :-----------------------------: | :--------------------:|
+|vacmap                       | 74.86038 s.                     | 12.0MB                |
+|piechart                     | from 2.62365 s. to 69.43795 s.  | from 6.5MB to 12.0MB  |
+|viz2Dmap                     | 21.74077 s.                     | 6.79MB                |
+|viz3Dmap                     | 19.54393 s.                     | 6.79MB                |
+|transfer_map                 | 1.14778 s.                      | 1.79kB                |
+|sparse_graph                 | 0.50041 s.                      | 1.79kB                |
+|sparse_matrix                | 0.43385 s.                      | 1.79kB                |
+
+## Time/Memory (part 3/4)
+
+| Function                    |  Execution time(s)              |  Size of the loaded   |
+|:--------------------------: | :-----------------------------: | :--------------------:|
+|regression.R2                | 2.04217 s.                      | 3.2MB                 |
+|regression.poly_fit          | 2.34914 s.                      | 3.2MB                 |
+|regression.scatter_reg       | 1.92033 s.                      | 3.2MB                 |
+|vacdoses                     | 0.76860 s.                      | 2kB                   |
+|vactypedoses                 | 0.42227 s.                      | 2kB                   |
+|predict_curve                | 2.69524 s.                      | 3.2MB                 |
+|predict_value                | 2.12597 s.                      | 3.2MB                 |
+
+## Time/Memory (part 4/4)
+
+| Function                    |  Execution time(s)              |  Size of the loaded   |
+|:--------------------------: | :-----------------------------: | :--------------------:|
+|bar_age                      | 1.41214 s.                      | 3.2MB                 |
+|bar_reg                      | 1.55690 s.                      | 3.2MB                 |
+|compareMF                    | from 0.52738 s. to 2.04961 s.   | from 228KB to 3.6MB   |
+|keytimeseries                | from 0.67941 s. to 3.18099 s.   | from 25KB to 6.5MB    |
+|heatmap_age                  | form 0.53875 s. to 2.09932 s.   | from 3.3KB to 34KB    |
+|heatmap_reg_age              | from 0.67732 s. to 1.75079 s.   | from 491KB to 3.3KB   |
+|heatmap_reg_day              | from 0.69503 s. to 1.66679 s.   | from 401KB to 3.3KB   |
+
+
+
 ## Conclusion / Doorway / Examples 
 
 > - Watch the documentation to get thorough information about vizcovidfr's functions.
-\pause
+
 > - Here are some examples taken from our notebook (in 'report') to inspire you ! 
-\pause
+
 
 ```{r line_chart_hosp, echo=FALSE, fig.align="center", out.width = '80%'}
 knitr::include_graphics("line_chart_guadeloupe_hosp.jpg")
