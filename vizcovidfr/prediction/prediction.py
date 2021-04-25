@@ -11,6 +11,7 @@ import matplotlib.lines as mlines
 from sklearn.metrics import r2_score
 import datetime
 from matplotlib.backends.backend_pdf import PdfPages
+from datetime import datetime as dt
 import time
 
 # local reqs
@@ -20,7 +21,7 @@ from vizcovidfr.regression import regression as rg
 
 
 
-def predict_curve(num_var, num_reg, date = 'date', save = False):
+def predict_curve(num_var, num_reg, date = 'date', save = False, show=True):
     """
     Display the scatter plot of the given variable in the given region with predicted curve until the given date. Each variable and region have a special code that you can see in function parameters for details.
 
@@ -147,7 +148,7 @@ def predict_curve(num_var, num_reg, date = 'date', save = False):
     covid_day = pca.covid_day_fct(R)
     # Choose variable to explain
     x = np.arange(0, covid_day.shape[0])
-    y = covid_day[dico_col[1]]
+    y = covid_day[dico_col[num_var]]
     x = x[:, np.newaxis]
     y = y[:, np.newaxis]
     # Dictionaries
@@ -172,6 +173,13 @@ def predict_curve(num_var, num_reg, date = 'date', save = False):
     dico_days2 = pca.dico_day(covid_day)
     for i in np.arange(keys[-1]+1,num_date+1):
         dico_days2[i] = dico_days2[i-1] + delta
+    # Converting from timestamp to datetime format
+    for i in np.arange(0,covid_day.shape[0]):
+        dico_days[i] = dt.date(dico_days[i])
+    for i in np.arange(0,num_date+1):
+        dico_days2[i] = dt.date(dico_days2[i])
+    if (show == False):
+        return "Are you sure you don't want to see our beautiful prediction ?"
     # Scatter plot with the predicted regression line
     fig = plt.scatter(dico_days.values(), y)
     plt.plot(dico_days2.values(), np.polyval(coefs, np.arange(num_date+1)), color="black")
