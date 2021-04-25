@@ -4,6 +4,8 @@
 ## A python package to visualize spatial evolution of Covid19 cases in France
 
 [![Documentation Status](https://readthedocs.org/projects/vizcovidfr/badge/?version=latest)](https://vizcovidfr.readthedocs.io/en/latest/?badge=latest)
+![workflow](https://github.com/github/docs/actions/workflows/pythonpackage.yml/badge.svg)
+![test badge](https://github.com/AmelieVernay/vizcovidfr/workflows/pythonpackage.yml/badge.svg?branch=main)
 [![PyPI version](https://badge.fury.io/py/vizcovidfr.svg)](https://badge.fury.io/py/vizcovidfr)
 
 The documentation of vizcovidfr is available [here](https://vizcovidfr.readthedocs.io/en/latest/index.html).
