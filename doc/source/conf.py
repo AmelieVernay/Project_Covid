@@ -77,7 +77,7 @@ image_scrapers = ('matplotlib', plotly_sg_scraper,)
 pio.renderers.default = 'sphinx_gallery'
 
 sphinx_gallery_conf = {
-	'example_dirs': '../examples',
+	'examples_dirs': '../examples',
 	'gallery_dirs': 'auto_examples',
 	'remove_config_comments': True,
 	'capture_repr': ('_repr_html_', '__repr__'),
