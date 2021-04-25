@@ -70,17 +70,9 @@ html_css_files = {
 }
 
 
-import plotly
-import plotly.io as pio
-from plotly.io._sg_scraper import plotly_sg_scraper
-image_scrapers = ('matplotlib', plotly_sg_scraper,)
-pio.renderers.default = 'sphinx_gallery'
 
 sphinx_gallery_conf = {
 	'examples_dirs': '../examples',
 	'gallery_dirs': 'auto_examples',
-	'expected_failing_examples': ['../examples/plot_sparse.py'],
-	'remove_config_comments': True,
-	'capture_repr': ('_repr_html_', '__repr__'),
-	'image_scrapers': image_scrapers,
+	'expected_failing_examples': ['../examples/plot_regression.py'],
 }
