@@ -12,7 +12,7 @@ path_target = os.path.join(
                 "..", "data")
 
 # ---------- chiffres-cles ----------
-url_cc = "https://www.data.gouv.fr/en/datasets/r/0b66ca39-1623-4d9c-83ad-5434b7f9e2a4"
+url_cc = "https://www.data.gouv.fr/fr/datasets/r/0b66ca39-1623-4d9c-83ad-5434b7f9e2a4"
 path_target_cc = os.path.join(path_target, "chiffres-cles.csv")
 
 
