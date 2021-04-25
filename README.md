@@ -2,12 +2,16 @@
 # vizcovidfr
 ## A python package to visualize spatial evolution of Covid19 cases in France
 
+[![Documentation Status](https://readthedocs.org/projects/vizcovidfr/badge/?version=latest)](https://vizcovidfr.readthedocs.io/en/latest/?badge=latest)
+
 <p align="center">
 <img src="./doc/source/_static/vizcovidfr_transfer_map.png" style="vertical-align:middle" width="600" height='400' class='center' alt='logo'>
 </p>
 
 
 As part of our course [HMMA238](https://github.com/bcharlier/HMMA238) 'Software Development', we are working on a team project.
+
+The documentation of vizcovidfr is available [here](https://vizcovidfr.readthedocs.io/en/latest/index.html)
 
 
 ### Project description

@@ -12,7 +12,7 @@
 #
 import os
 import sys
-# import faculty-sphinx-theme
+import faculty_sphinx_theme
 sys.path.insert(0, os.path.abspath('.'))
 master_doc = 'index'
 
