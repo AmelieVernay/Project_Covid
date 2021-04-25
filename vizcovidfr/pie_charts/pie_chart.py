@@ -85,11 +85,9 @@ def piechart(criterion='reanimation', date='2021-04-20',
     - click on a region icon on the right to remove it from the pie chart till further notice: the rate per region
     will get adjusted.
 
-    - Double click on a region icon to remove
-        all the others from the pie chart.
+    - Double click on a region icon to remove all the others from the pie chart.
 
-    - click on the camera icon on the very top right of the chart to save the image as
-        a png.
+    - click on the camera icon on the very top right of the chart to save the image as a png.
 
     - pass mouse on the pie chart slices to get thorough information.
     '''
