@@ -1,6 +1,7 @@
 
 from setuptools import setup, find_packages
 
+
 setup(
   name='vizcovidfr',
   version='0.0.3',
