@@ -3,8 +3,8 @@ title: "vizcovidfr, a Covid-19 analysis package"
 author: "Amélie Vernay, Laurent Llinares, Quentin Foux, Alexandre Nicolas"
 date: "25/04/2021"
 output:
-  beamer_presentation: default
   ioslides_presentation: default
+  beamer_presentation: default
 ---
 
 ```{r setup, include=FALSE}
@@ -129,6 +129,36 @@ def test_viz3Dmap():
     assert
 ```
 
+## Essai Amélie 01:32
+
+![Caption for the picture.](scatter_hospitalization_Île-de-France.pdf)
+
+## essais Amélie 01:39 :/
+
+```{r pressure1, echo=FALSE, fig.cap="A caption", out.width = '100%'}
+knitr::include_graphics("scatter_hospitalization_Île-de-France.pdf")
+```
+
+## essais Amélie 01:42 :(
+
+<object data="scatter_hospitalization_Île-de-France.pdf" width="700px" height="700px"></object>
+
+## essais Amélie 01:45 :'(
+
+```{r, out.width="0.3\\linewidth", include=TRUE, fig.align="center", fig.cap=c("your caption"), echo=FALSE}
+knitr::include_graphics("scatter_hospitalization_Île-de-France.pdf")
+```
+
+## Essais Amélie 01:49 x@
+
+```{r pressure, echo=FALSE, fig.cap="A caption", out.width = '100%'}
+knitr::include_graphics("scatter_hospitalization_Île-de-France.jpg")
+```
+
+## Conclusion Amélie 01:51 :D
+
+J'ai cas tout convertir en .jpg !
+
 ## Workflow
 
 - Each contributor created a class to load the dataset he used.
@@ -145,7 +175,9 @@ def test_viz3Dmap():
 \pause
 Here is an example of scatter plot
 \pause
-![Caption for the picture.](scatter_hospitalization_Île-de-France.pdf)
+```{r scat, echo=FALSE, fig.align="center", out.width = '80%'}
+knitr::include_graphics("scatter_hospitalization_Île-de-France.jpg")
+```
 
 ## Regression and prediction (part 2/6)
 
@@ -164,19 +196,25 @@ Pros and cons :
 
 ## Regression and prediction (part 3/6)
 
-![Caption for the picture.](regression_hospitalization_Île-de-France.pdf)
+```{r reg_hosp, echo=FALSE, fig.align="center", out.width = '100%'}
+knitr::include_graphics("regression_hospitalization_Île-de-France.jpg")
+```
 
 ## Regression and prediction (part 4/6)
 
  Prediction for 2021-04-30 (with data until 2021-04-23) :
  
-![Caption for the picture.](predict_hospitalization_Île-de-France_2021-04-30.pdf)
+```{r predict_hosp, echo=FALSE, fig.align="center", out.width = '80%'}
+knitr::include_graphics("predict_hospitalization_Île-de-France_2021-04-30.jpg")
+```
 
 ## Regression and prediction (part 5/6)
 
 Prediction for 2021-06-30 (with data until 2021-04-23) :
 
-![Caption for the picture.](predict_hospitalization_Île-de-France_2021-06-30.pdf)
+```{r predict_hosp_IDF, echo=FALSE, fig.align="center", out.width = '80%'}
+knitr::include_graphics("predict_hospitalization_Île-de-France_2021-06-30.jpg")
+```
 
 ## Regression and prediction (part 6/6)
 
@@ -201,15 +239,24 @@ Advice :
 \pause
 - Here are some examples taken from our notebook (in 'report') to inspire you ! 
 \pause
-![Caption for the picture.](line_chart_guadeloupe_hosp.pdf)
+
+```{r line_chart_hosp, echo=FALSE, fig.align="center", out.width = '80%'}
+knitr::include_graphics("line_chart_guadeloupe_hosp.jpg")
+```
+
 
 ## Conclusion / Doorway / Examples 
 
-![Caption for the picture.](piechart.pdf)
+```{r pie_chart, echo=FALSE, fig.align="center", out.width = '100%'}
+knitr::include_graphics("piechart.jpg")
+```
+
 
 ## Conclusion / Doorway / Examples 
 
-![Caption for the picture.](heatmap_la_reunion_day.pdf)
+```{r heatmap, echo=FALSE, fig.align="center", out.width = '100%'}
+knitr::include_graphics("heatmap_la_reunion_day.jpg")
+```
 
 ## Conclusion / Doorway / Examples 
 
