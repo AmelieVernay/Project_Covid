@@ -79,6 +79,7 @@ pio.renderers.default = 'sphinx_gallery'
 sphinx_gallery_conf = {
 	'examples_dirs': '../examples',
 	'gallery_dirs': 'auto_examples',
+	'expected_failing_examples': ['../examples/plot_sparse.py'],
 	'remove_config_comments': True,
 	'capture_repr': ('_repr_html_', '__repr__'),
 	'image_scrapers': image_scrapers,
