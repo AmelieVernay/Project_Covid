@@ -2,7 +2,6 @@
 # vizcovidfr
 ## A python package to visualize spatial evolution of Covid19 cases in France
 
-![Python package](https://github.com/AmelieVernay/vizcovidfr/tree/main/.github/workflows/Python%20package/badge.svg?branch=main)
 [![Documentation Status](https://readthedocs.org/projects/vizcovidfr/badge/?version=latest)](https://vizcovidfr.readthedocs.io/en/latest/?badge=latest)
 
 <p align="center">
