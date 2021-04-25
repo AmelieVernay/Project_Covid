@@ -13,9 +13,9 @@ The documentation of vizcovidfr is available [here](https://vizcovidfr.readthedo
 <img src="./doc/source/_static/vizcovidfr_transfer_map.png" style="vertical-align:middle" width="600" height='400' class='center' alt='logo'>
 </p>
 
-### Project description
+## Project description
 
-As part of our course [HMMA238](https://github.com/bcharlier/HMMA238) 'Software Development', we worked on a team project, and the result is a python package that can be installed by entering the following line in a terminal:
+As part of our course [HMMA238](https://github.com/bcharlier/HMMA238) 'Software Development' at the university of Montpellier, we worked on a team project, and the result is a python package that can be installed by entering the following line in a terminal:
 
 ```{bash}
 $ pip install vizcovidfr==0.0.3
@@ -28,7 +28,7 @@ Hopefully our modules will also provide functions for animated and interactive d
 
 We use Covid-related [datasets available on data.gouv.fr](https://www.data.gouv.fr/en/datasets/).
 
-### Oral presentation
+## Oral presentation
 
 Our beamer presentation for **vizcovidfr** is available on GitHub (`./beamer` folder) and [here on YouTube](https://www.youtube.com/watch?v=8RLse3MGTMU).
 
@@ -47,3 +47,18 @@ Our beamer presentation for **vizcovidfr** is available on GitHub (`./beamer` fo
 - Vernay Amelie: maps / sparse / time
 
 - Everyone: module architecture, documentation, unit tests...
+
+## Sources
+
+During our work, we found help on many different places, in addition to our [HMMA238](https://github.com/bcharlier/HMMA238).
+
+#### For the package structure and the documentation
+
+- the package [chaoseverywhere](https://github.com/tanglef/chaoseverywhere) built by some of our predecessors
+- this [python-guide](https://docs.python-guide.org/writing/structure/) about packages
+- the [Sphinx documentation](https://www.sphinx-doc.org/en/master/usage/quickstart.html) about documentation
+
+#### For the code part
+
+- the documentation of all the packages that figure in the `requirement.txt` file.
+- the public platform [stackoverflow](https://stackoverflow.com/) was very helpful.
