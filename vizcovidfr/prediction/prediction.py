@@ -169,7 +169,7 @@ def predict_curve(num_var, num_reg, date = 'date', save = False):
     # Dictionary dico_days with date until 'date'
     period = date2 - dico_days[keys[-1]]
     num_date = keys[-1] + period.days
-    dico_days2 = dico_days.copy()
+    dico_days2 = pca.dico_day(covid_day)
     for i in np.arange(keys[-1]+1,num_date+1):
         dico_days2[i] = dico_days2[i-1] + delta
     # Scatter plot with the predicted regression line
@@ -342,3 +342,5 @@ def predict_value(num_var, num_reg, date = 'date'):
     end = time.time()
     print("Time to execute: {0:.5f} s.".format(end - start))
     return res
+
+
