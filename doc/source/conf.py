@@ -74,5 +74,4 @@ html_css_files = {
 sphinx_gallery_conf = {
 	'examples_dirs': '../examples',
 	'gallery_dirs': 'auto_examples',
-	'expected_failing_examples': ['../examples/plot_regression.py'],
 }
