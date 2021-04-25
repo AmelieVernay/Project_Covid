@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
   name='vizcovidfr',
-  version='0.0.1',
+  version='0.0.2',
   description='A python package to visualize spatial evolution of Covid19 cases in France',
   url='https://github.com/AmelieVernay/vizcovidfr',
   author='Foux Quentin ; Llinares Laurent ; Nicolas Alexandre ; Vernay Amelie',
