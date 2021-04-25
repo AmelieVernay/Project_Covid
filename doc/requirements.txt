@@ -6,7 +6,7 @@ sphinx-gallery>=0.6.0
 pandas>=1.2.3
 numpy>=1.19.2
 matplotlib>=3.3.2
-vizcovidfr==0.0.2
+vizcovidfr==0.0.3
 download>=0.3.5
 seaborn>=0.11.1
 folium>=0.12.1

@@ -9,7 +9,7 @@ To install vizcovidfr, enter the following command in your terminal:
 
 .. code-block:: bash
 
-	$ pip install vizcovidfr
+	$ pip install vizcovidfr==0.0.3
 
 **Note**
 
@@ -24,4 +24,4 @@ You might need to use pip3 instead of pip depending on your system. You can use 
 The one that does not give you a *Command not found* message is the one you should use.
 
 
-Alright! You are now ready to use **vizcovidfr**. Don't know where to start? Why not choose any function in the documentation and start with one of the examples provided?   
+Alright! You are now ready to use **vizcovidfr**. Don't know where to start? Why not choose any function in the documentation and start with one of the examples provided?
