@@ -276,14 +276,14 @@ slide:not(.current) .plotly.html-widget{
 <li>Each contributor created his own modules, with its documentation and their unit tests associated.</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 1/7)</h2></hgroup><article  id="regression-and-prediction-part-17">
+</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 1/8)</h2></hgroup><article  id="regression-and-prediction-part-18">
 
 <ul class = 'build'>
 <li>Because we had data relative to the time, we wanted to predict the evolution of Covid-19. </li>
 <li>Here is an example of scatter plot.  <img src="scatter_hospitalization_Île-de-France.jpg" width="80%" style="display: block; margin: auto;" /></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 2/7)</h2></hgroup><article  id="regression-and-prediction-part-27">
+</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 2/8)</h2></hgroup><article  id="regression-and-prediction-part-28">
 
 <ul class = 'build'>
 <li>Linear regression is not adapted to data.</li>
@@ -296,7 +296,7 @@ slide:not(.current) .plotly.html-widget{
 <li>poly_fit minimizes the mean squared error to fit as good as it can.</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 3/7)</h2></hgroup><article  id="regression-and-prediction-part-37">
+</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 3/8)</h2></hgroup><article  id="regression-and-prediction-part-38">
 
 <p>Pros and cons :</p>
 
@@ -307,23 +307,30 @@ slide:not(.current) .plotly.html-widget{
 <li>Problem : impossible to predict in a far future</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 4/7)</h2></hgroup><article  id="regression-and-prediction-part-47">
+</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 4/8)</h2></hgroup><article  id="regression-and-prediction-part-48">
 
 <p><img src="regression_hospitalization_Île-de-France.jpg" width="100%" style="display: block; margin: auto;" /></p>
 
-</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 5/7)</h2></hgroup><article  id="regression-and-prediction-part-57">
+</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 5/8)</h2></hgroup><article  id="regression-and-prediction-part-58">
 
-<p>Prediction for 2021-04-30 (with data until 2021-04-23) :</p>
+<p>Prediction with predict_curve for 2021-04-30 (with data until 2021-04-23) :</p>
 
 <p><img src="predict_hospitalization_Île-de-France_2021-04-30.jpg" width="80%" style="display: block; margin: auto;" /></p>
 
-</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 6/7)</h2></hgroup><article  id="regression-and-prediction-part-67">
+</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 6/8)</h2></hgroup><article  id="regression-and-prediction-part-68">
 
-<p>Prediction for 2021-06-30 (with data until 2021-04-23) :</p>
+<ul class = 'build'>
+<li>predict_value gives the estimated number for the given date.</li>
+<li>Number of hospitalization in Île-de-France estimated on 2021-04-30 : 16 376</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 7/8)</h2></hgroup><article  id="regression-and-prediction-part-78">
+
+<p>Prediction with predict_curve for 2021-06-30 (with data until 2021-04-23) :</p>
 
 <p><img src="predict_hospitalization_Île-de-France_2021-06-30.jpg" width="80%" style="display: block; margin: auto;" /></p>
 
-</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 7/7)</h2></hgroup><article  id="regression-and-prediction-part-77">
+</article></slide><slide class=""><hgroup><h2>Regression and prediction (part 8/8)</h2></hgroup><article  id="regression-and-prediction-part-88">
 
 <p>Advice :</p>
 
@@ -335,10 +342,6 @@ slide:not(.current) .plotly.html-widget{
 <li>Then use poly_fit function to see how the model fits with data. </li>
 <li>Then use predict_curve to check if the predicted curve is going to infinite or not. </li>
 <li>If predicted curve looks good, then use predict_value to get the value you were looking for.</li>
-</ul>
-
-<ul class = 'build'>
-<li>Example : Number of hospitalization in Île-de-France estimated on 2021-04-30 : 16 376</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Time and memory</h2></hgroup><article  id="time-and-memory">
