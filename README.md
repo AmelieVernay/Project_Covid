@@ -1,5 +1,5 @@
-﻿
-<center> <h1>vizcovidfr 1</h1> </center>
+<p align="center"><h1>vizcovidfr</h1></p>
+
 
 ## A python package to visualize spatial evolution of Covid19 cases in France
 
