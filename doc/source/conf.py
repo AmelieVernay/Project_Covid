@@ -74,4 +74,5 @@ html_css_files = {
 sphinx_gallery_conf = {
 	'examples_dirs': '../examples',
 	'gallery_dirs': 'auto_examples',
+	'only_warn_on_example_error': True
 }
