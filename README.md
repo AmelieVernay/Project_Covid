@@ -26,7 +26,7 @@ Hopefully our modules will also provide functions for animated and interactive d
 
 We use Covid-related [datasets available on data.gouv.fr](https://www.data.gouv.fr/en/datasets/).
 
-### Beamer presentation
+### Oral presentation
 
 Our beamer presentation for **vizcovidfr** is available on GitHub (`./beamer` folder) and [here on YouTube](https://www.youtube.com/watch?v=8RLse3MGTMU).
 
