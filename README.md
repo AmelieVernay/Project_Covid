@@ -1,13 +1,11 @@
 ﻿
-<p align="center">
-<strong> vizcovidfr </strong> <br>
-</p>
+<center> <h1>vizcovidfr 1</h1> </center>
 
 ## A python package to visualize spatial evolution of Covid19 cases in France
 
 [![Documentation Status](https://readthedocs.org/projects/vizcovidfr/badge/?version=latest)](https://vizcovidfr.readthedocs.io/en/latest/?badge=latest)
 
-The documentation of vizcovidfr is available [here](https://vizcovidfr.readthedocs.io/en/latest/index.html)
+The documentation of vizcovidfr is available [here](https://vizcovidfr.readthedocs.io/en/latest/index.html).
 
 <p align="center">
 <img src="./doc/source/_static/vizcovidfr_transfer_map.png" style="vertical-align:middle" width="600" height='400' class='center' alt='logo'>
@@ -30,7 +28,7 @@ We use Covid-related [datasets available on data.gouv.fr](https://www.data.gouv.
 
 ### Beamer presentation
 
-Our beamer presentation for **vizcovidfr** is available on GitHub (`./beamer` folder) and [here on YouTube](https://www.youtube.com/watch?v=ctnLmTIPBqU)
+Our beamer presentation for **vizcovidfr** is available on GitHub (`./beamer` folder) and [here on YouTube](https://www.youtube.com/watch?v=ctnLmTIPBqU).
 
 ### Members
 
