@@ -11,7 +11,6 @@ import os
 
 import pydeck as pdk
 import ipywidgets
-from palettable.cartocolors.sequential import BrwnYl_3
 import json
 
 # local reqs
