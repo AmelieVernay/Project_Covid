@@ -21,7 +21,7 @@ from vizcovidfr.regression import regression as rg
 
 
 
-def predict_curve(num_var, num_reg, date = 'date', save = False):
+def predict_curve(num_var, num_reg, date = 'date', save = False, show=True):
     """
     Display the scatter plot of the given variable in the given region with predicted curve until the given date. Each variable and region have a special code that you can see in function parameters for details.
 
@@ -178,6 +178,8 @@ def predict_curve(num_var, num_reg, date = 'date', save = False):
         dico_days[i] = dt.date(dico_days[i])
     for i in np.arange(0,num_date+1):
         dico_days2[i] = dt.date(dico_days2[i])
+    if (show == False):
+        return "Are you sure you don't want to see our beautiful prediction ?"
     # Scatter plot with the predicted regression line
     fig = plt.scatter(dico_days.values(), y)
     plt.plot(dico_days2.values(), np.polyval(coefs, np.arange(num_date+1)), color="black")

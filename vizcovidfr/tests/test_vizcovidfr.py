@@ -229,7 +229,7 @@ def test_predict_curve():
     If something fails while running it, result won't be defined,
     and an AssertionError will raise.
     """
-    result = (type(prediction.predict_curve(1, 1, '2021-08-01')) != float)
+    result = (type(prediction.predict_curve(1, 1, '2021-08-01',show=False)) != float)
     assert result
 
 
