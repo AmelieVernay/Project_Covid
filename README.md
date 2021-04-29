@@ -5,6 +5,7 @@
 
 [![Documentation Status](https://readthedocs.org/projects/vizcovidfr/badge/?version=latest)](https://vizcovidfr.readthedocs.io/en/latest/?badge=latest)
 ![Python package](https://github.com/AmelieVernay/vizcovidfr/workflows/Python%20package/badge.svg?branch=main)
+[![PyPI version](https://badge.fury.io/py/vizcovidfr.svg)](https://badge.fury.io/py/vizcovidfr)
 
 The documentation of vizcovidfr is available [here](https://vizcovidfr.readthedocs.io/en/latest/index.html).
 
@@ -19,6 +20,13 @@ As part of our course [HMMA238](https://github.com/bcharlier/HMMA238) 'Software 
 ```{bash}
 $ pip install git+https://github.com/AmelieVernay/vizcovidfr/
 ```
+You can also use the command
+
+```{bash}
+$ pip install vizcovidfr==0.0.4
+```
+but this version might not have the very last changes, even though we are doing our best to maintain it up to date.
+
 
 The goal of our project was to analyze the spreading of the covid19 disease in France.
 The main idea was to provide a python package for Covid data visualization.

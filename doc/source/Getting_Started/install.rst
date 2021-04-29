@@ -9,7 +9,7 @@ To install vizcovidfr, enter the following command in your terminal:
 
 .. code-block:: bash
 
-	$ pip install vizcovidfr==0.0.3
+	$ pip install vizcovidfr==0.0.4
 
 **Note**
 
