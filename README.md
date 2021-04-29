@@ -5,7 +5,6 @@
 
 [![Documentation Status](https://readthedocs.org/projects/vizcovidfr/badge/?version=latest)](https://vizcovidfr.readthedocs.io/en/latest/?badge=latest)
 ![Python package](https://github.com/AmelieVernay/vizcovidfr/workflows/Python%20package/badge.svg?branch=main)
-[![PyPI version](https://badge.fury.io/py/vizcovidfr.svg)](https://badge.fury.io/py/vizcovidfr)
 
 The documentation of vizcovidfr is available [here](https://vizcovidfr.readthedocs.io/en/latest/index.html).
 
@@ -18,7 +17,7 @@ The documentation of vizcovidfr is available [here](https://vizcovidfr.readthedo
 As part of our course [HMMA238](https://github.com/bcharlier/HMMA238) 'Software Development' at the university of Montpellier, we worked on a team project, and the result is a python package that can be installed by entering the following line in a terminal:
 
 ```{bash}
-$ pip install vizcovidfr==0.0.3
+$ pip install git+https://github.com/AmelieVernay/vizcovidfr/
 ```
 
 The goal of our project was to analyze the spreading of the covid19 disease in France.
