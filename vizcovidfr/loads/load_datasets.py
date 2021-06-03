@@ -150,7 +150,6 @@ class Load_posquotdep:
         return df
 
 
-
 # ---------- posquotfr ----------
 url_posfr = "https://www.data.gouv.fr/fr/datasets/r/dd0de5d9-b5a5-4503-930a-7b08dc0adc7c"
 path_target_posfr = os.path.join(path_target, "./posquotfr.csv")

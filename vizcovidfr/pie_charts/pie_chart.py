@@ -140,7 +140,7 @@ def piechart(criterion='reanimation', date='2021-04-20',
         df_reg2 = all_ages.groupby(
                     ['Date',
                      'Nom Officiel Région'])['Nombre cumulé de doses n°1',
-                                             'n_cum_complet'].agg('sum').reset_index()
+                                             'Nombre cumulé de vaccinations complètes (doses n°2)'].agg('sum').reset_index()
         df = df_reg2.groupby(['Nom Officiel Région']).agg('max').reset_index()
         # Saint-Barthélemy and Saint-Martin are departments and not regions
         df.drop([17, 18], 0, inplace=True)
@@ -153,18 +153,18 @@ def piechart(criterion='reanimation', date='2021-04-20',
                     color_discrete_sequence=px.colors.sequential.thermal,
                     labels={'Nom Officiel Région': 'Region name',
                             'Nombre cumulé de doses n°1': 'First vaccine doses administered till today',
-                            'n_cum_complet': 'Second vaccine doses administered till today'},
+                            'Nombre cumulé de vaccinations complètes (doses n°2)': 'Second vaccine doses administered till today'},
                     title=f'{a} rate per region until today',
                     template=template)
         else:
             a = 'Second dose vaccination'
             fig = px.pie(
-                    df, values='n_cum_complet',
+                    df, values='Nombre cumulé de vaccinations complètes (doses n°2)',
                     names='Nom Officiel Région',
                     color_discrete_sequence=px.colors.sequential.thermal,
                     labels={'Nom Officiel Région': 'Region name',
                             'Nombre cumulé de doses n°1': 'First vaccine doses administered till today',
-                            'n_cum_complet': 'Second vaccine doses administered till today'},
+                            'Nombre cumulé de vaccinations complètes (doses n°2)': 'Second vaccine doses administered till today'},
                     title=f'{a} rate per region until today',
                     template=template)
     fig.update_traces(textposition='inside',

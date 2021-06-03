@@ -616,7 +616,7 @@ def vacmap(granularity='region', age_range='all ages',
 
     **easy example**
 
-    >>> viz3Dmap()
+    >>> vacmap()
 
     **example using Linux path**
 
@@ -703,7 +703,7 @@ def vacmap(granularity='region', age_range='all ages',
         df['code'] = df['Code Officiel Département']
         df3 = df.groupby(['Date',
                           'code'])['Nombre cumulé de doses n°1',
-                                   'n_cum_complet'].agg('sum').reset_index()
+                                   'Nombre cumulé de vaccinations complètes (doses n°2)'].agg('sum').reset_index()
         # pick the latest cumulation per granularity
         df3 = df3.groupby(['code']).agg('max')
         df3['code'] = df3.index
@@ -717,7 +717,7 @@ def vacmap(granularity='region', age_range='all ages',
         df['code'] = df['Code Officiel Région']
         df3 = df.groupby(['Date',
                           'code'])['Nombre cumulé de doses n°1',
-                                   'n_cum_complet'].agg('sum').reset_index()
+                                   'Nombre cumulé de vaccinations complètes (doses n°2)'].agg('sum').reset_index()
         # pick the latest cumule per granularity
         df3 = df3.groupby(['code']).agg('max')
         df3['code'] = df3.index
@@ -743,12 +743,12 @@ def vacmap(granularity='region', age_range='all ages',
         df_merged.rename(
             columns={'Nombre cumulé de doses n°1': 'Nmb of first doses',
                      'code': 'department_code', 'nom': 'department_name',
-                     'n_cum_complet': 'Nmb of second doses'}, inplace=True)
+                     'Nombre cumulé de vaccinations complètes (doses n°2)': 'Nmb of second doses'}, inplace=True)
     else:
         df_merged.rename(
             columns={'Nombre cumulé de doses n°1': 'Nmb of first doses',
                      'code': 'region_code', 'nom': 'region_name',
-                     'n_cum_complet': 'Nmb of second doses'}, inplace=True)
+                     'Nombre cumulé de vaccinations complètes (doses n°2)': 'Nmb of second doses'}, inplace=True)
     # ---------- make map! ----------
     # initialize view (centered on Paris!)
     view = pdk.ViewState(latitude=46.2322,
