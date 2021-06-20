@@ -31,11 +31,11 @@ but this version might not have the very last changes, even though we are doing 
 The goal of our project was to analyze the spreading of the covid19 disease in France.
 The main idea was to provide a python package for Covid data visualization.
 The package contains several sub-modules, each of which containing several functions for specific visualization purpose. One should be able to use these by passing arguments corresponding to the desired output. We wanted our package to be easy to use and tried to build a [documentation](https://vizcovidfr.readthedocs.io/en/latest/index.html) as clear and detailed as possible.
-Hopefully our modules will also provide functions for animated and interactive data visualization.
+
 
 We use Covid-related [datasets available on data.gouv.fr](https://www.data.gouv.fr/en/datasets/).
 
-## Oral presentation
+## Oral presentation (due date : April 25, 2021)
 
 Our beamer presentation for **vizcovidfr** is available on GitHub (`./beamer` folder) and [here on YouTube](https://www.youtube.com/watch?v=8RLse3MGTMU).
 
