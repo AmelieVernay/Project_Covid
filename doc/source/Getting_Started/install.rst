@@ -9,7 +9,18 @@ To install vizcovidfr, enter the following command in your terminal:
 
 .. code-block:: bash
 
+	$ pip install git+https://github.com/AmelieVernay/vizcovidfr/
+
+
+You can also use the command
+
+.. code-block:: bash
+
 	$ pip install vizcovidfr==0.0.4
+
+
+but this version might not have the very last changes, even though we are doing our best to maintain it up to date.
+
 
 **Note**
 

@@ -51,7 +51,7 @@ Our beamer presentation for **vizcovidfr** is available on GitHub (`./beamer` fo
 - Foux Quentin: line charts / piecharts / maps (vacmap)
 - Llinares Laurent: line charts / bar plots / heatmap
 - Nicolas Alexandre: bar plots / regression / prediction
-- Vernay Amelie: maps / sparse / time
+- Vernay Amelie: maps / sparse matrices / plots / time efficiency
 
 - Everyone: module architecture, documentation, unit tests...
 
