@@ -16,7 +16,7 @@ You can also use the command
 
 .. code-block:: bash
 
-	$ pip install vizcovidfr==0.0.4
+	$ pip install vizcovidfr==0.0.5
 
 
 but this version might not have the very last changes, even though we are doing our best to maintain it up to date.

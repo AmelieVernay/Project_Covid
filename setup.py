@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='vizcovidfr',
-    version='0.0.4',
+    version='0.0.5',
     description='A python package to visualize spatial evolution of Covid19 cases in France',
     url='https://github.com/AmelieVernay/vizcovidfr',
     author='Foux Quentin ; Llinares Laurent ; Nicolas Alexandre ; Vernay Amelie',
@@ -23,6 +23,8 @@ setup(
                                     'vizcovidfr.pie_charts',
                                     'vizcovidfr.maps',
                                     'vizcovidfr.sparse']),
+    classifiers=['Programming Language :: Python :: 3',
+                 'License :: OSI Approved :: MIT License', ],
     install_requires=['pandas==1.2.3',
                       'pydeck==0.6.1',
                       'numpy==1.20.2',
