@@ -24,7 +24,8 @@ loaded dataset(s) written in the same order as they appear in the second column.
 The table is given for execution time comparison **between** the
 different functions. Time might differ according to computers, background
 processes, and so on. These values have all been calculated on the same
-machine, under the same conditions.
+machine, under the same conditions. Also note that datasets are growing with
+time ; this time table was last edited on April 2021.
 
 The execution time is also provided as a message in the terminal when running
 any of **vizcovidfr**'s functions.

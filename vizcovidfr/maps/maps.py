@@ -304,7 +304,7 @@ def viz3Dmap(granularity='departement', criterion='hospitalises',
 
     >>> import os
     >>> path_to_Documents = os.path.expanduser("~/Documents")
-    >>> viz3Dmap(file_path=path_to_Documents, file_name='pinky_3D_map',
+    >>> viz3Dmap(file_path=path_to_Documents, file_name='rea_3D_map',
     ...          granularity='departement', criterion='reanimation',
     ...          color=[245, 92, 245, 80])
 
@@ -461,7 +461,7 @@ def transfer_map(file_path='~/Desktop/vizcovidfr_files/',
 
     >>> import os
     >>> path_to_Documents = os.path.expanduser("~/Documents")
-    >>> transfer_map(file_path=path_to_Documents, file_name='pinky_arc_map',
+    >>> transfer_map(file_path=path_to_Documents, file_name='arc_map',
     ...          color_d=[255, 165, 0, 80], color_a=[128, 0, 128, 80])
 
     **example using Windows path**
