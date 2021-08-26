@@ -26,7 +26,7 @@ def test_viz2Dmap():
         - preprocess_chiffres_cles.reg_depts_code_format()
         - preprocess_maps.map_save_path_routine()
     """
-    result = (type(maps.viz2Dmap(file_path='')) != int)
+    result = (type(maps.viz2Dmap(date='2020-12-25', file_path='')) != int)
     assert result
 
 
