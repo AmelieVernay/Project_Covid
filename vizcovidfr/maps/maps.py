@@ -24,14 +24,22 @@ pd.options.mode.chained_assignment = None  # default='warn'
 
 # ---------- format some default arguments ----------
 
-# format yesterday's date
+# format the-day-before-yesterday's date
 dt_today = datetime.now()
-dt_yesterday = (dt_today - timedelta(1))
-yesterday = dt_yesterday.strftime('%Y-%m-%d')
-
+dt_day_before_yesterday = (dt_today - timedelta(2))
+day_before_yesterday = dt_day_before_yesterday.strftime('%Y-%m-%d')
+# To add in doc if ever the dataset gets updated again
+# (and put "date=day_before_yesterday" in function arguments):
+# :param date: the date on which we want to get Covid-19 information.
+#     Should be of the form 'YYYY-MM-DD', and from 2020-01-24 to the day
+#     before yesterday. (The database is updated every two days or every
+#     days, so depending on the hour you want to use the function,
+#     yesterday's or even today's data might already be available,
+#     and you can try to get the very last version of the map.)
+# :type date: str, optional, default=day_before_yesterday
 
 # ---------- define viz2Dmap ----------
-def viz2Dmap(granularity='departement', date=yesterday,
+def viz2Dmap(granularity='departement', date="last_update",
              criterion='hospitalises', color_pal='YlGnBu',
              file_path='~/Desktop/vizcovidfr_files/', file_name='Covid2Dmap'):
     '''
@@ -45,11 +53,17 @@ def viz2Dmap(granularity='departement', date=yesterday,
         Should be either 'region' or 'departement'.
     :type granularity: str, optional, default='departement'
     :param date: the date on which we want to get Covid-19 information.
-        Should be of the form 'YYYY-MM-DD', and from 2020-01-24 to yesterday,
-        (because the database is updated on the end of every day, so depending
-        on the hour you want to use the function,
-        today's data might not exist yet)
-    :type date: str, optional, default=yesterday
+        Should be of the form 'YYYY-MM-DD', and from 2020-01-24 to yesterday.
+        (The database is updated every two days or every
+        days, so depending on the hour you want to use the function,
+        yesterday's or even today's data might already be available,
+        and you can try to get the very last version of the map.)
+
+        **Note:** Currently, the dataset might not always be updated,
+        so the default value for the date parameter is "last_update",
+        which corresponds to the day when the dataset has been updated for
+        the last time. This date will be displayed on the title of the map.
+    :type date: str, optional, default="last_update"
     :param criterion: the Covid-19 indicator we want to see on the map.
         Should be either 'hospitalises', 'reanimation', or 'deces':
 
@@ -68,7 +82,7 @@ def viz2Dmap(granularity='departement', date=yesterday,
     :param color_pal: the color palette we want for the map.
 
         For reference,
-        see https://colorbrewer2.org/#type=sequential&scheme=YlGnBu&n=3,
+        see `COLORBREWER's palettes <https://colorbrewer2.org/#type=sequential&scheme=YlGnBu&n=3>`_,
         defaults to 'YlGnBu' (for color-blind people purpose)
     :type color_pal: str, optional, default='YlGnBu'
     :param file_path: the path on which to save the file, can be either Linux,
@@ -100,14 +114,14 @@ def viz2Dmap(granularity='departement', date=yesterday,
     >>> path_to_Documents = os.path.expanduser("~/Documents")
     >>> viz2Dmap(granularity='region', date='2020-12-25', criterion='deces',
     ...          color_pal='Greys', file_path=path_to_Documents,
-    ...          file_name='creepymap')
+    ...          file_name='death_map')
 
     **example using Windows path**
 
     >>> W_path = 'c:\\Users\\username\\Documents'
     >>> viz2Dmap(granularity='department', date='2021-01-17',
     ...          criterion='reanimation', color_pal='Greys',
-    ...          file_path=W_path, file_name='funkymap')
+    ...          file_path=W_path, file_name='rea_map')
 
     :Notes:
 
@@ -149,6 +163,9 @@ def viz2Dmap(granularity='departement', date=yesterday,
         gra = 'region'
     # merge on the 'code' column
     df_merged = pd.merge(df_local, df, on="code")
+    # format last-update's date
+    if(date == "last_update"):
+        date = df_merged['date'].iloc[-1]
     # keep only data corresponding to the given date
     at_date = df_merged.loc[df_merged['date'] == date]
     # convert to GeoPandas dataframe
@@ -461,7 +478,7 @@ def transfer_map(file_path='~/Desktop/vizcovidfr_files/',
 
     >>> import os
     >>> path_to_Documents = os.path.expanduser("~/Documents")
-    >>> transfer_map(file_path=path_to_Documents, file_name='arc_map',
+    >>> transfer_map(file_path=path_to_Documents, file_name='transfer_map',
     ...          color_d=[255, 165, 0, 80], color_a=[128, 0, 128, 80])
 
     **example using Windows path**
